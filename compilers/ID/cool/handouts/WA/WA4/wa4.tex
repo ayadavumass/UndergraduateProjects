@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+
+\usepackage{../handout}
+
+\input{../mymargins}
+
+\begin{document}
+\handout{11}{2}{Written Assignment 4 \\
+Due Tuesday, March 13, 2007}
+
+
+This assignment asks you to prepare written answers to questions on
+code generation, operational semantics, optimization, register
+allocation, and garbage collection.  Each of the questions has a short
+answer.  You may discuss this assignment with other students and work
+on the problems together.  However, your write-up should be your own
+individual work.  Written assignments can be turned in at the start of
+lecture.  Alternatively, assignments can be turned in at Professor
+Aiken's office in Gates 411, or submitted electronically in PDF format
+by following the electronic submission instructions at
+\texttt{http://www.stanford.edu/class/cs143/policies/submit.html}, by
+5:00 PM on the due date.
+
+%% \bigskip
+%% \bigskip
+
+\begin{enumerate}
+
+\item
+\label{cond}
+Suppose that we want to add the following conditional expression to
+Cool.
+\vspace{-0.5\baselineskip}
+\begin{verbatim}
+cond <p1> => <e1>; <p2> => <e2>; ... ; <pn> => <en>; dnoc
+\end{verbatim}
+
+\vspace{-0.5\baselineskip}
+There must be at least one predicate and expression pair (that is,
+$n \geq 1$).  The evaluation of a \texttt{cond} expression begins with
+the evaluation of the predicate \texttt{<p1>}, which must have static
+type \texttt{Bool}.  If \texttt{<p1>} evaluates to \texttt{true}, then
+\texttt{<e1>} is evaluated, and the evaluation of the \texttt{cond}
+expression is complete.  If \texttt{<p1>} evaluates to \texttt{false},
+then \texttt{<p2>} is evaluated, and this process is repeated until
+one of the predicates evaluates to \texttt{true}.  The value of the
+\texttt{cond} expression is the value of the expression \texttt{<ei>}
+corresponding to the first predicate \texttt{<pi>} that evaluates to
+\texttt{true}.  If all the predicates evaluate to \texttt{false}, then
+the value of the \texttt{cond} expression is \texttt{void}.
+
+Write operational semantics rules for this conditional expression in
+Cool.
+
+\item
+Write a code generation function
+\texttt{cgen(cond <p1> => <e1>; ... ; <pn> => <en>; dnoc)} for the
+conditional expression described in Question \ref{cond}.  For
+concreteness, assume that $n = 2$.  Use the stack machine architecture
+and conventions from the lectures.
+
+\item
+Consider the following basic block, in which all variables are
+integers, and \texttt{**} denotes exponentiation.
+\begin{verbatim}
+  a := b + c
+  z := a ** 2
+  x := 0 * b
+  y := b + c
+  w := y * y
+  u := x + 3
+  v := u + w
+\end{verbatim}
+Assume that the only variables that are live at the exit of this block
+are \texttt{v} and \texttt{z}.  In order, apply the following
+optimizations to this basic block.  Show the result of each
+transformation.
+\begin{enumerate}
+\item algebraic simplification
+\item common sub-expression elimination
+\item copy propagation
+\item constant folding
+\item dead code elimination
+\end{enumerate}
+
+When you've completed part (e), the resulting program will still not
+be optimal.  What optimizations, in what order, can you apply to
+optimize the result of (e) further?
+
+\item
+Consider the following program.
+\vspace{-0.5\baselineskip}
+\begin{verbatim}
+L0: e := 0
+    b := 1
+    d := 2
+L1: a := b + 2
+    c := d + 5
+    e := e + c
+    f := a * a
+    if f < c goto L3
+L2: e := e + f
+    goto L4
+L3: e := e + 2
+L4: d := d + 4
+    b := b - 4
+    if b != d goto L1
+L5:
+\end{verbatim}
+
+\vspace{-0.5\baselineskip}
+This program uses six temporaries, \texttt{a}-\texttt{f}.  Assume that
+the only variable that is live on exit from this program is
+\texttt{e}.
+
+Draw the register interference graph.  (Drawing a control-flow graph
+and computing the sets of live variables at every program point may be
+helpful.)
+
+\item
+Suppose that the following Cool program is executed.
+\vspace{-0.5\baselineskip}
+\begin{verbatim}
+class C {
+  x : C; y : C;
+  setx(newx : C) : C { x <- newx };
+  sety(newy : C) : C { y <- newy };
+  setxy(newx : C, newy : C) : SELF_TYPE { { x <- newx; y <- newy; self; } }; };
+class Main {
+  x : C;
+  main() : Object {
+    let a : C <- new C, b : C <- new C, c : C <- new C, d : C <- new C,
+        e : C <- new C, f : C <- new C, g : C <- new C, h : C <- new C in {
+      f.sety(g); a.setxy(e, c); b.setx(f); g.setxy(f, d); c.sety(h); h.setxy(e, a);
+      x <- c;
+  } }; };
+\end{verbatim}
+
+\vspace{-0.75\baselineskip}
+\begin{enumerate}
+\item
+Draw the heap at the end of the execution of the program, identifying
+objects by the names to which they are bound in the \texttt{let}
+expression.  Assume that the root is the \texttt{Main} object created
+at the start of the program, and that this object is not in the heap.
+If the value of an attribute is \texttt{void}, don't show that
+attribute as a pointer on the diagram.
+
+\item
+For each of the garbage collection algorithms discussed in class (Mark
+and Sweep, Stop and Copy, and Reference Counting), show the heap after
+garbage collection.  When the pointers of an object are processed,
+assume that the processing order is the order of the attributes in the
+source program.  Assume that the heap has space for at least $16$
+objects.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

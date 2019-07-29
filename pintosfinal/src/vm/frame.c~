@@ -1,0 +1,17 @@
+#include "frame.h"
+
+/*Used for hashing*/
+unsigned Frame_Table_Hash_Func (const struct hash_elem *p_, void *aux UNUSED)
+{
+const struct FrameToUserPage *p = hash_entry (p_, struct FrameToUserPage, hash_elem);
+return hash_bytes (&p->Frame_Addr, sizeof p->Frame_Addr);
+}
+
+
+/* Comparison function for hash table */
+bool Frame_Table_Less (const struct hash_elem *a_, const struct hash_elem *b_,void *aux UNUSED)
+{
+const struct FrameToUserPage *a = hash_entry (a_, struct FrameToUserPage, hash_elem);
+const struct FrameToUserPage *b = hash_entry (b_, struct FrameToUserPage, hash_elem);
+return a->Frame_Addr < b->Frame_Addr;
+}

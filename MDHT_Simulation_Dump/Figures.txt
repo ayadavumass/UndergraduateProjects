@@ -1,0 +1,19 @@
+Figures:
+Gibt es eine optimale Anzahl Ebenen für eine kleine Latenz?
+  Metric: Latenz
+  Factors: no. of MDHT levels, caching on/off
+Welche Größe des Caches wäre optimal? (System vorher füllen mit Einträgen?!)
+  Metric: Latenz
+  FActors: Cache Größe, Anzahl Einträge im System
+How many MDHT levels have to be consulted to find an answer?
+  Metric: No. of MDHT levels
+  Factors: Neighborhood effect in percent, caching on/off,
+
+Later:
+Change of IO popularity: How does the system react on such changes?
+
+Metrics:
+Load distribution, latency, overhead (chord/cachging mgmt. vs. real load), neighborhood effect, 
+
+Factors:
+cache size, caching on/off, no. levels, neighborhood effect parameter, latency distribution on different levels, caching TTL

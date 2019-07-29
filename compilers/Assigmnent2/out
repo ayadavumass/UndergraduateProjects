@@ -1,0 +1,853 @@
+Substring: 0 U
+Substring: 1 S
+Substring: 2 
+U	S
+Substring: 0 S
+Substring: 1 ~n~m()M
+Substring: 2 
+S	~n~m()M
+Substring: 0 M
+Substring: 1 {P}
+Substring: 2 
+M	{P}
+Substring: 0 P
+Substring: 1 ~nI;P
+Substring: 2 
+P	~nI;P
+Substring: 0 I
+Substring: 1 ~i,I
+Substring: 2 
+I	~i,I
+Substring: 0 I
+Substring: 1 ~i
+Substring: 2 
+I	~i
+Substring: 0 P
+Substring: 1 ~cI;P
+Substring: 2 
+P	~cI;P
+Substring: 0 P
+Substring: 1 ~i=E;P
+Substring: 2 
+P	~i=E;P
+Substring: 0 E
+Substring: 1 E+T
+Substring: 2 
+E	E+T
+Substring: 0 E
+Substring: 1 T
+Substring: 2 
+E	T
+Substring: 0 T
+Substring: 1 T*F
+Substring: 2 
+T	T*F
+Substring: 0 T
+Substring: 1 F
+Substring: 2 
+T	F
+Substring: 0 F
+Substring: 1 (E)
+Substring: 2 
+F	(E)
+Substring: 0 F
+Substring: 1 ~i
+Substring: 2 
+F	~i
+Substring: 0 P
+Substring: 1 ~f(R)M~eMP
+Substring: 2 
+P	~f(R)M~eMP
+Substring: 0 P
+Substring: 1 ~l(R)MP
+Substring: 2 
+P	~l(R)MP
+Substring: 0 P
+Substring: 1 ~r~i;P
+Substring: 2 
+P	~r~i;P
+Substring: 0 P
+Substring: 1 ~
+Substring: 2 
+P	~
+Substring: 0 R
+Substring: 1 FO
+Substring: 2 
+R	FO
+Substring: 0 O
+Substring: 1 <F
+Substring: 2 
+O	<F
+Substring: 0 O
+Substring: 1 ~>F
+Substring: 2 
+O	~>F
+Substring: 0 
+here
+PRINTING ELIMINATED LEFT RECURISVE GRAMMER
+U --> S
+S --> ~n~m()M
+M --> {P}
+P --> ~nI;P
+P --> ~cI;P
+P --> ~i=E;P
+P --> ~f(R)M~eMP
+P --> ~l(R)MP
+P --> ~r~i;P
+P --> ~
+I --> ~i,I
+I --> ~i
+E --> E+T
+E --> T
+T --> T*F
+T --> F
+F --> (E)
+F --> ~i
+R --> FO
+O --> <F
+O --> ~>F
+FIRST PRINTING
+U 1 ~n 
+S 1 ~n 
+M 1 { 
+P 1 ~n ~c ~i ~f ~l ~r ~ 
+I 1 ~i 
+E 1 ( ~i 
+T 1 ( ~i 
+F 1 ( ~i 
+R 1 ( ~i 
+O 1 < ~> 
+FOLLOW PRINTING
+U 1 $ 
+S 1 $ 
+M 1 $ ~e ~n ~c ~i ~f ~l ~r } 
+P 1 } 
+I 1 ; 
+E 1 ; + ) 
+T 1 ; + ) * 
+F 1 ; + ) * < ~> 
+R 1 ) 
+O 1 ) 
+PRINTING CLOSURE
+U-->0 S
+S-->0 ~n~m()M
+Num 1 Size 1I 0
+Inserting Into Can Items DotSymS StateNo 1
+Inserting Into Can Items DotSym~n StateNo 2
+Num 3 Size 3I 1
+Num 3 Size 3I 2
+Inserting Into Can Items DotSym~m StateNo 3
+Num 4 Size 4I 3
+Inserting Into Can Items DotSym( StateNo 4
+Num 5 Size 5I 4
+Inserting Into Can Items DotSym) StateNo 5
+Num 6 Size 6I 5
+Inserting Into Can Items DotSymM StateNo 6
+Inserting Into Can Items DotSym{ StateNo 7
+Num 8 Size 8I 6
+Num 8 Size 8I 7
+Inserting Into Can Items DotSymP StateNo 8
+Inserting Into Can Items DotSym~n StateNo 9
+Inserting Into Can Items DotSym~c StateNo 10
+Inserting Into Can Items DotSym~i StateNo 11
+Inserting Into Can Items DotSym~f StateNo 12
+Inserting Into Can Items DotSym~l StateNo 13
+Inserting Into Can Items DotSym~r StateNo 14
+Num 15 Size 15I 8
+Inserting Into Can Items DotSym} StateNo 15
+Num 16 Size 16I 9
+Inserting Into Can Items DotSymI StateNo 16
+Inserting Into Can Items DotSym~i StateNo 17
+Num 18 Size 18I 10
+Inserting Into Can Items DotSymI StateNo 18
+Num 19 Size 19I 11
+Inserting Into Can Items DotSym= StateNo 19
+Num 20 Size 20I 12
+Inserting Into Can Items DotSym( StateNo 20
+Num 21 Size 21I 13
+Inserting Into Can Items DotSym( StateNo 21
+Num 22 Size 22I 14
+Inserting Into Can Items DotSym~i StateNo 22
+Num 23 Size 23I 15
+Num 23 Size 23I 16
+Inserting Into Can Items DotSym; StateNo 23
+Num 24 Size 24I 17
+Inserting Into Can Items DotSym, StateNo 24
+Num 25 Size 25I 18
+Inserting Into Can Items DotSym; StateNo 25
+Num 26 Size 26I 19
+Inserting Into Can Items DotSymE StateNo 26
+Inserting Into Can Items DotSymT StateNo 27
+Inserting Into Can Items DotSymF StateNo 28
+Inserting Into Can Items DotSym( StateNo 29
+Inserting Into Can Items DotSym~i StateNo 30
+Num 31 Size 31I 20
+Inserting Into Can Items DotSymR StateNo 31
+Inserting Into Can Items DotSymF StateNo 32
+Num 33 Size 33I 21
+Inserting Into Can Items DotSymR StateNo 33
+Num 34 Size 34I 22
+Inserting Into Can Items DotSym; StateNo 34
+Num 35 Size 35I 23
+Inserting Into Can Items DotSymP StateNo 35
+Num 36 Size 36I 24
+Inserting Into Can Items DotSymI StateNo 36
+Num 37 Size 37I 25
+Inserting Into Can Items DotSymP StateNo 37
+Num 38 Size 38I 26
+Inserting Into Can Items DotSym; StateNo 38
+Inserting Into Can Items DotSym+ StateNo 39
+Num 40 Size 40I 27
+Inserting Into Can Items DotSym* StateNo 40
+Num 41 Size 41I 28
+Num 41 Size 41I 29
+Inserting Into Can Items DotSymE StateNo 41
+Num 42 Size 42I 30
+Num 42 Size 42I 31
+Inserting Into Can Items DotSym) StateNo 42
+Num 43 Size 43I 32
+Inserting Into Can Items DotSymO StateNo 43
+Inserting Into Can Items DotSym< StateNo 44
+Inserting Into Can Items DotSym~> StateNo 45
+Num 46 Size 46I 33
+Inserting Into Can Items DotSym) StateNo 46
+Num 47 Size 47I 34
+Inserting Into Can Items DotSymP StateNo 47
+Num 48 Size 48I 35
+Num 48 Size 48I 36
+Num 48 Size 48I 37
+Num 48 Size 48I 38
+Inserting Into Can Items DotSymP StateNo 48
+Num 49 Size 49I 39
+Inserting Into Can Items DotSymT StateNo 49
+Num 50 Size 50I 40
+Inserting Into Can Items DotSymF StateNo 50
+Num 51 Size 51I 41
+Inserting Into Can Items DotSym) StateNo 51
+Num 52 Size 52I 42
+Inserting Into Can Items DotSymM StateNo 52
+Num 53 Size 53I 43
+Num 53 Size 53I 44
+Inserting Into Can Items DotSymF StateNo 53
+Num 54 Size 54I 45
+Inserting Into Can Items DotSymF StateNo 54
+Num 55 Size 55I 46
+Inserting Into Can Items DotSymM StateNo 55
+Num 56 Size 56I 47
+Num 56 Size 56I 48
+Num 56 Size 56I 49
+Num 56 Size 56I 50
+Num 56 Size 56I 51
+Num 56 Size 56I 52
+Inserting Into Can Items DotSym~e StateNo 56
+Num 57 Size 57I 53
+Num 57 Size 57I 54
+Num 57 Size 57I 55
+Inserting Into Can Items DotSymP StateNo 57
+Num 58 Size 58I 56
+Inserting Into Can Items DotSymM StateNo 58
+Num 59 Size 59I 57
+Num 59 Size 59I 58
+Inserting Into Can Items DotSymP StateNo 59
+Num 60 Size 60I 59
+PRINTING Canonical Items
+0
+U-->0 S
+S-->0 ~n~m()M
+1 S
+2 ~n
+###################################################################
+1
+U-->1 S
+###################################################################
+2
+S-->2 ~n~m()M
+3 ~m
+###################################################################
+3
+S-->4 ~n~m()M
+4 (
+###################################################################
+4
+S-->5 ~n~m()M
+5 )
+###################################################################
+5
+S-->6 ~n~m()M
+M-->0 {P}
+6 M
+7 {
+###################################################################
+6
+S-->7 ~n~m()M
+###################################################################
+7
+M-->1 {P}
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+8 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+8
+M-->2 {P}
+15 }
+###################################################################
+9
+P-->2 ~nI;P
+I-->0 ~i,I
+I-->0 ~i
+16 I
+17 ~i
+###################################################################
+10
+P-->2 ~cI;P
+I-->0 ~i,I
+I-->0 ~i
+18 I
+17 ~i
+###################################################################
+11
+P-->2 ~i=E;P
+19 =
+###################################################################
+12
+P-->2 ~f(R)M~eMP
+20 (
+###################################################################
+13
+P-->2 ~l(R)MP
+21 (
+###################################################################
+14
+P-->2 ~r~i;P
+22 ~i
+###################################################################
+15
+M-->3 {P}
+###################################################################
+16
+P-->3 ~nI;P
+23 ;
+###################################################################
+17
+I-->2 ~i,I
+I-->2 ~i
+24 ,
+###################################################################
+18
+P-->3 ~cI;P
+25 ;
+###################################################################
+19
+P-->3 ~i=E;P
+E-->0 E+T
+E-->0 T
+T-->0 T*F
+T-->0 F
+F-->0 (E)
+F-->0 ~i
+26 E
+27 T
+28 F
+29 (
+30 ~i
+###################################################################
+20
+P-->3 ~f(R)M~eMP
+R-->0 FO
+F-->0 (E)
+F-->0 ~i
+31 R
+32 F
+29 (
+30 ~i
+###################################################################
+21
+P-->3 ~l(R)MP
+R-->0 FO
+F-->0 (E)
+F-->0 ~i
+33 R
+32 F
+29 (
+30 ~i
+###################################################################
+22
+P-->4 ~r~i;P
+34 ;
+###################################################################
+23
+P-->4 ~nI;P
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+35 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+24
+I-->3 ~i,I
+I-->0 ~i,I
+I-->0 ~i
+36 I
+17 ~i
+###################################################################
+25
+P-->4 ~cI;P
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+37 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+26
+P-->4 ~i=E;P
+E-->1 E+T
+38 ;
+39 +
+###################################################################
+27
+E-->1 T
+T-->1 T*F
+40 *
+###################################################################
+28
+T-->1 F
+###################################################################
+29
+F-->1 (E)
+E-->0 E+T
+E-->0 T
+T-->0 T*F
+T-->0 F
+F-->0 (E)
+F-->0 ~i
+41 E
+27 T
+28 F
+29 (
+30 ~i
+###################################################################
+30
+F-->2 ~i
+###################################################################
+31
+P-->4 ~f(R)M~eMP
+42 )
+###################################################################
+32
+R-->1 FO
+O-->0 <F
+O-->0 ~>F
+43 O
+44 <
+45 ~>
+###################################################################
+33
+P-->4 ~l(R)MP
+46 )
+###################################################################
+34
+P-->5 ~r~i;P
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+47 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+35
+P-->5 ~nI;P
+###################################################################
+36
+I-->4 ~i,I
+###################################################################
+37
+P-->5 ~cI;P
+###################################################################
+38
+P-->5 ~i=E;P
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+48 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+39
+E-->2 E+T
+T-->0 T*F
+T-->0 F
+F-->0 (E)
+F-->0 ~i
+49 T
+28 F
+29 (
+30 ~i
+###################################################################
+40
+T-->2 T*F
+F-->0 (E)
+F-->0 ~i
+50 F
+29 (
+30 ~i
+###################################################################
+41
+F-->2 (E)
+E-->1 E+T
+51 )
+39 +
+###################################################################
+42
+P-->5 ~f(R)M~eMP
+M-->0 {P}
+52 M
+7 {
+###################################################################
+43
+R-->2 FO
+###################################################################
+44
+O-->1 <F
+F-->0 (E)
+F-->0 ~i
+53 F
+29 (
+30 ~i
+###################################################################
+45
+O-->2 ~>F
+F-->0 (E)
+F-->0 ~i
+54 F
+29 (
+30 ~i
+###################################################################
+46
+P-->5 ~l(R)MP
+M-->0 {P}
+55 M
+7 {
+###################################################################
+47
+P-->6 ~r~i;P
+###################################################################
+48
+P-->6 ~i=E;P
+###################################################################
+49
+E-->3 E+T
+T-->1 T*F
+40 *
+###################################################################
+50
+T-->3 T*F
+###################################################################
+51
+F-->3 (E)
+###################################################################
+52
+P-->6 ~f(R)M~eMP
+56 ~e
+###################################################################
+53
+O-->2 <F
+###################################################################
+54
+O-->3 ~>F
+###################################################################
+55
+P-->6 ~l(R)MP
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+57 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+56
+P-->8 ~f(R)M~eMP
+M-->0 {P}
+58 M
+7 {
+###################################################################
+57
+P-->7 ~l(R)MP
+###################################################################
+58
+P-->9 ~f(R)M~eMP
+P-->0 ~nI;P
+P-->0 ~cI;P
+P-->0 ~i=E;P
+P-->0 ~f(R)M~eMP
+P-->0 ~l(R)MP
+P-->0 ~r~i;P
+P-->0 ~
+59 P
+9 ~n
+10 ~c
+11 ~i
+12 ~f
+13 ~l
+14 ~r
+###################################################################
+59
+P-->10 ~f(R)M~eMP
+###################################################################
+PRINTING SLR TABLE
+0 , S : --> St 1 Shift/Reduce 224 ACC 0
+0 , ~n : --> St 2 Shift/Reduce 1 ACC 0
+1 , $ : --> St 2 Shift/Reduce 0 ACC 1
+10 , I : --> St 18 Shift/Reduce 1 ACC 0
+10 , ~i : --> St 17 Shift/Reduce 1 ACC 0
+11 , = : --> St 19 Shift/Reduce 1 ACC 0
+12 , ( : --> St 20 Shift/Reduce 1 ACC 0
+13 , ( : --> St 21 Shift/Reduce 1 ACC 0
+14 , ~i : --> St 22 Shift/Reduce 1 ACC 0
+15 , $ : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , } : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~c : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~e : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~f : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~i : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~l : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~n : M-->{P} St 22 Shift/Reduce 0 ACC 0
+15 , ~r : M-->{P} St 22 Shift/Reduce 0 ACC 0
+16 , ; : --> St 23 Shift/Reduce 1 ACC 0
+17 , , : --> St 24 Shift/Reduce 1 ACC 0
+17 , ; : I-->~i St 24 Shift/Reduce 0 ACC 0
+18 , ; : --> St 25 Shift/Reduce 1 ACC 0
+19 , ( : --> St 29 Shift/Reduce 1 ACC 0
+19 , E : --> St 26 Shift/Reduce 1 ACC 0
+19 , F : --> St 28 Shift/Reduce 1 ACC 0
+19 , T : --> St 27 Shift/Reduce 1 ACC 0
+19 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+2 , ~m : --> St 3 Shift/Reduce 1 ACC 0
+20 , ( : --> St 29 Shift/Reduce 1 ACC 0
+20 , F : --> St 32 Shift/Reduce 1 ACC 0
+20 , R : --> St 31 Shift/Reduce 1 ACC 0
+20 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+21 , ( : --> St 29 Shift/Reduce 1 ACC 0
+21 , F : --> St 32 Shift/Reduce 1 ACC 0
+21 , R : --> St 33 Shift/Reduce 1 ACC 0
+21 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+22 , ; : --> St 34 Shift/Reduce 1 ACC 0
+23 , P : --> St 35 Shift/Reduce 1 ACC 0
+23 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+23 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+23 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+23 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+23 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+23 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+24 , I : --> St 36 Shift/Reduce 1 ACC 0
+24 , ~i : --> St 17 Shift/Reduce 1 ACC 0
+25 , P : --> St 37 Shift/Reduce 1 ACC 0
+25 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+25 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+25 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+25 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+25 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+25 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+26 , + : --> St 39 Shift/Reduce 1 ACC 0
+26 , ; : --> St 38 Shift/Reduce 1 ACC 0
+27 , ) : E-->T St 40 Shift/Reduce 0 ACC 0
+27 , * : --> St 40 Shift/Reduce 1 ACC 0
+27 , + : E-->T St 40 Shift/Reduce 0 ACC 0
+27 , ; : E-->T St 40 Shift/Reduce 0 ACC 0
+28 , ) : T-->F St 40 Shift/Reduce 0 ACC 0
+28 , * : T-->F St 40 Shift/Reduce 0 ACC 0
+28 , + : T-->F St 40 Shift/Reduce 0 ACC 0
+28 , ; : T-->F St 40 Shift/Reduce 0 ACC 0
+29 , ( : --> St 29 Shift/Reduce 1 ACC 0
+29 , E : --> St 41 Shift/Reduce 0 ACC 0
+29 , F : --> St 28 Shift/Reduce 0 ACC 0
+29 , T : --> St 27 Shift/Reduce 0 ACC 0
+29 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+3 , ( : --> St 4 Shift/Reduce 1 ACC 0
+30 , ) : F-->~i St 30 Shift/Reduce 0 ACC 0
+30 , * : F-->~i St 30 Shift/Reduce 0 ACC 0
+30 , + : F-->~i St 30 Shift/Reduce 0 ACC 0
+30 , ; : F-->~i St 30 Shift/Reduce 0 ACC 0
+30 , < : F-->~i St 30 Shift/Reduce 0 ACC 0
+30 , ~> : F-->~i St 30 Shift/Reduce 0 ACC 0
+31 , ) : --> St 42 Shift/Reduce 1 ACC 0
+32 , < : --> St 44 Shift/Reduce 1 ACC 0
+32 , O : --> St 43 Shift/Reduce 1 ACC 0
+32 , ~> : --> St 45 Shift/Reduce 1 ACC 0
+33 , ) : --> St 46 Shift/Reduce 1 ACC 0
+34 , P : --> St 47 Shift/Reduce 1 ACC 0
+34 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+34 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+34 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+34 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+34 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+34 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+35 , } : P-->~nI;P St 14 Shift/Reduce 0 ACC 0
+36 , ; : I-->~i,I St 14 Shift/Reduce 0 ACC 0
+37 , } : P-->~cI;P St 14 Shift/Reduce 0 ACC 0
+38 , P : --> St 48 Shift/Reduce 0 ACC 0
+38 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+38 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+38 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+38 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+38 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+38 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+39 , ( : --> St 29 Shift/Reduce 1 ACC 0
+39 , F : --> St 28 Shift/Reduce 1 ACC 0
+39 , T : --> St 49 Shift/Reduce 1 ACC 0
+39 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+4 , ) : --> St 5 Shift/Reduce 1 ACC 0
+40 , ( : --> St 29 Shift/Reduce 1 ACC 0
+40 , F : --> St 50 Shift/Reduce 1 ACC 0
+40 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+41 , ) : --> St 51 Shift/Reduce 1 ACC 0
+41 , + : --> St 39 Shift/Reduce 1 ACC 0
+42 , M : --> St 52 Shift/Reduce 1 ACC 0
+42 , { : --> St 7 Shift/Reduce 1 ACC 0
+43 , ) : R-->FO St 7 Shift/Reduce 0 ACC 0
+44 , ( : --> St 29 Shift/Reduce 1 ACC 0
+44 , F : --> St 53 Shift/Reduce 0 ACC 0
+44 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+45 , ( : --> St 29 Shift/Reduce 1 ACC 0
+45 , F : --> St 54 Shift/Reduce 1 ACC 0
+45 , ~i : --> St 30 Shift/Reduce 1 ACC 0
+46 , M : --> St 55 Shift/Reduce 1 ACC 0
+46 , { : --> St 7 Shift/Reduce 1 ACC 0
+47 , } : P-->~r~i;P St 7 Shift/Reduce 0 ACC 0
+48 , } : P-->~i=E;P St 7 Shift/Reduce 0 ACC 0
+49 , ) : E-->E+T St 40 Shift/Reduce 0 ACC 0
+49 , * : --> St 40 Shift/Reduce 1 ACC 0
+49 , + : E-->E+T St 40 Shift/Reduce 0 ACC 0
+49 , ; : E-->E+T St 40 Shift/Reduce 0 ACC 0
+5 , M : --> St 6 Shift/Reduce 1 ACC 0
+5 , { : --> St 7 Shift/Reduce 1 ACC 0
+50 , ) : T-->T*F St 40 Shift/Reduce 0 ACC 0
+50 , * : T-->T*F St 40 Shift/Reduce 0 ACC 0
+50 , + : T-->T*F St 40 Shift/Reduce 0 ACC 0
+50 , ; : T-->T*F St 40 Shift/Reduce 0 ACC 0
+51 , ) : F-->(E) St 40 Shift/Reduce 0 ACC 0
+51 , * : F-->(E) St 40 Shift/Reduce 0 ACC 0
+51 , + : F-->(E) St 40 Shift/Reduce 0 ACC 0
+51 , ; : F-->(E) St 40 Shift/Reduce 0 ACC 0
+51 , < : F-->(E) St 40 Shift/Reduce 0 ACC 0
+51 , ~> : F-->(E) St 40 Shift/Reduce 0 ACC 0
+52 , ~e : --> St 56 Shift/Reduce 1 ACC 0
+53 , ) : O--><F St 56 Shift/Reduce 0 ACC 0
+54 , ) : O-->~>F St 56 Shift/Reduce 0 ACC 0
+55 , P : --> St 57 Shift/Reduce 0 ACC 0
+55 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+55 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+55 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+55 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+55 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+55 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+56 , M : --> St 58 Shift/Reduce 1 ACC 0
+56 , { : --> St 7 Shift/Reduce 1 ACC 0
+57 , } : P-->~l(R)MP St 7 Shift/Reduce 0 ACC 0
+58 , P : --> St 59 Shift/Reduce 0 ACC 0
+58 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+58 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+58 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+58 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+58 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+58 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+59 , } : P-->~f(R)M~eMP St 14 Shift/Reduce 0 ACC 0
+6 , $ : S-->~n~m()M St 7 Shift/Reduce 0 ACC 0
+7 , P : --> St 8 Shift/Reduce 0 ACC 0
+7 , ~c : --> St 10 Shift/Reduce 1 ACC 0
+7 , ~f : --> St 12 Shift/Reduce 1 ACC 0
+7 , ~i : --> St 11 Shift/Reduce 1 ACC 0
+7 , ~l : --> St 13 Shift/Reduce 1 ACC 0
+7 , ~n : --> St 9 Shift/Reduce 1 ACC 0
+7 , ~r : --> St 14 Shift/Reduce 1 ACC 0
+8 , } : --> St 15 Shift/Reduce 1 ACC 0
+9 , I : --> St 16 Shift/Reduce 1 ACC 0
+9 , ~i : --> St 17 Shift/Reduce 1 ACC 0
+Input String~n~m(){~r~i;}
+LOOP 0 Top 0
+Key Row0 Col ~n
+State 2 A_G 1 S_R 1 Top 0 First Row0 Col ~nInput~
+Shift~n
+LOOP 2 Top 2
+Key Row2 Col ~m
+State 3 A_G 1 S_R 1 Top 2 First Row2 Col ~mInput~
+Shift~m
+LOOP 4 Top 3
+Key Row3 Col (
+State 4 A_G 1 S_R 1 Top 3 First Row3 Col (Input(
+Shift(
+LOOP 5 Top 4
+Key Row4 Col )
+State 5 A_G 1 S_R 1 Top 4 First Row4 Col )Input)
+Shift)
+LOOP 6 Top 5
+Key Row5 Col {
+State 7 A_G 1 S_R 1 Top 5 First Row5 Col {Input{
+Shift{
+LOOP 7 Top 7
+Key Row7 Col ~r
+State 14 A_G 1 S_R 1 Top 7 First Row7 Col ~rInput~
+Shift~r
+LOOP 9 Top 14
+Key Row14 Col ~i
+State 22 A_G 1 S_R 1 Top 14 First Row14 Col ~iInput~
+Shift~i
+LOOP 11 Top 22
+Key Row22 Col ;
+State 34 A_G 1 S_R 1 Top 22 First Row22 Col ;Input;
+Shift;
+LOOP 12 Top 34
+Key Row34 Col }
+WRONG STRING

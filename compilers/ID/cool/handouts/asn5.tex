@@ -1,0 +1,401 @@
+\documentclass[11pt]{article}
+\usepackage{latexsym}
+\usepackage{handout}
+%
+% Copyright (c) 1995-1996 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+
+\input{handout-number}
+
+\newcommand{\attr}[3]{#1:#2\leftarrow#3}
+\newcommand{\classmap}[2]{class(#1) = (#2)}
+\newcommand{\ossimple}[6]{#1,#2,#3\vdash #4 : #5,#6}
+\newcommand{\osrule}[8]{\frac{#7}{\ossimple{#1}{#2}{#3}{#4}{#5}{#6}}\eqno
+\mbox{#8}}
+\def\U#1{{\sf{}#1}}
+\def\S#1{{\tt{}#1}} % NB: we often use \verb+...+ for this also
+\def\C#1{{\bf{}#1}}
+\newcommand{\dq}{\mbox{\tt "}}
+
+\begin{document}
+
+\handout{7}{6}{Programming Assignment IV \\
+Due Thursday, March 8, 2007 at 11:59 PM }
+
+
+\section{Introduction}
+
+In this assignment, you will implement a code generator for Cool.
+When successfully completed, you will have a fully functional Cool
+compiler!
+
+The code generator makes use of the AST constructed in PA3 and static
+analysis performed in PA4.  Your code generator should produce MIPS
+assembly code that faithfully implements {\em any} correct Cool
+program.  There is no error recovery in code generation---all
+erroneous Cool programs have been detected by the front-end phases of
+the compiler.
+
+As with the static analysis assignment, this assignment has
+considerable room for design decisions.  Your program is correct if
+the code it generates works correctly; how you achieve that goal is up
+to you.  We will suggest certain conventions that we believe will make
+your life easier, but you do not have to take our advice.  As always,
+explain and justify your design decisions in the \U{README} file.
+This assignment is about twice the amount of the code of the previous
+programming assignment, though they share much of the same
+infrastructure. {\bf Start early!}
+
+Critical to getting a correct code generator is a thorough
+understanding of both the expected behavior of Cool constructs and the
+interface between the runtime system and the generated code.  The
+expected behavior of Cool programs is defined by the operational
+semantics for Cool given in Section 13 of the \emph{Cool Reference
+Manual}.  Recall that this is only a specification of the meaning of
+the language constructs---not how to implement them.  The interface
+between the runtime system and the generated code is given in
+\emph{The Cool Runtime System}.  See that document for a detailed
+discussion of the requirements of the runtime system on the generated
+code.  There is a lot of information in this handout and the
+aforementioned documents, and you need to know most of it to write a
+correct code generator.  {\em Please read thoroughly.}
+
+You may work in a group of one or two people.
+
+\section{Files and Directories}
+
+To get started, create a directory where you want to do the assignment
+and execute one of the following commands {\em in that directory.}
+If you are using C++, run this command to get the initial
+skeleton:
+\begin{verbatim}
+  gmake -f /usr/class/cs143/assignments/PA5/Makefile
+\end{verbatim}
+For Java, type:
+\begin{verbatim}
+  gmake -f /usr/class/cs143/assignments/PA5J/Makefile
+\end{verbatim}
+(notice the ``J'' in the path name).
+
+As usual, there are other files used in the assignment that are
+symbolically linked to your directory or are included from \U{/usr/class/cs143/include}
+and \U{/usr/class/cs143/src}.  You should not modify these
+files.  Almost all of these files have been described in previous
+assignments.
+
+We now describe the most important files for each version of the
+project.
+
+\subsection{C++ Version}
+
+This is a list of the files that you may want to modify.
+You should already be familiar with most of the other files from previous assignments.
+See the \U{README} file for details about the additional
+files.
+
+
+\begin{itemize}
+
+\item \U{cgen.cc} \\
+This file will contain almost all your code for the code generator.
+The entry point for your code generator is the
+\C{program\_class::cgen(ostream\&)} method, which is called on the
+root of your AST.  Along with the usual constants, we have provided
+functions for emitting MIPS instructions, a skeleton for coding
+strings, integers, and booleans, and a skeleton of a class table
+(\C{CgenClassTable}).  You can use the provided code or replace it
+with your own inheritance graph from PA4.
+
+\item \U{cgen.h} \\
+This file is the header for the code generator.  You may add anything you
+like to this file.  It provides classes for implementing the inheritance
+graph.  You may replace or modify them as you wish.
+
+\item \U{emit.h} \\
+This file contains various code generation macros used in emitting MIPS
+instructions among other things.  You may modify this file.
+
+\item \U{cool-tree.h} \\
+As usual, these files contain the declarations of classes for AST
+nodes.  You can add field or method declarations to the classes in
+\U{cool-tree.h}.  The implementation of methods should be added to
+\U{cgen.cc}.
+
+\item \U{cgen\_supp.cc} \\
+This file contains general support code for the code generator.  You
+will find a number of handy functions here.  Add to the file as you see
+fit, but don't change anything that's already there.
+
+\item \U{example.cl} \\
+This file should contain a test program of your own design.  
+Test as many features of the code generator as you can.
+
+\item \U{README}\\
+This file will contain the write-up for your assignment. 
+It is critical that you explain design decisions, how your
+code is structured, and why you believe your design is a good one
+(i.e., why it leads to a correct and robust program).  It is part of
+the assignment to explain things in text as well as to comment your
+code. 
+
+\end{itemize}
+
+
+
+\subsection{Java Version}
+
+This is a list of the files that you may want to modify.
+You should already be familiar with most of the other files from previous assignments.
+See the \U{README} file for details about the additional
+files.
+
+\begin{itemize}
+
+\item \U{CgenClassTable.java} and \U{CgenNode.java} \\
+These files provide an implementation of the inheritance graph for the
+code generator.  You will need to complete CgenClassTable in order to
+build your code generator. You can use the provided code or replace it
+with your own inheritance graph from PA4.
+
+\item \U{StringSymbol.java}, \U{IntSymbol.java}, and \U{BoolConst.java} \\
+These files provide support for Cool constants.  You
+will need to complete the method for generating constant definitions.
+
+\item \U{cool-tree.java} \\
+This file contains the definitions for the AST nodes.  You will need
+to add code generation routines (\C{code(PrintStream)}) for Cool
+expressions in this file.  The code generator is invoked by calling
+method \C{cgen(PrintStream)} of class \C{program}. You may add new
+methods, but do not modify the existing declarations.
+
+\item \U{TreeConstants.java} \\
+As before, this file defines some useful symbol constants. Feel free to
+add your own as you see fit.
+
+\item \U{CgenSupport.java} \\
+This file contains general support code for the code generator.  You
+will find a number of handy functions here including ones for emitting
+MIPS instructions.  Add to the file as you see fit, but don't change
+anything that's already there.
+
+\item \U{example.cl} \\
+This file should contain a test program of your own design.  
+Test as many features of the code generator as you can.
+
+
+\item \U{README} \\
+This file will contain the write-up for your assignment. 
+It is critical that you explain design decisions, how your
+code is structured, and why you believe your design is a good one
+(i.e., why it leads to a correct and robust program).  It is part of
+the assignment to explain things in text as well as to comment your
+code. 
+
+\end{itemize}
+
+
+
+\section{Design}
+
+Before continuing, we suggest you read \emph{The Cool Runtime System}
+to familiarize yourself with the requirements on your code generator
+imposed by the runtime system.
+
+In considering your design, at a high-level, your code generator will
+need to perform the following tasks:
+\begin{enumerate}
+  \item Determine and emit code for global constants, such as
+        prototype objects.
+  \item Determine and emit code for global tables, such as the
+        \C{class\_nameTab}, the \C{class\_objTab}, and the dispatch
+        tables.
+  \item Determine and emit code for initialization method for
+        each class.
+  \item Determine and emit code for each method definition.
+\end{enumerate}
+
+There are many possible ways to write the code generator.  One
+reasonable strategy is to perform code generation in two passes.  The
+first pass decides the object layout for each class, particularly the
+offset at which each attribute is stored in an object.  Using this
+information, the second pass recursively walks each feature and
+generates stack machine code for each expression.
+
+There are a number of things you must keep in mind while designing
+your code generator:
+\begin{itemize}
+
+\item Your code generator must work correctly with the Cool runtime
+system, which is explained in the {\em Cool Runtime System} manual.
+
+\item You should have a clear picture of the runtime semantics of Cool
+programs.  The semantics are described informally in the first part of
+the \emph{Cool Reference Manual}, and a precise description of how
+Cool programs should behave is given in Section 13 of the manual.
+
+\item You should understand the MIPS instruction set.  An overview of
+MIPS operations is given in the \U{spim} documentation, which is
+on the class web page.
+
+\item You should decide what invariants your generated code will
+observe and expect (i.e., what registers will be saved, which might be
+overwritten, etc).  You may also find it useful to refer to information
+on code generation in the lecture notes.
+\end{itemize}
+
+You do {\em not} need to generate the same code as \U{coolc}.
+\U{Coolc} includes a very simple register allocator and other small
+changes that are not required for this assignment. The only
+requirement is to generate code that runs correctly with the runtime
+system.
+
+\subsection{Runtime Error Checking}
+The end of the Cool manual lists six errors that will terminate the
+program.  Of these, your generated code should catch the first
+three---dispatch on void, case on void, and missing branch---and print
+a suitable error message before aborting.  You may allow SPIM to catch
+division by zero.  Catching the last two errors---substring out of
+range and heap overflow---is the responsibility of the runtime system
+in {\tt trap.handler}.  See Figure 4 of the \emph{Cool Runtime System}
+manual for a listing of functions that display error messages for you.
+
+\subsection{Garbage Collection}
+
+To receive full credit for this assignment, your code generator must
+work correctly with the generational garbage collector in the Cool
+runtime system.  The skeletons contain functions \C{code\_select\_gc}
+(C++) and \C{CgenClassTable.codeSelectGc} (Java) that generate code
+that sets GC options from command line flags.  The command-line flags
+that affect garbage collection are \U{-g}, \U{-t}, and \U{-T}.
+Garbage collection is disabled by default; the flag \U{-g} enables it.
+When enabled, the garbage collector not only reclaims memory, but also
+verifies that ``-1'' separates all objects in the heap, thus checking
+that the program (or the collector!) has not accidentally overwritten
+the end of an object.  The \U{-t} and \U{-T} flags are used for
+additional testing.  With \U{-t} the collector performs collections
+very frequently (on every allocation).  The garbage collector does not
+directly use \U{-T}; in \U{coolc} the \U{-T} option causes extra code
+to be generated that performs more runtime validity checks.  You are
+free to use (or not use) \U{-T} for whatever you wish.
+
+For your implementation, the simplest way to start is not to use the
+collector at all (this is the default).  When you decide to use the
+collector, be sure to carefully review the garbage collection
+interface described in the {\em Cool Runtime System} manual.  Ensuring
+that your code generator correctly works with the garbage collector in
+{\em all} circumstances is not trivial.
+
+
+
+\section{Testing and Debugging}
+
+You will need a working scanner, parser, and semantic analyzer to test
+your code generator. You may use either your own components or the
+components from \U{coolc}.  By default, the \U{coolc} components are
+used.  To change that, replace the \U{lexer}, \U{parser}, and/or
+\U{semant} executable (which are symbolic links in your project
+directory) with your own scanner/parser/semantic analyzer.  Even if you use your own
+components, it is wise to test your code generator with the \U{coolc}
+scanner, parser, and semantic analyzer at least once because we will
+grade your project using \U{coolc}'s version of the other phases.
+
+You will run your code generator using \U{mycoolc}, a shell script
+that ``glues'' together the generator with the rest of compiler
+phases.  Note that \U{mycoolc} takes a \U{-c} flag for debugging the
+code generator; using this flag merely causes {\tt cgen\_debug} (a
+global variable in the C++ version and a static field of class {\tt
+Flags} in the Java version) to be set.  Adding the actual code to
+produce useful debugging information is up to you.  See the project
+\U{README} for details.
+
+\subsection{Coolaid}
+
+\newcommand{\Coolaid}{\U{Coolaid}}
+
+\Coolaid{} is a tool to statically verify some basic correctness
+properties of the MIPS assembly code produced from Cool
+source. \Coolaid{} will check that the assembly code is ``well-typed''
+with respect to the Cool typing rules, just like the Java bytecode
+verifier checks that the bytecode output by a Java compiler is type
+safe. Aside from checking the safety of the output code, this tool can
+greatly benefit the development process of the code generation
+phase. Since the compiler front-end ensures that the source program is
+well-typed and that the type system guarantees certain safety
+properties, we expect that those properties should also hold on the
+resulting assembly code. If \Coolaid{} is not able to verify some
+particular safety property, then a likely cause is a bug in the
+compiler itself.
+
+\Coolaid{} has been tested on 3500 programs generated by student
+compilers from the Spring 2003 offering of CS164 at UC Berkeley. The
+standard testing procedure (which runs the generated code on the MIPS
+simulator \U{spim}) used for grading found errors in 1000 of
+those. Often the error messages were in the form of garbled output or
+output that did not match the expected output, whereas \Coolaid{} was
+able to give precise error messages where the unsafe operation was
+performed that most likely caused the garbled output.  \Coolaid{}
+also finds errors in 800 of the 2500 programs that pass the testing
+procedure! These were errors that the testing procedure missed because
+the sample input for the code did not exercise the bad code portions.
+See the \emph{Coolaid Reference Manual} to get started using
+\Coolaid{}.  Note \Coolaid{} imposes some additional requirements on
+the generated code to be able to check it; these requirements are also
+discussed in the \emph{Cool Runtime System} manual.
+
+\subsection{Spim and XSpim}
+
+The executables \U{spim} and \U{xspim} are simulators for MIPS
+architecture on which you can run your generated code.  The program
+\U{xspim} works like \U{spim} in that it lets you run MIPS assembly
+programs. However, it has many features that allow you to examine the
+virtual machine's state, including the memory locations, registers,
+data segment, and code segment of the program. You can also set
+breakpoints and single step your program.  The documentation for
+\U{spim}/\U{xspim} is on the course web page.
+
+\paragraph{Warning.} One thing that makes debugging with \U{spim} difficult is
+that \U{spim} is an interpreter for assembly code and not a true
+assembler.  If your code or data definitions refer to undefined
+labels, the error shows up only if the executing code actually refers
+to such a label. Moreover, an error is reported only for undefined
+labels that appear in the code section of your program. If you have
+constant data definitions that refer to undefined labels, \U{spim}
+won't tell you anything. It will just assume the value 0 for such
+undefined labels.
+
+\section{Final Submission}
+
+Make sure to complete the following items before submitting to avoid
+any penalties.
+
+\begin{minipage}{0.8\linewidth}
+\bigskip
+\begin{itemize}
+  \item[$\Box$]
+    Include your write-up in \U{README}.
+
+  \item[$\Box$]
+    Include your test cases that test your code generator
+    in \U{example.cl}.
+
+  \item[$\Box$]
+    Make sure all your code for the code generator is in
+    \begin{itemize}
+    \item \U{cool-tree.h}, \U{cgen.h},
+          \U{cgen.cc}, \U{cgen\_supp.cc}, and \U{emit.h} for the
+          C++ version; or
+    \item \U{cool-tree.java}, \U{CgenClassTable.java},
+          \U{CgenNode.java}, \U{CgenSupport.java}, \U{BoolConst.java},
+          \U{IntSymbol.java}, \U{StringSymbol.java},
+          \U{TreeConstants.java}, and additional \U{.java} files you
+          may have added for the Java version.
+    \end{itemize}
+
+\end{itemize}
+\end{minipage}
+
+\end{document}

@@ -1,0 +1,4 @@
+./BASE_semanttest/circ3.cl:5: Class Class2, or an ancestor of Class2, is involved in an inheritance cycle.
+./BASE_semanttest/circ3.cl:3: Class Class3, or an ancestor of Class3, is involved in an inheritance cycle.
+./BASE_semanttest/circ3.cl:1: Class Class1, or an ancestor of Class1, is involved in an inheritance cycle.
+Compilation halted due to static semantic errors.

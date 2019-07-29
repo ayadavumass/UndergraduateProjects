@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\input{../handout-number}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\thmLabel}[1]{{\rm (}{\em #1\/}{\rm )}}
+
+\newcommand{\ntsym}[1]{\hbox{\em #1}}
+\newcommand{\tsym}[1]{\hbox{\rm #1}}
+
+\def\ra{\rightarrow}     % grammar "rewrites-as" symbol
+\def\ep{\varepsilon}     % epsilon for empty-string
+
+
+\begin{document}
+\handout{\WATenNum}{2}{Written Assignment 10 \\ Due April 29, 2004}
+
+This assignment asks you to prepare written answers to questions on
+register allocation and instruction scheduling.  Each of the questions has a short
+answer.  You may discuss this assignment with other students and work
+on the problems together.  However, your write-up should be your own
+individual work.  {\em Please write the name of the account you are
+using for CS164 {\bf and your section time} on your homework.}
+Remember that written assignments are to be turned in either in class
+or in the CS164 homework box in 283 Soda by 12:30 PM on the due date.
+
+
+\begin{enumerate}
+\item Consider the following program:
+
+\begin{verbatim}
+L0: e := 0
+    b := 1;
+    d := 2;
+L1: a := b+2
+    c := d+5
+    e := e + c
+    f := a * a
+    if f < c goto L3
+L2: e := e + f
+    goto L4
+L3: e := e + 2
+L4: d := d + 4
+    b := b - 4
+    if b != d goto L1
+L5:
+\end{verbatim}
+
+This program uses six temporaries \texttt{a}-\texttt{f}.  Assume that
+our machine has only 4 available registers \texttt{\$r0},
+\texttt{\$r1}, \texttt{\$r2}, and \texttt{\$r3} 
+and that only
+\texttt{e} is live on exit from this program.
+
+\begin{enumerate}
+\item Draw the register interference graph.  (Computing the sets of
+live variables at every program point may be helpful for this step.)
+
+\item Use the graph coloring heuristics discussed in lecture to assign
+  each temporary to a register on a machine that has $4$ registers. 
+Rewrite the program replacing temporaries by registers and including whatever
+spill code is necessary.  Use the pseudo-instructions \texttt{load x}
+and \texttt{store x} to load and spill the value of \texttt{x} from
+memory.
+\end{enumerate}
+
+\item Suppose we have a machine with three registers, two integer units and
+one load/store unit with the following cycle counts (and no
+out-of-order execution):
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+Addition & 1 cycle \\ \hline
+Multiplication & 2 cycles \\ \hline
+Branch & 2 cycles \\ \hline
+Load/store & 3 cycles \\ \hline
+\end{tabular}
+\end{center}
+Consider the following basic block:
+\begin{verbatim}
+a := load 0($fp)
+b := load 4($fp)
+c := a + b
+d := b * 42
+e := d + 2
+\end{verbatim}
+Assume only \texttt{a}, \texttt{c}, and \texttt{e} are live on exit to
+this block.  
+
+\begin{enumerate} 
+\item Draw the instruction dependence graph for the basic
+  block shown above. Label each instruction with
+  the priority $\langle L,D \rangle$ as defined in
+  lecture. Perform instruction scheduling for the above basic block using
+  the heuristics discussed in lecture. Note that the heuristics is
+  optimal for this basic block.
+\item Given an example of a basic block for which this heuristics does
+  not yield the most optimal scheduling. Explain your answer. 
+\item Give an example of a control flow graph for which the best
+  instruction scheduling for each basic block does not yield the best
+  instruction schedule for the entire control flow graph. 
+\end{enumerate}
+
+\item In class we discussed how to perform register allocation and
+instruction scheduling.  Unfortunately, these two important back-end
+components do not always work well together.  This problem asks you to
+show how this can happen. Assume that the underlying machine is as described in
+Question 2.
+\begin{enumerate}
+
+\item If register allocation is done before instruction scheduling, it
+may assign multiple temporaries to the same register, which can
+introduce ``false'' dependencies between variables that can
+interfere with scheduling.  Explain why it is better to perform instruction
+scheduling on the basic block in Question 2 before register allocation.
+
+
+\item On the other hand, it's not always a good idea to do instruction
+scheduling first, because instruction scheduling can increase the
+lifetimes of temporaries.  Give an example program that fits into
+three registers if register allocation is done before instruction
+scheduling, but requires more than three registers (and hence a spill
+on our machine) if register allocation is done after instruction
+scheduling.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}

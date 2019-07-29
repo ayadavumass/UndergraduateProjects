@@ -1,0 +1,4 @@
+./BASE_cgtest/dispatch_incorrect.cl:16: In call of method init, type Int of parameter y does not conform to declared type Bool.
+./BASE_cgtest/dispatch_incorrect.cl:17: Method init called with wrong number of arguments.
+./BASE_cgtest/dispatch_incorrect.cl:18: Dispatch to undefined method iinit.
+Compilation halted due to static semantic errors.

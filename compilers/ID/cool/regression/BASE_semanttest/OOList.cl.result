@@ -1,0 +1,217 @@
+#45
+_program
+ #13
+ _class
+   List
+   Object
+   "./BASE_semanttest/OOList.cl"
+   (
+   #2
+   _method
+     isNil
+     Bool
+     #2
+     _block
+       #2
+       _dispatch
+         #2
+         _object
+           self
+         : SELF_TYPE
+         abort
+         (
+         )
+       : Object
+       #2
+       _bool
+         0
+       : Bool
+     : Bool
+   #8
+   _method
+     cons
+     #4
+     _formal
+       hd
+       Int
+     Cons
+     #7
+     _let
+       new_cell
+       Cons
+       #5
+       _new
+         Cons
+       : Cons
+       #6
+       _dispatch
+         #6
+         _object
+           new_cell
+         : Cons
+         init
+         (
+         #6
+         _object
+           hd
+         : Int
+         #6
+         _object
+           self
+         : SELF_TYPE
+         )
+       : Cons
+     : Cons
+   #10
+   _method
+     car
+     Int
+     #10
+     _block
+       #10
+       _dispatch
+         #10
+         _object
+           self
+         : SELF_TYPE
+         abort
+         (
+         )
+       : Object
+       #10
+       _int
+         1
+       : Int
+     : Int
+   #12
+   _method
+     cdr
+     List
+     #12
+     _block
+       #12
+       _dispatch
+         #12
+         _object
+           self
+         : SELF_TYPE
+         abort
+         (
+         )
+       : Object
+       #12
+       _new
+         List
+       : List
+     : List
+   )
+ #32
+ _class
+   Cons
+   List
+   "./BASE_semanttest/OOList.cl"
+   (
+   #16
+   _attr
+     xcar
+     Int
+     #16
+     _no_expr
+     : _no_type
+   #17
+   _attr
+     xcdr
+     List
+     #17
+     _no_expr
+     : _no_type
+   #19
+   _method
+     isNil
+     Bool
+     #19
+     _bool
+       0
+     : Bool
+   #27
+   _method
+     init
+     #21
+     _formal
+       hd
+       Int
+     #21
+     _formal
+       tl
+       List
+     Cons
+     #26
+     _block
+       #23
+       _assign
+         xcar
+         #23
+         _object
+           hd
+         : Int
+       : Int
+       #24
+       _assign
+         xcdr
+         #24
+         _object
+           tl
+         : List
+       : List
+       #25
+       _object
+         self
+       : SELF_TYPE
+     : SELF_TYPE
+   #29
+   _method
+     car
+     Int
+     #29
+     _object
+       xcar
+     : Int
+   #31
+   _method
+     cdr
+     List
+     #31
+     _object
+       xcdr
+     : List
+   )
+ #36
+ _class
+   Nil
+   List
+   "./BASE_semanttest/OOList.cl"
+   (
+   #35
+   _method
+     isNil
+     Bool
+     #35
+     _bool
+       1
+     : Bool
+   )
+ #40
+ _class
+   Main
+   Object
+   "./BASE_semanttest/OOList.cl"
+   (
+   #39
+   _method
+     main
+     List
+     #39
+     _new
+       List
+     : List
+   )

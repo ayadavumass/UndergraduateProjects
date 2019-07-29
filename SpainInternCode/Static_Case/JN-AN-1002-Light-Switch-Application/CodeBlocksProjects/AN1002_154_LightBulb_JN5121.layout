@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="..\AN1002_154_LightBulb\Source\AN1002_154_LightBulb.c" open="1" top="0" tabpos="1">
+		<Cursor position="3609" topLine="75" />
+	</File>
+	<File name="..\..\..\md5-c\md5c.c" open="0" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\..\..\md5-c\mddriver.c" open="0" top="0" tabpos="3">
+		<Cursor position="1438" topLine="96" />
+	</File>
+</CodeBlocks_layout_file>

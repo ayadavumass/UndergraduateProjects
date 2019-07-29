@@ -1,0 +1,73 @@
+#17
+_program
+ #3
+ _class
+   Main
+   Object
+   "./BASE_semanttest/formals_correct.cl"
+   (
+   #2
+   _method
+     main
+     Int
+     #2
+     _int
+       1
+     : Int
+   )
+ #16
+ _class
+   C
+   Object
+   "./BASE_semanttest/formals_correct.cl"
+   (
+   #6
+   _attr
+     a
+     Int
+     #6
+     _no_expr
+     : _no_type
+   #7
+   _attr
+     b
+     Bool
+     #7
+     _no_expr
+     : _no_type
+   #15
+   _method
+     init
+     #9
+     _formal
+       x
+       Int
+     #9
+     _formal
+       y
+       Bool
+     C
+     #14
+     _block
+       #11
+       _assign
+         a
+         #11
+         _object
+           x
+         : Int
+       : Int
+       #12
+       _assign
+         b
+         #12
+         _object
+           y
+         : Bool
+       : Bool
+       #13
+       _object
+         self
+       : SELF_TYPE
+     : SELF_TYPE
+   )

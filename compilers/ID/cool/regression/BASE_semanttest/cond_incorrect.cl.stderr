@@ -1,0 +1,2 @@
+./BASE_semanttest/cond_incorrect.cl:8: Predicate of 'if' does not have type Bool../BASE_semanttest/cond_incorrect.cl:10: Inferred return type Object of method other does not conform to declared return type C1.
+Compilation halted due to static semantic errors.

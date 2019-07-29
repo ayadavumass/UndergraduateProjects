@@ -1,0 +1,4 @@
+-- case expressions must contain at least one branch.
+class Main is
+  a : Int <- case self of esac;
+end;

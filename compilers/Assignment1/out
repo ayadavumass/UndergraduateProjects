@@ -1,0 +1,121 @@
+int
+if
+else
+return
+char
+4
+ From State 0 On Letter i To State 1
+ From State 0 On Letter e To State 7
+ From State 0 On Letter r To State 12
+ From State 0 On Letter c To State 19
+ From State 1 On Letter n To State 2
+ From State 1 On Letter f To State 5
+ From State 2 On Letter t To State 3
+ From State 3 On Letter ~ To State 4
+ From State 5 On Letter ~ To State 6
+ From State 7 On Letter l To State 8
+ From State 8 On Letter s To State 9
+ From State 9 On Letter e To State 10
+ From State 10 On Letter ~ To State 11
+ From State 12 On Letter e To State 13
+ From State 13 On Letter t To State 14
+ From State 14 On Letter u To State 15
+ From State 15 On Letter r To State 16
+ From State 16 On Letter n To State 17
+ From State 17 On Letter ~ To State 18
+ From State 19 On Letter h To State 20
+ From State 20 On Letter a To State 21
+ From State 21 On Letter r To State 22
+ From State 22 On Letter ~ To State 23
+<=
+<>
+<
+=
+>=
+>
++
+4
+ From State 0 On Letter < To State 1
+ From State 0 On Letter = To State 7
+ From State 0 On Letter > To State 9
+ From State 0 On Letter + To State 13
+ From State 1 On Letter = To State 2
+ From State 1 On Letter > To State 4
+ From State 1 On Letter ~ To State 6
+ From State 2 On Letter ~ To State 3
+ From State 4 On Letter ~ To State 5
+ From State 7 On Letter ~ To State 8
+ From State 9 On Letter = To State 10
+ From State 9 On Letter ~ To State 12
+ From State 10 On Letter ~ To State 11
+ From State 13 On Letter ~ To State 14
+int 0
+
+main 4
+
+
+int 14
+
+a 18
+b 20
+c 22
+d 24
+
+char 28
+
+ch 33
+
+a 38
+= 39
+b 40
++ 41
+6 42
+
+if 46
+a 49
+>= 50
+b 52
+
+
+c 60
+= 61
+10 62
+
+ch 68
+= 70
+a 72
+
+else 78
+
+
+d 88
+= 89
+10 90
+
+ch 96
+= 98
+b 100
+
+
+return 108
+
+0 115
+
+
+1 int0 14 
+1 main4 
+1 a18 38 49 72 
+1 b20 40 52 100 
+1 c22 60 
+1 d24 88 
+1 char28 
+1 ch33 68 96 
+2 =39 61 70 89 98 
+2 +41 
+3 642 
+1 if46 
+2 >=50 
+3 1062 90 
+1 else78 
+1 return108 
+3 0115 

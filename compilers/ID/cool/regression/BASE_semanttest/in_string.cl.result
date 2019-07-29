@@ -1,0 +1,143 @@
+#14
+_program
+ #13
+ _class
+   Main
+   IO
+   "./BASE_semanttest/in_string.cl"
+   (
+   #2
+   _attr
+     s
+     String
+     #2
+     _string
+       "_"
+     : String
+   #12
+   _method
+     main
+     Object
+     #11
+     _loop
+       #4
+       _comp
+         #4
+         _eq
+           #4
+           _object
+             s
+           : String
+           #4
+           _string
+             ""
+           : String
+         : Bool
+       : Bool
+       #10
+       _block
+         #6
+         _dispatch
+           #6
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #6
+           _string
+             "Type in a line\n"
+           : String
+           )
+         : SELF_TYPE
+         #7
+         _assign
+           s
+           #7
+           _dispatch
+             #7
+             _object
+               self
+             : SELF_TYPE
+             in_string
+             (
+             )
+           : String
+         : String
+         #8
+         _dispatch
+           #8
+           _dispatch
+             #8
+             _dispatch
+               #8
+               _object
+                 self
+               : SELF_TYPE
+               out_string
+               (
+               #8
+               _string
+                 "Entered: "
+               : String
+               )
+             : SELF_TYPE
+             out_string
+             (
+             #8
+             _object
+               s
+             : String
+             )
+           : SELF_TYPE
+           out_string
+           (
+           #8
+           _string
+             "\n"
+           : String
+           )
+         : SELF_TYPE
+         #9
+         _dispatch
+           #9
+           _dispatch
+             #9
+             _dispatch
+               #9
+               _object
+                 self
+               : SELF_TYPE
+               out_string
+               (
+               #9
+               _string
+                 "Length: "
+               : String
+               )
+             : SELF_TYPE
+             out_int
+             (
+             #9
+             _dispatch
+               #9
+               _object
+                 s
+               : String
+               length
+               (
+               )
+             : Int
+             )
+           : SELF_TYPE
+           out_string
+           (
+           #9
+           _string
+             "\n"
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+     : Object
+   )

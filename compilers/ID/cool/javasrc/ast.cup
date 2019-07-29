@@ -1,0 +1,191 @@
+import java_cup.runtime.*;
+
+action code {:
+       Integer curr_lineno = new Integer(0);
+:} 
+
+parser code {:
+    public void syntax_error(Symbol cur_token) {
+        System.err.println("??? unexpected error in ast parsing: " + ((ASTLexer)getScanner()).line());
+	System.exit(1);
+    }
+
+    public void unrecovered_syntax_error(Symbol cur_token) {
+    }
+:}
+
+terminal PROGRAM, CLASS, METHOD, ATTR, FORMAL, BRANCH, ASSIGN;
+terminal STATIC_DISPATCH, DISPATCH, LPAREN, RPAREN, COLON;
+terminal COND, LOOP, TYPCASE, BLOCK, LET;
+terminal PLUS, SUB, MUL, DIVIDE, NEG, LT, EQ, LEQ;
+terminal COMP, INT, STR, BOOL, NEW, ISVOID, NO_EXPR, OBJECT, NO_TYPE;
+terminal AbstractSymbol  STR_CONST, INT_CONST, ID;
+terminal Integer LINENO;
+
+nonterminal programc program;
+nonterminal Classes class_list;
+nonterminal class_c class;
+nonterminal Features feature_list, optional_feature_list;
+nonterminal Feature feature;
+nonterminal Formals formals, formal_list;
+nonterminal Formal formal;
+nonterminal Expression expr_aux, expr;
+nonterminal Expressions actuals, expr_list;
+nonterminal Cases case_list;
+nonterminal branch simple_case;
+
+program
+	::= LINENO:l PROGRAM class_list:cl
+            {: curr_lineno = l; RESULT = new programc(l.intValue(), cl); :}
+        |       /* empty input */
+            {: RESULT = null; System.exit(1); :}
+        ;
+
+
+class_list
+	::= class:c
+	    {: RESULT = (new Classes(curr_lineno.intValue())).appendElement(c); :}
+	| class_list:cl class:c
+	    {: RESULT = cl.appendElement(c); :}
+	;
+
+
+class	
+	::= LINENO:l CLASS ID:n ID:p STR_CONST:file 
+	    LPAREN optional_feature_list:f RPAREN
+	    {: curr_lineno = l; RESULT = new class_c(l.intValue(), n, p, f, file); :}
+	;
+
+optional_feature_list
+	::= /* empty */
+	    {: RESULT = new Features(curr_lineno.intValue()); :}
+	| feature_list:fl 
+	    {: RESULT = fl; :}
+	;
+
+feature_list
+	::= feature:f
+	    {: RESULT = (new Features(curr_lineno.intValue())).appendElement(f); :}
+	| feature_list:fl feature:f 
+	    {: RESULT = fl.appendElement(f); :}
+	;
+
+
+feature 
+	::= LINENO:l METHOD ID:n formals:f ID:t expr:b
+	    {: curr_lineno = l; RESULT = new method(l.intValue(), n,f,t,b); :}
+	| LINENO:l ATTR ID:n ID:t expr:i 
+	    {: curr_lineno = l; RESULT = new attr(l.intValue(), n, t, i); :}
+	;
+
+formals
+	::= 
+	    {: RESULT = new Formals(curr_lineno.intValue()); :}
+	| formal_list:fl
+	    {: RESULT = fl; :}
+	;
+
+
+formal_list
+	::= formal:f
+	    {: RESULT = (new Formals(curr_lineno.intValue())).appendElement(f); :}
+	| formal_list:fl formal:f
+	    {: RESULT = fl.appendElement(f); :}
+	;
+
+formal	
+	::= LINENO:l FORMAL ID:n ID:t 
+	    {: curr_lineno = l; RESULT = new formalc(l.intValue(), n, t); :}
+	;
+
+expr    
+	::= expr_aux:e COLON ID:t 
+	    {: RESULT = e; e.set_type(t); :}
+        | expr_aux:e COLON NO_TYPE
+            {: RESULT = e; :}
+	;
+
+expr_aux 
+	::= LINENO:l ASSIGN ID:n expr:e
+          {: curr_lineno = l; RESULT = new assign(l.intValue(), n,e); :}
+        | LINENO:l STATIC_DISPATCH expr:e ID:t ID:n actuals:a
+          {: curr_lineno = l; RESULT = new static_dispatch(l.intValue(), e, t, n, a); :}
+        | LINENO:l DISPATCH expr:e ID:n actuals:a
+          {: curr_lineno = l; RESULT = new dispatch(l.intValue(), e, n, a); :}
+        | LINENO:l COND expr:p expr:t expr:e
+          {: curr_lineno = l; RESULT = new cond(l.intValue(), p, t, e); :}
+        | LINENO:l LOOP expr:p expr:b
+          {: curr_lineno = l; RESULT = new loop(l.intValue(), p, b); :}
+        | LINENO:l BLOCK expr_list:el
+          {: curr_lineno = l; RESULT = new block(l.intValue(), el); :}
+        | LINENO:l LET ID:n ID:t expr:i expr:b
+          {: curr_lineno = l; RESULT = new let(l.intValue(), n, t, i, b); :}
+        | LINENO:l TYPCASE expr:e case_list:cl
+          {: curr_lineno = l; RESULT = new typcase(l.intValue(), e, cl); :}
+        | LINENO:l NEW ID:t
+          {: curr_lineno = l; RESULT = new new_(l.intValue(), t); :}
+        | LINENO:l ISVOID expr:e
+          {: curr_lineno = l; RESULT = new isvoid(l.intValue(), e); :}
+        | LINENO:l PLUS expr:e1 expr:e2 
+          {: curr_lineno = l; RESULT = new plus(l.intValue(), e1, e2); :}
+        | LINENO:l SUB expr:e1 expr:e2
+          {: curr_lineno = l; RESULT = new sub(l.intValue(), e1, e2); :}
+        | LINENO:l MUL expr:e1 expr:e2
+          {: curr_lineno = l; RESULT = new mul(l.intValue(), e1, e2); :}
+        | LINENO:l DIVIDE expr:e1 expr:e2
+          {: curr_lineno = l; RESULT = new divide(l.intValue(), e1, e2); :}
+        | LINENO:l NEG expr:e
+          {: curr_lineno = l; RESULT = new neg(l.intValue(), e); :}
+        | LINENO:l LT expr:e1 expr:e2
+          {: curr_lineno = l; RESULT = new lt(l.intValue(), e1, e2); :}
+        | LINENO:l EQ expr:e1 expr:e2
+          {: curr_lineno = l; RESULT = new eq(l.intValue(), e1, e2); :}
+        | LINENO:l LEQ expr:e1 expr:e2
+          {: curr_lineno = l; RESULT = new leq(l.intValue(), e1, e2); :}
+	| LINENO:l COMP expr:e
+          {: curr_lineno = l; RESULT = new comp(l.intValue(), e); :}
+        | LINENO:l INT INT_CONST:i
+          {: curr_lineno = l; RESULT = new int_const(l.intValue(), i); :}
+        | LINENO:l STR STR_CONST:s
+          {: curr_lineno = l; RESULT = new string_const(l.intValue(), s); :}
+        | LINENO:l BOOL INT_CONST:b
+          {: curr_lineno = l; 
+            if (b.getString().charAt(0) == '1')
+	      RESULT = new bool_const(l.intValue(), Boolean.TRUE);
+	    else
+              RESULT = new bool_const(l.intValue(), Boolean.FALSE);
+          :}
+        | LINENO:l OBJECT ID:n 
+          {: curr_lineno = l; RESULT = new object(l.intValue(), n); :}
+        | LINENO:l NO_EXPR
+          {: curr_lineno = l; RESULT = new no_expr(l.intValue()); :}
+        ;
+
+actuals
+	::= LPAREN RPAREN
+	    {: RESULT = new Expressions(curr_lineno.intValue()); :}
+	| LPAREN expr_list:el RPAREN
+	    {: RESULT = el; :}
+	;
+
+expr_list
+	::= expr:e
+	    {: RESULT = (new Expressions(curr_lineno.intValue())).appendElement(e); :} 
+	| expr_list:el expr:e
+	    {: RESULT = el.appendElement(e); :}
+	;
+
+case_list
+	::= simple_case:c
+	    {: RESULT = (new Cases(curr_lineno.intValue())).appendElement(c); :}
+	| case_list:cl simple_case:c
+	    {: RESULT = cl.appendElement(c); :}
+	;
+	    
+
+simple_case
+        ::= LINENO:l BRANCH ID:n ID:t expr:e 
+                {: curr_lineno = l; RESULT = new branch(l.intValue(), n, t, e); :}
+        ;
+
+

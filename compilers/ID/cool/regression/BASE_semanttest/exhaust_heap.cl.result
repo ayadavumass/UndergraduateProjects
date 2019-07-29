@@ -1,0 +1,30 @@
+#8
+_program
+ #7
+ _class
+   Main
+   IO
+   "./BASE_semanttest/exhaust_heap.cl"
+   (
+   #6
+   _method
+     main
+     Object
+     #5
+     _loop
+       #3
+       _bool
+         1
+       : Bool
+       #4
+       _dispatch
+         #4
+         _string
+           "This is a loop.\n"
+         : String
+         copy
+         (
+         )
+       : String
+     : Object
+   )

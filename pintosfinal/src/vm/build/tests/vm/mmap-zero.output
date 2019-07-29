@@ -1,0 +1,31 @@
+Copying tests/vm/mmap-zero into /tmp/V0gXrPxEbJ.dsk...
+Writing command line to /tmp/RmNFvC4mNb.dsk...
+qemu -hda /tmp/RmNFvC4mNb.dsk -hdb /tmp/LK4G6Rs2o9.dsk -hdc /tmp/V0gXrPxEbJ.dsk -hdd /tmp/1q2iU5SiPL.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put mmap-zero run mmap-zero
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 95 sector (47 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'mmap-zero' into the file system...
+Executing 'mmap-zero':
+(mmap-zero) begin
+(mmap-zero) create empty file "empty"
+(mmap-zero) open "empty"
+(mmap-zero) mmap "empty"
+mmap-zero: exit(-1)
+Execution of 'mmap-zero' complete.
+Timer: 60 ticks
+Thread: 0 idle ticks, 59 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 89 reads, 202 writes
+hd1:0: 95 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 978 characters output
+Keyboard: 0 keys pressed
+Powering off...

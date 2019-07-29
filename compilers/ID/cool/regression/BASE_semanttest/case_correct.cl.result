@@ -1,0 +1,74 @@
+#18
+_program
+ #17
+ _class
+   Main
+   Object
+   "./BASE_semanttest/case_correct.cl"
+   (
+   #2
+   _attr
+     x
+     Object
+     #2
+     _no_expr
+     : _no_type
+   #10
+   _method
+     main
+     String
+     #9
+     _typcase
+       #5
+       _object
+         x
+       : Object
+       #6
+       _branch
+         a
+         Int
+         #6
+         _string
+           "int"
+         : String
+       #7
+       _branch
+         a
+         String
+         #7
+         _string
+           "string"
+         : String
+       #8
+       _branch
+         a
+         Bool
+         #8
+         _string
+           "bool"
+         : String
+     : String
+   #16
+   _method
+     mkint
+     #12
+     _formal
+       x
+       Object
+     Int
+     #15
+     _typcase
+       #13
+       _object
+         x
+       : Object
+       #14
+       _branch
+         a
+         Int
+         #14
+         _object
+           a
+         : Int
+     : Int
+   )

@@ -1,0 +1,165 @@
+   A `coolc' distribution consists of two directory hierarchies: the
+instructor's version and the students' version.  The instructor's
+version contains the source files needed to build the binaries and
+libraries used by coolc, makefiles and scripts used to build these
+binaries and to install and distribute the assignments, and files
+describing the assignments.  The students' hierarchy is meant to be
+readable by students, and provides all of the binaries and libraries
+needed for each assignment, makefiles, README files, scripts used to
+set up assignment directories, header files needed for compilation,
+and source files the students may want to modify.
+
+   The standard distribution contains only the students' version.
+The instructor's version is available on request.
+
+The following tools are required to build the system from scratch.
+Most of these tools are not required to install an already compiled
+release:
+g++ (v. 2.7 or later), gmake, perl, flex, bison, diff, sed, latex
+
+============================================================================
+
+To do a complete build from scratch requires about 10MB of disk space.
+The final product (the students' hierarchy) should be less than 3MB
+and on some systems is less than 2MB.
+
+The installation procedure is:
+
+1) Create the root directories for the instructor's and students' hierarchies.
+   In the following, these are referred to as INST_COOL_DIR and 
+   COOL_DIR respectively.  These directories must be distinct.
+
+2) uudecode and untar the instructor's distribution in INST_COOL_DIR.
+
+3) Modify the files 
+      INST_COOL_DIR/Makefile
+ and  INST_COOL_DIR/src/Makefile
+   to match the local filesystem.
+   Just follow the directions at the top of the Makefiles.
+
+   Note 1: References to the `COOL_DIR' variable in the Makefiles are to the
+   students' hierarchy.  There is no `INST_COOL_DIR' variable; the system
+   knows its own directory.
+
+   Note 2: For some linkers it may be also necessary to make a small
+   change to aps/Makefile.  The situations where this is necessary are
+   discussed in src/Makefile.
+
+4) Type `gmake install' from INST_COOL_DIR.
+
+Step (4) does many things, including
+
+      a) build the binaries and libraries for this architecture;
+
+      b) build the student's hierarchy in COOL_DIR if it doesn't
+         already exist;
+
+      c) create `COOL_DIR/Makefile', which when run will instantiate
+         all of the skeleton directories and scripts with the values of
+         the variables set in step 1;
+
+      d) set up the assignment directories and copy over all files needed
+         by the students;
+
+      e) run `COOL_DIR/Makefile'.
+
+
+
+   Steps 3-4 should be done once for each architecture.  At this point,
+if students have access to `COOL_DIR', they should place
+`COOL_DIR/bin' in their path.  Then, for each assignment ${ASSN},
+they should choose a directory, and from it type
+
+   gmake -f COOL_DIR/assignments/${ASSN}/Makefile
+
+to set up the files.  The rest should be covered in the README file
+copied to this directory.
+
+   If there is not a filesystem all architectures can mount, a copy of
+the COOL_DIR hierarchy can be tarred and uuencoded for an
+architecture ${ARCH} by typing `gmake distrib_${ARCH}' from
+INST_COOL_DIR (assuming the files have already been created for that
+architecture via `gmake install').  This will create a file
+COOL_DIR/${ARCH}.u that students can ftp to their machine.
+To install the student's distribution, one should
+
+1) copy `${ARCH}.u' to COOL_DIR, uudecode and untar it;
+
+2) Modify `COOL_DIR/Makefile' to reflect the current filesystem;
+   follow instructions in the Makefile.
+
+3) type `gmake install'.
+
+Note:  Because `spim' must be built with an absolute pathname to name
+the trap handler, the directory named by COOL_DIR when the instructor
+builds `spim' must match the directory in which the student installs the
+distribution.  One way to do this is to compile `spim' with COOL_DIR
+set to `/tmp/cool'.  The student can then either build the distribution
+in this directory, or build it elsewhere and create a symbolic link
+`/tmp/cool' to point to the distribution.
+
+=============================================================================
+To test that the system installed correctly, run
+
+gmake test
+
+in the INST_COOL_DIR directory.  The results of the tests are compared
+against known results using "diff" and any differences reported.
+
+One of the lexical analyzer tests, lextestb1.test, may give different
+results on different systems depending on the printable character set.
+The compiler will be changed to remove this system-dependent behavior
+in the future.
+
+=============================================================================
+
+If you have a C++ compiler other than g++, you will need to edit the
+make files and probably some of the code in the src directory as well.
+It is easiest to use g++.
+
+=============================================================================
+
+Modifying Cool
+
+Cool has been designed with changes in mind; it should be relatively easy
+to add or remove features from the language.   However, some changes are
+definitely easier than others.  This section is intended to give a little
+guidance to anyone who wants to change the language or the installation
+procedure.  If you don't want to change the system, you don't need to read
+this section.
+
+Removing Cool features is most easily done by electing not to use them but
+leaving all code unchanged.
+
+Adding features may require modifying all phases of the compiler.  If
+a change to the AST is needed, then the specification
+src/cool-tree.aps must be modified; see the documentation on the APS
+package in the assignment handouts.  Then, changes must be made in the
+phases (cool.flex, cool.y, semant.cc, cgen.cc) as needed to implement
+the new feature.
+
+Adding or removing features may necessitate changing the skeleton
+files provided for assignments.  As all of the assignment skeletons
+are hand-crafted, these changes also must be made by hand to the files
+in the assignments/PA* directories.
+
+It is recommended that any modifications not change the set of files.
+If files are added or removed, then the installation procedure may need
+to be changed.  A brief description is included here of the primary Makefiles
+and their roles in the event that you wish to modify them:
+
+Makefile          top-level Makefile
+
+src/Makefile      builds all versions of the compiler for both
+	 	  execution, testing, and composing with student phases.
+		  Also builds libraries for assignments.
+
+install/Makefile  sets up the student directory hierarchy and copies
+		  binaries and assignments from the instructor's hierarchy.
+
+etc/Makefile.SKEL a skeleton top-level Makefile for the student directory;
+		  various variables are instantiated by install/Makefile
+
+assignments/PA*/Makefile.SKEL
+		  assignment Makefile skeletons, which are instantiated by
+		  top-level student Makefile

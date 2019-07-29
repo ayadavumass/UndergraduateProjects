@@ -1,0 +1,2 @@
+./BASE_semanttest/bugaug22b.cl:2: Redefinition of basic class Object.
+Compilation halted due to static semantic errors.

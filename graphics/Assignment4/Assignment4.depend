@@ -1,0 +1,450 @@
+# depslib dependency file v1.0
+1302876038 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/Cube.cpp
+	<GL/glut.h>
+	<stdio.h>
+	<math.h>
+	"Clipping.h"
+	<unistd.h>
+
+1263839506 /usr/include/GL/glut.h
+	"freeglut_std.h"
+
+1263839506 /usr/include/GL/freeglut_std.h
+	<Windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1272519658 /usr/include/GL/gl.h
+	"gl_mangle.h"
+	<stdlib.h>
+	<windows.h>
+	<GL/mesa_wgl.h>
+	<GL/glext.h>
+
+1272519658 /usr/include/GL/gl_mangle.h
+
+1295653891 /usr/include/stdlib.h
+	<features.h>
+	<stddef.h>
+	<bits/waitflags.h>
+	<bits/waitstatus.h>
+	<xlocale.h>
+	<sys/types.h>
+	<alloca.h>
+	<bits/stdlib.h>
+	<bits/stdlib-ldbl.h>
+
+1295653849 /usr/include/features.h
+	<bits/predefs.h>
+	<sys/cdefs.h>
+	<gnu/stubs.h>
+
+1295653849 /usr/include/bits/predefs.h
+
+1295653914 /usr/include/sys/cdefs.h
+	<features.h>
+	<bits/wordsize.h>
+
+1295653891 /usr/include/bits/wordsize.h
+
+1295653849 /usr/include/gnu/stubs.h
+	<bits/wordsize.h>
+	<gnu/stubs-32.h>
+	<gnu/stubs-64.h>
+
+1295652990 /usr/include/gnu/stubs-32.h
+
+1295653965 /usr/include/gnu/stubs-64.h
+
+1295653909 /usr/include/bits/waitflags.h
+
+1295653909 /usr/include/bits/waitstatus.h
+	<endian.h>
+
+1295653898 /usr/include/endian.h
+	<features.h>
+	<bits/endian.h>
+	<bits/byteswap.h>
+
+1295653898 /usr/include/bits/endian.h
+
+1295653898 /usr/include/bits/byteswap.h
+	<bits/wordsize.h>
+
+1295653852 /usr/include/xlocale.h
+
+1295653908 /usr/include/sys/types.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<stddef.h>
+	<endian.h>
+	<sys/select.h>
+	<sys/sysmacros.h>
+	<bits/pthreadtypes.h>
+
+1295653909 /usr/include/bits/types.h
+	<features.h>
+	<bits/wordsize.h>
+	<bits/typesizes.h>
+
+1295653909 /usr/include/bits/typesizes.h
+
+1295653904 /usr/include/time.h
+	<features.h>
+	<stddef.h>
+	<bits/time.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<xlocale.h>
+
+1295653905 /usr/include/bits/time.h
+	<bits/types.h>
+	<bits/types.h>
+
+1295653914 /usr/include/sys/select.h
+	<features.h>
+	<bits/types.h>
+	<bits/select.h>
+	<bits/sigset.h>
+	<time.h>
+	<bits/time.h>
+
+1295653914 /usr/include/bits/select.h
+	<bits/wordsize.h>
+
+1295653890 /usr/include/bits/sigset.h
+
+1295653909 /usr/include/sys/sysmacros.h
+	<features.h>
+
+1295653909 /usr/include/bits/pthreadtypes.h
+	<bits/wordsize.h>
+
+1295653891 /usr/include/alloca.h
+	<features.h>
+	<stddef.h>
+
+1295653891 /usr/include/bits/stdlib.h
+
+1295653891 /usr/include/bits/stdlib-ldbl.h
+
+1299995521 /usr/include/GL/glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1295653891 /usr/include/inttypes.h
+	<features.h>
+	<stdint.h>
+	<stddef.h>
+
+1295653891 /usr/include/stdint.h
+	<features.h>
+	<bits/wchar.h>
+	<bits/wordsize.h>
+
+1295653900 /usr/include/bits/wchar.h
+
+1272519658 /usr/include/GL/glu.h
+	"glu_mangle.h"
+	<GL/gl.h>
+
+1272519658 /usr/include/GL/glu_mangle.h
+
+1295653894 /usr/include/stdio.h
+	<features.h>
+	<stddef.h>
+	<bits/types.h>
+	<libio.h>
+	<stdarg.h>
+	<bits/stdio_lim.h>
+	<bits/sys_errlist.h>
+	<getopt.h>
+	<bits/stdio.h>
+	<bits/stdio2.h>
+	<bits/stdio-ldbl.h>
+
+1295653894 /usr/include/libio.h
+	<_G_config.h>
+	<stdarg.h>
+	<sys/cdefs.h>
+	<bits/stdio-lock.h>
+	<shlib-compat.h>
+	<bits/libio-ldbl.h>
+
+1295653894 /usr/include/_G_config.h
+	<bits/types.h>
+	<stddef.h>
+	<wchar.h>
+	<gconv.h>
+
+1295653900 /usr/include/wchar.h
+	<features.h>
+	<stdio.h>
+	<stdarg.h>
+	<bits/wchar.h>
+	<stddef.h>
+	<wctype.h>
+	<xlocale.h>
+	<xlocale.h>
+	<xlocale.h>
+	<wctype.h>
+	<bits/wchar2.h>
+	<bits/wchar-ldbl.h>
+
+1295653919 /usr/include/wctype.h
+	<features.h>
+	<bits/types.h>
+	<stddef.h>
+	<endian.h>
+	<xlocale.h>
+
+1295653900 /usr/include/bits/wchar2.h
+
+1295653900 /usr/include/bits/wchar-ldbl.h
+
+1295653851 /usr/include/gconv.h
+	<features.h>
+	<wchar.h>
+	<stddef.h>
+
+1295653894 /usr/include/bits/stdio-lock.h
+	<bits/libc-lock.h>
+	<lowlevellock.h>
+
+1295653849 /usr/include/bits/libc-lock.h
+	<pthread.h>
+	<stddef.h>
+	<lowlevellock.h>
+	<tls.h>
+	<pthread-functions.h>
+	<errno.h>
+	<gnu/option-groups.h>
+	<bp-sym.h>
+
+1295653927 /usr/include/pthread.h
+	<features.h>
+	<endian.h>
+	<sched.h>
+	<time.h>
+	<signal.h>
+	<bits/pthreadtypes.h>
+	<bits/setjmp.h>
+	<bits/wordsize.h>
+
+1295653909 /usr/include/sched.h
+	<features.h>
+	<bits/types.h>
+	<stddef.h>
+	<time.h>
+	<bits/sched.h>
+
+1295653909 /usr/include/bits/sched.h
+
+1295653890 /usr/include/signal.h
+	<features.h>
+	<bits/sigset.h>
+	<bits/types.h>
+	<bits/signum.h>
+	<time.h>
+	<bits/siginfo.h>
+	<bits/sigaction.h>
+	<bits/sigcontext.h>
+	<stddef.h>
+	<bits/sigstack.h>
+	<sys/ucontext.h>
+	<bits/pthreadtypes.h>
+	<bits/sigthread.h>
+
+1295653890 /usr/include/bits/signum.h
+
+1295653890 /usr/include/bits/siginfo.h
+	<bits/wordsize.h>
+
+1295653890 /usr/include/bits/sigaction.h
+
+1295653890 /usr/include/bits/sigcontext.h
+	<bits/wordsize.h>
+
+1295653890 /usr/include/bits/sigstack.h
+
+1295653891 /usr/include/sys/ucontext.h
+	<features.h>
+	<signal.h>
+	<bits/wordsize.h>
+	<bits/sigcontext.h>
+
+1295653890 /usr/include/bits/sigthread.h
+
+1295653889 /usr/include/bits/setjmp.h
+	<bits/wordsize.h>
+
+1295653891 /usr/include/errno.h
+	<features.h>
+	<bits/errno.h>
+
+1295653891 /usr/include/bits/errno.h
+	<linux/errno.h>
+
+1299037496 /usr/include/linux/errno.h
+	<asm/errno.h>
+
+1299037499 /usr/include/asm/errno.h
+	<asm-generic/errno.h>
+
+1299037494 /usr/include/asm-generic/errno.h
+	<asm-generic/errno-base.h>
+
+1299037494 /usr/include/asm-generic/errno-base.h
+
+1295653952 /usr/include/gnu/option-groups.h
+
+1295653895 /usr/include/bits/libio-ldbl.h
+
+1295653893 /usr/include/bits/stdio_lim.h
+
+1295653894 /usr/include/bits/sys_errlist.h
+
+1295653909 /usr/include/getopt.h
+	<ctype.h>
+
+1295653881 /usr/include/ctype.h
+	<features.h>
+	<bits/types.h>
+	<endian.h>
+	<xlocale.h>
+
+1295653894 /usr/include/bits/stdio.h
+
+1295653894 /usr/include/bits/stdio2.h
+
+1295653894 /usr/include/bits/stdio-ldbl.h
+
+1295653886 /usr/include/math.h
+	<features.h>
+	<bits/huge_val.h>
+	<bits/huge_valf.h>
+	<bits/huge_vall.h>
+	<bits/inf.h>
+	<bits/nan.h>
+	<bits/mathdef.h>
+	<bits/mathcalls.h>
+	<bits/mathcalls.h>
+	<bits/mathcalls.h>
+	<bits/mathinline.h>
+
+1295653886 /usr/include/bits/huge_val.h
+	<endian.h>
+
+1295653886 /usr/include/bits/huge_valf.h
+
+1295653886 /usr/include/bits/huge_vall.h
+
+1295653886 /usr/include/bits/inf.h
+
+1295653886 /usr/include/bits/nan.h
+	<endian.h>
+
+1295653886 /usr/include/bits/mathdef.h
+	<bits/wordsize.h>
+
+1295653886 /usr/include/bits/mathcalls.h
+
+1295653886 /usr/include/bits/mathinline.h
+	<bits/wordsize.h>
+
+1302258041 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/Cube2.cpp
+	<GL/glut.h>
+	<stdlib.h>
+
+1302324234 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/Clipping.cpp
+	"Clipping.h"
+	<stdio.h>
+
+1302327718 /home/aditya/Desktop/6thsem/graphics/Assignment4/Clipping.h
+	<GLUT/glut.h>
+	<GL/glut.h>
+
+1302685586 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/BPart.cpp
+	<stdlib.h>
+	<GL/glut.h>
+	<stdio.h>
+	"Bresenham.h"
+	<math.h>
+	<unistd.h>
+
+1302342271 /home/aditya/Desktop/6thsem/graphics/Assignment4/Bresenham.h
+	<GLUT/glut.h>
+	<GL/glut.h>
+
+1302354054 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/Bresenham.cpp
+	"Bresenham.h"
+	<math.h>
+	<stdio.h>
+
+1302353315 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/BPart2.cpp
+	<GL/glut.h>
+	<stdlib.h>
+	<stdio.h>
+	<unistd.h>
+	<math.h>
+	"Bresenham.h"
+
+1295653908 /usr/include/unistd.h
+	<features.h>
+	<bits/posix_opt.h>
+	<bits/environments.h>
+	<bits/types.h>
+	<stddef.h>
+	<bits/confname.h>
+	<getopt.h>
+	<bits/unistd.h>
+
+1295653909 /usr/include/bits/posix_opt.h
+
+1295653909 /usr/include/bits/environments.h
+	<bits/wordsize.h>
+
+1295653909 /usr/include/bits/confname.h
+
+1295653909 /usr/include/bits/unistd.h
+
+1302436826 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/CPart.cpp
+	<GL/glut.h>
+	<stdio.h>
+	<math.h>
+	<unistd.h>
+	<vector>
+	<iostream>
+	"ScanLine.h"
+
+1302690381 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/ScanLine.cpp
+	"ScanLine.h"
+	<algorithm>
+	<iostream>
+	<math.h>
+
+1302624096 /home/aditya/Desktop/6thsem/graphics/Assignment4/ScanLine.h
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<vector>
+
+1302690353 source:/home/aditya/Desktop/6thsem/graphics/Assignment4/DPart.cpp
+	<GL/glut.h>
+	<stdio.h>
+	<math.h>
+	<unistd.h>
+	<vector>
+	<iostream>
+	"ScanLine.h"
+

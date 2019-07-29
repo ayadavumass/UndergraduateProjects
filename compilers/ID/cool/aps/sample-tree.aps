@@ -1,0 +1,9 @@
+module TEST[] begin
+  type String;
+
+  phylum Program = LIST[Expression];
+  phylum Expression;
+
+  constructor add(x,y : Expression) : Expression;
+  constructor iconst(token : String) : Expression;
+end;

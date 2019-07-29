@@ -1,0 +1,42 @@
+#12
+_program
+ #11
+ _class
+   A
+   Object
+   "./BASE_parsetest/parsetest04.test"
+   (
+   #5
+   _method
+     foo
+     String
+     #4
+     _let
+       x
+       String
+       #4
+       _no_expr
+       : _no_type
+       #4
+       _string
+         "a string"
+       : _no_type
+     : _no_type
+   #10
+   _method
+     bar
+     Bool
+     #9
+     _let
+       y
+       Bool
+       #9
+       _bool
+         1
+       : _no_type
+       #9
+       _object
+         y
+       : _no_type
+     : _no_type
+   )

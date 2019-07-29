@@ -1,0 +1,16 @@
+#6
+_program
+ #2
+ _class
+   A
+   Object
+   "./BASE_parsetest/parsetest01.test"
+   (
+   )
+ #5
+ _class
+   B
+   A
+   "./BASE_parsetest/parsetest01.test"
+   (
+   )

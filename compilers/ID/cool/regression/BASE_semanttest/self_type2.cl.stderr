@@ -1,0 +1,6 @@
+Class Main is not defined.
+./BASE_semanttest/self_type2.cl:2: Formal parameter y cannot have type SELF_TYPE.
+./BASE_semanttest/self_type2.cl:12: Identifier a declared with type SELF_TYPE in case branch.
+./BASE_semanttest/self_type2.cl:13: Static dispatch to SELF_TYPE.
+./BASE_semanttest/self_type2.cl:16: Inferred return type Object of method g does not conform to declared return type SELF_TYPE.
+Compilation halted due to static semantic errors.

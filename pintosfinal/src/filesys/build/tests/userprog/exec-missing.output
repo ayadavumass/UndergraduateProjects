@@ -1,0 +1,31 @@
+Copying tests/userprog/exec-missing into /tmp/EWcg7JCpNM.dsk...
+Writing command line to /tmp/ubSybeVfu1.dsk...
+qemu -hda /tmp/ubSybeVfu1.dsk -hdb /tmp/a55ycoxTsO.dsk -hdc /tmp/EWcg7JCpNM.dsk -hdd /tmp/raXXMxTMfo.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put exec-missing run exec-missing
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 153 sector (76 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 95 sector (47 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+filesys init done
+Boot complete.
+Putting 'exec-missing' into the file system...
+Executing 'exec-missing':
+(exec-missing) begin
+(exec-missing) exec("no-such-file"): -1
+(exec-missing) end
+exec-missing: exit(0)
+Execution of 'exec-missing' complete.
+Timer: 67 ticks
+Thread: 0 idle ticks, 66 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 125 reads, 160 writes
+hd1:0: 95 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 985 characters output
+Keyboard: 0 keys pressed
+Powering off...

@@ -1,0 +1,72 @@
+#11
+_program
+ #10
+ _class
+   Main
+   IO
+   "./BASE_semanttest/IO_string.cl"
+   (
+   #9
+   _method
+     main
+     SELF_TYPE
+     #8
+     _block
+       #4
+       _dispatch
+         #4
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #4
+         _string
+           "Hello world\n"
+         : String
+         )
+       : SELF_TYPE
+       #5
+       _dispatch
+         #5
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #5
+         _string
+           "This_\b was a typo\n"
+         : String
+         )
+       : SELF_TYPE
+       #6
+       _dispatch
+         #6
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #6
+         _string
+           "And a ff\f\n"
+         : String
+         )
+       : SELF_TYPE
+       #7
+       _dispatch
+         #7
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #7
+         _string
+           "And one with a \"doublequote\n"
+         : String
+         )
+       : SELF_TYPE
+     : SELF_TYPE
+   )

@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+
+\usepackage{../handout}
+\usepackage{graphicx}
+
+\input{../mymargins}
+\input{../handout-number}
+
+\begin{document}
+\handout{\WAOneSolNum}{2}{Solutions to Written Assignment 1}
+
+\bigskip
+\begin{enumerate}
+	
+	% #1
+	\item DFAs for languages 
+	\hspace*{1mm}
+	\vspace{-6mm}
+	\begin{center}
+		\includegraphics[height=3.7in,angle=-90]{wa1-q1-sol.pdf}
+	\end{center}
+	
+	% #2
+	\item DFAs and NFAs for languages
+	\hspace*{1mm}
+	\vspace{-4mm}
+	\begin{center}
+		\includegraphics[height=4.5in,angle=-90]{wa1-q2-sol.pdf}
+	\end{center}
+	
+	% #3
+	\item Regular expressions
+	\begin{enumerate}
+		\item $(0 + 1)^*0(0 + 1)^*11$
+		\item $\epsilon + 0 + 1 + (00 + 10 + 11)(0 + 1)^*$
+		\item $0^*10^*(0^*10^*10^*)^*$
+		\item $(00^* 1 0^* 1 0^*) + (0^* 1 00^* 1 0^*) + (0^* 1 0^* 1 00^*)$
+	\end{enumerate}
+	
+	\newpage
+	
+	% #4
+	\item Regular expression and description from DFA
+	\begin{itemize}
+		\item The language of all strings that begin and end with a 0 and have 
+			an even, non-zero number of 1s (that is, $2k$ 1s, for some $k \ge 1$).
+		\item $00^*10^*10^*(10^*10^*)^*0$
+	\end{itemize}
+	
+	% #5
+	\item Lexical analysis
+	\begin{enumerate}
+		\item An even length string of 0’s prints all a’s, while an odd length string of 
+			0’s will have one c at the end (because of the maximal munch rule). Thus, 
+			strings of 0’s generate the language $a^*c?$. Interspersed 1’s generate b’s, 
+			so the full language is
+			\begin{center}
+				$(a^*c?b^+)^*a^*c?$
+			\end{center}
+			A common mistake might be to incorrectly account for the priority between the 
+			rules for 0 and 00.
+		\item Every input string can be divided into three sections (any of which might be empty)
+			\begin{itemize}
+				\item An initial string of 1s
+				\item A section where a string of 0s is followed by a string of 1s, and this 
+					pattern repeats (i.e., the language $((0+)(1+))^*$ )
+				\item A final string of 0s
+			\end{itemize}
+			Thus, this specification can print any string in the language $c^*a^*b^*$.
+	\end{enumerate}
+	
+\end{enumerate}
+\end{document}

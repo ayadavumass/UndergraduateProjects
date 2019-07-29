@@ -1,0 +1,5 @@
+class A is
+  -- assignment expression
+  foo () : Int is z <- y <- 1
+  end;
+end;

@@ -1,0 +1,17 @@
+U	S
+S	~i=E;
+E	E+E
+E	-E
+E	(E)
+E	~i
+E	~u
+S	~f(MB)NS
+S	~l(B)S
+M	~
+N	~
+B	B~|B
+B	B~&B
+B	!B
+B	E<E
+B	E>E
+B	E~=E

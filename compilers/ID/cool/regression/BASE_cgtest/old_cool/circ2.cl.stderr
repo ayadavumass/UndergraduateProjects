@@ -1,0 +1,3 @@
+./BASE_cgtest/circ2.cl:3: Class Class2, or an ancestor of Class2, is involved in an inheritance cycle.
+./BASE_cgtest/circ2.cl:1: Class Class1, or an ancestor of Class1, is involved in an inheritance cycle.
+Compilation halted due to static semantic errors.

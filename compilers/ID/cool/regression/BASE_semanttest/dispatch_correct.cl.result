@@ -1,0 +1,87 @@
+#18
+_program
+ #11
+ _class
+   C
+   Object
+   "./BASE_semanttest/dispatch_correct.cl"
+   (
+   #2
+   _attr
+     a
+     Int
+     #2
+     _no_expr
+     : _no_type
+   #3
+   _attr
+     b
+     Bool
+     #3
+     _no_expr
+     : _no_type
+   #10
+   _method
+     init
+     #4
+     _formal
+       x
+       Int
+     #4
+     _formal
+       y
+       Bool
+     C
+     #9
+     _block
+       #6
+       _assign
+         a
+         #6
+         _object
+           x
+         : Int
+       : Int
+       #7
+       _assign
+         b
+         #7
+         _object
+           y
+         : Bool
+       : Bool
+       #8
+       _object
+         self
+       : SELF_TYPE
+     : SELF_TYPE
+   )
+ #17
+ _class
+   Main
+   Object
+   "./BASE_semanttest/dispatch_correct.cl"
+   (
+   #16
+   _method
+     main
+     C
+     #15
+     _dispatch
+       #15
+       _new
+         C
+       : C
+       init
+       (
+       #15
+       _int
+         1
+       : Int
+       #15
+       _bool
+         1
+       : Bool
+       )
+     : C
+   )

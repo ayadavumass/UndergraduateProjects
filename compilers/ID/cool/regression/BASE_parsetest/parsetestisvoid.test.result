@@ -1,0 +1,73 @@
+#9
+_program
+ #8
+ _class
+   Main
+   IO
+   "./BASE_parsetest/parsetestisvoid.test"
+   (
+   #2
+   _attr
+     a
+     Bool
+     #2
+     _isvoid
+       #2
+       _plus
+         #2
+         _int
+           1
+         : _no_type
+         #2
+         _int
+           2
+         : _no_type
+       : _no_type
+     : _no_type
+   #7
+   _method
+     main
+     Object
+     #6
+     _let
+       r
+       Main
+       #4
+       _no_expr
+       : _no_type
+       #5
+       _cond
+         #5
+         _isvoid
+           #5
+           _object
+             r
+           : _no_type
+         : _no_type
+         #5
+         _dispatch
+           #5
+           _object
+             self
+           : _no_type
+           abort
+           (
+           )
+         : _no_type
+         #5
+         _dispatch
+           #5
+           _object
+             self
+           : _no_type
+           out_string
+           (
+           #5
+           _string
+             "OK"
+           : _no_type
+           )
+         : _no_type
+       : _no_type
+     : _no_type
+   )

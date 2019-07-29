@@ -1,0 +1,33 @@
+Copying tests/filesys/base/lg-create into /tmp/Y6q0AMunK3.dsk...
+Writing command line to /tmp/gxZLrLnIYc.dsk...
+qemu -hda /tmp/gxZLrLnIYc.dsk -hdb /tmp/OAS2v61Z3n.dsk -hdc /tmp/Y6q0AMunK3.dsk -hdd /tmp/ELEBIgatA3.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put lg-create run lg-create
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  105,676,800 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 98 sector (49 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'lg-create' into the file system...
+Executing 'lg-create':
+(lg-create) begin
+(lg-create) create "blargle"
+(lg-create) open "blargle" for verification
+(lg-create) verified contents of "blargle"
+(lg-create) close "blargle"
+(lg-create) end
+lg-create: exit(0)
+Execution of 'lg-create' complete.
+Timer: 62 ticks
+Thread: 0 idle ticks, 60 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 237 reads, 356 writes
+hd1:0: 98 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1050 characters output
+Keyboard: 0 keys pressed
+Powering off...

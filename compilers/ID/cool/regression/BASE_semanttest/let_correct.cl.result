@@ -1,0 +1,35 @@
+#10
+_program
+ #9
+ _class
+   Main
+   Object
+   "./BASE_semanttest/let_correct.cl"
+   (
+   #8
+   _method
+     main
+     Int
+     #7
+     _let
+       x
+       Bool
+       #3
+       _bool
+         1
+       : Bool
+       #6
+       _let
+         x
+         Int
+         #4
+         _int
+           1
+         : Int
+         #6
+         _object
+           x
+         : Int
+       : Int
+     : Int
+   )

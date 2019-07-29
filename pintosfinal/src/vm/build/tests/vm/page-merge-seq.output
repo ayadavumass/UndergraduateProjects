@@ -1,0 +1,34 @@
+Copying tests/vm/page-merge-seq into /tmp/OVJU7UZU63.dsk...
+Copying tests/vm/child-sort into /tmp/OVJU7UZU63.dsk...
+Writing command line to /tmp/4nj4wqkLA6.dsk...
+qemu -hda /tmp/4nj4wqkLA6.dsk -hdb /tmp/4bpNzzhVVl.dsk -hdc /tmp/OVJU7UZU63.dsk -hdd /tmp/ghrVyz4pCG.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put page-merge-seq put child-sort run page-merge-seq
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 200 sector (100 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'page-merge-seq' into the file system...
+Putting 'child-sort' into the file system...
+Executing 'page-merge-seq':
+(page-merge-seq) begin
+(page-merge-seq) init
+(page-merge-seq) sort chunk 0
+child-sort: exit(-1)
+(page-merge-seq) wait for child-sort: FAILED
+page-merge-seq: exit(1)
+Execution of 'page-merge-seq' complete.
+Timer: 80 ticks
+Thread: 0 idle ticks, 61 kernel ticks, 19 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 282 reads, 666 writes
+hd1:0: 200 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1107 characters output
+Keyboard: 0 keys pressed
+Powering off...

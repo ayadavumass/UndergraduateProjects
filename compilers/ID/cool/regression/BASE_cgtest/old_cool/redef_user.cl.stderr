@@ -1,0 +1,2 @@
+./BASE_cgtest/redef_user.cl:3: Class MyClass was previously defined.
+Compilation halted due to static semantic errors.

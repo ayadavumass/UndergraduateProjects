@@ -1,0 +1,2 @@
+./BASE_semanttest/std.cl:31: 'main' method in class Main should have no arguments.
+Compilation halted due to static semantic errors.

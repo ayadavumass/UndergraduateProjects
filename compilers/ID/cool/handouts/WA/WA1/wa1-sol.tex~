@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+
+\usepackage{../handout}
+\usepackage{upquote}
+\usepackage{graphicx, color}
+
+\input{../mymargins}
+
+\begin{document}
+\handout{6}{4}{Solutions to Written Assignment 1}
+
+\begin{enumerate}
+
+\item
+Consider the following deterministic finite automaton (DFA) over the
+alphabet $\Sigma = \{0, 1\}$.
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.7]{consec-two.ps}
+\end{center}
+\end{figure}
+
+Give a one-sentence description of the language recognized by the DFA.
+Write a regular expression for this language.
+
+Solution:
+
+\begin{itemize}
+
+\item All strings that contain two consecutive $0$s or two consecutive
+$1$s.
+
+\item $(0 + 1)^{*}(00 + 11)(0 + 1)^{*}$
+
+\end{itemize}
+
+\item
+\label{closure-q}
+Consider the following languages over the alphabet
+$\Sigma = \{0, 1\}$.
+\begin{itemize}
+\item $L_1$: All strings that contain at least two 0s
+\item $L_2$: All strings that contain at least one 1
+\item $L_3$:
+All strings that contain at least two 0s and at least one 1
+\item $L_4$: All strings that contain at most one 0 or no 1s
+\end{itemize}
+Give DFAs for each of the languages $L_1$, $L_2$, $L_3$, and $L_4$.
+
+{\bf Aside}: This example illustrates that regular languages are
+closed under intersection and complementation. Note that
+$L_3 = L_1 \cap L_2$ and $L_4 = \Sigma^{*} - L_3$, where $\Sigma^{*}$
+represents the language containing all strings over the alphabet
+$\Sigma$.
+
+Solution: See Figure \ref{closure}.
+
+\begin{figure}[htb]
+\begin{center}
+\input{closure.pstex_t}
+\caption{Example DFAs for Question \ref{closure-q}.}
+\label{closure}
+\end{center}
+\end{figure}
+
+\item
+\label{even-q}
+Let $E_{3}$ be the language over the alphabet
+$\Sigma = \{a_{1}, a_{2}, a_{3}\}$ defined as follows.
+\begin{center}
+$E_{3}$: All strings in which $a_{i}$ occurs an even number of times
+for some $i \in \{1, 2, 3\}$
+\end{center}
+Give a non-deterministic finite automaton (NFA) for the language
+$E_{3}$.
+
+Solution: See Figure \ref{even}.
+
+\begin{figure}[htb]
+\begin{center}
+\input{even.pstex_t}
+\caption{Example NFA for Question \ref{even-q}.}
+\label{even}
+\end{center}
+\end{figure}
+
+\item
+Write regular expressions for the following languages over the
+alphabet $\Sigma = \{0, 1\}$:
+\begin{enumerate}
+\item All strings that contain at least one 0 and at least one 1 and
+that also end with at least two 1s.
+\[
+(0 + 1)^{*}0(0 + 1)^{*}11
+\]
+\item All strings that do not begin with 01.
+\[
+\varepsilon + 0 + 1 + (00 + 10 + 11)(0 + 1)^{*}
+\]
+\item All strings that contain an odd number of 1s.
+\[
+0^{*}10^{*}(0^{*}10^{*}10^{*})^{*}
+\]
+\end{enumerate}
+
+\item
+\label{dfas-q}
+Give a DFA for each of the following languages over the alphabet
+$\Sigma = \{0, 1\}$.
+\begin{enumerate}
+\item The language of the NFA in Figure \ref{substr-odd}.
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.7]{substr-odd.ps}
+\caption{An NFA for Question \ref{dfas-q}.}
+\label{substr-odd}
+\end{center}
+\end{figure}
+
+\item The language of the regular expression $(0 + 01)^{*}1^{*}$.
+\end{enumerate}
+
+Solution: See Figure \ref{dfas}.
+\begin{figure}[htb]
+\begin{center}
+\begin{tabular}{ll}
+(a) &
+\begin{minipage}{6in}
+\includegraphics[scale=0.7]{substr-odd-dfa.ps}
+\end{minipage} \\
+(b) &
+\begin{minipage}{4in}
+\includegraphics[scale=0.7]{end-ones.ps}
+\end{minipage}
+\end{tabular}
+\caption{Example DFAs for Question \ref{dfas-q}.}
+\label{dfas}
+\end{center}
+\end{figure}
+
+\item
+Consider the string
+\begin{verbatim}
+aaabaabbababbb
+\end{verbatim}
+and its tokenization
+\begin{verbatim}
+aa a b aabb a b a bbb
+\end{verbatim}
+
+Give a flex specification with the minimum number of rules that
+produces this tokenization.  Each flex rule should be as simple as
+possible as well.  You may not use regular expression union (i.e.,
+$R_1 + R_2$) in your solution.  Do not give any actions; just assume
+that the rule returns the string that it matches.
+
+Solution:
+\begin{verbatim}
+(aa)*b*
+a
+\end{verbatim}
+
+\end{enumerate}
+
+\end{document}

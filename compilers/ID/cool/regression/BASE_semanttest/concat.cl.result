@@ -1,0 +1,132 @@
+#17
+_program
+ #16
+ _class
+   Main
+   IO
+   "./BASE_semanttest/concat.cl"
+   (
+   #2
+   _attr
+     sum
+     String
+     #2
+     _string
+       ""
+     : String
+   #3
+   _attr
+     s
+     String
+     #3
+     _string
+       "_"
+     : String
+   #15
+   _method
+     main
+     Object
+     #14
+     _block
+       #12
+       _loop
+         #6
+         _comp
+           #6
+           _eq
+             #6
+             _object
+               s
+             : String
+             #6
+             _string
+               ""
+             : String
+           : Bool
+         : Bool
+         #11
+         _block
+           #8
+           _dispatch
+             #8
+             _object
+               self
+             : SELF_TYPE
+             out_string
+             (
+             #8
+             _string
+               "Type in a line: "
+             : String
+             )
+           : SELF_TYPE
+           #9
+           _assign
+             s
+             #9
+             _dispatch
+               #9
+               _object
+                 self
+               : SELF_TYPE
+               in_string
+               (
+               )
+             : String
+           : String
+           #10
+           _assign
+             sum
+             #10
+             _dispatch
+               #10
+               _object
+                 sum
+               : String
+               concat
+               (
+               #10
+               _object
+                 s
+               : String
+               )
+             : String
+           : String
+         : String
+       : Object
+       #13
+       _dispatch
+         #13
+         _dispatch
+           #13
+           _dispatch
+             #13
+             _object
+               self
+             : SELF_TYPE
+             out_string
+             (
+             #13
+             _string
+               "The sum is:\n"
+             : String
+             )
+           : SELF_TYPE
+           out_string
+           (
+           #13
+           _object
+             sum
+           : String
+           )
+         : SELF_TYPE
+         out_string
+         (
+         #13
+         _string
+           "\n"
+         : String
+         )
+       : SELF_TYPE
+     : SELF_TYPE
+   )

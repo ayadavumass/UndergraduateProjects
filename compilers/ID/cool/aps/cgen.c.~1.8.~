@@ -1,0 +1,1326 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "symtab.h"
+#include "language.h"
+
+#ifndef SEEK_SET               /* Added to allow compilation on Sun's, which */
+#   define SEEK_SET 0          /* do not define these in <stdio.h>           */
+#   define SEEK_CUR 1          /*           9/3/95    Doug                   */
+#   define SEEK_END 2
+#endif
+
+
+extern char *aps_yyfilename;
+static SymTabP symtab;	        /* symbol table for the phylum & non-phylum */
+static FILE *tmp[6];            /* temporary code generated files           */
+static int err = 0;		/* count of errors			    */
+
+typedef enum { INIT, CODE } Transaction;
+
+
+extern int tnode_line_number(void *);
+static void init_symtab();
+static void init_tmp_file();
+static void traverse_Program(Program, Transaction);
+static void traverse_Units(Units, Transaction);
+static void traverse_Unit(Unit, Transaction);
+static void traverse_Declaration(Declaration, Transaction);
+static void traverse_Declarations(Declarations, Transaction);
+static void gen_phylum(Declaration);
+static void gen_constructor(Declaration);
+static Symbol find_sym_from_TypeDecl(TypeDecl);
+static Symbol find_sym_from_Type(Type);
+static Symbol find_sym_from_TypeActuals(TypeActuals);
+static void gen_h(char *);
+static void gen_cc(char *);
+static void gen_java(char *);
+static void append_files(FILE *, FILE *);
+static void gen_node(Symbol);
+static void gen_java_node(Symbol);
+static void gen_list(Symbol, Symbol);
+static void gen_java_list(Symbol, Symbol);
+static void gen_list_interface(Symbol, Symbol);
+static void gen_constructor_class(Symbol, Formals, Symbol);
+static void gen_java_constructor_class(Symbol, Formals, Symbol);
+static int length_Formals(Formals);
+static ValueDecl nth_Formals(Formals, int);
+static int isBasic(Symbol);
+static int isPhylum(Symbol);
+static char *aps_strupr(char *);
+
+
+#define PHY_NODE	0       /* file for declaration of phylum - node */
+#define PHY_LIST	1       /* file for declaration of phylum - list */
+#define CON_DECL	2       /* file for declaration of constructor   */
+#define INT_DECL	3	/* file for declaration of interface     */
+#define CON_FUNC	4       /* file for constructor's function       */
+#define INT_FUNC	5	/* file for interface's function         */
+#define JAVA_CODE       0
+
+#define HASH_SIZE      47       /* use a prime no. to have better result */
+#define formal_name(f)	((Symbol) a_value_name(f))
+#define formal_type(f)	((Symbol) find_sym_from_Type(a_value_type_(f)))
+
+
+
+
+/***********************************************************************
+ *
+ * apsgen
+ *
+ * function to generate the aps-tree h and cc files
+ *
+ ***********************************************************************/
+void apsgen(Program root)
+{
+    char *file;
+    char *name;
+    char buf[81];
+
+    /* we have to make another string to hold the file name, */
+    /* otherwise, the file name will be cut by strtok call   */
+    file = (char*)malloc(strlen(aps_yyfilename)*sizeof(char));
+    strcpy(file, aps_yyfilename);
+    name = strtok(file, ".");
+    
+    init_symtab(root);
+    init_tmp_file();
+    traverse_Program(root, INIT);
+    traverse_Program(root, CODE);
+
+    /* generate the .h and .cc files if no error exists */
+    if (err)
+	exit(1);
+
+    switch (language) {
+    case CPP:
+	gen_h(name);
+	gen_cc(name);
+	break;
+    case JAVA:
+	gen_java(name);
+	break;
+    default:
+	fprintf(stderr, "unknown language\n");
+	exit(1);
+    }
+
+}
+
+
+/***********************************************************************
+ *
+ * init_symtab
+ *
+ * function to initialize the symbol table
+ *
+ ***********************************************************************/
+void init_symtab()
+{
+    symtab = makeSymTable(HASH_SIZE);
+    symTabEnterScope(symtab);
+}
+
+
+/***********************************************************************
+ *
+ * init_tmp_file
+ *
+ * function to initialize the tmp files
+ *
+ ***********************************************************************/
+void init_tmp_file()
+{
+    int i;
+
+    switch (language) {
+    case CPP:
+	for (i = 0; i < 6; i++)
+	    if ((tmp[i] = tmpfile()) == NULL) {
+		printf("ERROR: Can't open tmp file\n");
+		exit(1);
+	    }
+	
+	fprintf(tmp[PHY_NODE], "// define the class for phylum\n");
+	fprintf(tmp[PHY_LIST], "// define the class for phylum - LIST\n");
+	fprintf(tmp[CON_DECL], "// define the class for constructors\n");
+	fprintf(tmp[INT_DECL], "// define the prototypes of the interface\n");
+	fprintf(tmp[CON_FUNC], "// constructors' functions\n");
+	fprintf(tmp[INT_FUNC], "// interfaces used by Bison\n");
+	break;
+    case JAVA:
+	if ((tmp[JAVA_CODE] = tmpfile()) == NULL) {
+	    printf("ERROR: Can't open tmp file\n");
+	    exit(1);
+	}
+	break;
+    default:
+	fprintf(stderr, "unknown language\n");
+	exit(1);
+    }
+}
+
+
+/***********************************************************************
+ *
+ * traverse_Program
+ *
+ ***********************************************************************/
+void traverse_Program(Program node, Transaction t)
+{
+    switch (Program_KEY(node)) {
+    case KEYprogram:
+	traverse_Units(program_units(node), t);
+	break;
+    default:
+	fatal_error("crashes in function: traverse_Program");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * traverse_Units
+ *
+ ***********************************************************************/
+void traverse_Units(Units node, Transaction t)
+{
+    switch (Units_KEY(node)) {
+    case KEYnil_Units:
+	/* nothing to generate */
+	break;
+    case KEYlist_Units:
+	traverse_Unit(list_Units_elem(node), t);
+	break;
+    case KEYappend_Units:
+	traverse_Units(append_Units_l1(node), t);
+	traverse_Units(append_Units_l2(node), t);
+	break;
+    default:
+	fatal_error("crashes in function: traverse_Units");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * traverse_Unit
+ *
+ ***********************************************************************/
+void traverse_Unit(Unit node, Transaction t)
+{
+    switch (Unit_KEY(node)) {
+    case KEYno_unit:
+	/* nothing to generate */
+	break;
+    case KEYwith_unit:
+	/* may need to be implemented later */
+	break;
+    case KEYdecl_unit:
+	traverse_Declaration(decl_unit_decl(node), t);
+	break;
+    default:
+	fatal_error("crashes in function: traverse_Unit");
+    }
+}
+
+
+
+/***********************************************************************
+ *
+ * traverse_Declaration
+ *
+ * this function will check the multiple declarations
+ *
+ ***********************************************************************/
+void traverse_Declaration(Declaration node, Transaction t)
+{
+    Symbol name;
+    
+    switch (Declaration_KEY(node)) {
+    case KEYno_decl:
+	/* nothing to generate */
+	break;
+    case KEYmodule_decl:
+	traverse_Declarations(module_decl_contents(node), t);
+	break;
+    case KEYphylum_decl:
+	switch (t) {
+	case INIT:
+	    name = find_sym_from_TypeDecl(phylum_decl_as_type(node));
+	    if (!name) {
+		printf("%s: %d: should have name in type declaration\n",
+		       aps_yyfilename, tnode_line_number(node));
+		err++;
+	    }
+	    else {
+		switch (Type_KEY(phylum_decl_type_(node))) {
+		case KEYno_type:
+		    if (!AddSym(symtab, name, PHYLUM)) {
+			printf("%s: %d: phylum \"%s\" was already declared\n",
+			       aps_yyfilename, tnode_line_number(node),
+			       symbol_name(name));
+			err++;
+		    }
+		    break;
+		case KEYtype_inst:
+		    if (!AddSym(symtab, name, LIST)) {
+			printf("%s: %d: list \"%s\" was already declared\n",
+			       aps_yyfilename, tnode_line_number(node),
+			       symbol_name(name));
+			err++;
+		    }
+		    break;
+		default:
+		    printf("%s: %d: phylum can be a node or list only\n",
+			   aps_yyfilename, tnode_line_number(node));
+		    err++;
+		    break;
+		}
+	    }
+	    break;
+	case CODE:
+	    gen_phylum(node);
+	    break;
+	default:
+	    fatal_error("undefined transaction in traverse_Declaration inside KEYphylum_decl");
+	}
+	break;
+    case KEYconstructor_decl:
+	switch (t) {
+	case INIT:
+	    name = a_value_name(constructor_decl_as_value(node));
+	    if (!name) {
+		printf("%s: %d: should have name in constructor declaration\n",
+		       aps_yyfilename, tnode_line_number(node));
+		err++;
+	    }
+	    else if (!AddSym(symtab, name, CONSTRUCTOR)) {
+		printf("%s: %d: constructor \"%s\" was already declared\n",
+		       aps_yyfilename, tnode_line_number(node),
+		       symbol_name(name));
+		err++;
+	    }
+	    break;
+	case CODE:
+	    gen_constructor(node);
+	    break;
+	default:
+	    fatal_error("undefined transaction in traverse_Declaration inside KEYconstructor_decl");
+	}
+	break;
+    case KEYtype_decl:
+	switch (t) {
+	case INIT:
+	    name = find_sym_from_TypeDecl(type_decl_as_type(node));
+	    if (!name) {
+		printf("%s: %d: should have name in phylum declaration\n",
+		       aps_yyfilename, tnode_line_number(node));
+		err++;
+	    }
+	    else if (!AddSym(symtab, name, BASIC)) {
+		printf("%s: %d: type \"%s\" was already declared\n",
+		       aps_yyfilename, tnode_line_number(node),
+		       symbol_name(name));
+		err++;
+	    }
+	    break;
+	case CODE:
+	    switch (Type_KEY(type_decl_type_(node))) {
+	    case KEYno_type:
+		/* nothing to do */
+		break;
+	    default:
+		printf("%s: %d: should be in the form \"type id;\"\n",
+		       aps_yyfilename, tnode_line_number(node));
+		err++;
+		break;
+	    }
+	    break;
+	default:
+	    fatal_error("undefined transaction in traverse_Declaration inside KEYtype_decl");
+	}
+	break;
+    default:
+	if (t == INIT) {        /* avoid report of the same error twice */
+	    printf("%s: %d: apsgen doesn't handle this kind of declaration\n",
+		   aps_yyfilename, tnode_line_number(node));
+	    err++;
+	}
+	break;
+    }
+}
+
+
+/***********************************************************************
+ *
+ * traverse_Declarations
+ *
+ ***********************************************************************/
+void traverse_Declarations(Declarations node, Transaction t)
+{
+    switch (Declarations_KEY(node)) {
+    case KEYnil_Declarations:
+	/* nothing to generate */
+	break;
+    case KEYlist_Declarations:
+	traverse_Declaration(list_Declarations_elem(node), t);
+	break;
+    case KEYappend_Declarations:
+	traverse_Declarations(append_Declarations_l1(node), t);
+	traverse_Declarations(append_Declarations_l2(node), t);
+	break;
+    default:
+	fatal_error("crashes in function: traverse_Declarations");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * gen_phylum
+ *
+ * function to generate code for the phylum
+ *
+ ***********************************************************************/
+void gen_phylum(Declaration node)
+{
+    TypeDecl name = phylum_decl_as_type(node);
+    Type type = phylum_decl_type_(node);
+    Symbol sym, name_sym, type_sym;
+    TypeActuals actuals;
+    
+    name_sym = find_sym_from_TypeDecl(name);
+    sym = find_sym_from_Type(type);
+
+
+    switch (Type_KEY(type)) {
+    case KEYno_type:
+	switch (language) {
+	case CPP:
+	    gen_node(name_sym);
+	    break;
+	case JAVA:
+	    gen_java_node(name_sym);
+	    break;
+	}
+	break;
+    case KEYtype_inst:
+	if (sym) {
+	    if (!strcmp(symbol_name(sym), "LIST")) {
+		actuals = type_inst_type_actuals(type);
+		type_sym = find_sym_from_TypeActuals(actuals);
+		if (!type_sym) {
+		    printf("%s: %d: must have one simple type actual\n",
+			   aps_yyfilename, tnode_line_number(node));
+		}
+		else if (!inSymTab(symtab, type_sym)) {
+		    printf("%s: %d: type \"%s\" not declared\n",
+			   aps_yyfilename, tnode_line_number(node),
+			   symbol_name(type_sym));
+		}
+		else {
+		    switch (language) {
+		    case CPP:
+			gen_list(name_sym, type_sym);
+			break;
+		    case JAVA:
+			gen_java_list(name_sym, type_sym);
+			break;
+		    }
+		    break;
+		}
+	    }
+	    else {
+		printf("%s: %d: unsupported type constructor \"%s\"\n",
+		       aps_yyfilename, tnode_line_number(node),
+		       symbol_name(sym));
+	    }
+	}
+	else {
+	    printf("%s: %d: incorrect type for phylum declaration\n",
+		   aps_yyfilename, tnode_line_number(node));
+	}
+	err++;
+	break;
+    default:
+	/* had been taken care in the INIT pass */
+	break;
+    }
+}
+
+
+/***********************************************************************
+ *
+ * gen_constructor
+ *
+ * function to generate code for the constructor
+ *
+ ***********************************************************************/
+void gen_constructor(Declaration node)
+{
+    ValueDecl v = constructor_decl_as_value(node);
+    Symbol name_sym, type_sym;
+    Formals formals;
+    Declaration return_value;
+    Type t1, t2, type;
+    int len, i;
+    ValueDecl formal;
+    char *fname, *ftype;
+    
+    name_sym = a_value_name(v);
+    t1 = a_value_type_(v);
+
+    switch (Type_KEY(t1)) {
+    case KEYfunction_type:
+	formals = function_type_formals(t1);
+	return_value = function_type_return_value(t1);
+
+	switch (Declaration_KEY(return_value)) {
+	case KEYvalue_decl:
+	    t2 = a_value_type_(value_decl_as_value(return_value));
+	    len = length_Formals(formals);
+	    
+	    /* check the return type of the constructor */
+	    /* it should be declared as type_name and   */
+	    /* must be a phylum but not a list phylum   */
+	    switch (Type_KEY(t2)) {
+	    case KEYtype_name:
+		type_sym = find_sym_from_Type(t2);
+
+		if (!inSymTab(symtab, type_sym)) {
+		    printf("%s: %d: constructor \"%s\" return type \"%s\" not declared\n",
+			   aps_yyfilename, tnode_line_number(node),
+			   symbol_name(name_sym), symbol_name(type_sym));
+		    err++;
+		}
+		else {
+		    switch (symType(symtab, type_sym)) {
+		    case BASIC:
+		    case CONSTRUCTOR:
+			printf("%s: %d: constructor \"%s\" return type \"%s\" mush be a simple phylum\n",
+			       aps_yyfilename, tnode_line_number(node),
+			       symbol_name(name_sym), symbol_name(type_sym));
+			err++;
+			break;
+		    case LIST:
+			printf("%s: %d: constructor \"%s\" return type \"%s\" must not be a list\n",
+			       aps_yyfilename, tnode_line_number(node),
+			       symbol_name(name_sym), symbol_name(type_sym));
+			err++;
+			break;
+		    case PHYLUM:
+			/* type checking of return type passed */
+			break;
+		    default:
+			fatal_error("craches in function: gen_constructor");
+			break;
+		    }			
+		}
+
+		/* check if the type of the arguments are properly declared */
+		for (i = 0; i < len; i++) {
+		    formal = nth_Formals(formals, i);
+		    fname = symbol_name(formal_name(formal));
+		    type = a_value_type_(formal);
+		    
+		    switch (Type_KEY(type)) {
+		    case KEYtype_name:
+			ftype = symbol_name(formal_type(formal));
+			if (!inSymTab(symtab, formal_type(formal))) {
+			    printf("%s: %d: argument \"%s\"'s type \"%s\" was not declared\n",
+				   aps_yyfilename, tnode_line_number(node),
+				   fname, ftype);
+			    err++;
+			}
+			break;
+		    case KEYremote_type:
+			printf("%s: %d: remote type was not yet implemented\n",
+			       aps_yyfilename, tnode_line_number(node));
+			err++;
+			break;
+		    default:
+			printf("%s: %d: argument \"%s\"'s type must be a declared phylum or type\n",
+			       aps_yyfilename, tnode_line_number(node), fname);
+			err++;
+			break;
+		    }
+		}
+		break;
+	    default:
+		printf("%s: %d: constructor \"%s\"'s return type must be an id\n",
+		       aps_yyfilename, tnode_line_number(node),
+		       symbol_name(name_sym));
+		err++;
+		break;
+	    }
+	    
+
+	    if (!err) {
+		switch (language) {
+		case CPP:
+		    gen_constructor_class(name_sym, formals, type_sym);
+		    break;
+		case JAVA:
+		    gen_java_constructor_class(name_sym, formals, type_sym);
+		    break;
+		}
+	    }
+	    break;
+	default:
+	    fatal_error("incorrect type for the return value");
+	}
+	break;
+    default:
+	fatal_error("incorrect format for the constructor");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * find_sym_from_TypeDecl
+ *
+ * function to find the id of the phylum
+ *
+ ***********************************************************************/
+Symbol find_sym_from_TypeDecl(TypeDecl name)
+{
+    switch (TypeDecl_KEY(name)) {
+    case KEYa_type:
+	return a_type_name(name);
+	break;
+    default:
+	fatal_error("crashes in function: find_sym_from_TypeDecl");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * find_sym_from_Type
+ *
+ * function to find the type of the phylum
+ *
+ ***********************************************************************/
+Symbol find_sym_from_Type(Type type)
+{
+    switch (Type_KEY(type)) {
+    case KEYno_type:
+	return NULL;
+	break;
+    case KEYtype_name:
+	return type_name_name(type);
+	break;
+    case KEYtype_inst:
+	return find_sym_from_Type(type_inst_base(type));
+	break;
+    case KEYremote_type:
+	printf("%s: %d: does not handle remote type in this aps version\n",
+	       aps_yyfilename, tnode_line_number(type));
+	exit(1);
+	break;
+    default:
+	return NULL;
+	break;
+    }
+    
+}
+
+
+/***********************************************************************
+ *
+ * find_sym_from_TypeActuals
+ *
+ * function to find the type of the phylum
+ *
+ ***********************************************************************/
+Symbol find_sym_from_TypeActuals(TypeActuals node)
+{
+    switch (TypeActuals_KEY(node)) {
+    case KEYnil_TypeActuals:
+	return NULL;
+	break;
+    case KEYlist_TypeActuals:
+	return find_sym_from_Type(list_TypeActuals_elem(node));
+	break;
+    case KEYappend_TypeActuals:
+	return NULL;
+	break;
+    default:
+	fatal_error("crashes in function: find_sym_from_TypeActuals");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * gen_h
+ *
+ * function to generate the aps .h file
+ *
+ ***********************************************************************/
+void gen_h(char *name)
+{
+    FILE *f;
+    char buf[81];
+    int i;
+
+    sprintf(buf, "%s.h", name);
+    if ((f = fopen(buf, "wt")) == NULL) {
+	printf("ERROR: Can't open file \"%s\"\n", buf);
+	exit(1);
+    }
+
+    /* write include files */
+    fprintf(f, "#ifndef %s_H\n", aps_strupr(name));
+    fprintf(f, "#define %s_H\n", aps_strupr(name));
+    fprintf(f, "//////////////////////////////////////////////////////////\n");
+    fprintf(f, "//\n");
+    fprintf(f, "// file: %s\n", buf);
+    fprintf(f, "//\n");
+    fprintf(f, "// This file defines classes for each phylum and constructor\n");
+    fprintf(f, "//\n");
+    fprintf(f, "//////////////////////////////////////////////////////////\n");
+    fprintf(f, "\n\n");
+    fprintf(f, "#include \"tree.h\"\n");
+    fprintf(f, "#include \"%s.handcode.h\"\n", name);
+    fprintf(f, "\n\n");
+
+    /* start to append files */
+    for (i = 0; i < 4; i++)
+	append_files(f, tmp[i]);
+    fprintf(f, "\n\n#endif\n");
+    
+    /* closing file */
+    fclose(f);
+}
+
+
+/***********************************************************************
+ *
+ * gen_cc
+ *
+ * function to generate the aps .cc file
+ *
+ ***********************************************************************/
+void gen_cc(char *name)
+{
+    FILE *f;
+    char buf[81];
+    int i;
+
+    sprintf(buf, "%s.cc", name);
+    if ((f = fopen(buf, "wt")) == NULL) {
+	printf("ERROR: Can't open file \"%s\"\n", buf);
+	exit(1);
+    }
+
+    /* write include files */
+    fprintf(f, "//////////////////////////////////////////////////////////\n");
+    fprintf(f, "//\n");
+    fprintf(f, "// file: %s\n", buf);
+    fprintf(f, "//\n");
+    fprintf(f, "// This file defines the functions of each class\n");
+    fprintf(f, "//\n");
+    fprintf(f, "//////////////////////////////////////////////////////////\n");
+    fprintf(f, "\n\n");
+    fprintf(f, "#include \"tree.h\"\n");
+    // fprintf(f, "#include \"tree.i\"\n");
+    fprintf(f, "#include \"%s.handcode.h\"\n", name);
+    fprintf(f, "#include \"%s.h\"\n", name);
+    // fprintf(f, "#include \"%s.handcode.i\"\n", name);
+    fprintf(f, "\n\n");
+
+    /* start to append files */
+    for (i = 4; i < 6; i++)
+	append_files(f, tmp[i]);
+
+    /* closing file */
+    fclose(f);
+}
+
+/***********************************************************************
+ *
+ * gen_cc
+ *
+ * function to generate the aps .java.p file
+ *
+ ***********************************************************************/
+
+void gen_java(char *name)
+{
+    FILE *f;
+    char buf[81];
+    int i;
+
+    sprintf(buf, "%s.m4", name);
+    if ((f = fopen(buf, "wt")) == NULL) {
+	printf("ERROR: Can't open file \"%s\"\n", buf);
+	exit(1);
+    }
+
+    /* write include files */
+    fprintf(f, "// -*- mode: java -*- \n");
+    fprintf(f, "//\n");
+    fprintf(f, "// file: %s\n", buf);
+    fprintf(f, "//\n");
+    fprintf(f, "// This file defines the AST\n");
+    fprintf(f, "//\n");
+    fprintf(f, "//////////////////////////////////////////////////////////\n");
+    
+    fprintf(f, "\n");
+    fprintf(f, "include(%s.handcode.m4)\n", name);
+    fprintf(f, "\n\n");
+    fprintf(f, "import java.io.PrintStream;\n", name);
+    fprintf(f, "import java.util.Vector;\n", name);
+    fprintf(f, "\n\n");
+
+    append_files(f, tmp[JAVA_CODE]);
+
+    fclose(f);
+}
+
+/***********************************************************************
+ *
+ * append_files
+ *
+ * function to append file "f2" to file "f1"
+ *
+ ***********************************************************************/
+void append_files(FILE *f1, FILE *f2)
+{
+    char buf[81];
+
+    fseek(f1, 0L, SEEK_END);
+    fseek(f2, 0L, SEEK_SET);
+    while (fgets(buf, 80, f2) != NULL)
+	fputs(buf, f1);
+}
+
+
+/***********************************************************************
+ *
+ * gen_node
+ *
+ * function to generate the code for the phylum(which is a node)
+ *
+ ***********************************************************************/
+void gen_node(Symbol n)
+{
+    char *name = symbol_name(n);
+
+    fprintf(tmp[PHY_NODE], "// define simple phylum - %s\n", name);
+    fprintf(tmp[PHY_NODE], "typedef class %s_class *%s;\n\n", name, name);
+    fprintf(tmp[PHY_NODE], "class %s_class : public tree_node {\n", name);
+    fprintf(tmp[PHY_NODE], "public:\n");
+    fprintf(tmp[PHY_NODE], "   tree_node *copy()\t\t { return copy_%s(); }\n", name);
+    fprintf(tmp[PHY_NODE], "   virtual %s copy_%s() = 0;\n", name, name);
+    fprintf(tmp[PHY_NODE], "\n");
+    fprintf(tmp[PHY_NODE], "#ifdef %s_EXTRAS\n", name);
+    fprintf(tmp[PHY_NODE], "   %s_EXTRAS\n", name);
+    fprintf(tmp[PHY_NODE], "#endif\n");
+    fprintf(tmp[PHY_NODE], "};\n");
+    fprintf(tmp[PHY_NODE], "\n\n");
+}
+
+void gen_java_node(Symbol n) {
+    char *name = symbol_name(n);
+
+    fprintf(tmp[JAVA_CODE], "/** Defines simple phylum %s */\n", name);
+    fprintf(tmp[JAVA_CODE], "abstract class %s extends TreeNode {\n", name);
+    fprintf(tmp[JAVA_CODE], "    protected %s(int lineNumber) {\n", name);
+    fprintf(tmp[JAVA_CODE], "        super(lineNumber);\n");
+    fprintf(tmp[JAVA_CODE], "    }\n");
+    fprintf(tmp[JAVA_CODE], "    ifdef(`%s_EXTRAS',%s_EXTRAS)\n", name, name);
+    fprintf(tmp[JAVA_CODE], "}\n\n\n");
+}
+
+/***********************************************************************
+ *
+ * gen_list
+ *
+ * function to generate the code for the phylum(which is a list)
+ *
+ ***********************************************************************/
+void gen_list(Symbol n, Symbol t)
+{
+    char *name = symbol_name(n);
+    char *type = symbol_name(t);
+
+    fprintf(tmp[PHY_LIST], "// define list phlyum - %s\n", name);
+    fprintf(tmp[PHY_LIST], "typedef list_node<%s> %s_class;\n", type, name);
+    fprintf(tmp[PHY_LIST], "typedef %s_class *%s;\n", name, name);
+    fprintf(tmp[PHY_LIST], "\n\n");
+    gen_list_interface(n, t);
+}
+
+void gen_java_list(Symbol n, Symbol t)
+{
+    char *name = symbol_name(n);
+    char *type = symbol_name(t);
+
+    fprintf(tmp[JAVA_CODE], "/** Defines list phylum %s\n", name);
+    fprintf(tmp[JAVA_CODE], "    <p>\n");
+    fprintf(tmp[JAVA_CODE], "    See <a href=\"ListNode.html\">ListNode</a> for full documentation. */\n");
+    fprintf(tmp[JAVA_CODE], "class %s extends ListNode {\n", name);
+    fprintf(tmp[JAVA_CODE], "    public final static Class elementClass = %s.class;\n", type);
+    fprintf(tmp[JAVA_CODE], "    /** Returns class of this lists's elements */\n");
+    fprintf(tmp[JAVA_CODE], "    public Class getElementClass() {\n");
+    fprintf(tmp[JAVA_CODE], "        return elementClass;\n");
+    fprintf(tmp[JAVA_CODE], "    }\n");
+    fprintf(tmp[JAVA_CODE], "    protected %s(int lineNumber, Vector elements) {\n", name);
+    fprintf(tmp[JAVA_CODE], "        super(lineNumber, elements);\n");
+    fprintf(tmp[JAVA_CODE], "    }\n");
+    fprintf(tmp[JAVA_CODE], "    /** Creates an empty \"%s\" list */\n", name);
+    fprintf(tmp[JAVA_CODE], "    public %s(int lineNumber) {\n", name);
+    fprintf(tmp[JAVA_CODE], "        super(lineNumber);\n");
+    fprintf(tmp[JAVA_CODE], "    }\n");
+    fprintf(tmp[JAVA_CODE], "    /** Appends \"%s\" element to this list */\n", type);
+    fprintf(tmp[JAVA_CODE], "    public %s appendElement(TreeNode elem) {\n", name);
+    fprintf(tmp[JAVA_CODE], "        addElement(elem);\n");
+    fprintf(tmp[JAVA_CODE], "        return this;\n");
+    fprintf(tmp[JAVA_CODE], "    }\n");
+    fprintf(tmp[JAVA_CODE], "    public TreeNode copy() {\n", name);
+    fprintf(tmp[JAVA_CODE], "        return new %s(lineNumber, copyElements());\n", name);
+    fprintf(tmp[JAVA_CODE], "    }\n");
+    fprintf(tmp[JAVA_CODE], "}\n\n\n");
+}
+
+/***********************************************************************
+ *
+ * gen_list_interface
+ *
+ * function to generate the interfaces for the Bison
+ *
+ ***********************************************************************/
+void gen_list_interface(Symbol n, Symbol t)
+{
+    char *name = symbol_name(n);
+    char *type = symbol_name(t);
+    
+    fprintf(tmp[INT_DECL], "%s nil_%s();\n", name, name);
+    fprintf(tmp[INT_DECL], "%s single_%s(%s);\n", name, name, type);
+    fprintf(tmp[INT_DECL], "%s append_%s(%s, %s);\n",
+	    name, name, name, name);
+
+    fprintf(tmp[INT_FUNC], "%s nil_%s()\n", name, name);
+    fprintf(tmp[INT_FUNC], "{\n");
+    fprintf(tmp[INT_FUNC], "   return new nil_node<%s>();\n", type);
+    fprintf(tmp[INT_FUNC], "}\n\n");
+
+    fprintf(tmp[INT_FUNC], "%s single_%s(%s e)\n", name, name, type);
+    fprintf(tmp[INT_FUNC], "{\n");
+    fprintf(tmp[INT_FUNC], "   return new single_list_node<%s>(e);\n", type);
+    fprintf(tmp[INT_FUNC], "}\n\n");
+
+    fprintf(tmp[INT_FUNC], "%s append_%s(%s p1, %s p2)\n",
+	    name, name, name, name);
+    fprintf(tmp[INT_FUNC], "{\n");
+    fprintf(tmp[INT_FUNC], "   return new append_node<%s>(p1, p2);\n", type);
+    fprintf(tmp[INT_FUNC], "}\n\n");
+}
+
+
+/***********************************************************************
+ *
+ * gen_constructor_class
+ *
+ * function to generate code for the constructor
+ *
+ ***********************************************************************/
+void gen_constructor_class(Symbol n, Formals formals, Symbol t)
+{
+    char *name = symbol_name(n);
+    char *type = symbol_name(t);
+    char *fname, *ftype;
+    ValueDecl formal;
+    int i, len;
+
+    len = length_Formals(formals);
+
+    /* generate the class for the constructor */
+    fprintf(tmp[CON_DECL], "// define constructor - %s\n", name);
+    fprintf(tmp[CON_DECL], "class %s_class : public %s_class {\n", name, type);
+    fprintf(tmp[CON_DECL], "protected:\n");
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[CON_DECL], "   %s %s;\n", ftype, fname);
+    }
+    fprintf(tmp[CON_DECL], "public:\n");
+    fprintf(tmp[CON_DECL], "   %s_class(", name);
+    if (len == 0)
+	fprintf(tmp[CON_DECL], ") {\n");
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[CON_DECL], "%s a%d", ftype, i+1);
+	if (i < (len - 1))
+	    fprintf(tmp[CON_DECL], ", ");
+	else
+	    fprintf(tmp[CON_DECL], ") {\n");
+    }
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[CON_DECL], "      %s = a%d;\n", fname, i+1);
+    }
+    fprintf(tmp[CON_DECL], "   }\n");
+    fprintf(tmp[CON_DECL], "   %s copy_%s();\n", type, type);
+    fprintf(tmp[CON_DECL], "   void dump(ostream& stream, int n);\n");
+    fprintf(tmp[CON_DECL], "\n");
+    fprintf(tmp[CON_DECL], "#ifdef %s_SHARED_EXTRAS\n", type);
+    fprintf(tmp[CON_DECL], "   %s_SHARED_EXTRAS\n", type);
+    fprintf(tmp[CON_DECL], "#endif\n");
+    fprintf(tmp[CON_DECL], "#ifdef %s_EXTRAS\n", name);
+    fprintf(tmp[CON_DECL], "   %s_EXTRAS\n", name);
+    fprintf(tmp[CON_DECL], "#endif\n");
+    fprintf(tmp[CON_DECL], "};\n");
+    fprintf(tmp[CON_DECL], "\n\n");
+
+    /* generate the code for the function - copy */
+    fprintf(tmp[CON_FUNC], "%s %s_class::copy_%s()\n", type, name, type);
+    fprintf(tmp[CON_FUNC], "{\n");
+    fprintf(tmp[CON_FUNC], "   return new %s_class(", name);
+    if (len == 0)
+	fprintf(tmp[CON_FUNC], ");\n");
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+
+	switch (symType(symtab, formal_type(formal))) {
+	case BASIC:
+	    fprintf(tmp[CON_FUNC], "copy_%s(%s)", ftype, fname);    
+	    break;
+	case PHYLUM:
+	    fprintf(tmp[CON_FUNC], "%s->copy_%s()", fname, ftype);	    
+	    break;
+	case LIST:
+	    fprintf(tmp[CON_FUNC], "%s->copy_list()", fname);
+	    break;
+	default:
+	    fatal_error("crashes in function: gen_constructor_list\n");
+	}
+	if (i < (len - 1))
+	    fprintf(tmp[CON_FUNC], ", ");
+	else
+	    fprintf(tmp[CON_FUNC], ");\n");
+    }
+    fprintf(tmp[CON_FUNC], "}\n");
+    fprintf(tmp[CON_FUNC], "\n\n");
+
+    /* generate the code for the function - dump */
+    fprintf(tmp[CON_FUNC], "void %s_class::dump(ostream& stream, int n)\n", name);
+    fprintf(tmp[CON_FUNC], "{\n");
+    fprintf(tmp[CON_FUNC], "   stream << pad(n) << \"%s\\n\";\n", name);
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	if (isBasic(formal_type(formal)))
+	    fprintf(tmp[CON_FUNC], "   dump_%s(stream, n+2, %s);\n", ftype, fname);
+	else
+	    fprintf(tmp[CON_FUNC], "   %s->dump(stream, n+2);\n", fname);
+    }
+    fprintf(tmp[CON_FUNC], "}\n");
+    fprintf(tmp[CON_FUNC], "\n\n");
+
+    /* generate the interfaces */
+    fprintf(tmp[INT_DECL], "%s %s(", type, name);
+    if (len == 0)
+	fprintf(tmp[INT_DECL], ");\n");
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[INT_DECL], "%s", ftype);
+	if (i < (len - 1))
+	    fprintf(tmp[INT_DECL], ", ");
+	else
+	    fprintf(tmp[INT_DECL], ");\n");
+    }
+
+    fprintf(tmp[INT_FUNC], "%s %s(", type, name);
+    if (len == 0)
+	fprintf(tmp[INT_FUNC], ")\n");
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[INT_FUNC], "%s %s", ftype, fname);
+	if (i < (len - 1))
+	    fprintf(tmp[INT_FUNC], ", ");
+	else
+	    fprintf(tmp[INT_FUNC], ")\n");
+    }
+    fprintf(tmp[INT_FUNC], "{\n");
+    fprintf(tmp[INT_FUNC], "  return new %s_class(", name);
+    if (len == 0)
+	fprintf(tmp[INT_FUNC], ");\n");
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[INT_FUNC], "%s", fname);
+	if (i < (len - 1))
+	    fprintf(tmp[INT_FUNC], ", ");
+	else
+	    fprintf(tmp[INT_FUNC], ");\n");
+    }
+    fprintf(tmp[INT_FUNC], "}\n\n");
+}
+
+void gen_java_constructor_class(Symbol n, Formals formals, Symbol t) {
+    char *name = symbol_name(n);
+    char *type = symbol_name(t);
+    char *fname, *ftype;
+    ValueDecl formal;
+    int i, len;
+
+    len = length_Formals(formals);
+
+    /* generate the class for the constructor */
+    fprintf(tmp[JAVA_CODE], "/** Defines AST constructor '%s'.\n", name);
+    fprintf(tmp[JAVA_CODE], "    <p>\n");
+    fprintf(tmp[JAVA_CODE], "    See <a href=\"TreeNode.html\">TreeNode</a> for full documentation. */\n");
+    fprintf(tmp[JAVA_CODE], "class %s extends %s {\n", name, type);
+
+    // parameters
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[JAVA_CODE], "    protected %s %s;\n", ftype, fname);
+    }
+
+    // class constructor
+    fprintf(tmp[JAVA_CODE], "    /** Creates \"%s\" AST node. \n", name);
+    fprintf(tmp[JAVA_CODE], "      *\n", name);
+    fprintf(tmp[JAVA_CODE], "      * @param lineNumber the line in the source file from which this node came.\n", name);
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	fprintf(tmp[JAVA_CODE], "      * @param a%d initial value for %s\n", i, fname);
+    }
+    fprintf(tmp[JAVA_CODE], "      */\n", name);
+    fprintf(tmp[JAVA_CODE], "    public %s(int lineNumber", name);
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[JAVA_CODE], ", %s a%d", ftype, i+1);
+    }
+    fprintf(tmp[JAVA_CODE], ") {\n");
+    fprintf(tmp[JAVA_CODE], "        super(lineNumber);\n");
+
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	fprintf(tmp[JAVA_CODE], "        %s = a%d;\n", fname, i+1);
+    }
+    fprintf(tmp[JAVA_CODE], "    }\n");
+
+    // copy method
+    fprintf(tmp[JAVA_CODE], "    public TreeNode copy() {\n", type, type);
+    fprintf(tmp[JAVA_CODE], "        return new %s(lineNumber", name);
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+
+	switch (symType(symtab, formal_type(formal))) {
+	case BASIC:
+	    fprintf(tmp[JAVA_CODE], ", copy_%s(%s)", ftype, fname);    
+	    break;
+	case PHYLUM:
+	    fprintf(tmp[JAVA_CODE], ", (%s)%s.copy()", ftype, fname);	    
+	    break;
+	case LIST:
+	    fprintf(tmp[JAVA_CODE], ", (%s)%s.copy()", ftype, fname);
+	    break;
+	default:
+	    fatal_error("crashes in function: gen_java_constructor_list\n");
+	}
+    }
+    fprintf(tmp[JAVA_CODE], ");\n");
+    fprintf(tmp[JAVA_CODE], "    }\n");
+
+
+    // dump method
+    fprintf(tmp[JAVA_CODE], "    public void dump(PrintStream out, int n) {\n");
+    fprintf(tmp[JAVA_CODE], "        out.print(Utilities.pad(n) + \"%s\\n\");\n", name);
+    for (i = 0; i < len; i++) {
+	formal = nth_Formals(formals, i);
+	fname = symbol_name(formal_name(formal));
+	ftype = symbol_name(formal_type(formal));
+	if (isBasic(formal_type(formal)))
+	    fprintf(tmp[JAVA_CODE], "        dump_%s(out, n+2, %s);\n", ftype, fname);
+	else
+	    fprintf(tmp[JAVA_CODE], "        %s.dump(out, n+2);\n", fname);
+    }
+    fprintf(tmp[JAVA_CODE], "    }\n");
+
+    fprintf(tmp[JAVA_CODE], "\n");
+    fprintf(tmp[JAVA_CODE], "    ifdef(`%s_SHARED_EXTRAS',%s_SHARED_EXTRAS)\n", type, type);
+    fprintf(tmp[JAVA_CODE], "    ifdef(`%s_EXTRAS',%s_EXTRAS)\n", name, name);
+    fprintf(tmp[JAVA_CODE], "}\n\n\n");
+}
+
+/***********************************************************************
+ *
+ * length_Formals
+ *
+ * function to find number of formals
+ *
+ ***********************************************************************/
+int length_Formals(Formals f)
+{
+    switch (Formals_KEY(f)) {
+    case KEYnil_Formals:
+	return 0;
+	break;
+    case KEYlist_Formals:
+	return 1;
+	break;
+    case KEYappend_Formals:
+	return (length_Formals(append_Formals_l1(f)) +
+	        length_Formals(append_Formals_l2(f)));
+	break;
+    default:
+	fatal_error("crashes in function: length_Formals");
+    }
+}
+	
+
+
+/***********************************************************************
+ *
+ * nth_Formals
+ *
+ * function to nth ValueDecl in formals
+ *
+ ***********************************************************************/
+ValueDecl nth_Formals(Formals f, int i)
+{
+    Formals l1, l2;
+    int l1_size;
+    
+    switch (Formals_KEY(f)) {
+    case KEYnil_Formals:
+	printf("ERROR: no element in nil_Formals\n");
+	exit(1);
+    case KEYlist_Formals:
+	return list_Formals_elem(f);
+	break;
+    case KEYappend_Formals:
+	l1 = append_Formals_l1(f);
+	l2 = append_Formals_l2(f);
+	l1_size = length_Formals(l1);
+
+	if (i < l1_size)
+	    return nth_Formals(l1, i);
+	else
+	    return nth_Formals(l2, i - l1_size);
+	break;
+    default:
+	fatal_error("crashes in function: nth_Formals");
+    }
+}
+
+
+/***********************************************************************
+ *
+ * isBasic
+ *
+ * function to check if this is a basic type
+ *
+ ***********************************************************************/
+int isBasic(Symbol s)
+{
+    int key = Symbol_to_Key(s);
+    SymRec symRec;
+
+    if (inSymTab(symtab, s)) {
+	symRec = symTabProbe(symtab, key);
+	switch (symRec->node->type) {
+	case BASIC:
+	    return 1;
+	case PHYLUM:
+	case LIST:
+	case CONSTRUCTOR:
+	    return 0;
+	default:
+	    fatal_error("crashes in function: isBasic");
+	}
+    }
+    else {
+	printf("ERROR: symbol \"%s\" not found in symbol table\n",
+	       symbol_name(s));
+	exit(1);
+    }
+}
+
+
+/***********************************************************************
+ *
+ * isPhylum
+ *
+ * function to check if this is a phylum
+ *
+ ***********************************************************************/
+int isPhylum(Symbol s)
+{
+    int key = Symbol_to_Key(s);
+    SymRec symRec;
+
+    if (inSymTab(symtab, s)) {
+	symRec = symTabProbe(symtab, key);
+	switch (symRec->node->type) {
+	case PHYLUM:
+	    return 1;
+	case BASIC:
+	case LIST:
+	case CONSTRUCTOR:
+	    return 0;
+	default:
+	    fatal_error("crashes in function: isPhylum");
+	}
+    }
+    else {
+	printf("ERROR: symbol \"%s\" not found in symbol table\n",
+	       symbol_name(s));
+	exit(1);
+    }
+}
+
+
+/***********************************************************************
+ *
+ * aps_strupr
+ *
+ * function to convert any lowercase letters in a string to uppercase
+ * and change any special character to underscore
+ *
+ ***********************************************************************/
+char *aps_strupr(char *s)
+{
+    char *tmp, *ptr;
+
+    tmp = (char*) malloc((strlen(s)+1)*sizeof(char));
+    ptr = tmp;
+    for (; *s != '\0'; s++) {
+	*ptr = toupper((int) *s);
+	if (!isalnum((int) *s))
+	    *ptr = '_';
+	ptr++;
+    }
+    *ptr = '\0';
+    return tmp;
+}

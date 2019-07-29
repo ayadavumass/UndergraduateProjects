@@ -1,0 +1,4 @@
+-- begin-end blocks must contain at least one expression.
+class Main is
+	a : Int <- begin end;
+end;

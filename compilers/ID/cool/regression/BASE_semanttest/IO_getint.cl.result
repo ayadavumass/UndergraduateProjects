@@ -1,0 +1,90 @@
+#15
+_program
+ #14
+ _class
+   Main
+   IO
+   "./BASE_semanttest/IO_getint.cl"
+   (
+   #13
+   _method
+     main
+     SELF_TYPE
+     #12
+     _block
+       #4
+       _dispatch
+         #4
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #4
+         _string
+           "Enter an integer: "
+         : String
+         )
+       : SELF_TYPE
+       #11
+       _let
+         i
+         Int
+         #5
+         _dispatch
+           #5
+           _object
+             self
+           : SELF_TYPE
+           in_int
+           (
+           )
+         : Int
+         #10
+         _block
+           #7
+           _dispatch
+             #7
+             _object
+               self
+             : SELF_TYPE
+             out_string
+             (
+             #7
+             _string
+               "Read: "
+             : String
+             )
+           : SELF_TYPE
+           #8
+           _dispatch
+             #8
+             _object
+               self
+             : SELF_TYPE
+             out_int
+             (
+             #8
+             _object
+               i
+             : Int
+             )
+           : SELF_TYPE
+           #9
+           _dispatch
+             #9
+             _object
+               self
+             : SELF_TYPE
+             out_string
+             (
+             #9
+             _string
+               "\n"
+             : String
+             )
+           : SELF_TYPE
+         : SELF_TYPE
+       : SELF_TYPE
+     : SELF_TYPE
+   )

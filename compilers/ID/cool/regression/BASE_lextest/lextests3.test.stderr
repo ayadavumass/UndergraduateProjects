@@ -1,0 +1,7 @@
+Recognized token: STR_CONST(278)	line 1.	'a\bcde\fghijklm\nopqrs\tuvwxyz'
+Recognized token: STR_CONST(278)	line 2.	'0123456789'
+Recognized token: STR_CONST(278)	line 3.	'~!@#$%^&*()_-+={[}]:;\"'?/>.,<|\\'
+Recognized token: STR_CONST(278)	line 4.	'\t\t\1\1'
+Recognized token: STR_CONST(278)	line 6.	'escaped newline\n'
+Recognized token: ERROR(286)	line 9.	'Unterminated string constant'
+Recognized token: ERROR(286)	line 10.	'Unterminated string constant'

@@ -1,0 +1,37 @@
+Copying tests/vm/mmap-twice into /tmp/JJVl0ej1hL.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/JJVl0ej1hL.dsk...
+Writing command line to /tmp/wqyGACtdGM.dsk...
+qemu -hda /tmp/wqyGACtdGM.dsk -hdb /tmp/3gdnudU3BZ.dsk -hdc /tmp/JJVl0ej1hL.dsk -hdd /tmp/qgxFfSN5hG.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put mmap-twice put sample.txt run mmap-twice
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 101 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'mmap-twice' into the file system...
+Putting 'sample.txt' into the file system...
+Executing 'mmap-twice':
+(mmap-twice) begin
+(mmap-twice) open "sample.txt" #0
+(mmap-twice) mmap "sample.txt" #0 at 0x10000000
+(mmap-twice) open "sample.txt" #1
+(mmap-twice) mmap "sample.txt" #1 at 0x20000000
+(mmap-twice) compare mmap'd file 0 against data
+(mmap-twice) compare mmap'd file 1 against data
+(mmap-twice) end
+mmap-twice: exit(0)
+Execution of 'mmap-twice' complete.
+Timer: 60 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 109 reads, 212 writes
+hd1:0: 101 reads, 0 writes
+hd1:1: 16 reads, 16 writes
+Console: 1238 characters output
+Keyboard: 0 keys pressed
+Powering off...

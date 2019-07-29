@@ -1,0 +1,2 @@
+./BASE_semanttest/case2.cl:10: Inferred return type Object of method main does not conform to declared return type String.
+Compilation halted due to static semantic errors.

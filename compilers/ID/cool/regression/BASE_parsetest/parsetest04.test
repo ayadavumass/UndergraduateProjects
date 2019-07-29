@@ -1,0 +1,11 @@
+class A is
+  foo () : String is
+    -- let expression without initialization
+    let x : String in "a string" end
+  end;
+
+  bar () : Bool is
+    -- let expression with initialization
+    let y : Bool <- true in y end
+  end;
+end;

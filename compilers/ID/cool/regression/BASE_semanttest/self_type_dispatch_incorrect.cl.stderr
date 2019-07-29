@@ -1,0 +1,2 @@
+./BASE_semanttest/self_type_dispatch_incorrect.cl:2: Inferred type Int of initialization of attribute a does not conform to declared type Main.
+Compilation halted due to static semantic errors.

@@ -1,0 +1,4 @@
+"./BASE_cgtest/case_incorrect.cl", line 6: parse error at or near ESAC
+"./BASE_cgtest/case_incorrect.cl", line 24: parse error at or near ESAC
+"./BASE_cgtest/case_incorrect.cl", line 34: parse error at or near ESAC
+Compilation halted due to lex and parse errors

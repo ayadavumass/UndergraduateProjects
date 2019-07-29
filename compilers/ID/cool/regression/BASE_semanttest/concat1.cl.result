@@ -1,0 +1,105 @@
+#11
+_program
+ #10
+ _class
+   Main
+   IO
+   "./BASE_semanttest/concat1.cl"
+   (
+   #9
+   _method
+     main
+     Object
+     #8
+     _let
+       s
+       String
+       #3
+       _dispatch
+         #3
+         _string
+           "spim"
+         : String
+         concat
+         (
+         #3
+         _string
+           "mips"
+         : String
+         )
+       : String
+       #7
+       _block
+         #5
+         _dispatch
+           #5
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #5
+           _dispatch
+             #5
+             _dispatch
+               #5
+               _object
+                 s
+               : String
+               copy
+               (
+               )
+             : String
+             concat
+             (
+             #5
+             _string
+               "\n"
+             : String
+             )
+           : String
+           )
+         : SELF_TYPE
+         #6
+         _dispatch
+           #6
+           _dispatch
+             #6
+             _dispatch
+               #6
+               _object
+                 self
+               : SELF_TYPE
+               out_string
+               (
+               #6
+               _string
+                 "Length: "
+               : String
+               )
+             : SELF_TYPE
+             out_int
+             (
+             #6
+             _dispatch
+               #6
+               _object
+                 s
+               : String
+               length
+               (
+               )
+             : Int
+             )
+           : SELF_TYPE
+           out_string
+           (
+           #6
+           _string
+             "\n"
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+     : SELF_TYPE
+   )

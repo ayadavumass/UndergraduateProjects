@@ -1,0 +1,2 @@
+./BASE_cgtest/circ1.cl:1: Class Class1, or an ancestor of Class1, is involved in an inheritance cycle.
+Compilation halted due to static semantic errors.

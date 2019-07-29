@@ -1,0 +1,18 @@
+class A is
+  -- implicit (self) dispatch without actuals
+  foo () : Int is bar() end;
+
+  -- implicit (self) dispatch with actuals
+  f () : Int is b(1, 2) end;
+
+  bar () : A is self end;
+end;
+
+class B inherits A is
+  -- dynamic dispatch (& associativity)
+  -- new expression
+  foo () : Int is (new B).bar().foo() end;
+
+  -- static dispatch
+  bar () : A is self@A.bar() end;
+end;

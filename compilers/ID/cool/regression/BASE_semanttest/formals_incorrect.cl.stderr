@@ -1,0 +1,8 @@
+./BASE_semanttest/formals_incorrect.cl:11: Type Bool of assigned expression does not conform to declared type Int of identifier a.
+./BASE_semanttest/formals_incorrect.cl:12: Undeclared identifier y.
+./BASE_semanttest/formals_incorrect.cl:12: Type Object of assigned expression does not conform to declared type Bool of identifier b.
+./BASE_semanttest/formals_incorrect.cl:17: Formal parameter x cannot have type SELF_TYPE.
+./BASE_semanttest/formals_incorrect.cl:19: Formal parameter x is multiply defined.
+./BASE_semanttest/formals_incorrect.cl:21: 'self' cannot be the name of a formal parameter.
+./BASE_semanttest/formals_incorrect.cl:21: 'self' cannot be the name of a formal parameter.
+Compilation halted due to static semantic errors.

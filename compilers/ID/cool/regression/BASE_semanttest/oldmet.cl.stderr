@@ -1,0 +1,5 @@
+Class Main is not defined.
+./BASE_semanttest/oldmet.cl:5: Inferred return type Int of method init does not conform to declared return type SELF_TYPE.
+./BASE_semanttest/oldmet.cl:16: Inferred return type Int of method init does not conform to declared return type SELF_TYPE.
+./BASE_semanttest/oldmet.cl:27: Inferred return type Int of method init does not conform to declared return type SELF_TYPE.
+Compilation halted due to static semantic errors.

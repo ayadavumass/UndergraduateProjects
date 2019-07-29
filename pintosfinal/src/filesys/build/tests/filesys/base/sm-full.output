@@ -1,0 +1,37 @@
+Copying tests/filesys/base/sm-full into /tmp/qlOqlSgbCC.dsk...
+Writing command line to /tmp/du9rkeui49.dsk...
+qemu -hda /tmp/du9rkeui49.dsk -hdb /tmp/o4NxShIfup.dsk -hdc /tmp/qlOqlSgbCC.dsk -hdd /tmp/ES2fEyBEYx.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put sm-full run sm-full
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  78,540,800 loops/s.
+hd0:0: detected 153 sector (76 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 99 sector (49 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+filesys init done
+Boot complete.
+Putting 'sm-full' into the file system...
+Executing 'sm-full':
+(sm-full) begin
+(sm-full) create "quux"
+(sm-full) open "quux"
+(sm-full) writing "quux"
+(sm-full) close "quux"
+(sm-full) open "quux" for verification
+(sm-full) verified contents of "quux"
+(sm-full) close "quux"
+(sm-full) end
+sm-full: exit(0)
+Execution of 'sm-full' complete.
+Timer: 63 ticks
+Thread: 0 idle ticks, 60 kernel ticks, 3 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 145 reads, 197 writes
+hd1:0: 99 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1098 characters output
+Keyboard: 0 keys pressed
+Powering off...

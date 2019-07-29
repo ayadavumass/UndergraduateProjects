@@ -1,0 +1,971 @@
+#84
+_program
+ #83
+ _class
+   Main
+   IO
+   "./BASE_semanttest/equality.cl"
+   (
+   #2
+   _attr
+     c
+     String
+     #2
+     _string
+       "Correct\n"
+     : String
+   #3
+   _attr
+     w
+     String
+     #3
+     _string
+       "Wrong\n"
+     : String
+   #82
+   _method
+     main
+     SELF_TYPE
+     #81
+     _block
+       #6
+       _dispatch
+         #6
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #6
+         _string
+           "Bool1 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #10
+       _cond
+         #7
+         _eq
+           #7
+           _bool
+             1
+           : Bool
+           #7
+           _dispatch
+             #7
+             _bool
+               1
+             : Bool
+             copy
+             (
+             )
+           : Bool
+         : Bool
+         #8
+         _dispatch
+           #8
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #8
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #9
+         _dispatch
+           #9
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #9
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #11
+       _dispatch
+         #11
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #11
+         _string
+           "Bool2 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #15
+       _cond
+         #12
+         _eq
+           #12
+           _bool
+             0
+           : Bool
+           #12
+           _dispatch
+             #12
+             _bool
+               0
+             : Bool
+             copy
+             (
+             )
+           : Bool
+         : Bool
+         #13
+         _dispatch
+           #13
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #13
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #14
+         _dispatch
+           #14
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #14
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #16
+       _dispatch
+         #16
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #16
+         _string
+           "Bool3 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #20
+       _cond
+         #17
+         _eq
+           #17
+           _bool
+             0
+           : Bool
+           #17
+           _dispatch
+             #17
+             _bool
+               1
+             : Bool
+             copy
+             (
+             )
+           : Bool
+         : Bool
+         #18
+         _dispatch
+           #18
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #18
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+         #19
+         _dispatch
+           #19
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #19
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #21
+       _dispatch
+         #21
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #21
+         _string
+           "Bool4 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #25
+       _cond
+         #22
+         _eq
+           #22
+           _bool
+             1
+           : Bool
+           #22
+           _dispatch
+             #22
+             _bool
+               0
+             : Bool
+             copy
+             (
+             )
+           : Bool
+         : Bool
+         #23
+         _dispatch
+           #23
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #23
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+         #24
+         _dispatch
+           #24
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #24
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #26
+       _dispatch
+         #26
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #26
+         _string
+           "Bool Neg: "
+         : String
+         )
+       : SELF_TYPE
+       #30
+       _cond
+         #28
+         _comp
+           #27
+           _eq
+             #27
+             _bool
+               1
+             : Bool
+             #27
+             _dispatch
+               #27
+               _bool
+                 1
+               : Bool
+               copy
+               (
+               )
+             : Bool
+           : Bool
+         : Bool
+         #28
+         _dispatch
+           #28
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #28
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+         #29
+         _dispatch
+           #29
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #29
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #31
+       _dispatch
+         #31
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #31
+         _string
+           "Int1 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #35
+       _cond
+         #32
+         _eq
+           #32
+           _int
+             5
+           : Int
+           #32
+           _dispatch
+             #32
+             _int
+               5
+             : Int
+             copy
+             (
+             )
+           : Int
+         : Bool
+         #33
+         _dispatch
+           #33
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #33
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #34
+         _dispatch
+           #34
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #34
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #36
+       _dispatch
+         #36
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #36
+         _string
+           "Int2 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #40
+       _cond
+         #37
+         _eq
+           #37
+           _int
+             7
+           : Int
+           #37
+           _dispatch
+             #37
+             _int
+               3
+             : Int
+             copy
+             (
+             )
+           : Int
+         : Bool
+         #38
+         _dispatch
+           #38
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #38
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+         #39
+         _dispatch
+           #39
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #39
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #41
+       _dispatch
+         #41
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #41
+         _string
+           "Neg Int1: "
+         : String
+         )
+       : SELF_TYPE
+       #45
+       _cond
+         #42
+         _lt
+           #42
+           _neg
+             #42
+             _int
+               3
+             : Int
+           : Int
+           #42
+           _neg
+             #42
+             _dispatch
+               #42
+               _int
+                 5
+               : Int
+               copy
+               (
+               )
+             : Int
+           : Int
+         : Bool
+         #43
+         _dispatch
+           #43
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #43
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+         #44
+         _dispatch
+           #44
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #44
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #46
+       _dispatch
+         #46
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #46
+         _string
+           "Neg Int2: "
+         : String
+         )
+       : SELF_TYPE
+       #50
+       _cond
+         #47
+         _leq
+           #47
+           _neg
+             #47
+             _int
+               6
+             : Int
+           : Int
+           #47
+           _neg
+             #47
+             _dispatch
+               #47
+               _int
+                 6
+               : Int
+               copy
+               (
+               )
+             : Int
+           : Int
+         : Bool
+         #48
+         _dispatch
+           #48
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #48
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #49
+         _dispatch
+           #49
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #49
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #51
+       _dispatch
+         #51
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #51
+         _string
+           "Pos Int1: "
+         : String
+         )
+       : SELF_TYPE
+       #55
+       _cond
+         #52
+         _lt
+           #52
+           _int
+             3
+           : Int
+           #52
+           _dispatch
+             #52
+             _int
+               5
+             : Int
+             copy
+             (
+             )
+           : Int
+         : Bool
+         #53
+         _dispatch
+           #53
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #53
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #54
+         _dispatch
+           #54
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #54
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #56
+       _dispatch
+         #56
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #56
+         _string
+           "Pos Int2: "
+         : String
+         )
+       : SELF_TYPE
+       #60
+       _cond
+         #57
+         _leq
+           #57
+           _int
+             7
+           : Int
+           #57
+           _dispatch
+             #57
+             _int
+               7
+             : Int
+             copy
+             (
+             )
+           : Int
+         : Bool
+         #58
+         _dispatch
+           #58
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #58
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #59
+         _dispatch
+           #59
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #59
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #61
+       _dispatch
+         #61
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #61
+         _string
+           "String1 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #65
+       _cond
+         #62
+         _eq
+           #62
+           _string
+             "true"
+           : String
+           #62
+           _string
+             "true"
+           : String
+         : Bool
+         #63
+         _dispatch
+           #63
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #63
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #64
+         _dispatch
+           #64
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #64
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #66
+       _dispatch
+         #66
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #66
+         _string
+           "String2 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #70
+       _cond
+         #67
+         _eq
+           #67
+           _string
+             "true"
+           : String
+           #67
+           _dispatch
+             #67
+             _string
+               "true"
+             : String
+             copy
+             (
+             )
+           : String
+         : Bool
+         #68
+         _dispatch
+           #68
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #68
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #69
+         _dispatch
+           #69
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #69
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #71
+       _dispatch
+         #71
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #71
+         _string
+           "String3 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #75
+       _cond
+         #72
+         _eq
+           #72
+           _string
+             "true_"
+           : String
+           #72
+           _dispatch
+             #72
+             _string
+               "true"
+             : String
+             copy
+             (
+             )
+           : String
+         : Bool
+         #73
+         _dispatch
+           #73
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #73
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+         #74
+         _dispatch
+           #74
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #74
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+       #76
+       _dispatch
+         #76
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #76
+         _string
+           "String4 Eq: "
+         : String
+         )
+       : SELF_TYPE
+       #80
+       _cond
+         #77
+         _eq
+           #77
+           _string
+             ""
+           : String
+           #77
+           _dispatch
+             #77
+             _string
+               ""
+             : String
+             copy
+             (
+             )
+           : String
+         : Bool
+         #78
+         _dispatch
+           #78
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #78
+           _object
+             c
+           : String
+           )
+         : SELF_TYPE
+         #79
+         _dispatch
+           #79
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #79
+           _object
+             w
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+     : SELF_TYPE
+   )

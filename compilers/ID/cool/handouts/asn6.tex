@@ -1,0 +1,537 @@
+\documentclass[11pt]{article}
+\usepackage{latexsym}
+\usepackage{handout}
+%
+% Copyright (c) 1995-1996 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+
+\input{handout-number}
+
+\newcommand{\tcrule}[3]{\frac{#1}{#2}\eqno\mbox{#3}}
+\newcommand{\attr}[3]{#1:#2\leftarrow#3}
+\newcommand{\classmap}[2]{class(#1) = (#2)}
+\newcommand{\ossimple}[6]{#1,#2,#3\vdash #4 : #5,#6}
+\newcommand{\osrule}[8]{\frac{#7}{\ossimple{#1}{#2}{#3}{#4}{#5}{#6}}\eqno
+\mbox{#8}}
+\def\U#1{{\sf{}#1}}
+\def\S#1{{\tt{}#1}} % NB: we often use \verb+...+ for this also
+\def\C#1{{\bf{}#1}}
+\newcommand{\dq}{\mbox{\tt "}}
+
+%%%%%%%%%%%%%%%%%%% Additional Macros
+
+\usepackage{xspace}
+
+\newcommand{\MVar}[1]{\ensuremath{\mathit{#1}}\xspace}
+\newcommand{\expr}{\MVar{expr}}
+
+\newcommand{\Throw}{\C{throw}\xspace}
+\newcommand{\Try}{\C{try}\xspace}
+\newcommand{\Catch}{\C{catch}\xspace}
+\newcommand{\Finally}{\C{finally}\xspace}
+
+\newcommand{\Arrow}{\mathrel{\mathbf{=>}}\xspace}
+\newcommand{\ThrowE}[1]{\ensuremath{\Throw\;{#1}}\xspace}
+\newcommand{\TryCatch}[3]{\ensuremath{\Try\;{#1}\;\Catch\;{#2}\Arrow{#3}\;}\xspace}
+\newcommand{\TryFinally}[2]{\ensuremath{\Try\;{#1}\;\Finally\;{#2}\;}\xspace}
+
+\newcommand{\Bnfdef}{\mathrel{::=}}
+\newcommand{\Bnfalt}{\mid}
+
+\def\@add#1#2{
+ \newcount\tmp
+ \tmp=#1
+ \advance\tmp by #2
+ \number\tmp
+}
+\newcommand{\List}[3]{\ensuremath{
+  {#1}_{#2},{#1}_{\@add{#2}{1}},\ldots,{#1}_{#3}
+}}
+\newcommand{\Coolaid}{\U{Coolaid}}
+
+\begin{document}
+
+\handout{\PASixNum}{6}{Programming Assignment VI \\
+Due Tuesday, May 4, 2004 at 11:59 PM}
+
+
+\section{Introduction}
+
+In this assignment, you will extend \emph{your} code generator for
+Cool from Programming Assignment V to handle exceptions.  The
+appropriate mechanisms for exceptions have already been added to the
+reference lexer, parser, and semantic analyzer for you.
+
+This assignment requires much less code than previous projects; we
+have implemented the code generation for exceptions in \U{coolc} in
+under 50 lines of C++ code.  However, getting the code correct is
+challenging and requires careful thought before implementation.
+
+You may work a group of one or two people for this assignment. The
+\U{submit} program will ask you to specify group members when you turn
+in your assignment
+
+\section{Files and Directories}
+
+We suggest that you work using the same CVS repository and working
+directory as for PA5.  From your working directory, type the following
+command to get a copy of the additional files for PA6 (for both C++
+and Java):
+\begin{verbatim}
+  gmake -f ~cs164/assignments/PA6/Makefile source
+\end{verbatim}
+The additional files for PA6 are as follows:
+\begin{itemize}
+\item \U{example-PA6.cl} \\
+This file should contain a test program of your own design.  Test as
+many uses of exceptions as you can.
+
+\item \U{README-PA6}\\
+This file will contain the write-up for your assignment. 
+It is critical that you explain design decisions, how your
+code is structured, and why you believe your design is a good one
+(i.e., why it leads to a correct and robust program).  It is part of
+the assignment to explain things in text as well as to comment your
+code.  Also, please follow the directions in this file to update 
+your project files from PA5 with the \U{*.PA6update} files.
+
+\item \U{finally\_exception.cl} \\
+This is an example program that uses \Try-\Finally.
+
+\item \U{finally\_exception.output} \\
+This file gives the output of running \U{spim} on code generated from
+\U{finally\_exception.cl} by \U{coolc}.  You should consult below for a
+complete description of the semantics of \Try-\Finally.
+\end{itemize}
+
+\section{Exceptions in Cool}
+
+Exceptions are a general mechanism for dealing with error conditions
+that arise in computation. It has many advantages over other methods
+for handling errors; for example, the programmer does not need to
+specify special return values to denote error, and exceptions can be
+propagated to the function caller in case the caller has more information
+about how to deal with the exception.
+
+\subsection{Syntax}
+
+We extend Cool with exceptions by adding the follow new constructs:
+\[ \begin{array}{rrl}
+  \expr & \Bnfdef & \ldots \\
+        & \Bnfalt & \ThrowE{\expr} \\
+        & \Bnfalt & \TryCatch{\expr}{\MVar{ID}}{\expr} \\
+        & \Bnfalt & \TryFinally{\expr}{\expr} \\
+
+\end{array} \]
+where \Throw, \Try, \Catch, and \Finally are four new keywords.  In
+each of the new constructs, the last $\expr$ extends as far as
+possible (i.e., encompasses as many tokens as possible).
+
+In Cool, the programmer can throw an exception where the value of the
+exception is the result of any Cool expression.  The expression
+``\ThrowE{\expr}'' returns the value of $\expr$ to the closest
+dynamically enclosing \Catch block.  The expression
+``\TryCatch{\expr_1}{\MVar{ID}}{\expr_2}'' evaluates expression
+$\expr_1$, and if an exception is thrown in $\expr_1$, then $\expr_2$
+is executed with $\MVar{ID}$ bound to the value of the thrown exception.
+If no exception is thrown in $\expr_1$, then $\expr_2$ is not executed.
+An uncaught exception will be caught by the Cool runtime, in which
+case will abort the program.
+
+Note that the form of \Try-\Catch you will implement is slightly
+different than in lecture.  Here, the \Catch expression will
+handle exceptions of any type, rather than only handling exceptions
+with dynamic type that is a subtype of some given type.
+
+The expression ``\TryFinally{\expr_1}{\expr_2}'' evaluates $\expr_1$
+and then evaluates $\expr_2$ regardless of whether $\expr_1$ throws an
+exception.  If $\expr_1$ throws an exception and $\expr_2$ evaluates
+normally, then the exception must continue to propagate after
+$\expr_2$ is executed.  However, if an exception is thrown in
+$\expr_2$ (regardless of the evaluation of $\expr_1$), only the
+exception from $\expr_2$ will continue to propagate.  Finally, if both
+$\expr_1$ and $\expr_2$ evaluate normally, then the value for the
+entire expression is the value of $\expr_2$ (i.e., it behaves exactly
+like ``$\{ \expr_1; \expr_2; \}$'').
+
+\subsection{Static Semantics}
+
+\newcommand{\Ty}[5]{{#1},{#2},{#3} \vdash {#4} : {#5}}
+
+We now extend our typing rules to accommodate these new
+constructs.  Recall from Written Assignment 5 the following rules for
+\Throw and \Try-\Catch.
+$$
+\tcrule{ \Ty O M C e {T_1} }%
+       { \Ty O M C {\ThrowE e} {T_2} }%
+       {[Throw]}
+$$
+$$
+\tcrule{ \begin{array}{l}
+           \Ty O M C {e_1} {T_1} \\
+           \Ty {O[\textrm{Object}/x]} M C {e_2} {T_2} \\
+         \end{array}
+       }%
+       { \Ty O M C {\TryCatch{e_1}{x}{e_2}} {T_1 \sqcup T_2} }%
+       {[Try-Catch]}
+$$
+A \Throw causes the computation to make a non-local ``jump'', so
+the expression ``\ThrowE e'' never ``returns'' to the context in which it
+appears syntactically, so can be assigned any type.
+We must, however, check that $e$ is well-typed.
+
+The exception caught in a \Try-\Catch block can be of any type, so we
+conservatively assume that $x$ has type Object.  Evaluation of $e_1$
+can either return normally, in which case the value of the whole
+\Try-\Catch expression is the value of $e_1$, or exceptionally, in
+which case the value of the whole expression is the value of $e_2$.
+Thus, the type of the \Try-\Catch construct is the least upper bound
+of $T_1$ and $T_2$.
+
+Now, consider the typing rule for \Try-\Finally.
+$$
+\tcrule{ \begin{array}{l}
+           \Ty O M C {e_1} {T_1} \\
+           \Ty O M C {e_2} {T_2} \\
+         \end{array}
+       }%
+       { \Ty O M C {\TryFinally{e_1}{e_2}} {T_2} }%
+       {[Try-Finally]}
+$$
+Since $e_2$ is always evaluated after evaluating $e_1$, the type of
+``\TryFinally{e_1}{e_2}'' is the type of $e_2$.
+
+
+\subsection{Dynamic Semantics}
+
+\newcommand{\Norm}[1]{\ensuremath{\MVar{Norm}(#1)}\xspace}
+\newcommand{\Exc}[1]{\ensuremath{\MVar{Exc}(#1)}\xspace}
+
+\newcommand{\Int}[1]{\ensuremath{\MVar{Int}(#1)}\xspace}
+
+\newcommand{\Eval}[6]{\ensuremath{{#1},{#2},{#3} \vdash {#4} : {#5}, {#6}}\xspace}
+
+\newcommand{\so}{\MVar{so}}
+\newcommand{\op}{\MVar{op}}
+
+\newcommand{\Id}{\MVar{Id}}
+
+In this section, we extend the operational semantics of Cool to
+accommodate the additional syntactic forms for exceptions.  To do this,
+we need to define a notion that distinguishes between a normal return
+and an exceptional return.  Thus, we define a generalized value $g$ in
+terms of conventional Cool values $v$ as follows:
+\[ \begin{array}{crl@{\extracolsep{4ex}}l}
+  g & \Bnfdef & \Norm{v} & \mbox{a normal return with value $v$} \\
+    & \Bnfalt & \Exc{v} & \mbox{an exceptional return with value $v$}
+\end{array} \]
+Recall that every Cool value is an object, written
+\[ \begin{array}{crl@{\extracolsep{4ex}}p{20em}}
+  v & \Bnfdef & X(a_1 = l_1, a_2 = l_2, \ldots, a_n = l_n) &
+    an object of dynamic type $X$ with attributes
+    $\List a 1 n$ at locations $\List l 1 n$ \\
+\end{array} \]
+We now redefine our evaluation judgment in the following manner to
+incorporate these generalized values:
+\[
+  \Eval \so S E  e g {S'}
+\]
+This new judgment is read as follows: ``in the context where \MVar{self}
+is the object \so, the
+store is $S$, and the environment is $E$, the expression $e$ evaluates
+to generalized value $g$ and yields the new store $S'$''.
+
+For every rule we had before, we modify the rule to accommodate both
+normal return and exceptional return.  For example,
+the evaluation rule for arithmetic under normal execution is as follows:
+$$
+\tcrule{\begin{array}{l}
+    \Eval \so {S_1} E   {e_1} {\Norm{\Int{i_1}}} {S_2} \\
+    \Eval \so {S_2} E   {e_2} {\Norm{\Int{i_2}}} {S_3} \\
+    \op \in \{*,+,-,/\} \\
+    v = \Int{i_1\;\op\;i_2}
+    \end{array}
+}{\Eval \so {S_1} E  {e_1\;\op\;e_2} {\Norm{v}} {S_3}}
+ {[Arith]}
+$$
+However, in the case that $e_1$ or $e_2$ returns
+exceptionally, we need to propagate the exception as
+follows:
+$$      
+\tcrule{
+    \begin{array}{l}
+    \Eval \so {S_1} E   {e_1} {\Exc{v_1}} {S_2} \\
+    \op \in \{*,+,-,/\}
+    \end{array}
+}{
+    \Eval \so {S_1} E   {e_1\;\op\;e_2} {\Exc{v_1}} {S_2}
+}{[Arith-Exc1]}
+$$
+$$
+\tcrule{
+    \begin{array}{l}
+    \Eval \so {S_1} E   {e_1} {\Norm{v_1}} {S_2} \\
+    \Eval \so {S_2} E   {e_2} {\Exc{v_2}} {S_3} \\
+    \op \in \{*,+,-,/\}
+    \end{array}
+}{
+    \Eval \so {S_1} E   {e_1\;\op\;e_2} {\Exc{v_2}} {S_3} \\
+}{[Arith-Exc2]}
+$$
+Note that in [Arith-Exc1], the evaluation of $e_2$ is
+aborted.  Also, notice that the store is threaded through all expressions,
+which means that all side-effects are propagated.
+
+For \Throw, there are two cases to consider depending on whether the
+expression returns normally or exceptionally.  If the expression
+returns normally with object $v$, then $v$ is value of the thrown
+exception.
+$$
+\tcrule{
+    \Eval \so {S_1} E  e {\Norm v} {S_2}
+}{
+    \Eval \so {S_1} E  {\ThrowE e} {\Exc v} {S_2}
+}{[Throw]}
+$$
+Otherwise, if the expression returns exceptionally, that
+exception should still be propagated.
+$$
+\tcrule{
+    \Eval \so {S_1} E  e {\Exc v} {S_2}
+}{
+    \Eval \so {S_1} E  {\ThrowE e} {\Exc v} {S_2}
+}{[Throw-Exc]}
+$$
+Note that an exceptional value is always returned.
+
+For \Try-\Catch, the operational semantics are as follows.
+$$
+\tcrule{
+    \Eval \so {S_1} E   {e_1}  {\Norm{v_1}} {S_2}
+}{
+    \Eval \so {S_1} E   {\TryCatch{e_1}{\Id}{e_2}}  {\Norm{v_1}} {S_2}
+}{[Try-Catch]}
+$$
+If $e_1$ return normally, then the \Try-\Catch simply
+returns that value.  Otherwise, if $e_1$ returns exceptionally, then
+the \Catch expression is evaluated.
+$$
+\tcrule{
+    \begin{array}{l}
+    \Eval \so {S_1} E   {e_1}  {\Exc{v_1}} {S_2} \\
+    l_1 = \MVar{newloc}(S_2) \\
+    S_3 = S_2[v_1/l_1] \\
+    E' = E[l_1/\Id] \\
+    \Eval \so {S_3} {E'}   {e_2}  {g_2} {S_4}
+    \end{array}
+}{
+    \Eval \so {S_1} E   {\TryCatch{e_1}{\Id}{e_2}}  {g_2} {S_4}
+}{[Try-Catch-Exc]}
+$$
+Note that $g_2$ can be either a normal or an exceptional
+value.
+
+The evaluation rule(s) for \Try-\Finally is/are left as an exercise
+that you will answer in \U{README-PA6}.
+
+
+\section{Code Generation}
+
+\newcommand{\FP}{\ensuremath{\mathtt{\$fp}}\xspace}
+\newcommand{\SP}{\ensuremath{\mathtt{\$sp}}\xspace}
+\newcommand{\XP}{\ensuremath{\mathtt{\$xp}}\xspace}
+\newcommand{\TNine}{\ensuremath{\mathtt{\$t9}}\xspace}
+\newcommand{\AZero}{\ensuremath{\mathtt{\$a0}}\xspace}
+
+You will implement the long jump scheme to implement exceptions. In
+this approach, for every \Try-\Catch, some state information is pushed
+onto the stack (called an \emph{exception frame}) so that it can be
+restored when execution passes to the \Catch block to handle an
+exception.  A special \emph{exception register} points to the most
+recent exception frame, with each exception frame containing a pointer
+to the previous exception frame in a linked-list fashion.  For
+convenience, we let \XP denote the exception register (note that this
+is not an actual register name on the MIPS architecture).  To be
+compatible with the runtime system and \Coolaid, you should use \TNine
+as the exception register for your code generator.  On a \Throw,
+the value of the exception is put in \AZero, the
+exception register is read, and control is passed to the \Catch block
+specified in the exception frame.  Note that the exception is
+returned to the \Catch block in \AZero.  The \Catch block is responsible for
+first restoring the state from the exception frame.  The exception
+frame is then popped by restoring the exception pointer to point to
+the previous exception frame.
+
+\subsection{Exception Frame}
+
+The exception frame must store (either implicitly or explicitly) state
+information in the evaluation of the \Try block before the occurrence
+of the exception to evaluate the \Catch block to handle the exception.
+To be compatible with the top-level exception handler in the Cool
+runtime system, the layout of the exception frame should be as
+follows:
+\begin{center}
+\begin{tabular}{l|c|l}
+\cline{2-2}
+  $\XP \longrightarrow$ & catch label & low addresses \\ \cline{2-2}
+  & \\
+  & \vdots \\
+  & & high addresses \\
+%  & saved self object \\ \cline{2-2}
+%  & saved stack pointer (\SP) \\ \cline{2-2}
+%  & saved frame pointer (\FP) \\ \cline{2-2}
+%  & next exception frame pointer & high addresses \\
+\cline{2-2}
+\end{tabular}
+\end{center}
+The first word of the exception frame contains the address of the
+label of the closest dynamically enclosing \Catch block.  The catch
+label will indicate where to jump to on a \Throw.  Thus, the final two
+instructions of the code generation for a \Throw is something like
+\begin{verbatim}
+        lw    $t1 0($t9)
+        jr    $t1
+\end{verbatim}
+
+It is up to you how to layout the rest of the exception frame.  In
+general, the exception frame saves the state information that needs
+restored to evaluate the \Catch block.  Minimally, you will need to be
+able to restore the stack pointer, the frame pointer, and a pointer to
+the previous exception frame.
+
+%In addition to the stack pointer and frame pointer, we need to save
+%the self object to fully restore to context of evaluation for Cool
+%programs.
+%because we could be returned exceptionally from a
+%different object, in which case the self object needs to be restored
+%for correct lookup into method dispatch table and formal variables.
+
+%The frame pointer will allow us to reset the frame to the same
+%location as when we entered the try/catch block. The old exception
+%register is restored since we just 'used' an exception frame, and need
+%to restore the previous exception frame.
+
+%Specifically, on every try/catch statement, generate a new label at
+%the beginning of the catch expression, and one at the very end of the
+%try/catch statement. Now, decrement the stack and save the the above
+%information onto the stack. Make sure to set the exception pointer
+%point to the value of the stack pointer (do we can restore the stack
+%pointer later). Now, generate the code for the expression inside the
+%try, and generate a jump to the end of the try/catch statement (so
+%execution can skip the code inside the catch statement in case
+%execution is normal). Next, generate code to bind the identifier in
+%the catch statement to the accumulator register (like in a let
+%statement), and generate the code for the statement inside the catch.
+%
+%For every throw statement, you will essentially restore the
+%information that was saved in the try/catch. First, generate the code
+%for expression inside the throw, saving the result into the
+%accumulator register. Then, set the stack pointer to be the exception
+%pointer, as this was the value of the stack pointer when we entered
+%the exception. Next, load all the fields of the exception frame into
+%their appropriate registers. Restore the catch label into a convenient
+%register (such as \$t1). Finally, increment the stack to 'remove' the
+%exception frame, and jump to the register holding to catch label in
+%execute the catch code.
+%
+%Make sure to adhere to the layout we have provided, as this is the
+%same layout we used to ensure that uncaught exceptions are correctly
+%handled by the trap handler.
+
+
+\subsection{Runtime Support}
+
+In order to handle uncaught exceptions, we have installed a top-level
+exception frame in the trap handler before your Cool program is
+invoked.  This exception frame is laid out according to the layout
+described in the previous section so that the code generation of
+\Throw following this layout will jump to a special ``\Catch'' block
+provided by the runtime system.  This runtime \Catch block prints the
+message ``Uncaught Exception'' and aborts the Cool program.  You can
+look in the \S{trap.handler} to see how this implemented. Look for the
+labels \S{\_\_exception} and \S{\_\_exception\_handler}.
+
+\subsection{Try-Finally}
+
+Note that code generation for \Try-\Finally is not enabled in
+\U{coolc}.  You should first think carefully about the expected
+behavior of a \Try-\Finally expression and an implementation strategy
+before coding.
+
+
+\section{Testing and Debugging}
+
+As with Programming Assignment V, you will need a scanner, parser, and
+semantic analyzer that handles exceptions to test your code
+generator. You may extend your own components or the components from
+\U{coolc}.  By default, the \U{coolc} components are used.  To change
+this behavior, replace the \U{lexer}, \U{parser}, and/or \U{semant} executable
+(which are symbolic links in your project directory) with your own
+scanner/parser.  Even if you use your own components, it is wise to
+test your code generator with the \U{coolc} scanner, parser, and
+semantic analyzer at least once because we will grade your project
+using \U{coolc}'s version of the other phases.
+
+We have included a number of test programs using the exception
+constructs.  They can be found in \U{\~{}cs164/examples/}.  All
+exception programs are named \U{*\_exception.cl}.  \Coolaid{} is able
+to verify programs with exceptions with the exception frame layout and
+code generation for \Throw given above.  Try running your compiler on
+these examples and verifying the result in \Coolaid{}.  If you use
+\Coolaid{}, please help us by providing feedback about it in the
+\U{README-PA6} (as in Programming Assignment V).  You may also use
+\U{spim}/\U{xspim} to running code generated from your compiler on
+these examples.  These examples are by no means comprehensive. You
+should also develop your own test cases.
+
+\section{Grading}
+
+To minimize the effect of incorrect solutions for Programming
+Assignment V, the test cases that we will use to grade this project
+will not require code generation for \S{new SELF\_TYPE} nor for static
+dispatch.
+
+
+\newpage
+\section{Final Submission}
+
+Make sure to complete the following items before submitting to avoid
+any penalties.  Then, submit your project by typing ``\S{submit
+PA6}''.
+
+\begin{minipage}{0.8\linewidth}
+\bigskip
+\begin{itemize}
+  \item[$\Box$]
+    Include your write-up in \U{README-PA6}.  Please include your
+    feedback about \Coolaid{} in \U{README-PA6}.
+
+  \item[$\Box$]
+    Include your test cases that test your code generator with
+    exceptions in \U{example-PA6.cl}.
+
+  \item[$\Box$]
+    Make sure all your code for the code generator with exceptions
+    is in
+    \begin{itemize}
+    \item \U{cool-tree.h}, \U{cgen.h},
+          \U{cgen.cc}, \U{cgen\_supp.cc}, and \U{emit.h} for the
+          C++ version; or
+    \item \U{cool-tree.java}, \U{CgenClassTable.java},
+          \U{CgenNode.java}, \U{CgenSupport.java}, \U{BoolConst.java},
+          \U{IntSymbol.java}, \U{StringSymbol.java},
+          \U{TreeConstants.java}, and additional \U{.java} files you
+          may have added for the Java version.
+    \end{itemize}
+
+  \item[$\Box$]
+    Be sure to answer `yes' to the submission prompt for files that contain
+    your code.
+\end{itemize}
+\end{minipage}
+
+\end{document}

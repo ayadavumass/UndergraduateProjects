@@ -1,0 +1,3196 @@
+Copying tests/vm/page-linear into /tmp/KON3x6cssR.dsk...
+Writing command line to /tmp/vfOl6rv2vn.dsk...
+qemu -hda /tmp/vfOl6rv2vn.dsk -hdb /tmp/WpmcSNoPTm.dsk -hdc /tmp/KON3x6cssR.dsk -hdd /tmp/GzdUsDwi6f.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put page-linear run page-linear
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+373 pages available in user pool.
+Calibrating timer...  104,755,200 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 101 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 16,128 sector (7 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'page-linear' into the file system...
+Executing 'page-linear':
+0x8048000 mapped in the supplementary page table
+0x8049000 mapped in the supplementary page table
+0x804a000 mapped in the supplementary page table
+0x804b000 mapped in the supplementary page table
+0x804c000 mapped in the supplementary page table
+0x804d000 mapped in the supplementary page table
+0x804e000 mapped in the supplementary page table
+0x804f000 mapped in the supplementary page table
+0x8050000 mapped in the supplementary page table
+0x8051000 mapped in the supplementary page table
+0x8052000 mapped in the supplementary page table
+0x8053000 mapped in the supplementary page table
+0x8054000 mapped in the supplementary page table
+0x8055000 mapped in the supplementary page table
+0x8056000 mapped in the supplementary page table
+0x8057000 mapped in the supplementary page table
+0x8058000 mapped in the supplementary page table
+0x8059000 mapped in the supplementary page table
+0x805a000 mapped in the supplementary page table
+0x805b000 mapped in the supplementary page table
+0x805c000 mapped in the supplementary page table
+0x805d000 mapped in the supplementary page table
+0x805e000 mapped in the supplementary page table
+0x805f000 mapped in the supplementary page table
+0x8060000 mapped in the supplementary page table
+0x8061000 mapped in the supplementary page table
+0x8062000 mapped in the supplementary page table
+0x8063000 mapped in the supplementary page table
+0x8064000 mapped in the supplementary page table
+0x8065000 mapped in the supplementary page table
+0x8066000 mapped in the supplementary page table
+0x8067000 mapped in the supplementary page table
+0x8068000 mapped in the supplementary page table
+0x8069000 mapped in the supplementary page table
+0x806a000 mapped in the supplementary page table
+0x806b000 mapped in the supplementary page table
+0x806c000 mapped in the supplementary page table
+0x806d000 mapped in the supplementary page table
+0x806e000 mapped in the supplementary page table
+0x806f000 mapped in the supplementary page table
+0x8070000 mapped in the supplementary page table
+0x8071000 mapped in the supplementary page table
+0x8072000 mapped in the supplementary page table
+0x8073000 mapped in the supplementary page table
+0x8074000 mapped in the supplementary page table
+0x8075000 mapped in the supplementary page table
+0x8076000 mapped in the supplementary page table
+0x8077000 mapped in the supplementary page table
+0x8078000 mapped in the supplementary page table
+0x8079000 mapped in the supplementary page table
+0x807a000 mapped in the supplementary page table
+0x807b000 mapped in the supplementary page table
+0x807c000 mapped in the supplementary page table
+0x807d000 mapped in the supplementary page table
+0x807e000 mapped in the supplementary page table
+0x807f000 mapped in the supplementary page table
+0x8080000 mapped in the supplementary page table
+0x8081000 mapped in the supplementary page table
+0x8082000 mapped in the supplementary page table
+0x8083000 mapped in the supplementary page table
+0x8084000 mapped in the supplementary page table
+0x8085000 mapped in the supplementary page table
+0x8086000 mapped in the supplementary page table
+0x8087000 mapped in the supplementary page table
+0x8088000 mapped in the supplementary page table
+0x8089000 mapped in the supplementary page table
+0x808a000 mapped in the supplementary page table
+0x808b000 mapped in the supplementary page table
+0x808c000 mapped in the supplementary page table
+0x808d000 mapped in the supplementary page table
+0x808e000 mapped in the supplementary page table
+0x808f000 mapped in the supplementary page table
+0x8090000 mapped in the supplementary page table
+0x8091000 mapped in the supplementary page table
+0x8092000 mapped in the supplementary page table
+0x8093000 mapped in the supplementary page table
+0x8094000 mapped in the supplementary page table
+0x8095000 mapped in the supplementary page table
+0x8096000 mapped in the supplementary page table
+0x8097000 mapped in the supplementary page table
+0x8098000 mapped in the supplementary page table
+0x8099000 mapped in the supplementary page table
+0x809a000 mapped in the supplementary page table
+0x809b000 mapped in the supplementary page table
+0x809c000 mapped in the supplementary page table
+0x809d000 mapped in the supplementary page table
+0x809e000 mapped in the supplementary page table
+0x809f000 mapped in the supplementary page table
+0x80a0000 mapped in the supplementary page table
+0x80a1000 mapped in the supplementary page table
+0x80a2000 mapped in the supplementary page table
+0x80a3000 mapped in the supplementary page table
+0x80a4000 mapped in the supplementary page table
+0x80a5000 mapped in the supplementary page table
+0x80a6000 mapped in the supplementary page table
+0x80a7000 mapped in the supplementary page table
+0x80a8000 mapped in the supplementary page table
+0x80a9000 mapped in the supplementary page table
+0x80aa000 mapped in the supplementary page table
+0x80ab000 mapped in the supplementary page table
+0x80ac000 mapped in the supplementary page table
+0x80ad000 mapped in the supplementary page table
+0x80ae000 mapped in the supplementary page table
+0x80af000 mapped in the supplementary page table
+0x80b0000 mapped in the supplementary page table
+0x80b1000 mapped in the supplementary page table
+0x80b2000 mapped in the supplementary page table
+0x80b3000 mapped in the supplementary page table
+0x80b4000 mapped in the supplementary page table
+0x80b5000 mapped in the supplementary page table
+0x80b6000 mapped in the supplementary page table
+0x80b7000 mapped in the supplementary page table
+0x80b8000 mapped in the supplementary page table
+0x80b9000 mapped in the supplementary page table
+0x80ba000 mapped in the supplementary page table
+0x80bb000 mapped in the supplementary page table
+0x80bc000 mapped in the supplementary page table
+0x80bd000 mapped in the supplementary page table
+0x80be000 mapped in the supplementary page table
+0x80bf000 mapped in the supplementary page table
+0x80c0000 mapped in the supplementary page table
+0x80c1000 mapped in the supplementary page table
+0x80c2000 mapped in the supplementary page table
+0x80c3000 mapped in the supplementary page table
+0x80c4000 mapped in the supplementary page table
+0x80c5000 mapped in the supplementary page table
+0x80c6000 mapped in the supplementary page table
+0x80c7000 mapped in the supplementary page table
+0x80c8000 mapped in the supplementary page table
+0x80c9000 mapped in the supplementary page table
+0x80ca000 mapped in the supplementary page table
+0x80cb000 mapped in the supplementary page table
+0x80cc000 mapped in the supplementary page table
+0x80cd000 mapped in the supplementary page table
+0x80ce000 mapped in the supplementary page table
+0x80cf000 mapped in the supplementary page table
+0x80d0000 mapped in the supplementary page table
+0x80d1000 mapped in the supplementary page table
+0x80d2000 mapped in the supplementary page table
+0x80d3000 mapped in the supplementary page table
+0x80d4000 mapped in the supplementary page table
+0x80d5000 mapped in the supplementary page table
+0x80d6000 mapped in the supplementary page table
+0x80d7000 mapped in the supplementary page table
+0x80d8000 mapped in the supplementary page table
+0x80d9000 mapped in the supplementary page table
+0x80da000 mapped in the supplementary page table
+0x80db000 mapped in the supplementary page table
+0x80dc000 mapped in the supplementary page table
+0x80dd000 mapped in the supplementary page table
+0x80de000 mapped in the supplementary page table
+0x80df000 mapped in the supplementary page table
+0x80e0000 mapped in the supplementary page table
+0x80e1000 mapped in the supplementary page table
+0x80e2000 mapped in the supplementary page table
+0x80e3000 mapped in the supplementary page table
+0x80e4000 mapped in the supplementary page table
+0x80e5000 mapped in the supplementary page table
+0x80e6000 mapped in the supplementary page table
+0x80e7000 mapped in the supplementary page table
+0x80e8000 mapped in the supplementary page table
+0x80e9000 mapped in the supplementary page table
+0x80ea000 mapped in the supplementary page table
+0x80eb000 mapped in the supplementary page table
+0x80ec000 mapped in the supplementary page table
+0x80ed000 mapped in the supplementary page table
+0x80ee000 mapped in the supplementary page table
+0x80ef000 mapped in the supplementary page table
+0x80f0000 mapped in the supplementary page table
+0x80f1000 mapped in the supplementary page table
+0x80f2000 mapped in the supplementary page table
+0x80f3000 mapped in the supplementary page table
+0x80f4000 mapped in the supplementary page table
+0x80f5000 mapped in the supplementary page table
+0x80f6000 mapped in the supplementary page table
+0x80f7000 mapped in the supplementary page table
+0x80f8000 mapped in the supplementary page table
+0x80f9000 mapped in the supplementary page table
+0x80fa000 mapped in the supplementary page table
+0x80fb000 mapped in the supplementary page table
+0x80fc000 mapped in the supplementary page table
+0x80fd000 mapped in the supplementary page table
+0x80fe000 mapped in the supplementary page table
+0x80ff000 mapped in the supplementary page table
+0x8100000 mapped in the supplementary page table
+0x8101000 mapped in the supplementary page table
+0x8102000 mapped in the supplementary page table
+0x8103000 mapped in the supplementary page table
+0x8104000 mapped in the supplementary page table
+0x8105000 mapped in the supplementary page table
+0x8106000 mapped in the supplementary page table
+0x8107000 mapped in the supplementary page table
+0x8108000 mapped in the supplementary page table
+0x8109000 mapped in the supplementary page table
+0x810a000 mapped in the supplementary page table
+0x810b000 mapped in the supplementary page table
+0x810c000 mapped in the supplementary page table
+0x810d000 mapped in the supplementary page table
+0x810e000 mapped in the supplementary page table
+0x810f000 mapped in the supplementary page table
+0x8110000 mapped in the supplementary page table
+0x8111000 mapped in the supplementary page table
+0x8112000 mapped in the supplementary page table
+0x8113000 mapped in the supplementary page table
+0x8114000 mapped in the supplementary page table
+0x8115000 mapped in the supplementary page table
+0x8116000 mapped in the supplementary page table
+0x8117000 mapped in the supplementary page table
+0x8118000 mapped in the supplementary page table
+0x8119000 mapped in the supplementary page table
+0x811a000 mapped in the supplementary page table
+0x811b000 mapped in the supplementary page table
+0x811c000 mapped in the supplementary page table
+0x811d000 mapped in the supplementary page table
+0x811e000 mapped in the supplementary page table
+0x811f000 mapped in the supplementary page table
+0x8120000 mapped in the supplementary page table
+0x8121000 mapped in the supplementary page table
+0x8122000 mapped in the supplementary page table
+0x8123000 mapped in the supplementary page table
+0x8124000 mapped in the supplementary page table
+0x8125000 mapped in the supplementary page table
+0x8126000 mapped in the supplementary page table
+0x8127000 mapped in the supplementary page table
+0x8128000 mapped in the supplementary page table
+0x8129000 mapped in the supplementary page table
+0x812a000 mapped in the supplementary page table
+0x812b000 mapped in the supplementary page table
+0x812c000 mapped in the supplementary page table
+0x812d000 mapped in the supplementary page table
+0x812e000 mapped in the supplementary page table
+0x812f000 mapped in the supplementary page table
+0x8130000 mapped in the supplementary page table
+0x8131000 mapped in the supplementary page table
+0x8132000 mapped in the supplementary page table
+0x8133000 mapped in the supplementary page table
+0x8134000 mapped in the supplementary page table
+0x8135000 mapped in the supplementary page table
+0x8136000 mapped in the supplementary page table
+0x8137000 mapped in the supplementary page table
+0x8138000 mapped in the supplementary page table
+0x8139000 mapped in the supplementary page table
+0x813a000 mapped in the supplementary page table
+0x813b000 mapped in the supplementary page table
+0x813c000 mapped in the supplementary page table
+0x813d000 mapped in the supplementary page table
+0x813e000 mapped in the supplementary page table
+0x813f000 mapped in the supplementary page table
+0x8140000 mapped in the supplementary page table
+0x8141000 mapped in the supplementary page table
+0x8142000 mapped in the supplementary page table
+0x8143000 mapped in the supplementary page table
+0x8144000 mapped in the supplementary page table
+0x8145000 mapped in the supplementary page table
+0x8146000 mapped in the supplementary page table
+0x8147000 mapped in the supplementary page table
+0x8148000 mapped in the supplementary page table
+0x8149000 mapped in the supplementary page table
+0x814a000 mapped in the supplementary page table
+0x814b000 mapped in the supplementary page table
+0x814c000 mapped in the supplementary page table
+0x814d000 mapped in the supplementary page table
+0x814e000 mapped in the supplementary page table
+0x814f000 mapped in the supplementary page table
+0x8150000 mapped in the supplementary page table
+0x8151000 mapped in the supplementary page table
+0x8152000 mapped in the supplementary page table
+0x8153000 mapped in the supplementary page table
+0x8154000 mapped in the supplementary page table
+0x8155000 mapped in the supplementary page table
+0x8156000 mapped in the supplementary page table
+0x8157000 mapped in the supplementary page table
+0x8158000 mapped in the supplementary page table
+0x8159000 mapped in the supplementary page table
+0x815a000 mapped in the supplementary page table
+0x815b000 mapped in the supplementary page table
+0x815c000 mapped in the supplementary page table
+0x815d000 mapped in the supplementary page table
+0x815e000 mapped in the supplementary page table
+0x815f000 mapped in the supplementary page table
+0x8160000 mapped in the supplementary page table
+0x8161000 mapped in the supplementary page table
+0x8162000 mapped in the supplementary page table
+0x8163000 mapped in the supplementary page table
+0x8164000 mapped in the supplementary page table
+0x8165000 mapped in the supplementary page table
+0x8166000 mapped in the supplementary page table
+0x8167000 mapped in the supplementary page table
+0x8168000 mapped in the supplementary page table
+0x8169000 mapped in the supplementary page table
+0x816a000 mapped in the supplementary page table
+0x816b000 mapped in the supplementary page table
+0x816c000 mapped in the supplementary page table
+0x816d000 mapped in the supplementary page table
+0x816e000 mapped in the supplementary page table
+0x816f000 mapped in the supplementary page table
+0x8170000 mapped in the supplementary page table
+0x8171000 mapped in the supplementary page table
+0x8172000 mapped in the supplementary page table
+0x8173000 mapped in the supplementary page table
+0x8174000 mapped in the supplementary page table
+0x8175000 mapped in the supplementary page table
+0x8176000 mapped in the supplementary page table
+0x8177000 mapped in the supplementary page table
+0x8178000 mapped in the supplementary page table
+0x8179000 mapped in the supplementary page table
+0x817a000 mapped in the supplementary page table
+0x817b000 mapped in the supplementary page table
+0x817c000 mapped in the supplementary page table
+0x817d000 mapped in the supplementary page table
+0x817e000 mapped in the supplementary page table
+0x817f000 mapped in the supplementary page table
+0x8180000 mapped in the supplementary page table
+0x8181000 mapped in the supplementary page table
+0x8182000 mapped in the supplementary page table
+0x8183000 mapped in the supplementary page table
+0x8184000 mapped in the supplementary page table
+0x8185000 mapped in the supplementary page table
+0x8186000 mapped in the supplementary page table
+0x8187000 mapped in the supplementary page table
+0x8188000 mapped in the supplementary page table
+0x8189000 mapped in the supplementary page table
+0x818a000 mapped in the supplementary page table
+0x818b000 mapped in the supplementary page table
+0x818c000 mapped in the supplementary page table
+0x818d000 mapped in the supplementary page table
+0x818e000 mapped in the supplementary page table
+0x818f000 mapped in the supplementary page table
+0x8190000 mapped in the supplementary page table
+0x8191000 mapped in the supplementary page table
+0x8192000 mapped in the supplementary page table
+0x8193000 mapped in the supplementary page table
+0x8194000 mapped in the supplementary page table
+0x8195000 mapped in the supplementary page table
+0x8196000 mapped in the supplementary page table
+0x8197000 mapped in the supplementary page table
+0x8198000 mapped in the supplementary page table
+0x8199000 mapped in the supplementary page table
+0x819a000 mapped in the supplementary page table
+0x819b000 mapped in the supplementary page table
+0x819c000 mapped in the supplementary page table
+0x819d000 mapped in the supplementary page table
+0x819e000 mapped in the supplementary page table
+0x819f000 mapped in the supplementary page table
+0x81a0000 mapped in the supplementary page table
+0x81a1000 mapped in the supplementary page table
+0x81a2000 mapped in the supplementary page table
+0x81a3000 mapped in the supplementary page table
+0x81a4000 mapped in the supplementary page table
+0x81a5000 mapped in the supplementary page table
+0x81a6000 mapped in the supplementary page table
+0x81a7000 mapped in the supplementary page table
+0x81a8000 mapped in the supplementary page table
+0x81a9000 mapped in the supplementary page table
+0x81aa000 mapped in the supplementary page table
+0x81ab000 mapped in the supplementary page table
+0x81ac000 mapped in the supplementary page table
+0x81ad000 mapped in the supplementary page table
+0x81ae000 mapped in the supplementary page table
+0x81af000 mapped in the supplementary page table
+0x81b0000 mapped in the supplementary page table
+0x81b1000 mapped in the supplementary page table
+0x81b2000 mapped in the supplementary page table
+0x81b3000 mapped in the supplementary page table
+0x81b4000 mapped in the supplementary page table
+0x81b5000 mapped in the supplementary page table
+0x81b6000 mapped in the supplementary page table
+0x81b7000 mapped in the supplementary page table
+0x81b8000 mapped in the supplementary page table
+0x81b9000 mapped in the supplementary page table
+0x81ba000 mapped in the supplementary page table
+0x81bb000 mapped in the supplementary page table
+0x81bc000 mapped in the supplementary page table
+0x81bd000 mapped in the supplementary page table
+0x81be000 mapped in the supplementary page table
+0x81bf000 mapped in the supplementary page table
+0x81c0000 mapped in the supplementary page table
+0x81c1000 mapped in the supplementary page table
+0x81c2000 mapped in the supplementary page table
+0x81c3000 mapped in the supplementary page table
+0x81c4000 mapped in the supplementary page table
+0x81c5000 mapped in the supplementary page table
+0x81c6000 mapped in the supplementary page table
+0x81c7000 mapped in the supplementary page table
+0x81c8000 mapped in the supplementary page table
+0x81c9000 mapped in the supplementary page table
+0x81ca000 mapped in the supplementary page table
+0x81cb000 mapped in the supplementary page table
+0x81cc000 mapped in the supplementary page table
+0x81cd000 mapped in the supplementary page table
+0x81ce000 mapped in the supplementary page table
+0x81cf000 mapped in the supplementary page table
+0x81d0000 mapped in the supplementary page table
+0x81d1000 mapped in the supplementary page table
+0x81d2000 mapped in the supplementary page table
+0x81d3000 mapped in the supplementary page table
+0x81d4000 mapped in the supplementary page table
+0x81d5000 mapped in the supplementary page table
+0x81d6000 mapped in the supplementary page table
+0x81d7000 mapped in the supplementary page table
+0x81d8000 mapped in the supplementary page table
+0x81d9000 mapped in the supplementary page table
+0x81da000 mapped in the supplementary page table
+0x81db000 mapped in the supplementary page table
+0x81dc000 mapped in the supplementary page table
+0x81dd000 mapped in the supplementary page table
+0x81de000 mapped in the supplementary page table
+0x81df000 mapped in the supplementary page table
+0x81e0000 mapped in the supplementary page table
+0x81e1000 mapped in the supplementary page table
+0x81e2000 mapped in the supplementary page table
+0x81e3000 mapped in the supplementary page table
+0x81e4000 mapped in the supplementary page table
+0x81e5000 mapped in the supplementary page table
+0x81e6000 mapped in the supplementary page table
+0x81e7000 mapped in the supplementary page table
+0x81e8000 mapped in the supplementary page table
+0x81e9000 mapped in the supplementary page table
+0x81ea000 mapped in the supplementary page table
+0x81eb000 mapped in the supplementary page table
+0x81ec000 mapped in the supplementary page table
+0x81ed000 mapped in the supplementary page table
+0x81ee000 mapped in the supplementary page table
+0x81ef000 mapped in the supplementary page table
+0x81f0000 mapped in the supplementary page table
+0x81f1000 mapped in the supplementary page table
+0x81f2000 mapped in the supplementary page table
+0x81f3000 mapped in the supplementary page table
+0x81f4000 mapped in the supplementary page table
+0x81f5000 mapped in the supplementary page table
+0x81f6000 mapped in the supplementary page table
+0x81f7000 mapped in the supplementary page table
+0x81f8000 mapped in the supplementary page table
+0x81f9000 mapped in the supplementary page table
+0x81fa000 mapped in the supplementary page table
+0x81fb000 mapped in the supplementary page table
+0x81fc000 mapped in the supplementary page table
+0x81fd000 mapped in the supplementary page table
+0x81fe000 mapped in the supplementary page table
+0x81ff000 mapped in the supplementary page table
+0x8200000 mapped in the supplementary page table
+0x8201000 mapped in the supplementary page table
+0x8202000 mapped in the supplementary page table
+0x8203000 mapped in the supplementary page table
+0x8204000 mapped in the supplementary page table
+0x8205000 mapped in the supplementary page table
+0x8206000 mapped in the supplementary page table
+0x8207000 mapped in the supplementary page table
+0x8208000 mapped in the supplementary page table
+0x8209000 mapped in the supplementary page table
+0x820a000 mapped in the supplementary page table
+0x820b000 mapped in the supplementary page table
+0x820c000 mapped in the supplementary page table
+0x820d000 mapped in the supplementary page table
+0x820e000 mapped in the supplementary page table
+0x820f000 mapped in the supplementary page table
+0x8210000 mapped in the supplementary page table
+0x8211000 mapped in the supplementary page table
+0x8212000 mapped in the supplementary page table
+0x8213000 mapped in the supplementary page table
+0x8214000 mapped in the supplementary page table
+0x8215000 mapped in the supplementary page table
+0x8216000 mapped in the supplementary page table
+0x8217000 mapped in the supplementary page table
+0x8218000 mapped in the supplementary page table
+0x8219000 mapped in the supplementary page table
+0x821a000 mapped in the supplementary page table
+0x821b000 mapped in the supplementary page table
+0x821c000 mapped in the supplementary page table
+0x821d000 mapped in the supplementary page table
+0x821e000 mapped in the supplementary page table
+0x821f000 mapped in the supplementary page table
+0x8220000 mapped in the supplementary page table
+0x8221000 mapped in the supplementary page table
+0x8222000 mapped in the supplementary page table
+0x8223000 mapped in the supplementary page table
+0x8224000 mapped in the supplementary page table
+0x8225000 mapped in the supplementary page table
+0x8226000 mapped in the supplementary page table
+0x8227000 mapped in the supplementary page table
+0x8228000 mapped in the supplementary page table
+0x8229000 mapped in the supplementary page table
+0x822a000 mapped in the supplementary page table
+0x822b000 mapped in the supplementary page table
+0x822c000 mapped in the supplementary page table
+0x822d000 mapped in the supplementary page table
+0x822e000 mapped in the supplementary page table
+0x822f000 mapped in the supplementary page table
+0x8230000 mapped in the supplementary page table
+0x8231000 mapped in the supplementary page table
+0x8232000 mapped in the supplementary page table
+0x8233000 mapped in the supplementary page table
+0x8234000 mapped in the supplementary page table
+0x8235000 mapped in the supplementary page table
+0x8236000 mapped in the supplementary page table
+0x8237000 mapped in the supplementary page table
+0x8238000 mapped in the supplementary page table
+0x8239000 mapped in the supplementary page table
+0x823a000 mapped in the supplementary page table
+0x823b000 mapped in the supplementary page table
+0x823c000 mapped in the supplementary page table
+0x823d000 mapped in the supplementary page table
+0x823e000 mapped in the supplementary page table
+0x823f000 mapped in the supplementary page table
+0x8240000 mapped in the supplementary page table
+0x8241000 mapped in the supplementary page table
+0x8242000 mapped in the supplementary page table
+0x8243000 mapped in the supplementary page table
+0x8244000 mapped in the supplementary page table
+0x8245000 mapped in the supplementary page table
+0x8246000 mapped in the supplementary page table
+0x8247000 mapped in the supplementary page table
+0x8248000 mapped in the supplementary page table
+0x8249000 mapped in the supplementary page table
+0x824a000 mapped in the supplementary page table
+0x824b000 mapped in the supplementary page table
+0x824c000 mapped in the supplementary page table
+user page =  0xbffff000 kernel page = 0xc028b000
+Page Fault on 0x8048000
+user page =  0x8048000 kernel page = 0xc028c000
+Page Fault on 0x824c000
+user page =  0x824c000 kernel page = 0xc028d000
+Page Fault on 0x824b000
+user page =  0x824b000 kernel page = 0xc028e000
+Page Fault on 0x8049000
+user page =  0x8049000 kernel page = 0xc028f000
+Page Fault on 0x804a000
+user page =  0x804a000 kernel page = 0xc0290000
+(page-linear) begin
+(page-linear) initialize
+Page Fault on 0x804b000
+user page =  0x804b000 kernel page = 0xc0291000
+Page Fault on 0x804c000
+user page =  0x804c000 kernel page = 0xc0292000
+Page Fault on 0x804d000
+user page =  0x804d000 kernel page = 0xc0293000
+Page Fault on 0x804e000
+user page =  0x804e000 kernel page = 0xc0294000
+Page Fault on 0x804f000
+user page =  0x804f000 kernel page = 0xc0295000
+Page Fault on 0x8050000
+user page =  0x8050000 kernel page = 0xc0296000
+Page Fault on 0x8051000
+user page =  0x8051000 kernel page = 0xc0297000
+Page Fault on 0x8052000
+user page =  0x8052000 kernel page = 0xc0298000
+Page Fault on 0x8053000
+user page =  0x8053000 kernel page = 0xc0299000
+Page Fault on 0x8054000
+user page =  0x8054000 kernel page = 0xc029a000
+Page Fault on 0x8055000
+user page =  0x8055000 kernel page = 0xc029b000
+Page Fault on 0x8056000
+user page =  0x8056000 kernel page = 0xc029c000
+Page Fault on 0x8057000
+user page =  0x8057000 kernel page = 0xc029d000
+Page Fault on 0x8058000
+user page =  0x8058000 kernel page = 0xc029e000
+Page Fault on 0x8059000
+user page =  0x8059000 kernel page = 0xc029f000
+Page Fault on 0x805a000
+user page =  0x805a000 kernel page = 0xc02a0000
+Page Fault on 0x805b000
+user page =  0x805b000 kernel page = 0xc02a1000
+Page Fault on 0x805c000
+user page =  0x805c000 kernel page = 0xc02a2000
+Page Fault on 0x805d000
+user page =  0x805d000 kernel page = 0xc02a3000
+Page Fault on 0x805e000
+user page =  0x805e000 kernel page = 0xc02a4000
+Page Fault on 0x805f000
+user page =  0x805f000 kernel page = 0xc02a5000
+Page Fault on 0x8060000
+user page =  0x8060000 kernel page = 0xc02a6000
+Page Fault on 0x8061000
+user page =  0x8061000 kernel page = 0xc02a7000
+Page Fault on 0x8062000
+user page =  0x8062000 kernel page = 0xc02a8000
+Page Fault on 0x8063000
+user page =  0x8063000 kernel page = 0xc02a9000
+Page Fault on 0x8064000
+user page =  0x8064000 kernel page = 0xc02aa000
+Page Fault on 0x8065000
+user page =  0x8065000 kernel page = 0xc02ab000
+Page Fault on 0x8066000
+user page =  0x8066000 kernel page = 0xc02ac000
+Page Fault on 0x8067000
+user page =  0x8067000 kernel page = 0xc02ad000
+Page Fault on 0x8068000
+user page =  0x8068000 kernel page = 0xc02ae000
+Page Fault on 0x8069000
+user page =  0x8069000 kernel page = 0xc02af000
+Page Fault on 0x806a000
+user page =  0x806a000 kernel page = 0xc02b0000
+Page Fault on 0x806b000
+user page =  0x806b000 kernel page = 0xc02b1000
+Page Fault on 0x806c000
+user page =  0x806c000 kernel page = 0xc02b2000
+Page Fault on 0x806d000
+user page =  0x806d000 kernel page = 0xc02b3000
+Page Fault on 0x806e000
+user page =  0x806e000 kernel page = 0xc02b4000
+Page Fault on 0x806f000
+user page =  0x806f000 kernel page = 0xc02b5000
+Page Fault on 0x8070000
+user page =  0x8070000 kernel page = 0xc02b6000
+Page Fault on 0x8071000
+user page =  0x8071000 kernel page = 0xc02b7000
+Page Fault on 0x8072000
+user page =  0x8072000 kernel page = 0xc02b8000
+Page Fault on 0x8073000
+user page =  0x8073000 kernel page = 0xc02b9000
+Page Fault on 0x8074000
+user page =  0x8074000 kernel page = 0xc02ba000
+Page Fault on 0x8075000
+user page =  0x8075000 kernel page = 0xc02bb000
+Page Fault on 0x8076000
+user page =  0x8076000 kernel page = 0xc02bc000
+Page Fault on 0x8077000
+user page =  0x8077000 kernel page = 0xc02bd000
+Page Fault on 0x8078000
+user page =  0x8078000 kernel page = 0xc02be000
+Page Fault on 0x8079000
+user page =  0x8079000 kernel page = 0xc02bf000
+Page Fault on 0x807a000
+user page =  0x807a000 kernel page = 0xc02c0000
+Page Fault on 0x807b000
+user page =  0x807b000 kernel page = 0xc02c1000
+Page Fault on 0x807c000
+user page =  0x807c000 kernel page = 0xc02c2000
+Page Fault on 0x807d000
+user page =  0x807d000 kernel page = 0xc02c3000
+Page Fault on 0x807e000
+user page =  0x807e000 kernel page = 0xc02c4000
+Page Fault on 0x807f000
+user page =  0x807f000 kernel page = 0xc02c5000
+Page Fault on 0x8080000
+user page =  0x8080000 kernel page = 0xc02c6000
+Page Fault on 0x8081000
+user page =  0x8081000 kernel page = 0xc02c7000
+Page Fault on 0x8082000
+user page =  0x8082000 kernel page = 0xc02c8000
+Page Fault on 0x8083000
+user page =  0x8083000 kernel page = 0xc02c9000
+Page Fault on 0x8084000
+user page =  0x8084000 kernel page = 0xc02ca000
+Page Fault on 0x8085000
+user page =  0x8085000 kernel page = 0xc02cb000
+Page Fault on 0x8086000
+user page =  0x8086000 kernel page = 0xc02cc000
+Page Fault on 0x8087000
+user page =  0x8087000 kernel page = 0xc02cd000
+Page Fault on 0x8088000
+user page =  0x8088000 kernel page = 0xc02ce000
+Page Fault on 0x8089000
+user page =  0x8089000 kernel page = 0xc02cf000
+Page Fault on 0x808a000
+user page =  0x808a000 kernel page = 0xc02d0000
+Page Fault on 0x808b000
+user page =  0x808b000 kernel page = 0xc02d1000
+Page Fault on 0x808c000
+user page =  0x808c000 kernel page = 0xc02d2000
+Page Fault on 0x808d000
+user page =  0x808d000 kernel page = 0xc02d3000
+Page Fault on 0x808e000
+user page =  0x808e000 kernel page = 0xc02d4000
+Page Fault on 0x808f000
+user page =  0x808f000 kernel page = 0xc02d5000
+Page Fault on 0x8090000
+user page =  0x8090000 kernel page = 0xc02d6000
+Page Fault on 0x8091000
+user page =  0x8091000 kernel page = 0xc02d7000
+Page Fault on 0x8092000
+user page =  0x8092000 kernel page = 0xc02d8000
+Page Fault on 0x8093000
+user page =  0x8093000 kernel page = 0xc02d9000
+Page Fault on 0x8094000
+user page =  0x8094000 kernel page = 0xc02da000
+Page Fault on 0x8095000
+user page =  0x8095000 kernel page = 0xc02db000
+Page Fault on 0x8096000
+user page =  0x8096000 kernel page = 0xc02dc000
+Page Fault on 0x8097000
+user page =  0x8097000 kernel page = 0xc02dd000
+Page Fault on 0x8098000
+user page =  0x8098000 kernel page = 0xc02de000
+Page Fault on 0x8099000
+user page =  0x8099000 kernel page = 0xc02df000
+Page Fault on 0x809a000
+user page =  0x809a000 kernel page = 0xc02e0000
+Page Fault on 0x809b000
+user page =  0x809b000 kernel page = 0xc02e1000
+Page Fault on 0x809c000
+user page =  0x809c000 kernel page = 0xc02e2000
+Page Fault on 0x809d000
+user page =  0x809d000 kernel page = 0xc02e3000
+Page Fault on 0x809e000
+user page =  0x809e000 kernel page = 0xc02e4000
+Page Fault on 0x809f000
+user page =  0x809f000 kernel page = 0xc02e5000
+Page Fault on 0x80a0000
+user page =  0x80a0000 kernel page = 0xc02e6000
+Page Fault on 0x80a1000
+user page =  0x80a1000 kernel page = 0xc02e7000
+Page Fault on 0x80a2000
+user page =  0x80a2000 kernel page = 0xc02e8000
+Page Fault on 0x80a3000
+user page =  0x80a3000 kernel page = 0xc02e9000
+Page Fault on 0x80a4000
+user page =  0x80a4000 kernel page = 0xc02ea000
+Page Fault on 0x80a5000
+user page =  0x80a5000 kernel page = 0xc02eb000
+Page Fault on 0x80a6000
+user page =  0x80a6000 kernel page = 0xc02ec000
+Page Fault on 0x80a7000
+user page =  0x80a7000 kernel page = 0xc02ed000
+Page Fault on 0x80a8000
+user page =  0x80a8000 kernel page = 0xc02ee000
+Page Fault on 0x80a9000
+user page =  0x80a9000 kernel page = 0xc02ef000
+Page Fault on 0x80aa000
+user page =  0x80aa000 kernel page = 0xc02f0000
+Page Fault on 0x80ab000
+user page =  0x80ab000 kernel page = 0xc02f1000
+Page Fault on 0x80ac000
+user page =  0x80ac000 kernel page = 0xc02f2000
+Page Fault on 0x80ad000
+user page =  0x80ad000 kernel page = 0xc02f3000
+Page Fault on 0x80ae000
+user page =  0x80ae000 kernel page = 0xc02f4000
+Page Fault on 0x80af000
+user page =  0x80af000 kernel page = 0xc02f5000
+Page Fault on 0x80b0000
+user page =  0x80b0000 kernel page = 0xc02f6000
+Page Fault on 0x80b1000
+user page =  0x80b1000 kernel page = 0xc02f7000
+Page Fault on 0x80b2000
+user page =  0x80b2000 kernel page = 0xc02f8000
+Page Fault on 0x80b3000
+user page =  0x80b3000 kernel page = 0xc02f9000
+Page Fault on 0x80b4000
+user page =  0x80b4000 kernel page = 0xc02fa000
+Page Fault on 0x80b5000
+user page =  0x80b5000 kernel page = 0xc02fb000
+Page Fault on 0x80b6000
+user page =  0x80b6000 kernel page = 0xc02fc000
+Page Fault on 0x80b7000
+user page =  0x80b7000 kernel page = 0xc02fd000
+Page Fault on 0x80b8000
+user page =  0x80b8000 kernel page = 0xc02fe000
+Page Fault on 0x80b9000
+user page =  0x80b9000 kernel page = 0xc02ff000
+Page Fault on 0x80ba000
+user page =  0x80ba000 kernel page = 0xc0300000
+Page Fault on 0x80bb000
+user page =  0x80bb000 kernel page = 0xc0301000
+Page Fault on 0x80bc000
+user page =  0x80bc000 kernel page = 0xc0302000
+Page Fault on 0x80bd000
+user page =  0x80bd000 kernel page = 0xc0303000
+Page Fault on 0x80be000
+user page =  0x80be000 kernel page = 0xc0304000
+Page Fault on 0x80bf000
+user page =  0x80bf000 kernel page = 0xc0305000
+Page Fault on 0x80c0000
+user page =  0x80c0000 kernel page = 0xc0306000
+Page Fault on 0x80c1000
+user page =  0x80c1000 kernel page = 0xc0307000
+Page Fault on 0x80c2000
+user page =  0x80c2000 kernel page = 0xc0308000
+Page Fault on 0x80c3000
+user page =  0x80c3000 kernel page = 0xc0309000
+Page Fault on 0x80c4000
+user page =  0x80c4000 kernel page = 0xc030a000
+Page Fault on 0x80c5000
+user page =  0x80c5000 kernel page = 0xc030b000
+Page Fault on 0x80c6000
+user page =  0x80c6000 kernel page = 0xc030c000
+Page Fault on 0x80c7000
+user page =  0x80c7000 kernel page = 0xc030d000
+Page Fault on 0x80c8000
+user page =  0x80c8000 kernel page = 0xc030e000
+Page Fault on 0x80c9000
+user page =  0x80c9000 kernel page = 0xc030f000
+Page Fault on 0x80ca000
+user page =  0x80ca000 kernel page = 0xc0310000
+Page Fault on 0x80cb000
+user page =  0x80cb000 kernel page = 0xc0311000
+Page Fault on 0x80cc000
+user page =  0x80cc000 kernel page = 0xc0312000
+Page Fault on 0x80cd000
+user page =  0x80cd000 kernel page = 0xc0313000
+Page Fault on 0x80ce000
+user page =  0x80ce000 kernel page = 0xc0314000
+Page Fault on 0x80cf000
+user page =  0x80cf000 kernel page = 0xc0315000
+Page Fault on 0x80d0000
+user page =  0x80d0000 kernel page = 0xc0316000
+Page Fault on 0x80d1000
+user page =  0x80d1000 kernel page = 0xc0317000
+Page Fault on 0x80d2000
+user page =  0x80d2000 kernel page = 0xc0318000
+Page Fault on 0x80d3000
+user page =  0x80d3000 kernel page = 0xc0319000
+Page Fault on 0x80d4000
+user page =  0x80d4000 kernel page = 0xc031a000
+Page Fault on 0x80d5000
+user page =  0x80d5000 kernel page = 0xc031b000
+Page Fault on 0x80d6000
+user page =  0x80d6000 kernel page = 0xc031c000
+Page Fault on 0x80d7000
+user page =  0x80d7000 kernel page = 0xc031d000
+Page Fault on 0x80d8000
+user page =  0x80d8000 kernel page = 0xc031e000
+Page Fault on 0x80d9000
+user page =  0x80d9000 kernel page = 0xc031f000
+Page Fault on 0x80da000
+user page =  0x80da000 kernel page = 0xc0320000
+Page Fault on 0x80db000
+user page =  0x80db000 kernel page = 0xc0321000
+Page Fault on 0x80dc000
+user page =  0x80dc000 kernel page = 0xc0322000
+Page Fault on 0x80dd000
+user page =  0x80dd000 kernel page = 0xc0323000
+Page Fault on 0x80de000
+user page =  0x80de000 kernel page = 0xc0324000
+Page Fault on 0x80df000
+user page =  0x80df000 kernel page = 0xc0325000
+Page Fault on 0x80e0000
+user page =  0x80e0000 kernel page = 0xc0326000
+Page Fault on 0x80e1000
+user page =  0x80e1000 kernel page = 0xc0327000
+Page Fault on 0x80e2000
+user page =  0x80e2000 kernel page = 0xc0328000
+Page Fault on 0x80e3000
+user page =  0x80e3000 kernel page = 0xc0329000
+Page Fault on 0x80e4000
+user page =  0x80e4000 kernel page = 0xc032a000
+Page Fault on 0x80e5000
+user page =  0x80e5000 kernel page = 0xc032b000
+Page Fault on 0x80e6000
+user page =  0x80e6000 kernel page = 0xc032c000
+Page Fault on 0x80e7000
+user page =  0x80e7000 kernel page = 0xc032d000
+Page Fault on 0x80e8000
+user page =  0x80e8000 kernel page = 0xc032e000
+Page Fault on 0x80e9000
+user page =  0x80e9000 kernel page = 0xc032f000
+Page Fault on 0x80ea000
+user page =  0x80ea000 kernel page = 0xc0330000
+Page Fault on 0x80eb000
+user page =  0x80eb000 kernel page = 0xc0331000
+Page Fault on 0x80ec000
+user page =  0x80ec000 kernel page = 0xc0332000
+Page Fault on 0x80ed000
+user page =  0x80ed000 kernel page = 0xc0333000
+Page Fault on 0x80ee000
+user page =  0x80ee000 kernel page = 0xc0334000
+Page Fault on 0x80ef000
+user page =  0x80ef000 kernel page = 0xc0335000
+Page Fault on 0x80f0000
+user page =  0x80f0000 kernel page = 0xc0336000
+Page Fault on 0x80f1000
+user page =  0x80f1000 kernel page = 0xc0337000
+Page Fault on 0x80f2000
+user page =  0x80f2000 kernel page = 0xc0338000
+Page Fault on 0x80f3000
+user page =  0x80f3000 kernel page = 0xc0339000
+Page Fault on 0x80f4000
+user page =  0x80f4000 kernel page = 0xc033a000
+Page Fault on 0x80f5000
+user page =  0x80f5000 kernel page = 0xc033b000
+Page Fault on 0x80f6000
+user page =  0x80f6000 kernel page = 0xc033c000
+Page Fault on 0x80f7000
+user page =  0x80f7000 kernel page = 0xc033d000
+Page Fault on 0x80f8000
+user page =  0x80f8000 kernel page = 0xc033e000
+Page Fault on 0x80f9000
+user page =  0x80f9000 kernel page = 0xc033f000
+Page Fault on 0x80fa000
+user page =  0x80fa000 kernel page = 0xc0340000
+Page Fault on 0x80fb000
+user page =  0x80fb000 kernel page = 0xc0341000
+Page Fault on 0x80fc000
+user page =  0x80fc000 kernel page = 0xc0342000
+Page Fault on 0x80fd000
+user page =  0x80fd000 kernel page = 0xc0343000
+Page Fault on 0x80fe000
+user page =  0x80fe000 kernel page = 0xc0344000
+Page Fault on 0x80ff000
+user page =  0x80ff000 kernel page = 0xc0345000
+Page Fault on 0x8100000
+user page =  0x8100000 kernel page = 0xc0346000
+Page Fault on 0x8101000
+user page =  0x8101000 kernel page = 0xc0347000
+Page Fault on 0x8102000
+user page =  0x8102000 kernel page = 0xc0348000
+Page Fault on 0x8103000
+user page =  0x8103000 kernel page = 0xc0349000
+Page Fault on 0x8104000
+user page =  0x8104000 kernel page = 0xc034a000
+Page Fault on 0x8105000
+user page =  0x8105000 kernel page = 0xc034b000
+Page Fault on 0x8106000
+user page =  0x8106000 kernel page = 0xc034c000
+Page Fault on 0x8107000
+user page =  0x8107000 kernel page = 0xc034d000
+Page Fault on 0x8108000
+user page =  0x8108000 kernel page = 0xc034e000
+Page Fault on 0x8109000
+user page =  0x8109000 kernel page = 0xc034f000
+Page Fault on 0x810a000
+user page =  0x810a000 kernel page = 0xc0350000
+Page Fault on 0x810b000
+user page =  0x810b000 kernel page = 0xc0351000
+Page Fault on 0x810c000
+user page =  0x810c000 kernel page = 0xc0352000
+Page Fault on 0x810d000
+user page =  0x810d000 kernel page = 0xc0353000
+Page Fault on 0x810e000
+user page =  0x810e000 kernel page = 0xc0354000
+Page Fault on 0x810f000
+user page =  0x810f000 kernel page = 0xc0355000
+Page Fault on 0x8110000
+user page =  0x8110000 kernel page = 0xc0356000
+Page Fault on 0x8111000
+user page =  0x8111000 kernel page = 0xc0357000
+Page Fault on 0x8112000
+user page =  0x8112000 kernel page = 0xc0358000
+Page Fault on 0x8113000
+user page =  0x8113000 kernel page = 0xc0359000
+Page Fault on 0x8114000
+user page =  0x8114000 kernel page = 0xc035a000
+Page Fault on 0x8115000
+user page =  0x8115000 kernel page = 0xc035b000
+Page Fault on 0x8116000
+user page =  0x8116000 kernel page = 0xc035c000
+Page Fault on 0x8117000
+user page =  0x8117000 kernel page = 0xc035d000
+Page Fault on 0x8118000
+user page =  0x8118000 kernel page = 0xc035e000
+Page Fault on 0x8119000
+user page =  0x8119000 kernel page = 0xc035f000
+Page Fault on 0x811a000
+user page =  0x811a000 kernel page = 0xc0360000
+Page Fault on 0x811b000
+user page =  0x811b000 kernel page = 0xc0361000
+Page Fault on 0x811c000
+user page =  0x811c000 kernel page = 0xc0362000
+Page Fault on 0x811d000
+user page =  0x811d000 kernel page = 0xc0363000
+Page Fault on 0x811e000
+user page =  0x811e000 kernel page = 0xc0364000
+Page Fault on 0x811f000
+user page =  0x811f000 kernel page = 0xc0365000
+Page Fault on 0x8120000
+user page =  0x8120000 kernel page = 0xc0366000
+Page Fault on 0x8121000
+user page =  0x8121000 kernel page = 0xc0367000
+Page Fault on 0x8122000
+user page =  0x8122000 kernel page = 0xc0368000
+Page Fault on 0x8123000
+user page =  0x8123000 kernel page = 0xc0369000
+Page Fault on 0x8124000
+user page =  0x8124000 kernel page = 0xc036a000
+Page Fault on 0x8125000
+user page =  0x8125000 kernel page = 0xc036b000
+Page Fault on 0x8126000
+user page =  0x8126000 kernel page = 0xc036c000
+Page Fault on 0x8127000
+user page =  0x8127000 kernel page = 0xc036d000
+Page Fault on 0x8128000
+user page =  0x8128000 kernel page = 0xc036e000
+Page Fault on 0x8129000
+user page =  0x8129000 kernel page = 0xc036f000
+Page Fault on 0x812a000
+user page =  0x812a000 kernel page = 0xc0370000
+Page Fault on 0x812b000
+user page =  0x812b000 kernel page = 0xc0371000
+Page Fault on 0x812c000
+user page =  0x812c000 kernel page = 0xc0372000
+Page Fault on 0x812d000
+user page =  0x812d000 kernel page = 0xc0373000
+Page Fault on 0x812e000
+user page =  0x812e000 kernel page = 0xc0374000
+Page Fault on 0x812f000
+user page =  0x812f000 kernel page = 0xc0375000
+Page Fault on 0x8130000
+user page =  0x8130000 kernel page = 0xc0376000
+Page Fault on 0x8131000
+user page =  0x8131000 kernel page = 0xc0377000
+Page Fault on 0x8132000
+user page =  0x8132000 kernel page = 0xc0378000
+Page Fault on 0x8133000
+user page =  0x8133000 kernel page = 0xc0379000
+Page Fault on 0x8134000
+user page =  0x8134000 kernel page = 0xc037a000
+Page Fault on 0x8135000
+user page =  0x8135000 kernel page = 0xc037b000
+Page Fault on 0x8136000
+user page =  0x8136000 kernel page = 0xc037c000
+Page Fault on 0x8137000
+user page =  0x8137000 kernel page = 0xc037d000
+Page Fault on 0x8138000
+user page =  0x8138000 kernel page = 0xc037e000
+Page Fault on 0x8139000
+user page =  0x8139000 kernel page = 0xc037f000
+Page Fault on 0x813a000
+user page =  0x813a000 kernel page = 0xc0380000
+Page Fault on 0x813b000
+user page =  0x813b000 kernel page = 0xc0381000
+Page Fault on 0x813c000
+user page =  0x813c000 kernel page = 0xc0382000
+Page Fault on 0x813d000
+user page =  0x813d000 kernel page = 0xc0383000
+Page Fault on 0x813e000
+user page =  0x813e000 kernel page = 0xc0384000
+Page Fault on 0x813f000
+user page =  0x813f000 kernel page = 0xc0385000
+Page Fault on 0x8140000
+user page =  0x8140000 kernel page = 0xc0386000
+Page Fault on 0x8141000
+user page =  0x8141000 kernel page = 0xc0387000
+Page Fault on 0x8142000
+user page =  0x8142000 kernel page = 0xc0388000
+Page Fault on 0x8143000
+user page =  0x8143000 kernel page = 0xc0389000
+Page Fault on 0x8144000
+user page =  0x8144000 kernel page = 0xc038a000
+Page Fault on 0x8145000
+user page =  0x8145000 kernel page = 0xc038b000
+Page Fault on 0x8146000
+user page =  0x8146000 kernel page = 0xc038c000
+Page Fault on 0x8147000
+user page =  0x8147000 kernel page = 0xc038d000
+Page Fault on 0x8148000
+user page =  0x8148000 kernel page = 0xc038e000
+Page Fault on 0x8149000
+user page =  0x8149000 kernel page = 0xc038f000
+Page Fault on 0x814a000
+user page =  0x814a000 kernel page = 0xc0390000
+Page Fault on 0x814b000
+user page =  0x814b000 kernel page = 0xc0391000
+Page Fault on 0x814c000
+user page =  0x814c000 kernel page = 0xc0392000
+Page Fault on 0x814d000
+user page =  0x814d000 kernel page = 0xc0393000
+Page Fault on 0x814e000
+user page =  0x814e000 kernel page = 0xc0394000
+Page Fault on 0x814f000
+user page =  0x814f000 kernel page = 0xc0395000
+Page Fault on 0x8150000
+user page =  0x8150000 kernel page = 0xc0396000
+Page Fault on 0x8151000
+user page =  0x8151000 kernel page = 0xc0397000
+Page Fault on 0x8152000
+user page =  0x8152000 kernel page = 0xc0398000
+Page Fault on 0x8153000
+user page =  0x8153000 kernel page = 0xc0399000
+Page Fault on 0x8154000
+user page =  0x8154000 kernel page = 0xc039a000
+Page Fault on 0x8155000
+user page =  0x8155000 kernel page = 0xc039b000
+Page Fault on 0x8156000
+user page =  0x8156000 kernel page = 0xc039c000
+Page Fault on 0x8157000
+user page =  0x8157000 kernel page = 0xc039d000
+Page Fault on 0x8158000
+user page =  0x8158000 kernel page = 0xc039e000
+Page Fault on 0x8159000
+user page =  0x8159000 kernel page = 0xc039f000
+Page Fault on 0x815a000
+user page =  0x815a000 kernel page = 0xc03a0000
+Page Fault on 0x815b000
+user page =  0x815b000 kernel page = 0xc03a1000
+Page Fault on 0x815c000
+user page =  0x815c000 kernel page = 0xc03a2000
+Page Fault on 0x815d000
+user page =  0x815d000 kernel page = 0xc03a3000
+Page Fault on 0x815e000
+user page =  0x815e000 kernel page = 0xc03a4000
+Page Fault on 0x815f000
+user page =  0x815f000 kernel page = 0xc03a5000
+Page Fault on 0x8160000
+user page =  0x8160000 kernel page = 0xc03a6000
+Page Fault on 0x8161000
+user page =  0x8161000 kernel page = 0xc03a7000
+Page Fault on 0x8162000
+user page =  0x8162000 kernel page = 0xc03a8000
+Page Fault on 0x8163000
+user page =  0x8163000 kernel page = 0xc03a9000
+Page Fault on 0x8164000
+user page =  0x8164000 kernel page = 0xc03aa000
+Page Fault on 0x8165000
+user page =  0x8165000 kernel page = 0xc03ab000
+Page Fault on 0x8166000
+user page =  0x8166000 kernel page = 0xc03ac000
+Page Fault on 0x8167000
+user page =  0x8167000 kernel page = 0xc03ad000
+Page Fault on 0x8168000
+user page =  0x8168000 kernel page = 0xc03ae000
+Page Fault on 0x8169000
+user page =  0x8169000 kernel page = 0xc03af000
+Page Fault on 0x816a000
+user page =  0x816a000 kernel page = 0xc03b0000
+Page Fault on 0x816b000
+user page =  0x816b000 kernel page = 0xc03b1000
+Page Fault on 0x816c000
+user page =  0x816c000 kernel page = 0xc03b2000
+Page Fault on 0x816d000
+user page =  0x816d000 kernel page = 0xc03b3000
+Page Fault on 0x816e000
+user page =  0x816e000 kernel page = 0xc03b4000
+Page Fault on 0x816f000
+user page =  0x816f000 kernel page = 0xc03b5000
+Page Fault on 0x8170000
+user page =  0x8170000 kernel page = 0xc03b6000
+Page Fault on 0x8171000
+user page =  0x8171000 kernel page = 0xc03b7000
+Page Fault on 0x8172000
+user page =  0x8172000 kernel page = 0xc03b8000
+Page Fault on 0x8173000
+user page =  0x8173000 kernel page = 0xc03b9000
+Page Fault on 0x8174000
+user page =  0x8174000 kernel page = 0xc03ba000
+Page Fault on 0x8175000
+user page =  0x8175000 kernel page = 0xc03bb000
+Page Fault on 0x8176000
+user page =  0x8176000 kernel page = 0xc03bc000
+Page Fault on 0x8177000
+user page =  0x8177000 kernel page = 0xc03bd000
+Page Fault on 0x8178000
+user page =  0x8178000 kernel page = 0xc03be000
+Page Fault on 0x8179000
+user page =  0x8179000 kernel page = 0xc03bf000
+Page Fault on 0x817a000
+user page =  0x817a000 kernel page = 0xc03c0000
+Page Fault on 0x817b000
+user page =  0x817b000 kernel page = 0xc03c1000
+Page Fault on 0x817c000
+user page =  0x817c000 kernel page = 0xc03c2000
+Page Fault on 0x817d000
+user page =  0x817d000 kernel page = 0xc03c3000
+Page Fault on 0x817e000
+user page =  0x817e000 kernel page = 0xc03c4000
+Page Fault on 0x817f000
+user page =  0x817f000 kernel page = 0xc03c5000
+Page Fault on 0x8180000
+user page =  0x8180000 kernel page = 0xc03c6000
+Page Fault on 0x8181000
+user page =  0x8181000 kernel page = 0xc03c7000
+Page Fault on 0x8182000
+user page =  0x8182000 kernel page = 0xc03c8000
+Page Fault on 0x8183000
+user page =  0x8183000 kernel page = 0xc03c9000
+Page Fault on 0x8184000
+user page =  0x8184000 kernel page = 0xc03ca000
+Page Fault on 0x8185000
+user page =  0x8185000 kernel page = 0xc03cb000
+Page Fault on 0x8186000
+user page =  0x8186000 kernel page = 0xc03cc000
+Page Fault on 0x8187000
+user page =  0x8187000 kernel page = 0xc03cd000
+Page Fault on 0x8188000
+user page =  0x8188000 kernel page = 0xc03ce000
+Page Fault on 0x8189000
+user page =  0x8189000 kernel page = 0xc03cf000
+Page Fault on 0x818a000
+user page =  0x818a000 kernel page = 0xc03d0000
+Page Fault on 0x818b000
+user page =  0x818b000 kernel page = 0xc03d1000
+Page Fault on 0x818c000
+user page =  0x818c000 kernel page = 0xc03d2000
+Page Fault on 0x818d000
+user page =  0x818d000 kernel page = 0xc03d3000
+Page Fault on 0x818e000
+user page =  0x818e000 kernel page = 0xc03d4000
+Page Fault on 0x818f000
+user page =  0x818f000 kernel page = 0xc03d5000
+Page Fault on 0x8190000
+user page =  0x8190000 kernel page = 0xc03d6000
+Page Fault on 0x8191000
+user page =  0x8191000 kernel page = 0xc03d7000
+Page Fault on 0x8192000
+user page =  0x8192000 kernel page = 0xc03d8000
+Page Fault on 0x8193000
+user page =  0x8193000 kernel page = 0xc03d9000
+Page Fault on 0x8194000
+user page =  0x8194000 kernel page = 0xc03da000
+Page Fault on 0x8195000
+user page =  0x8195000 kernel page = 0xc03db000
+Page Fault on 0x8196000
+user page =  0x8196000 kernel page = 0xc03dc000
+Page Fault on 0x8197000
+user page =  0x8197000 kernel page = 0xc03dd000
+Page Fault on 0x8198000
+user page =  0x8198000 kernel page = 0xc03de000
+Page Fault on 0x8199000
+user page =  0x8199000 kernel page = 0xc03df000
+Page Fault on 0x819a000
+user page =  0x819a000 kernel page = 0xc03e0000
+Page Fault on 0x819b000
+user page =  0x819b000 kernel page = 0xc03e1000
+Page Fault on 0x819c000
+user page =  0x819c000 kernel page = 0xc03e2000
+Page Fault on 0x819d000
+user page =  0x819d000 kernel page = 0xc03e3000
+Page Fault on 0x819e000
+user page =  0x819e000 kernel page = 0xc03e4000
+Page Fault on 0x819f000
+user page =  0x819f000 kernel page = 0xc03e5000
+Page Fault on 0x81a0000
+user page =  0x81a0000 kernel page = 0xc03e6000
+Page Fault on 0x81a1000
+user page =  0x81a1000 kernel page = 0xc03e7000
+Page Fault on 0x81a2000
+user page =  0x81a2000 kernel page = 0xc03e8000
+Page Fault on 0x81a3000
+user page =  0x81a3000 kernel page = 0xc03e9000
+Page Fault on 0x81a4000
+user page =  0x81a4000 kernel page = 0xc03ea000
+Page Fault on 0x81a5000
+user page =  0x81a5000 kernel page = 0xc03eb000
+Page Fault on 0x81a6000
+user page =  0x81a6000 kernel page = 0xc03ec000
+Page Fault on 0x81a7000
+user page =  0x81a7000 kernel page = 0xc03ed000
+Page Fault on 0x81a8000
+user page =  0x81a8000 kernel page = 0xc03ee000
+Page Fault on 0x81a9000
+user page =  0x81a9000 kernel page = 0xc03ef000
+Page Fault on 0x81aa000
+user page =  0x81aa000 kernel page = 0xc03f0000
+Page Fault on 0x81ab000
+user page =  0x81ab000 kernel page = 0xc03f1000
+Page Fault on 0x81ac000
+user page =  0x81ac000 kernel page = 0xc03f2000
+Page Fault on 0x81ad000
+user page =  0x81ad000 kernel page = 0xc03f3000
+Page Fault on 0x81ae000
+user page =  0x81ae000 kernel page = 0xc03f4000
+Page Fault on 0x81af000
+user page =  0x81af000 kernel page = 0xc03f5000
+Page Fault on 0x81b0000
+user page =  0x81b0000 kernel page = 0xc03f6000
+Page Fault on 0x81b1000
+user page =  0x81b1000 kernel page = 0xc03f7000
+Page Fault on 0x81b2000
+user page =  0x81b2000 kernel page = 0xc03f8000
+Page Fault on 0x81b3000
+user page =  0x81b3000 kernel page = 0xc03f9000
+Page Fault on 0x81b4000
+user page =  0x81b4000 kernel page = 0xc03fa000
+Page Fault on 0x81b5000
+user page =  0x81b5000 kernel page = 0xc03fb000
+Page Fault on 0x81b6000
+user page =  0x81b6000 kernel page = 0xc03fc000
+Page Fault on 0x81b7000
+user page =  0x81b7000 kernel page = 0xc03fd000
+Page Fault on 0x81b8000
+user page =  0x81b8000 kernel page = 0xc03fe000
+Page Fault on 0x81b9000
+user page =  0x81b9000 kernel page = 0xc03ff000
+Page Fault on 0x81ba000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8048000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ba000 kernel page = 0xc028c000
+Page Fault on 0x81bb000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x824b000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81bb000 kernel page = 0xc028e000
+Page Fault on 0x81bc000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x804a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81bc000 kernel page = 0xc0290000
+Page Fault on 0x81bd000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x804c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81bd000 kernel page = 0xc0292000
+Page Fault on 0x81be000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x804e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81be000 kernel page = 0xc0294000
+Page Fault on 0x81bf000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8050000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81bf000 kernel page = 0xc0296000
+Page Fault on 0x81c0000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8052000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c0000 kernel page = 0xc0298000
+Page Fault on 0x81c1000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8054000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c1000 kernel page = 0xc029a000
+Page Fault on 0x81c2000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8056000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c2000 kernel page = 0xc029c000
+Page Fault on 0x81c3000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8058000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c3000 kernel page = 0xc029e000
+Page Fault on 0x81c4000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x805a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c4000 kernel page = 0xc02a0000
+Page Fault on 0x81c5000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x805c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c5000 kernel page = 0xc02a2000
+Page Fault on 0x81c6000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x805e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c6000 kernel page = 0xc02a4000
+Page Fault on 0x81c7000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8060000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c7000 kernel page = 0xc02a6000
+Page Fault on 0x81c8000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8062000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c8000 kernel page = 0xc02a8000
+Page Fault on 0x81c9000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8064000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81c9000 kernel page = 0xc02aa000
+Page Fault on 0x81ca000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8066000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ca000 kernel page = 0xc02ac000
+Page Fault on 0x81cb000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8068000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81cb000 kernel page = 0xc02ae000
+Page Fault on 0x81cc000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x806a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81cc000 kernel page = 0xc02b0000
+Page Fault on 0x81cd000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x806c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81cd000 kernel page = 0xc02b2000
+Page Fault on 0x81ce000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x806e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ce000 kernel page = 0xc02b4000
+Page Fault on 0x81cf000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8070000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81cf000 kernel page = 0xc02b6000
+Page Fault on 0x81d0000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8072000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d0000 kernel page = 0xc02b8000
+Page Fault on 0x81d1000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8074000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d1000 kernel page = 0xc02ba000
+Page Fault on 0x81d2000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8076000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d2000 kernel page = 0xc02bc000
+Page Fault on 0x81d3000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8078000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d3000 kernel page = 0xc02be000
+Page Fault on 0x81d4000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x807a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d4000 kernel page = 0xc02c0000
+Page Fault on 0x81d5000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x807c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d5000 kernel page = 0xc02c2000
+Page Fault on 0x81d6000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x807e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d6000 kernel page = 0xc02c4000
+Page Fault on 0x81d7000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8080000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d7000 kernel page = 0xc02c6000
+Page Fault on 0x81d8000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8082000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d8000 kernel page = 0xc02c8000
+Page Fault on 0x81d9000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8084000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81d9000 kernel page = 0xc02ca000
+Page Fault on 0x81da000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8086000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81da000 kernel page = 0xc02cc000
+Page Fault on 0x81db000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8088000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81db000 kernel page = 0xc02ce000
+Page Fault on 0x81dc000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x808a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81dc000 kernel page = 0xc02d0000
+Page Fault on 0x81dd000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x808c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81dd000 kernel page = 0xc02d2000
+Page Fault on 0x81de000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x808e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81de000 kernel page = 0xc02d4000
+Page Fault on 0x81df000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8090000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81df000 kernel page = 0xc02d6000
+Page Fault on 0x81e0000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8092000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e0000 kernel page = 0xc02d8000
+Page Fault on 0x81e1000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8094000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e1000 kernel page = 0xc02da000
+Page Fault on 0x81e2000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8096000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e2000 kernel page = 0xc02dc000
+Page Fault on 0x81e3000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8098000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e3000 kernel page = 0xc02de000
+Page Fault on 0x81e4000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x809a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e4000 kernel page = 0xc02e0000
+Page Fault on 0x81e5000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x809c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e5000 kernel page = 0xc02e2000
+Page Fault on 0x81e6000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x809e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e6000 kernel page = 0xc02e4000
+Page Fault on 0x81e7000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80a0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e7000 kernel page = 0xc02e6000
+Page Fault on 0x81e8000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80a2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e8000 kernel page = 0xc02e8000
+Page Fault on 0x81e9000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80a4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81e9000 kernel page = 0xc02ea000
+Page Fault on 0x81ea000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80a6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ea000 kernel page = 0xc02ec000
+Page Fault on 0x81eb000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80a8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81eb000 kernel page = 0xc02ee000
+Page Fault on 0x81ec000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80aa000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ec000 kernel page = 0xc02f0000
+Page Fault on 0x81ed000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ac000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ed000 kernel page = 0xc02f2000
+Page Fault on 0x81ee000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ae000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ee000 kernel page = 0xc02f4000
+Page Fault on 0x81ef000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80b0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ef000 kernel page = 0xc02f6000
+Page Fault on 0x81f0000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80b2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f0000 kernel page = 0xc02f8000
+Page Fault on 0x81f1000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80b4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f1000 kernel page = 0xc02fa000
+Page Fault on 0x81f2000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80b6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f2000 kernel page = 0xc02fc000
+Page Fault on 0x81f3000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80b8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f3000 kernel page = 0xc02fe000
+Page Fault on 0x81f4000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ba000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f4000 kernel page = 0xc0300000
+Page Fault on 0x81f5000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80bc000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f5000 kernel page = 0xc0302000
+Page Fault on 0x81f6000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80be000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f6000 kernel page = 0xc0304000
+Page Fault on 0x81f7000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80c0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f7000 kernel page = 0xc0306000
+Page Fault on 0x81f8000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80c2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f8000 kernel page = 0xc0308000
+Page Fault on 0x81f9000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80c4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81f9000 kernel page = 0xc030a000
+Page Fault on 0x81fa000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80c6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81fa000 kernel page = 0xc030c000
+Page Fault on 0x81fb000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80c8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81fb000 kernel page = 0xc030e000
+Page Fault on 0x81fc000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ca000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81fc000 kernel page = 0xc0310000
+Page Fault on 0x81fd000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80cc000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81fd000 kernel page = 0xc0312000
+Page Fault on 0x81fe000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ce000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81fe000 kernel page = 0xc0314000
+Page Fault on 0x81ff000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80d0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x81ff000 kernel page = 0xc0316000
+Page Fault on 0x8200000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80d2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8200000 kernel page = 0xc0318000
+Page Fault on 0x8201000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80d4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8201000 kernel page = 0xc031a000
+Page Fault on 0x8202000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80d6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8202000 kernel page = 0xc031c000
+Page Fault on 0x8203000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80d8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8203000 kernel page = 0xc031e000
+Page Fault on 0x8204000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80da000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8204000 kernel page = 0xc0320000
+Page Fault on 0x8205000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80dc000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8205000 kernel page = 0xc0322000
+Page Fault on 0x8206000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80de000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8206000 kernel page = 0xc0324000
+Page Fault on 0x8207000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80e0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8207000 kernel page = 0xc0326000
+Page Fault on 0x8208000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80e2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8208000 kernel page = 0xc0328000
+Page Fault on 0x8209000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80e4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8209000 kernel page = 0xc032a000
+Page Fault on 0x820a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80e6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x820a000 kernel page = 0xc032c000
+Page Fault on 0x820b000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80e8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x820b000 kernel page = 0xc032e000
+Page Fault on 0x820c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ea000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x820c000 kernel page = 0xc0330000
+Page Fault on 0x820d000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ec000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x820d000 kernel page = 0xc0332000
+Page Fault on 0x820e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80ee000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x820e000 kernel page = 0xc0334000
+Page Fault on 0x820f000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80f0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x820f000 kernel page = 0xc0336000
+Page Fault on 0x8210000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80f2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8210000 kernel page = 0xc0338000
+Page Fault on 0x8211000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80f4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8211000 kernel page = 0xc033a000
+Page Fault on 0x8212000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80f6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8212000 kernel page = 0xc033c000
+Page Fault on 0x8213000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80f8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8213000 kernel page = 0xc033e000
+Page Fault on 0x8214000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80fa000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8214000 kernel page = 0xc0340000
+Page Fault on 0x8215000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80fc000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8215000 kernel page = 0xc0342000
+Page Fault on 0x8216000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x80fe000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8216000 kernel page = 0xc0344000
+Page Fault on 0x8217000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8100000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8217000 kernel page = 0xc0346000
+Page Fault on 0x8218000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8102000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8218000 kernel page = 0xc0348000
+Page Fault on 0x8219000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8104000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8219000 kernel page = 0xc034a000
+Page Fault on 0x821a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8106000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x821a000 kernel page = 0xc034c000
+Page Fault on 0x821b000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8108000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x821b000 kernel page = 0xc034e000
+Page Fault on 0x821c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x810a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x821c000 kernel page = 0xc0350000
+Page Fault on 0x821d000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x810c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x821d000 kernel page = 0xc0352000
+Page Fault on 0x821e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x810e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x821e000 kernel page = 0xc0354000
+Page Fault on 0x821f000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8110000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x821f000 kernel page = 0xc0356000
+Page Fault on 0x8220000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8112000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8220000 kernel page = 0xc0358000
+Page Fault on 0x8221000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8114000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8221000 kernel page = 0xc035a000
+Page Fault on 0x8222000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8116000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8222000 kernel page = 0xc035c000
+Page Fault on 0x8223000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8118000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8223000 kernel page = 0xc035e000
+Page Fault on 0x8224000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x811a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8224000 kernel page = 0xc0360000
+Page Fault on 0x8225000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x811c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8225000 kernel page = 0xc0362000
+Page Fault on 0x8226000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x811e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8226000 kernel page = 0xc0364000
+Page Fault on 0x8227000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8120000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8227000 kernel page = 0xc0366000
+Page Fault on 0x8228000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8122000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8228000 kernel page = 0xc0368000
+Page Fault on 0x8229000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8124000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8229000 kernel page = 0xc036a000
+Page Fault on 0x822a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8126000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x822a000 kernel page = 0xc036c000
+Page Fault on 0x822b000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8128000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x822b000 kernel page = 0xc036e000
+Page Fault on 0x822c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x812a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x822c000 kernel page = 0xc0370000
+Page Fault on 0x822d000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x812c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x822d000 kernel page = 0xc0372000
+Page Fault on 0x822e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x812e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x822e000 kernel page = 0xc0374000
+Page Fault on 0x822f000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8130000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x822f000 kernel page = 0xc0376000
+Page Fault on 0x8230000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8132000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8230000 kernel page = 0xc0378000
+Page Fault on 0x8231000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8134000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8231000 kernel page = 0xc037a000
+Page Fault on 0x8232000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8136000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8232000 kernel page = 0xc037c000
+Page Fault on 0x8233000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8138000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8233000 kernel page = 0xc037e000
+Page Fault on 0x8234000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x813a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8234000 kernel page = 0xc0380000
+Page Fault on 0x8235000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x813c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8235000 kernel page = 0xc0382000
+Page Fault on 0x8236000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x813e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8236000 kernel page = 0xc0384000
+Page Fault on 0x8237000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8140000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8237000 kernel page = 0xc0386000
+Page Fault on 0x8238000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8142000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8238000 kernel page = 0xc0388000
+Page Fault on 0x8239000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8144000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8239000 kernel page = 0xc038a000
+Page Fault on 0x823a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8146000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x823a000 kernel page = 0xc038c000
+Page Fault on 0x823b000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8148000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x823b000 kernel page = 0xc038e000
+Page Fault on 0x823c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x814a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x823c000 kernel page = 0xc0390000
+Page Fault on 0x823d000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x814c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x823d000 kernel page = 0xc0392000
+Page Fault on 0x823e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x814e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x823e000 kernel page = 0xc0394000
+Page Fault on 0x823f000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8150000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x823f000 kernel page = 0xc0396000
+Page Fault on 0x8240000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8152000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8240000 kernel page = 0xc0398000
+Page Fault on 0x8241000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8154000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8241000 kernel page = 0xc039a000
+Page Fault on 0x8242000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8156000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8242000 kernel page = 0xc039c000
+Page Fault on 0x8243000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8158000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8243000 kernel page = 0xc039e000
+Page Fault on 0x8244000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x815a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8244000 kernel page = 0xc03a0000
+Page Fault on 0x8245000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x815c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8245000 kernel page = 0xc03a2000
+Page Fault on 0x8246000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x815e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8246000 kernel page = 0xc03a4000
+Page Fault on 0x8247000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8160000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8247000 kernel page = 0xc03a6000
+Page Fault on 0x8248000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8162000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8248000 kernel page = 0xc03a8000
+Page Fault on 0x8249000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8164000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x8249000 kernel page = 0xc03aa000
+Page Fault on 0x824a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8166000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+user page =  0x824a000 kernel page = 0xc03ac000
+Page Fault on 0x824b000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8168000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 8, for the address = 0x824b000
+Sector Number accessed = 9, for the address = 0x824b000
+Sector Number accessed = 10, for the address = 0x824b000
+Sector Number accessed = 11, for the address = 0x824b000
+Sector Number accessed = 12, for the address = 0x824b000
+Sector Number accessed = 13, for the address = 0x824b000
+Sector Number accessed = 14, for the address = 0x824b000
+Sector Number accessed = 15, for the address = 0x824b000
+user page =  0x824b000 kernel page = 0xc03ae000
+read from the swap disk ended
+Page Fault on 0x8048000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x816a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 0, for the address = 0x8048000
+Sector Number accessed = 1, for the address = 0x8048000
+Sector Number accessed = 2, for the address = 0x8048000
+Sector Number accessed = 3, for the address = 0x8048000
+Sector Number accessed = 4, for the address = 0x8048000
+Sector Number accessed = 5, for the address = 0x8048000
+Sector Number accessed = 6, for the address = 0x8048000
+Sector Number accessed = 7, for the address = 0x8048000
+user page =  0x8048000 kernel page = 0xc03b0000
+read from the swap disk ended
+Page Fault on 0x804a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x816c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 16, for the address = 0x804a000
+Sector Number accessed = 17, for the address = 0x804a000
+Sector Number accessed = 18, for the address = 0x804a000
+Sector Number accessed = 19, for the address = 0x804a000
+Sector Number accessed = 20, for the address = 0x804a000
+Sector Number accessed = 21, for the address = 0x804a000
+Sector Number accessed = 22, for the address = 0x804a000
+Sector Number accessed = 23, for the address = 0x804a000
+user page =  0x804a000 kernel page = 0xc03b2000
+read from the swap disk ended
+(page-linear) read pass
+Page Fault on 0x804c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x816e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 24, for the address = 0x804c000
+Sector Number accessed = 25, for the address = 0x804c000
+Sector Number accessed = 26, for the address = 0x804c000
+Sector Number accessed = 27, for the address = 0x804c000
+Sector Number accessed = 28, for the address = 0x804c000
+Sector Number accessed = 29, for the address = 0x804c000
+Sector Number accessed = 30, for the address = 0x804c000
+Sector Number accessed = 31, for the address = 0x804c000
+user page =  0x804c000 kernel page = 0xc03b4000
+read from the swap disk ended
+Page Fault on 0x804e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8170000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 32, for the address = 0x804e000
+Sector Number accessed = 33, for the address = 0x804e000
+Sector Number accessed = 34, for the address = 0x804e000
+Sector Number accessed = 35, for the address = 0x804e000
+Sector Number accessed = 36, for the address = 0x804e000
+Sector Number accessed = 37, for the address = 0x804e000
+Sector Number accessed = 38, for the address = 0x804e000
+Sector Number accessed = 39, for the address = 0x804e000
+user page =  0x804e000 kernel page = 0xc03b6000
+read from the swap disk ended
+Page Fault on 0x8050000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8172000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 40, for the address = 0x8050000
+Sector Number accessed = 41, for the address = 0x8050000
+Sector Number accessed = 42, for the address = 0x8050000
+Sector Number accessed = 43, for the address = 0x8050000
+Sector Number accessed = 44, for the address = 0x8050000
+Sector Number accessed = 45, for the address = 0x8050000
+Sector Number accessed = 46, for the address = 0x8050000
+Sector Number accessed = 47, for the address = 0x8050000
+user page =  0x8050000 kernel page = 0xc03b8000
+read from the swap disk ended
+Page Fault on 0x8052000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8174000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 48, for the address = 0x8052000
+Sector Number accessed = 49, for the address = 0x8052000
+Sector Number accessed = 50, for the address = 0x8052000
+Sector Number accessed = 51, for the address = 0x8052000
+Sector Number accessed = 52, for the address = 0x8052000
+Sector Number accessed = 53, for the address = 0x8052000
+Sector Number accessed = 54, for the address = 0x8052000
+Sector Number accessed = 55, for the address = 0x8052000
+user page =  0x8052000 kernel page = 0xc03ba000
+read from the swap disk ended
+Page Fault on 0x8054000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8176000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 56, for the address = 0x8054000
+Sector Number accessed = 57, for the address = 0x8054000
+Sector Number accessed = 58, for the address = 0x8054000
+Sector Number accessed = 59, for the address = 0x8054000
+Sector Number accessed = 60, for the address = 0x8054000
+Sector Number accessed = 61, for the address = 0x8054000
+Sector Number accessed = 62, for the address = 0x8054000
+Sector Number accessed = 63, for the address = 0x8054000
+user page =  0x8054000 kernel page = 0xc03bc000
+read from the swap disk ended
+Page Fault on 0x8056000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8178000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 64, for the address = 0x8056000
+Sector Number accessed = 65, for the address = 0x8056000
+Sector Number accessed = 66, for the address = 0x8056000
+Sector Number accessed = 67, for the address = 0x8056000
+Sector Number accessed = 68, for the address = 0x8056000
+Sector Number accessed = 69, for the address = 0x8056000
+Sector Number accessed = 70, for the address = 0x8056000
+Sector Number accessed = 71, for the address = 0x8056000
+user page =  0x8056000 kernel page = 0xc03be000
+read from the swap disk ended
+Page Fault on 0x8058000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x817a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 72, for the address = 0x8058000
+Sector Number accessed = 73, for the address = 0x8058000
+Sector Number accessed = 74, for the address = 0x8058000
+Sector Number accessed = 75, for the address = 0x8058000
+Sector Number accessed = 76, for the address = 0x8058000
+Sector Number accessed = 77, for the address = 0x8058000
+Sector Number accessed = 78, for the address = 0x8058000
+Sector Number accessed = 79, for the address = 0x8058000
+user page =  0x8058000 kernel page = 0xc03c0000
+read from the swap disk ended
+Page Fault on 0x805a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x817c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 80, for the address = 0x805a000
+Sector Number accessed = 81, for the address = 0x805a000
+Sector Number accessed = 82, for the address = 0x805a000
+Sector Number accessed = 83, for the address = 0x805a000
+Sector Number accessed = 84, for the address = 0x805a000
+Sector Number accessed = 85, for the address = 0x805a000
+Sector Number accessed = 86, for the address = 0x805a000
+Sector Number accessed = 87, for the address = 0x805a000
+user page =  0x805a000 kernel page = 0xc03c2000
+read from the swap disk ended
+Page Fault on 0x805c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x817e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 88, for the address = 0x805c000
+Sector Number accessed = 89, for the address = 0x805c000
+Sector Number accessed = 90, for the address = 0x805c000
+Sector Number accessed = 91, for the address = 0x805c000
+Sector Number accessed = 92, for the address = 0x805c000
+Sector Number accessed = 93, for the address = 0x805c000
+Sector Number accessed = 94, for the address = 0x805c000
+Sector Number accessed = 95, for the address = 0x805c000
+user page =  0x805c000 kernel page = 0xc03c4000
+read from the swap disk ended
+Page Fault on 0x805e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8180000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 96, for the address = 0x805e000
+Sector Number accessed = 97, for the address = 0x805e000
+Sector Number accessed = 98, for the address = 0x805e000
+Sector Number accessed = 99, for the address = 0x805e000
+Sector Number accessed = 100, for the address = 0x805e000
+Sector Number accessed = 101, for the address = 0x805e000
+Sector Number accessed = 102, for the address = 0x805e000
+Sector Number accessed = 103, for the address = 0x805e000
+user page =  0x805e000 kernel page = 0xc03c6000
+read from the swap disk ended
+Page Fault on 0x8060000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8182000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 104, for the address = 0x8060000
+Sector Number accessed = 105, for the address = 0x8060000
+Sector Number accessed = 106, for the address = 0x8060000
+Sector Number accessed = 107, for the address = 0x8060000
+Sector Number accessed = 108, for the address = 0x8060000
+Sector Number accessed = 109, for the address = 0x8060000
+Sector Number accessed = 110, for the address = 0x8060000
+Sector Number accessed = 111, for the address = 0x8060000
+user page =  0x8060000 kernel page = 0xc03c8000
+read from the swap disk ended
+Page Fault on 0x8062000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8184000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 112, for the address = 0x8062000
+Sector Number accessed = 113, for the address = 0x8062000
+Sector Number accessed = 114, for the address = 0x8062000
+Sector Number accessed = 115, for the address = 0x8062000
+Sector Number accessed = 116, for the address = 0x8062000
+Sector Number accessed = 117, for the address = 0x8062000
+Sector Number accessed = 118, for the address = 0x8062000
+Sector Number accessed = 119, for the address = 0x8062000
+user page =  0x8062000 kernel page = 0xc03ca000
+read from the swap disk ended
+Page Fault on 0x8064000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8186000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 120, for the address = 0x8064000
+Sector Number accessed = 121, for the address = 0x8064000
+Sector Number accessed = 122, for the address = 0x8064000
+Sector Number accessed = 123, for the address = 0x8064000
+Sector Number accessed = 124, for the address = 0x8064000
+Sector Number accessed = 125, for the address = 0x8064000
+Sector Number accessed = 126, for the address = 0x8064000
+Sector Number accessed = 127, for the address = 0x8064000
+user page =  0x8064000 kernel page = 0xc03cc000
+read from the swap disk ended
+Page Fault on 0x8066000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8188000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 128, for the address = 0x8066000
+Sector Number accessed = 129, for the address = 0x8066000
+Sector Number accessed = 130, for the address = 0x8066000
+Sector Number accessed = 131, for the address = 0x8066000
+Sector Number accessed = 132, for the address = 0x8066000
+Sector Number accessed = 133, for the address = 0x8066000
+Sector Number accessed = 134, for the address = 0x8066000
+Sector Number accessed = 135, for the address = 0x8066000
+user page =  0x8066000 kernel page = 0xc03ce000
+read from the swap disk ended
+Page Fault on 0x8068000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x818a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 136, for the address = 0x8068000
+Sector Number accessed = 137, for the address = 0x8068000
+Sector Number accessed = 138, for the address = 0x8068000
+Sector Number accessed = 139, for the address = 0x8068000
+Sector Number accessed = 140, for the address = 0x8068000
+Sector Number accessed = 141, for the address = 0x8068000
+Sector Number accessed = 142, for the address = 0x8068000
+Sector Number accessed = 143, for the address = 0x8068000
+user page =  0x8068000 kernel page = 0xc03d0000
+read from the swap disk ended
+Page Fault on 0x806a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x818c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 144, for the address = 0x806a000
+Sector Number accessed = 145, for the address = 0x806a000
+Sector Number accessed = 146, for the address = 0x806a000
+Sector Number accessed = 147, for the address = 0x806a000
+Sector Number accessed = 148, for the address = 0x806a000
+Sector Number accessed = 149, for the address = 0x806a000
+Sector Number accessed = 150, for the address = 0x806a000
+Sector Number accessed = 151, for the address = 0x806a000
+user page =  0x806a000 kernel page = 0xc03d2000
+read from the swap disk ended
+Page Fault on 0x806c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x818e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 152, for the address = 0x806c000
+Sector Number accessed = 153, for the address = 0x806c000
+Sector Number accessed = 154, for the address = 0x806c000
+Sector Number accessed = 155, for the address = 0x806c000
+Sector Number accessed = 156, for the address = 0x806c000
+Sector Number accessed = 157, for the address = 0x806c000
+Sector Number accessed = 158, for the address = 0x806c000
+Sector Number accessed = 159, for the address = 0x806c000
+user page =  0x806c000 kernel page = 0xc03d4000
+read from the swap disk ended
+Page Fault on 0x806e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8190000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 160, for the address = 0x806e000
+Sector Number accessed = 161, for the address = 0x806e000
+Sector Number accessed = 162, for the address = 0x806e000
+Sector Number accessed = 163, for the address = 0x806e000
+Sector Number accessed = 164, for the address = 0x806e000
+Sector Number accessed = 165, for the address = 0x806e000
+Sector Number accessed = 166, for the address = 0x806e000
+Sector Number accessed = 167, for the address = 0x806e000
+user page =  0x806e000 kernel page = 0xc03d6000
+read from the swap disk ended
+Page Fault on 0x8070000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8192000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 168, for the address = 0x8070000
+Sector Number accessed = 169, for the address = 0x8070000
+Sector Number accessed = 170, for the address = 0x8070000
+Sector Number accessed = 171, for the address = 0x8070000
+Sector Number accessed = 172, for the address = 0x8070000
+Sector Number accessed = 173, for the address = 0x8070000
+Sector Number accessed = 174, for the address = 0x8070000
+Sector Number accessed = 175, for the address = 0x8070000
+user page =  0x8070000 kernel page = 0xc03d8000
+read from the swap disk ended
+Page Fault on 0x8072000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8194000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 176, for the address = 0x8072000
+Sector Number accessed = 177, for the address = 0x8072000
+Sector Number accessed = 178, for the address = 0x8072000
+Sector Number accessed = 179, for the address = 0x8072000
+Sector Number accessed = 180, for the address = 0x8072000
+Sector Number accessed = 181, for the address = 0x8072000
+Sector Number accessed = 182, for the address = 0x8072000
+Sector Number accessed = 183, for the address = 0x8072000
+user page =  0x8072000 kernel page = 0xc03da000
+read from the swap disk ended
+Page Fault on 0x8074000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8196000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 184, for the address = 0x8074000
+Sector Number accessed = 185, for the address = 0x8074000
+Sector Number accessed = 186, for the address = 0x8074000
+Sector Number accessed = 187, for the address = 0x8074000
+Sector Number accessed = 188, for the address = 0x8074000
+Sector Number accessed = 189, for the address = 0x8074000
+Sector Number accessed = 190, for the address = 0x8074000
+Sector Number accessed = 191, for the address = 0x8074000
+user page =  0x8074000 kernel page = 0xc03dc000
+read from the swap disk ended
+Page Fault on 0x8076000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x8198000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 192, for the address = 0x8076000
+Sector Number accessed = 193, for the address = 0x8076000
+Sector Number accessed = 194, for the address = 0x8076000
+Sector Number accessed = 195, for the address = 0x8076000
+Sector Number accessed = 196, for the address = 0x8076000
+Sector Number accessed = 197, for the address = 0x8076000
+Sector Number accessed = 198, for the address = 0x8076000
+Sector Number accessed = 199, for the address = 0x8076000
+user page =  0x8076000 kernel page = 0xc03de000
+read from the swap disk ended
+Page Fault on 0x8078000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x819a000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 200, for the address = 0x8078000
+Sector Number accessed = 201, for the address = 0x8078000
+Sector Number accessed = 202, for the address = 0x8078000
+Sector Number accessed = 203, for the address = 0x8078000
+Sector Number accessed = 204, for the address = 0x8078000
+Sector Number accessed = 205, for the address = 0x8078000
+Sector Number accessed = 206, for the address = 0x8078000
+Sector Number accessed = 207, for the address = 0x8078000
+user page =  0x8078000 kernel page = 0xc03e0000
+read from the swap disk ended
+Page Fault on 0x807a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x819c000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 208, for the address = 0x807a000
+Sector Number accessed = 209, for the address = 0x807a000
+Sector Number accessed = 210, for the address = 0x807a000
+Sector Number accessed = 211, for the address = 0x807a000
+Sector Number accessed = 212, for the address = 0x807a000
+Sector Number accessed = 213, for the address = 0x807a000
+Sector Number accessed = 214, for the address = 0x807a000
+Sector Number accessed = 215, for the address = 0x807a000
+user page =  0x807a000 kernel page = 0xc03e2000
+read from the swap disk ended
+Page Fault on 0x807c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x819e000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 216, for the address = 0x807c000
+Sector Number accessed = 217, for the address = 0x807c000
+Sector Number accessed = 218, for the address = 0x807c000
+Sector Number accessed = 219, for the address = 0x807c000
+Sector Number accessed = 220, for the address = 0x807c000
+Sector Number accessed = 221, for the address = 0x807c000
+Sector Number accessed = 222, for the address = 0x807c000
+Sector Number accessed = 223, for the address = 0x807c000
+user page =  0x807c000 kernel page = 0xc03e4000
+read from the swap disk ended
+Page Fault on 0x807e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81a0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 224, for the address = 0x807e000
+Sector Number accessed = 225, for the address = 0x807e000
+Sector Number accessed = 226, for the address = 0x807e000
+Sector Number accessed = 227, for the address = 0x807e000
+Sector Number accessed = 228, for the address = 0x807e000
+Sector Number accessed = 229, for the address = 0x807e000
+Sector Number accessed = 230, for the address = 0x807e000
+Sector Number accessed = 231, for the address = 0x807e000
+user page =  0x807e000 kernel page = 0xc03e6000
+read from the swap disk ended
+Page Fault on 0x8080000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81a2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 232, for the address = 0x8080000
+Sector Number accessed = 233, for the address = 0x8080000
+Sector Number accessed = 234, for the address = 0x8080000
+Sector Number accessed = 235, for the address = 0x8080000
+Sector Number accessed = 236, for the address = 0x8080000
+Sector Number accessed = 237, for the address = 0x8080000
+Sector Number accessed = 238, for the address = 0x8080000
+Sector Number accessed = 239, for the address = 0x8080000
+user page =  0x8080000 kernel page = 0xc03e8000
+read from the swap disk ended
+Page Fault on 0x8082000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81a4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 240, for the address = 0x8082000
+Sector Number accessed = 241, for the address = 0x8082000
+Sector Number accessed = 242, for the address = 0x8082000
+Sector Number accessed = 243, for the address = 0x8082000
+Sector Number accessed = 244, for the address = 0x8082000
+Sector Number accessed = 245, for the address = 0x8082000
+Sector Number accessed = 246, for the address = 0x8082000
+Sector Number accessed = 247, for the address = 0x8082000
+user page =  0x8082000 kernel page = 0xc03ea000
+read from the swap disk ended
+Page Fault on 0x8084000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81a6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 248, for the address = 0x8084000
+Sector Number accessed = 249, for the address = 0x8084000
+Sector Number accessed = 250, for the address = 0x8084000
+Sector Number accessed = 251, for the address = 0x8084000
+Sector Number accessed = 252, for the address = 0x8084000
+Sector Number accessed = 253, for the address = 0x8084000
+Sector Number accessed = 254, for the address = 0x8084000
+Sector Number accessed = 255, for the address = 0x8084000
+user page =  0x8084000 kernel page = 0xc03ec000
+read from the swap disk ended
+Page Fault on 0x8086000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81a8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 256, for the address = 0x8086000
+Sector Number accessed = 257, for the address = 0x8086000
+Sector Number accessed = 258, for the address = 0x8086000
+Sector Number accessed = 259, for the address = 0x8086000
+Sector Number accessed = 260, for the address = 0x8086000
+Sector Number accessed = 261, for the address = 0x8086000
+Sector Number accessed = 262, for the address = 0x8086000
+Sector Number accessed = 263, for the address = 0x8086000
+user page =  0x8086000 kernel page = 0xc03ee000
+read from the swap disk ended
+Page Fault on 0x8088000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81aa000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 264, for the address = 0x8088000
+Sector Number accessed = 265, for the address = 0x8088000
+Sector Number accessed = 266, for the address = 0x8088000
+Sector Number accessed = 267, for the address = 0x8088000
+Sector Number accessed = 268, for the address = 0x8088000
+Sector Number accessed = 269, for the address = 0x8088000
+Sector Number accessed = 270, for the address = 0x8088000
+Sector Number accessed = 271, for the address = 0x8088000
+user page =  0x8088000 kernel page = 0xc03f0000
+read from the swap disk ended
+Page Fault on 0x808a000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81ac000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 272, for the address = 0x808a000
+Sector Number accessed = 273, for the address = 0x808a000
+Sector Number accessed = 274, for the address = 0x808a000
+Sector Number accessed = 275, for the address = 0x808a000
+Sector Number accessed = 276, for the address = 0x808a000
+Sector Number accessed = 277, for the address = 0x808a000
+Sector Number accessed = 278, for the address = 0x808a000
+Sector Number accessed = 279, for the address = 0x808a000
+user page =  0x808a000 kernel page = 0xc03f2000
+read from the swap disk ended
+Page Fault on 0x808c000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81ae000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 280, for the address = 0x808c000
+Sector Number accessed = 281, for the address = 0x808c000
+Sector Number accessed = 282, for the address = 0x808c000
+Sector Number accessed = 283, for the address = 0x808c000
+Sector Number accessed = 284, for the address = 0x808c000
+Sector Number accessed = 285, for the address = 0x808c000
+Sector Number accessed = 286, for the address = 0x808c000
+Sector Number accessed = 287, for the address = 0x808c000
+user page =  0x808c000 kernel page = 0xc03f4000
+read from the swap disk ended
+Page Fault on 0x808e000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81b0000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 288, for the address = 0x808e000
+Sector Number accessed = 289, for the address = 0x808e000
+Sector Number accessed = 290, for the address = 0x808e000
+Sector Number accessed = 291, for the address = 0x808e000
+Sector Number accessed = 292, for the address = 0x808e000
+Sector Number accessed = 293, for the address = 0x808e000
+Sector Number accessed = 294, for the address = 0x808e000
+Sector Number accessed = 295, for the address = 0x808e000
+user page =  0x808e000 kernel page = 0xc03f6000
+read from the swap disk ended
+Page Fault on 0x8090000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81b2000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 296, for the address = 0x8090000
+Sector Number accessed = 297, for the address = 0x8090000
+Sector Number accessed = 298, for the address = 0x8090000
+Sector Number accessed = 299, for the address = 0x8090000
+Sector Number accessed = 300, for the address = 0x8090000
+Sector Number accessed = 301, for the address = 0x8090000
+Sector Number accessed = 302, for the address = 0x8090000
+Sector Number accessed = 303, for the address = 0x8090000
+user page =  0x8090000 kernel page = 0xc03f8000
+read from the swap disk ended
+Page Fault on 0x8092000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81b4000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 304, for the address = 0x8092000
+Sector Number accessed = 305, for the address = 0x8092000
+Sector Number accessed = 306, for the address = 0x8092000
+Sector Number accessed = 307, for the address = 0x8092000
+Sector Number accessed = 308, for the address = 0x8092000
+Sector Number accessed = 309, for the address = 0x8092000
+Sector Number accessed = 310, for the address = 0x8092000
+Sector Number accessed = 311, for the address = 0x8092000
+user page =  0x8092000 kernel page = 0xc03fa000
+read from the swap disk ended
+Page Fault on 0x8094000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81b6000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 312, for the address = 0x8094000
+Sector Number accessed = 313, for the address = 0x8094000
+Sector Number accessed = 314, for the address = 0x8094000
+Sector Number accessed = 315, for the address = 0x8094000
+Sector Number accessed = 316, for the address = 0x8094000
+Sector Number accessed = 317, for the address = 0x8094000
+Sector Number accessed = 318, for the address = 0x8094000
+Sector Number accessed = 319, for the address = 0x8094000
+user page =  0x8094000 kernel page = 0xc03fc000
+read from the swap disk ended
+Page Fault on 0x8096000
+In Second Chance
+In Evict Frame
+write to swap disk called from Memory 
+0x81b8000 updated in the supplementary page table
+write to swap disk ended From Memory Ended
+frame returned on eviction
+read from the swap disk called
+Sector Number accessed = 320, for the address = 0x8096000
+Sector Number accessed = 321, for the address = 0x8096000
+Sector Number accessed = 322, for the address = 0x8096000
+Sector Number accessed = 323, for the address = 0x8096000
+Sector Number accessed = 324, for the address = 0x8096000
+Sector Number accessed = 325, for the address = 0x8096000
+Sector Number accessed = 326, for the address = 0x8096000
+Sector Number accessed = 327, for the address = 0x8096000
+user page =  0x8096000 kernel page = 0xc03fe000
+read from the swap disk ended
+Page Fault on 0x8098000
+In Second Chance
+In Evict Frame
+0xbffff000 not found in the supplementary page table for the frame address 0xc028b000
+write to swap disk called from Memory 
+HashStruct == NULL 
+page-linear: exit(-1)
+Execution of 'page-linear' complete.
+Timer: 344 ticks
+Thread: 0 idle ticks, 53 kernel ticks, 291 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 63 reads, 210 writes
+hd1:0: 101 reads, 0 writes
+hd1:1: 328 reads, 1488 writes
+Console: 123661 characters output
+Keyboard: 0 keys pressed
+Powering off...

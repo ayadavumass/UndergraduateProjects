@@ -1,0 +1,2 @@
+./BASE_semanttest/neg_incorrect.cl:2: Argument of '~' has type Bool instead of Int.
+Compilation halted due to static semantic errors.

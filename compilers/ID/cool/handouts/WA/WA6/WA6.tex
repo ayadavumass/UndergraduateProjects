@@ -1,0 +1,192 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\input{../handout-number}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\thmLabel}[1]{{\rm (}{\em #1\/}{\rm )}}
+
+\newcommand{\ntsym}[1]{\hbox{\em #1}}
+\newcommand{\tsym}[1]{\hbox{\rm #1}}
+
+\def\ra{\rightarrow}     % grammar "rewrites-as" symbol
+\def\ep{\varepsilon}     % epsilon for empty-string
+
+
+\begin{document}
+\handout{\WASixNum}{3}{Written Assignment 6 \\ Due March 18, 2004}
+
+This assignment asks you to prepare written answers to questions on
+run-time environment and code generation. Each of the questions has a short answer. You
+may discuss this assignment with other students and work on the
+problems together.  However, your write-up should be your own
+individual work.  Remember that written assignments are to be turned
+in either at the start of lecture or in the CS164 homework box in 283
+Soda by 12:30 PM on the due date.
+
+\medskip
+
+{\bf\em Please write your name, your account name, your TA's name, and
+your section time on your homework!}  We need this information so that we
+can give you credit for the assignment and so that we can return it to
+you.
+
+\bigskip
+
+\begin{enumerate}
+
+\item Suppose \texttt{f} is a function with a call to \texttt{g}
+somewhere in the body of \texttt{f}:
+\begin{verbatim}
+f(...) {
+ ... g(...) ...
+}
+\end{verbatim}
+We say that this particular call to \texttt{g} is a {\it tail call}
+if the call is the last thing \texttt{f} does before returning.  For
+example, consider the following functions for computing positive
+powers of 2:
+\begin{verbatim}
+f(x:Int, acc:Int) : Int { if x > 0 then f(x-1, acc*2) else acc fi };
+g(x:Int) : Int { if x > 0 then 2*g(x-1) else 1 fi };
+\end{verbatim}
+Here $\verb'f(x, 1)' = \verb'g(x)' = 2^x$ for $x\geq 0$.  The
+recursive call to \texttt{f} is a tail call, while the recursive call
+to \texttt{g} is not.  A function in which all recursive calls are
+tail calls is called {\it tail recursive}.
+
+\begin{enumerate}
+\item Here is a non-tail recursive function for computing factorial:
+\begin{verbatim}
+fact(n:Int) : Int { if n > 0 then n*fact(n-1) else 1 fi };
+\end{verbatim}
+Write a tail recursive function \verb'fact2' that computes the same
+result.  (Hint: Your function will most likely need two arguments, or
+it may need to invoke a function of two arguments.)
+
+\item Recall from lecture that function calls are usually implemented
+using a stack of activation records.  Trace through the execution of
+\verb'fact' and \verb'fact2' both computing $4!$, writing out the
+stack of activation records at each step (i.e., draw the tree of
+activation records).  (If you were unable to write a tail-recursive
+version of \verb'fact', show functions \texttt{f} and \texttt{g} from
+above computing $2^4$.)  Indicate the amount of computation done
+before, during, and after each record is created or destroyed.  Is
+there any place where you can see potential for making the execution
+of the tail-recursive \verb'fact2' more time- or space-efficient than
+\verb'fact' (without changing \verb'fact2''s source code)?  What could
+you do?
+
+%Suppose we have some way of
+%recognizing that \verb'fact2' is tail-recursive.  How can a compiler
+%take advantage of this fact?  (Hint: Compare the stack space required
+%for \verb'fact(99)' with the stack space required for
+%\verb'fact2(99)'.  Can \verb'fact2' use fewer activation records?)
+
+\item Now consider the following pair of functions:
+\begin{verbatim}
+f(x:Int, acc:Int) : Int { if x > 0 then g(x-1, acc*2) else acc fi };
+g(x:Int, acc:Int) : Int { if x > 0 then f(x-1, acc*5) else acc fi };
+\end{verbatim}
+In this case, the calls to \texttt{g} and \texttt{f} are all tail
+calls but they are not immediately recursive.  Can you extend you
+answer to part (b) so that a compiler can use only one or two
+activation records for a call to \texttt{f} or \texttt{g}?  (Hint:
+Consider the case when the initial invocation of these functions is
+via a call to \texttt{f} and the case when the initial invocation is
+via a call to \texttt{g}.)
+\end{enumerate}
+
+\item Consider the following MIPS assembly code program.  Using the
+code generation rules from lecture, what source program produces this
+code?
+\begin{verbatim}
+f_entry:
+        move  $fp $sp
+        sw    $ra 0($sp)
+        addiu $sp $sp -4
+        lw    $a0 4($fp)
+        sw    $a0 0($sp)
+        addiu $sp $sp -4
+        li    $a0 0
+        lw    $t1 4($sp)
+        addiu $sp $sp 4
+        beq   $a0 $t1 true_branch
+false_branch:
+        lw    $a0 4($fp)
+        sw    $a0 0($sp)
+        addiu $sp $sp -4
+        sw    $fp 0($sp)
+        addiu $sp $sp -4
+        lw    $a0 4($fp)
+        sw    $a0 0($sp)
+        addiu $sp $sp -4
+        li    $a0 1
+        lw    $t1 4($sp)
+        sub   $a0 $t1 $a0
+        addiu $sp $sp 4
+        sw    $a0 0($sp)
+        addiu $sp $sp -4
+        jal   f_entry
+        lw    $t1 4($sp)
+        add   $a0 $a0 $t1
+        addiu $sp $sp 4
+        b     end_if
+true_branch:
+        li    $a0 0
+end_if:
+        lw    $ra 4($sp)
+        addiu $sp $sp 12
+        lw    $fp 0($sp)
+        jr    $ra
+\end{verbatim}
+
+\item Give a recursive definition of the cgen function (as given in
+  slide 52 in the lecture notes) for the following new construct. 
+\begin{eqnarray*}
+\tt{for}\;\; i = e_1 \;\;to\;\; e_2 \;\;\tt{by}\;\; e_3 \;\;\tt{do }\;\; e_4
+\end{eqnarray*}
+
+Assume that the subexpressions $e_1, e_2, e_3$ and $e_4$ are
+integer-valued. A ``for loop'' expression is evaluated according to
+the following rules. The first three subexpressions are evaluated once 
+at the start of the loop in the order $e_1$, $e_2$, and then $e_3$. 
+The subexpression $e_4$ is evaluated once per iteration of the loop.
+The index variable $i$ is initialized to the value of $e_1$. 
+The loop bound is the value of $e_2$ and $i$ is incremented by the 
+value of $e_3$ after each iteration. The loop terminates before
+executing an iteration where the value of $i$ is greater than the 
+loop bound. The value returned by the ``for loop'' expression is the value of the
+expression $e_4$ in the last iteration. If the loop does not execute
+at all, then the value returned is the integer $0$. 
+
+Following is a more formal semantics of the for expression in terms of the Cool
+expressions. 
+\begin{tabbing}
+  \hspace*{3mm} \= let t: Int $\leftarrow$ $e_1$ in \\
+  \> let bound:Int  $\leftarrow$ $e_2$ in \\
+  \> let incr:Int  $\leftarrow$ $e_3$ in \\
+  \> let result:Int  $\leftarrow$ $0$ in \\
+  \> let \= i:Int $\leftarrow$ $t$ in   \\
+   \>  \> while \= ($i$ $\leq$ bound) loop \{ \\
+     \>\>\>   result $\leftarrow$ $e_4$; \\
+\> \> \> $i$ $\leftarrow$ $i$ + incr; \\
+     \> \> \} pool; \\
+     \> \> result  \\
+\end{tabbing}
+
+Note that the expressions $e_1$, $e_2$ and $e_3$ are evaluated ONLY once before the start of the loop.
+Also note that any occurences of variable $i$ in $e_1$, $e_2$ and
+$e_3$ refer to the value of $i$ 
+just before the for loop.
+Any occurrence of variable $i$ in expression $e_4$ refers to the loop index variable $i$.
+
+
+\end{enumerate}
+
+
+\end{document}

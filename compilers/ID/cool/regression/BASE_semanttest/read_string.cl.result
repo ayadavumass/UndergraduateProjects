@@ -1,0 +1,83 @@
+#16
+_program
+ #15
+ _class
+   Main
+   IO
+   "./BASE_semanttest/read_string.cl"
+   (
+   #14
+   _method
+     main
+     Object
+     #13
+     _loop
+       #3
+       _bool
+         1
+       : Bool
+       #12
+       _block
+         #5
+         _dispatch
+           #5
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #5
+           _string
+             "Enter a line:\n"
+           : String
+           )
+         : SELF_TYPE
+         #11
+         _let
+           s
+           String
+           #6
+           _dispatch
+             #6
+             _object
+               self
+             : SELF_TYPE
+             in_string
+             (
+             )
+           : String
+           #10
+           _block
+             #8
+             _dispatch
+               #8
+               _object
+                 self
+               : SELF_TYPE
+               out_string
+               (
+               #8
+               _string
+                 "Entered:\n"
+               : String
+               )
+             : SELF_TYPE
+             #9
+             _dispatch
+               #9
+               _object
+                 self
+               : SELF_TYPE
+               out_string
+               (
+               #9
+               _object
+                 s
+               : String
+               )
+             : SELF_TYPE
+           : SELF_TYPE
+         : SELF_TYPE
+       : SELF_TYPE
+     : Object
+   )

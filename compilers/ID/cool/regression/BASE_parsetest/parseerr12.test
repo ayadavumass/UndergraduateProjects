@@ -1,0 +1,4 @@
+-- Comparison operators are non-associative
+class Main is
+	a : Bool <- 1 <= 2 <= 3;
+end;

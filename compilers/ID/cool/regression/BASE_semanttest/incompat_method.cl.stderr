@@ -1,0 +1,3 @@
+./BASE_semanttest/incompat_method.cl:9: In redefined method f, parameter type Bool is different from original type Int
+Class Main is not defined.
+Compilation halted due to static semantic errors.

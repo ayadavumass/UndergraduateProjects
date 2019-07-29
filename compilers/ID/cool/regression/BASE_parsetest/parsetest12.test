@@ -1,0 +1,23 @@
+-- complex association of arithmetic, comparisons, and dispatch
+class A is end;
+
+class B is 
+   g() : Int is 
+	case self of
+		x : B => 1;
+	esac
+   end;
+end;
+
+class Main is
+
+    a : A <- begin 9 * 3 + 2 * ~10 - 9 / 9 / 8 - ~4; new A; end;
+
+    b : Bool <- begin (not not not not true = not not false) = true; end;
+
+    f(x : Int) : B is begin new A; new B; end end;
+
+    h() : Int is self@Main.f(3)@B.g() end;
+
+    main(): Int is 1 end;
+end;

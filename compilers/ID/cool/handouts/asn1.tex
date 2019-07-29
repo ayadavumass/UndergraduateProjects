@@ -1,0 +1,222 @@
+\documentclass[11pt]{article}
+\usepackage{handout}
+%
+% Copyright (c) 1995-1996 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+\input{macros}
+\input{handout-number}
+
+% when updating this file for a new semester, remember to:
+%   - change the DUE DATE (very important!)
+%   - update handout.sty, where it says which semester this is
+
+% you may also want to remove the section about the optional tool
+%  at the bottom of the document, it was used in spring 2002
+
+\begin{document}
+\handout{\PAOneNum}{3}{Programming Assignment I \\ Due Friday, January 30, 2004 at 11:59pm}
+
+This assignment asks you to write a short Cool program.  The purpose is
+to acquaint you with the Cool language and to give you experience with
+some of the tools used in the course.  This assignment will {\em not} be
+done with a partner; you should turn in your own individual work.  All
+future programming assignments will be done in teams of either one or
+two.
+
+A machine with only a single stack for storage is a {\em stack machine}.
+Consider the following very primitive language for programming  
+a stack machine: \\
+\begin{center}
+\begin{tabular}{r|l}
+{\em Command} & {\em Meaning} \\ \hline
+{\em int}  & push the integer {\em int}  on the stack \\
++ & push a `+' on the stack \\
+s & push an `s' on the stack \\
+e & evaluate the top of the stack (see below) \\
+d & display contents of the stack \\
+x & stop
+\end{tabular}
+\end{center}
+
+The `d' command simply prints out the contents of the stack, one element
+per line, beginning with the top of the stack.  The behavior of the `e'
+command depends on the contents of the stack when `e' is issued:
+\begin{itemize}
+\item If `+' is on the top of the stack, then the `+'
+is popped off the stack, the following two integers are popped
+and added, and the result is pushed back on the stack.
+
+\item If `s' is on top of the stack, then the `s' is popped and
+the following two items are swapped on the stack.
+
+\item If an integer is on top of the stack or the stack is empty, the
+stack is left unchanged.
+\end{itemize}
+
+The following examples show the effect of the `e' command in various
+situations; the top of the stack is on the left:
+\[
+\begin{array}{lcl}
+\m{\em stack before} & & \m{\em stack after} \\
++ \; 1 \; 2 \; 5 \; s \ldots & \;\; & 3 \; 5 \; s \ldots \\
+s \; 1 \; + \; + \,\; 99 \ldots & & + \,\; 1\; + \; 99 \\
+1 \; + \; 3 \ldots & & 1 \; + \; 3 \ldots \\
+\end{array}
+\]
+
+You are to implement an interpreter for this language in Cool.  Input to
+the program is a series of commands, one command per line.  Your
+interpreter should prompt for commands with {\tt >}.  Your program need
+not do any error checking: you may assume that all commands are valid
+and that the appropriate number and type of arguments are on the stack
+for evaluation. You may also assume that the input integers are
+unsigned.  Your interpreter should exit gracefully; do not call {\tt abort()}
+after receiving an {\tt x}. % 'cause abort() confuses the autograder.
+
+You are free to implement this program in any style you choose.
+However, in preparation for building a Cool compiler, we recommend that
+you try to develop an object-oriented solution.  One approach is to
+define a class {\tt StackCommand} with a number of generic operations, and then
+to define subclasses of {\tt StackCommand}, one for each kind of command in the
+language.  These subclasses define operations specific to each command,
+such as how to evaluate that command, display that command, etc.  If you
+wish, you may use the classes defined in {\tt atoi.cl} in the {\tt \~{
+}cs164/examples} directory to perform string to integer conversion.
+If you find any other code in {\tt \~{}cs164/examples} that you think
+would be useful, you are free to use it as well.
+
+We wrote a solution in approximately 200 lines of Cool source code.
+This information is provided to you as a rough measure of the amount of
+work involved in the assignment---your solution may be either
+substantially shorter or longer.
+
+\section*{Sample session} 
+The following is a sample compile and run of our solution.
+\begin{verbatim}
+%coolc stack.cl atoi.cl
+%spim -file stack.s
+SPIM Version 5.6 of January 18, 1995
+Copyright 1990-1994 by James R. Larus (larus@cs.wisc.edu).
+All Rights Reserved.
+See the file README a full copyright notice.
+Loaded: /home/ff/cs164/lib/trap.handler
+>1
+>+
+>2
+>s
+>d
+s
+2
++
+1
+>e
+>e
+>d
+3
+>x
+COOL program successfully executed
+\end{verbatim}
+
+\section*{Getting and turning in the assignment} 
+Create a working directory called PA1 and {\tt cd} into it.  From there, type
+\begin{verbatim}
+% gmake -f ~cs164/assignments/PA1/Makefile
+\end{verbatim}
+
+This command creates several files you will need in the directory.
+Follow the directions in the README file.  
+
+\medskip
+%%We are currently testing the submission script.  Instructions for
+%%submitting your assignment will be posted to the web page.
+To turn the assignment in:
+
+\begin{enumerate}
+\item Make sure your code is in stack.cl and that it compiles and works :-).
+  A copy of \t{Makefile} and \t{atoi.cl} will be present when we test your
+  submission, so all we need from you is \t{stack.cl} and \t{README}.
+\item Answer the 3 required questions in the \t{README file}, and
+include any other relevant comments here.
+\item Make sure everything is in a directory called \t{PA1}.
+\item Run the command \t{submit PA1} (case is important) from your PA1
+  directory.
+\end{enumerate}
+
+Please note: Your stack machine will be tested by comparing its output
+to that of our reference implementation.  Therefore, your stack
+machine should not produce any output aside from whitespace (which our
+testing harness will ignore), `{\tt >}' prompts, and the output of a
+`d' command.  Prior to submitting, please remove any output commands
+that you used for debugging.
+
+\section*{An optional tool that may be of use to you}
+
+
+Prof.~Susan L.~Graham's Harmonia project provides Harmonia-mode, an
+XEmacs extension that can assist you when writing Cool programs.
+Harmonia-mode offers a number of useful features, including syntax
+highlighting and proper indentation.  Harmonia-mode will also
+highlight syntactic and semantic errors as you type.
+
+Note: Harmonia-mode is research technology and may crash on you;
+however, it has been engineered to recover from any type of crash,
+preserving your work.  {\em Its use in this class is completely
+optional}.  We encourage you to try it out at
+{\tt http://harmonia.cs.berkeley.edu/harmonia/cs164}.  If you like
+it (or don't), tell us in your README.  Also, please feel free to
+email the Harmonia group at {\tt harmonia-feedback@sequoia.cs.berkeley.edu}.
+
+%%Cool is a somewhat unique language.  Until recently, there have
+%%been no editing aids (e.g. an Emacs mode) to help you write your
+%%programs.  However, this situation has been remedied by some research
+%%technology from Prof. Susan L. Graham's Harmonia project.  It's an
+%%extension to XEmacs called Harmonia-mode.  Harmonia-mode will analyze
+%%your Cool program as you're editing it and give you syntax
+%%highlighting, proper indentation, and most importantly, will highlight
+%%syntax and semantics errors as you type.
+%%
+%%Note: Harmonia-mode is research technology, and may crash on you
+%%(though, it has been engineered to recover from any type of crash and
+%%preserve your work).  {\em Its use in this class is completely 
+%%optional}.
+%%We encourage those souls who like to live on the bleeding-edge to try
+%%it out at http://www.cs.berkeley.edu/\~{}harmonia/harmonia/cs164.  If you like it
+%%(or don't) tell us in your README.  Feel free to email the Harmonia
+%%group as well, at harmonia-feedback@sequoia.cs.berkeley.edu.
+
+If you used Harmonia-mode for all or part of your project,
+please take a minute to answer the following questions in your README:
+
+\begin{enumerate}
+\item Rate Harmonia-mode's usefulness on a scale of 0 to 6, where 0 
+means
+that it kept you from doing any work, 3 means that it neither helped
+nor hindered you, and 6 means that you'll never again dare to edit a
+Cool program without it.
+\item What aspects of Harmonia-mode particularly helped you?
+\item What aspects were particularly detrimental?
+\item Is there anything else about Harmonia-mode that you would like
+to mention?
+\end{enumerate}
+
+
+
+\section*{Extra Credit.} There is a chance that you will discover a bug in
+our Cool compiler.  We will award extra credit for legitimate bug
+reports; to get credit, send a bug report to {\tt cs143-aut0506-staff@lists.stanford.edu}.  Your
+report must include all of the needed Cool source and a transcript of a
+terminal session showing how to reproduce the bug (use the {\tt script}
+command).  There are a number of ways the compiler can potentially fail:
+the compiler may dump core, the generated code may be incorrect, the
+compiler may refuse to accept a legal program, it may accept an illegal
+program, etc.  {\em Please be sure you have found a bug before
+submitting a report!} The course staff are the final arbiters of what is
+a ``bug'' and what is a ``feature''.  Credit usually will be awarded
+only to the first person to report a bug.
+
+
+\end{document}

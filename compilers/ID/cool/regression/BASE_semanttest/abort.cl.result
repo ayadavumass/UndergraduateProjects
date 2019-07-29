@@ -1,0 +1,65 @@
+#13
+_program
+ #1
+ _class
+   AbortClass
+   Main
+   "./BASE_semanttest/abort.cl"
+   (
+   )
+ #12
+ _class
+   Main
+   Object
+   "./BASE_semanttest/abort.cl"
+   (
+   #4
+   _attr
+     a
+     Int
+     #4
+     _no_expr
+     : _no_type
+   #5
+   _attr
+     b
+     Int
+     #5
+     _int
+       1
+     : Int
+   #11
+   _method
+     main
+     Object
+     #10
+     _cond
+       #8
+       _isvoid
+         #8
+         _object
+           a
+         : Int
+       : Bool
+       #8
+       _dispatch
+         #8
+         _object
+           self
+         : SELF_TYPE
+         abort
+         (
+         )
+       : Object
+       #9
+       _dispatch
+         #9
+         _new
+           AbortClass
+         : AbortClass
+         abort
+         (
+         )
+       : Object
+     : Object
+   )

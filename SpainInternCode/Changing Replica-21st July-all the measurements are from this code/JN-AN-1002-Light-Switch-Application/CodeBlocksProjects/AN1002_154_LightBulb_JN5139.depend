@@ -1,0 +1,118 @@
+# depslib dependency file v1.0
+1170676284 source:c:\jennic\cygwin\jennic\sdk\common\source\appqueueapi.c
+	"jendefs.h"
+	"mac_sap.h"
+	"AppHardwareApi.h"
+	"AppQueueApi.h"
+	"AppApi.h"
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\jendefs.h
+	<stdarg.h>
+	<stdio.h>
+	<cyg/infra/cyg_type.h>
+
+1199878986 c:\jennic\cygwin\jennic\sdk\common\include\mac_sap.h
+	"jendefs.h"
+
+1199456194 c:\jennic\cygwin\jennic\sdk\chip\jn513x\include\apphardwareapi.h
+	<jendefs.h>
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\appqueueapi.h
+	<jendefs.h>
+	<mac_sap.h>
+	<AppApi.h>
+
+1194979580 c:\jennic\cygwin\jennic\sdk\chip\jn513x\include\appapi.h
+	<jendefs.h>
+	<mac_sap.h>
+
+1279181351 source:c:\jennic\cygwin\jennic\sdk\application\jn-an-1002-light-switch-application\an1002_154_lightbulb\source\an1002_154_lightbulb.c
+	<jendefs.h>
+	<AppHardwareApi.h>
+	<AppQueueApi.h>
+	<mac_sap.h>
+	<mac_pib.h>
+	<Utilities.h>
+	<stdlib.h>
+	"Button.h"
+	<..\..\..\Jenie\Include\Jenie.h>
+	<..\..\..\Jenie\Include\JPI.h>
+	<..\..\..\Chip\Common\Include\Printf.h>
+	<..\..\md5-c\global.h>
+	<..\..\md5-c\md5.h>
+	"LedControl.h"
+
+1194979580 c:\jennic\cygwin\jennic\sdk\chip\jn513x\include\mac_pib.h
+	"jendefs.h"
+	"mac_sap.h"
+
+1204314010 c:\jennic\cygwin\jennic\sdk\chip\common\include\utilities.h
+	"jendefs.h"
+
+1170340676 c:\jennic\cygwin\jennic\sdk\platform\dk2\include\ledcontrol.h
+	"jendefs.h"
+	"AppHardwareApi.h"
+
+1204311344 source:c:\jennic\cygwin\jennic\sdk\chip\common\source\printf.c
+	<stdarg.h>
+	<ctype.h>
+	<Printf.h>
+	<AppHardwareApi.h>
+
+1204312774 c:\jennic\cygwin\jennic\sdk\chip\common\include\printf.h
+	<jendefs.h>
+
+1204305000 c:\jennic\cygwin\jennic\sdk\common\include\jenie.h
+	<jendefs.h>
+	<mac_sap.h>
+
+1196261918 c:\jennic\cygwin\jennic\sdk\common\include\jpi.h
+	"AppHardwareApi.h"
+
+807931502 source:c:\jennic\cygwin\jennic\sdk\application\md5-c\md5c.c
+	"global.h"
+	"md5.h"
+
+807931526 c:\jennic\cygwin\jennic\sdk\application\md5-c\global.h
+
+1276176878 c:\jennic\cygwin\jennic\sdk\application\md5-c\md5.h
+
+1276271903 source:c:\jennic\cygwin\jennic\sdk\application\md5-c\mddriver.c
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"global.h"
+	<jendefs.h>
+	<AppHardwareApi.h>
+	<AppQueueApi.h>
+	<mac_sap.h>
+	<mac_pib.h>
+	<Utilities.h>
+	"md2.h"
+	"md4.h"
+	"md5.h"
+
+1170340638 c:\jennic\cygwin\jennic\sdk\platform\dk2\include\button.h
+	"jendefs.h"
+	"AppHardwareApi.h"
+
+1204305000 c:\jennic\cygwin\jennic\sdk\jenie\include\jenie.h
+	<jendefs.h>
+	<mac_sap.h>
+
+1196261918 c:\jennic\cygwin\jennic\sdk\jenie\include\jpi.h
+	"AppHardwareApi.h"
+
+1273756133 c:\jennic\cygwin\jennic\sdk\chip\common\include\stdlib.h
+	<..\..\..\Chip\Common\Include\stddef.h>
+	<..\..\..\Chip\Common\Include\mbstring.h>
+
+1273755739 c:\jennic\cygwin\jennic\sdk\chip\common\include\stddef.h
+
+1273755903 c:\jennic\cygwin\jennic\sdk\chip\common\include\mbstring.h
+	<..\..\..\Chip\Common\Include\stddef.h>
+
+807931526 c:\jennic\cygwin\jennic\sdk\md5-c\global.h
+
+1276102674 c:\jennic\cygwin\jennic\sdk\md5-c\md5.h
+

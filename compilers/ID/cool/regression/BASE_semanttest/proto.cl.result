@@ -1,0 +1,126 @@
+#19
+_program
+ #18
+ _class
+   Main
+   IO
+   "./BASE_semanttest/proto.cl"
+   (
+   #2
+   _attr
+     a
+     Int
+     #2
+     _no_expr
+     : _no_type
+   #3
+   _attr
+     s
+     String
+     #3
+     _no_expr
+     : _no_type
+   #4
+   _attr
+     b
+     Bool
+     #4
+     _no_expr
+     : _no_type
+   #5
+   _attr
+     m
+     Main
+     #5
+     _no_expr
+     : _no_type
+   #6
+   _attr
+     o
+     Object
+     #6
+     _no_expr
+     : _no_type
+   #7
+   _attr
+     i
+     IO
+     #7
+     _no_expr
+     : _no_type
+   #17
+   _method
+     main
+     Object
+     #16
+     _block
+       #10
+       _dispatch
+         #10
+         _object
+           self
+         : SELF_TYPE
+         out_int
+         (
+         #10
+         _object
+           a
+         : Int
+         )
+       : SELF_TYPE
+       #11
+       _dispatch
+         #11
+         _object
+           self
+         : SELF_TYPE
+         out_string
+         (
+         #11
+         _object
+           s
+         : String
+         )
+       : SELF_TYPE
+       #12
+       _dispatch
+         #12
+         _object
+           b
+         : Bool
+         type_name
+         (
+         )
+       : String
+       #13
+       _dispatch
+         #13
+         _object
+           o
+         : Object
+         abort
+         (
+         )
+       : Object
+       #14
+       _dispatch
+         #14
+         _object
+           i
+         : IO
+         type_name
+         (
+         )
+       : String
+       #15
+       _dispatch
+         #15
+         _object
+           m
+         : Main
+         copy
+         (
+         )
+       : Main
+     : Main
+   )

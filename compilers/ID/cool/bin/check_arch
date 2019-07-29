@@ -1,0 +1,28 @@
+#!/usr/sww/bin/bash -norc
+#
+#  The script checks whether the last path component of the current
+#  directory has the name returned by the /usr/sww/bin/arch command.
+#
+#  If called from within gmake, the negative return code aborts the
+#  make if the architecture does not match.
+
+dir=`pwd`
+#
+# Now filter everything out of the current directory except
+# up to and including the last /.  Uses bash variable ref. regular expressions.
+#
+dirarch=${dir##*/}
+#
+# Don't complain if this is the src directory,
+# where all development is done.
+#
+if [ $dirarch != "src" ]; then
+
+	arch=`/usr/sww/bin/arch`
+	if [ $dirarch != $arch ]; then 
+		echo "Wrong directory for architecture $arch";
+		echo "Type: cd ../$arch  and try again";
+		exit -10;
+	fi ;
+fi
+

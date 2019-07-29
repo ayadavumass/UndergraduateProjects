@@ -1,0 +1,3 @@
+-- omitted keyword
+class B inherits A
+end;

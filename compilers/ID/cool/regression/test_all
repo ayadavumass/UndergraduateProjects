@@ -1,0 +1,4 @@
+./test_lexer
+./test_parser
+./test_sa
+./test_cg

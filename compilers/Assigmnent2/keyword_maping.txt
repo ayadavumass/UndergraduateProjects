@@ -1,0 +1,7 @@
+int	~n
+if	~f
+else	~e
+return	~r
+char	~c
+while	~l
+main	~m

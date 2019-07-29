@@ -1,0 +1,64 @@
+#8
+_program
+ #7
+ _class
+   Main
+   IO
+   "./BASE_semanttest/eof.cl"
+   (
+   #6
+   _method
+     main
+     Object
+     #5
+     _let
+       s
+       String
+       #3
+       _dispatch
+         #3
+         _object
+           self
+         : SELF_TYPE
+         in_string
+         (
+         )
+       : String
+       #4
+       _dispatch
+         #4
+         _dispatch
+           #4
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #4
+           _object
+             s
+           : String
+           )
+         : SELF_TYPE
+         out_int
+         (
+         #4
+         _dispatch
+           #4
+           _dispatch
+             #4
+             _object
+               s
+             : String
+             length
+             (
+             )
+           : Int
+           copy
+           (
+           )
+         : Int
+         )
+       : SELF_TYPE
+     : SELF_TYPE
+   )

@@ -1,0 +1,4 @@
+"./BASE_cgtest/strings.cl", line 12: parse error at or near ASSIGN
+"./BASE_cgtest/strings.cl", line 13: parse error at or near ASSIGN
+"./BASE_cgtest/strings.cl", line 20: parse error at or near '='
+Compilation halted due to lex and parse errors

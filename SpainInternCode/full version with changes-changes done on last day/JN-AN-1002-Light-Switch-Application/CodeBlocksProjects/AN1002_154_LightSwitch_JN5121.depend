@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1170676284 source:c:\jennic\cygwin\jennic\sdk\common\source\appqueueapi.c
+	"jendefs.h"
+	"mac_sap.h"
+	"AppHardwareApi.h"
+	"AppQueueApi.h"
+	"AppApi.h"
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\jendefs.h
+	<stdarg.h>
+	<stdio.h>
+	<cyg/infra/cyg_type.h>
+
+1199878986 c:\jennic\cygwin\jennic\sdk\common\include\mac_sap.h
+	"jendefs.h"
+
+1192198000 c:\jennic\cygwin\jennic\sdk\chip\jn5121\include\apphardwareapi.h
+	<jendefs.h>
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\appqueueapi.h
+	<jendefs.h>
+	<mac_sap.h>
+	<AppApi.h>
+
+1173458044 c:\jennic\cygwin\jennic\sdk\chip\jn5121\include\appapi.h
+	<jendefs.h>
+	<mac_sap.h>
+

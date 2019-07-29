@@ -1,0 +1,23 @@
+#4
+_program
+ #3
+ _class
+   Main
+   Object
+   "./BASE_semanttest/weird.cl"
+   (
+   #2
+   _method
+     main
+     Object
+     #2
+     _dispatch
+       #2
+       _new
+         Int
+       : Int
+       abort
+       (
+       )
+     : Object
+   )

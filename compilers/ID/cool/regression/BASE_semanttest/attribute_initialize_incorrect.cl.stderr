@@ -1,0 +1,2 @@
+./BASE_semanttest/attribute_initialize_incorrect.cl:2: Inferred type Bool of initialization of attribute a does not conform to declared type Int.
+Compilation halted due to static semantic errors.

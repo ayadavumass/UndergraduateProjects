@@ -1,0 +1,4 @@
+spotcheck illegal characters and as a side effect white space
+the file contains
+	all printable chars less "
+	all non-printable chars less \0

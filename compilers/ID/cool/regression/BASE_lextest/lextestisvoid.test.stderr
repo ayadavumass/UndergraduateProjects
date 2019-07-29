@@ -1,0 +1,45 @@
+Recognized token: CLASS(259)	line 1.	
+Recognized token: TYPEID(281)	line 1.	Main
+Recognized token: INHERITS(265)	line 1.	
+Recognized token: TYPEID(281)	line 1.	IO
+Recognized token: IS(266)	line 1.	
+Recognized token: OBJECTID(282)	line 2.	a
+Recognized token: ':'(58)	line 2.	
+Recognized token: TYPEID(281)	line 2.	Bool
+Recognized token: ASSIGN(283)	line 2.	
+Recognized token: ISVOID(277)	line 2.	
+Recognized token: '('(40)	line 2.	
+Recognized token: INT_CONST(279)	line 2.	1
+Recognized token: '+'(43)	line 2.	
+Recognized token: INT_CONST(279)	line 2.	2
+Recognized token: ')'(41)	line 2.	
+Recognized token: ';'(59)	line 2.	
+Recognized token: OBJECTID(282)	line 3.	main
+Recognized token: '('(40)	line 3.	
+Recognized token: ')'(41)	line 3.	
+Recognized token: ':'(58)	line 3.	
+Recognized token: TYPEID(281)	line 3.	Object
+Recognized token: IS(266)	line 3.	
+Recognized token: LET(267)	line 4.	
+Recognized token: OBJECTID(282)	line 4.	r
+Recognized token: ':'(58)	line 4.	
+Recognized token: TYPEID(281)	line 4.	Main
+Recognized token: IN(264)	line 4.	
+Recognized token: IF(263)	line 5.	
+Recognized token: ISVOID(277)	line 5.	
+Recognized token: OBJECTID(282)	line 5.	r
+Recognized token: THEN(270)	line 5.	
+Recognized token: OBJECTID(282)	line 5.	abort
+Recognized token: '('(40)	line 5.	
+Recognized token: ')'(41)	line 5.	
+Recognized token: ELSE(260)	line 5.	
+Recognized token: OBJECTID(282)	line 5.	out_string
+Recognized token: '('(40)	line 5.	
+Recognized token: STR_CONST(278)	line 5.	'OK'
+Recognized token: ')'(41)	line 5.	
+Recognized token: FI(262)	line 5.	
+Recognized token: END(261)	line 6.	
+Recognized token: END(261)	line 7.	
+Recognized token: ';'(59)	line 7.	
+Recognized token: END(261)	line 8.	
+Recognized token: ';'(59)	line 8.	

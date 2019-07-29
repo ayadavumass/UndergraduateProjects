@@ -1,0 +1,6 @@
+./BASE_semanttest/actuals-check.cl:3: Inferred type String of initialization of x does not conform to identifier's declared type Int.
+./BASE_semanttest/actuals-check.cl:3: Inferred type Int of initialization of attribute c does not conform to declared type Main.
+./BASE_semanttest/actuals-check.cl:4: Inferred type String of initialization of x does not conform to identifier's declared type Int.
+./BASE_semanttest/actuals-check.cl:4: Static dispatch to undefined class M.
+./BASE_semanttest/actuals-check.cl:4: Inferred type Object of initialization of attribute d does not conform to declared type Main.
+Compilation halted due to static semantic errors.

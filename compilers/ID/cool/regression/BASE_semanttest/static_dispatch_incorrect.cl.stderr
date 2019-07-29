@@ -1,0 +1,6 @@
+./BASE_semanttest/static_dispatch_incorrect.cl:23: 'main' method in class Main should have no arguments.
+./BASE_semanttest/static_dispatch_incorrect.cl:20: Static dispatch to undefined class D.
+./BASE_semanttest/static_dispatch_incorrect.cl:22: Inferred return type Object of method main does not conform to declared return type SELF_TYPE.
+./BASE_semanttest/static_dispatch_incorrect.cl:28: Expression type SELF_TYPE does not conform to declared static dispatch type C.
+./BASE_semanttest/static_dispatch_incorrect.cl:29: Inferred return type Object of method main does not conform to declared return type SELF_TYPE.
+Compilation halted due to static semantic errors.

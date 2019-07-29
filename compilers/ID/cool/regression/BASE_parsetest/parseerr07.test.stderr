@@ -1,0 +1,3 @@
+"./BASE_parsetest/parseerr07.test", line 3: parse error at or near END
+"./BASE_parsetest/parseerr07.test", line 5: parse error at or near EOF
+Compilation halted due to lex and parse errors

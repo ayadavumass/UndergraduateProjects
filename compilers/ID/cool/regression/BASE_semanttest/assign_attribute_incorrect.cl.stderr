@@ -1,0 +1,4 @@
+./BASE_semanttest/assign_attribute_incorrect.cl:5: Type Bool of assigned expression does not conform to declared type Int of identifier a.
+./BASE_semanttest/assign_attribute_incorrect.cl:6: Cannot assign to 'self'.
+./BASE_semanttest/assign_attribute_incorrect.cl:6: Type Int of assigned expression does not conform to declared type SELF_TYPE of identifier self.
+Compilation halted due to static semantic errors.

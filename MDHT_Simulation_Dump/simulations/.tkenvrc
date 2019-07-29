@@ -1,0 +1,4 @@
+# Partial Tkenv config file -- see $HOME/.tkenvrc as well
+inspector "SimpleUnderlayNetwork" "SimpleUnderlayNetwork" "2" "609x357+12+113"
+inspector "SimpleUnderlayNetwork.overlayTerminal[18]" "mDHTSimpleMultiOverlayHost" "2" "763x503+8+88"
+

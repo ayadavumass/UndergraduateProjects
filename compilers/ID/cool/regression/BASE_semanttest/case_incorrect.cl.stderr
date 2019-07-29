@@ -1,0 +1,8 @@
+./BASE_semanttest/case_incorrect.cl:36: 'main' method in class Main should have no arguments.
+./BASE_semanttest/case_incorrect.cl:4: Class Object1 of case branch is undefined.
+./BASE_semanttest/case_incorrect.cl:5: Class Object2 of case branch is undefined.
+./BASE_semanttest/case_incorrect.cl:5: Dispatch on undefined class Object2.
+./BASE_semanttest/case_incorrect.cl:23: Duplicate branch SubClass in case statement.
+./BASE_semanttest/case_incorrect.cl:32: Identifier a declared with type SELF_TYPE in case branch.
+./BASE_semanttest/case_incorrect.cl:33: 'self' bound in 'case'.
+Compilation halted due to static semantic errors.

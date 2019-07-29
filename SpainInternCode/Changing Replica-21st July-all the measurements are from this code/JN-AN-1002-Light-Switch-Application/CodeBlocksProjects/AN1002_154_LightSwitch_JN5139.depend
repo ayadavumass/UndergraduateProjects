@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1170676284 source:c:\jennic\cygwin\jennic\sdk\common\source\appqueueapi.c
+	"jendefs.h"
+	"mac_sap.h"
+	"AppHardwareApi.h"
+	"AppQueueApi.h"
+	"AppApi.h"
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\jendefs.h
+	<stdarg.h>
+	<stdio.h>
+	<cyg/infra/cyg_type.h>
+
+1199878986 c:\jennic\cygwin\jennic\sdk\common\include\mac_sap.h
+	"jendefs.h"
+
+1199456194 c:\jennic\cygwin\jennic\sdk\chip\jn513x\include\apphardwareapi.h
+	<jendefs.h>
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\appqueueapi.h
+	<jendefs.h>
+	<mac_sap.h>
+	<AppApi.h>
+
+1194979580 c:\jennic\cygwin\jennic\sdk\chip\jn513x\include\appapi.h
+	<jendefs.h>
+	<mac_sap.h>
+
+1257252310 source:c:\jennic\cygwin\jennic\sdk\application\jn-an-1002-light-switch-application\an1002_154_lightswitch\source\an1002_154_lightswitch.c
+	<jendefs.h>
+	<AppHardwareApi.h>
+	"AppQueueApi.h"
+	<mac_sap.h>
+	<mac_pib.h>
+	<string.h>
+	"Button.h"
+
+1194979580 c:\jennic\cygwin\jennic\sdk\chip\jn513x\include\mac_pib.h
+	"jendefs.h"
+	"mac_sap.h"
+
+1170340638 c:\jennic\cygwin\jennic\sdk\platform\dk2\include\button.h
+	"jendefs.h"
+	"AppHardwareApi.h"
+

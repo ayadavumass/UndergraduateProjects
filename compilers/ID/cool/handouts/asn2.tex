@@ -1,0 +1,425 @@
+\documentclass[11pt]{article}
+\usepackage{handout}
+%
+% Copyright (c) 1995-1996 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+\input{handout-number}
+%\input{macros}
+%Let's sqeeze a little more onto a page:
+%\textheight 9.1in 
+
+\begin{document}
+\handout{\PAOneNum}{5}{Programming Assignment I \\ Due Thursday, October
+  9, 2008 at 11:59pm}
+
+%\maketitle
+
+% Three macros for defining:
+%       Unix elements: filenames and program (sans serif)
+%       Cool elements: literal tokens (typewriter)
+%       C elements: function and variable names (boldface)
+%
+\def\U#1{{\sf{}#1}}
+\def\S#1{{\tt{}#1}} % NB: we often use \verb+...+ for this also
+\def\C#1{{\bf{}#1}}
+
+\newcommand{\Char}[1]{\ensuremath{\fbox{\phantom{$\backslash$}$\!\!\!$#1}\;}}
+
+
+\section{Overview}
+
+Programming assignments I--IV will direct you to design and build a
+compiler for Cool.  Each assignment will cover one component of the
+compiler: lexical analysis, parsing, semantic analysis, and code
+generation.  Each assignment will ultimately result in a working
+compiler phase which can interface with other phases.  You will have an
+option of doing your projects in C++ or Java.
+
+For this assignment, you are to write a lexical analyzer, also called a
+{\em scanner}, using a {\em lexical analyzer generator}. (The C++ tool is
+called \U{flex}; the Java tool is called \U{jlex}.)  You will describe
+the set of tokens for Cool in an appropriate input format, and the
+analyzer generator will generate the actual code (C++ or Java) for
+recognizing tokens in Cool programs.
+
+On-line documentation for all the tools needed for the project will be
+made available on the CS143 web site.  This includes manuals for \U{flex}
+and \U{jlex} (used in this assignment), the documentation for \U{bison}
+and \U{java\_cup} (used in the next assignment), as well as the manual for
+the spim simulator.
+
+You may work either individualy or in pairs for this assignment.
+
+%If you have not done so already, you might consider buying the optional
+%reader available for sale from Copy Central on the corner of Euclid and
+%Hearst.  In addition to having manuals for \U{flex} and \U{jlex}, the
+%reader contains the documentation for \U{bison} and \U{java\_cup}, which
+%will be used in the next assignment, as well as the manual for the
+%\U{spim} simulator.  All of these materials are also available online
+%through the course website.
+
+%You must work in a group for this assignment (where a group consists of
+%one or two people).  The \U{submit} program will ask you to specify
+%group members when you turn in your assignment.
+
+
+\section{Files and Directories}
+
+To get started, create a directory where you want to do the assignment
+and execute one of the following commands {\em in that directory}.  The
+assignments will be graded on the {\em myth} machines, so you should
+also work on one of them. For the C++ version of the assignment, you should
+type
+
+\begin{verbatim}
+gmake -f /usr/class/cs143/assignments/PA2/Makefile
+\end{verbatim}
+
+Note that even though this is the first programming assignment, the directory
+name is {\em PA2}.  Future assignments will also have directories that are one
+more than the assignment number--please don't get confused!  This situation
+arises because we are skipping the usual first assignment in this offering
+of the course.
+\noindent For Java, type:
+
+\begin{verbatim}
+gmake -f /usr/class/cs143/assignments/PA2J/Makefile
+\end{verbatim}
+
+\noindent
+(notice the ``J'' in the path name).  This command will copy a number of
+files to your directory.  Some of the files will be copied read-only
+(using symbolic links).  You should not edit these files.  In fact, if
+you make and modify private copies of these files, you may find it
+impossible to complete the assignment.  See the instructions in the
+\U{README} file.  The files that you will need to modify are:
+\begin{itemize}
+\item \U{cool.flex} (in the C++ version) / \U{cool.lex} (in the Java version)\\
+This file contains a skeleton for a lexical description for Cool.  There
+are comments indicating where you need to fill in code, but this is not
+necessarily a complete guide.  Part of the assignment is for you to
+make sure that you have a correct and working lexer.  Except for the
+sections indicated, you are welcome to make modifications to our
+skeleton.  You
+can actually build a scanner with the skeleton description, but it does not do
+much. You should read the \U{flex}/\U{jlex} manual to figure out what
+this description does do.  Any auxiliary routines that you wish to write
+should be added directly to this file in the appropriate section (see
+comments in the file).
+
+\item \U{test.cl} \\
+This file contains some sample input to be scanned. It does not exercise
+all of the lexical specification, but it is nevertheless an interesting
+test.  It is not a good test to start with, nor does it provide adequate
+testing of your scanner.  Part of your assignment is to come up with
+good testing inputs and a testing strategy.  (Don't take this
+lightly---good test input is difficult to create, and forgetting to test
+something is the most likely cause of lost points during grading.)
+
+You should modify this file with tests that you think adequately
+exercise your scanner.  Our \U{test.cl} is similar to a real Cool
+program, but your tests need not be.  You may keep as much or as little
+of our test as you like.
+
+\item \U{README}\\
+This file contains detailed instructions for the assignment as well as a
+number of useful tips.  You should also edit this file to include the
+write-up for your project.  You should explain design decisions, why your
+code is correct, and why your test cases are adequate.  It is part of the
+assignment to clearly and concisely explain things in text as well as to
+comment your code.
+
+\end{itemize}
+
+Although these files are incomplete as given, the lexer does compile
+and run (\U{gmake lexer}).
+
+%All of the software supplied with this assignment is supported on the
+%Solaris/SPARC and Solaris/x86 machines.  However, if you switch
+%platforms (use the \U{arch} command to determine what platform you're
+%on) be sure to run \U{gmake clean} to remove files compiled for the
+%other architecture.  A version of the project for Linux is available
+%for downloading on the course web page.
+
+\section{Scanner Results}\label{sec:results}
+
+You should follow the specification of the lexical structure of Cool
+given in Section~10 and Figure 1 of the Cool manual.  Your scanner
+should be robust---it should work for any conceivable input.  For
+example, you must handle errors such as an EOF occurring in the middle
+of a string or comment, as well as string constants that are too long.
+These are just some of the errors that can occur; see the manual for
+the rest.
+
+You must make some provision for graceful termination if a fatal error
+occurs. Core dumps or uncaught exceptions are unacceptable.
+
+\subsection{Error Handling}
+
+\emph{All} errors should be passed along to the parser.  You lexer
+should not print anything.  Errors are communicated to the parser by
+returning a special error token called \C{ERROR}.  (Note, you should
+ignore the token called \C{error} [in lowercase] for this assignment;
+it is used by the parser in PA3.)
+%The Cool parser knows about
+%a special error token called \C{ERROR}, which is used to communicate
+%$errors from the lexer to the parser.
+There are several requirements for reporting and recovering from
+lexical errors:
+
+\begin{itemize}
+
+  \item When an invalid character (one that can't begin any token) is
+  encountered, a string containing just that character should be
+  returned as the error string.  Resume lexing at the following character.
+
+  \item If a string contains an unescaped newline, report that error as
+  \S{``Unterminated string constant''} and resume lexing at the
+  beginning of the next line---we assume the programmer simply
+  forgot the close-quote.
+
+  \item When a string is too long, report the error as \S{``String
+        constant too long''} in the error string in the \C{ERROR}
+        token.  If the string contains invalid
+        characters (i.e., the null character), report this as
+        \S{``String contains null character''}.  In either case,
+        lexing should resume after the end of the string.  The
+        end of the string is defined as either
+        \begin{enumerate}
+          \item the beginning of the next line if an unescaped
+                newline occurs after these errors are encountered; or
+          \item after the closing \C{"} otherwise.
+        \end{enumerate}
+
+
+  \item If a comment remains open when EOF is encountered, report this
+  error with the message \S{``EOF in comment''}.  Do \emph{not} tokenize the
+  comment's contents simply because the terminator is missing.
+  Similarly for strings, if an EOF is encountered before the
+  close-quote, report this error as \S{``EOF in string constant''}.
+
+  \item If you see ``{\tt *)}'' outside a comment, report this error as
+  \S{``Unmatched *)''}, rather than tokenzing it as {\tt *}
+  and {\tt )}.
+
+
+\end{itemize}
+
+
+\subsection{String Table}
+
+Programs tend to have many occurrences of the same lexeme.  For example,
+an identifier is generally referred to more than once in a program (or
+else it isn't very useful!).  To save space and time, a common compiler
+practice is to store lexemes in a {\em string table}.  We provide a
+string table implementation for both C++ and Java.  See the following
+sections for the details.
+
+%When an invalid character is encountered, that
+%character and any invalid characters that follow should be gathered
+%together into a string until the lexer finds a character that can begin
+%a new token.  This string will be returned as the error message.
+% sm: I think the above is not a good requirement
+%When an invalid character is encountered, a string containing just
+%that character should be returned as the error string.
+%For
+%errors besides strings of invalid characters (e.g., a string constant
+%that is too long, or an end-of-file inside of a comment) it is
+%sufficient to return an informative error message (e.g., ``String
+%constant too long'' or ``EOF in comment'').  Make sure that the error
+%message is informative so that we can understand what you did.  The
+%following sections clarify how to actually return the error message in
+%C++ and Java versions of the assignment.
+
+
+There is an issue in deciding how to handle the special identifiers for
+the basic classes (\C{Object}, \C{Int}, \C{Bool}, \C{String}), {\tt
+SELF\_TYPE}, and {\tt self}.  However, this issue doesn't actually come
+up until later phases of the compiler---the scanner should treat the
+special identifiers exactly like any other identifier.
+
+Do \emph{not} test whether integer literals fit within the
+representation specified in the Cool manual---simply create a Symbol
+with the entire literal's text as its contents, regardless of its
+length.
+
+\subsection{Strings}
+
+Your scanner should convert escape characters in string constants to their
+correct values.  For example, if the programmer types these eight
+characters:
+\begin{center}
+{\tt
+  \Char{"}\Char{a}\Char{b}\Char{$\backslash$}\Char{n}\Char{c}\Char{d}\Char{"}
+}
+\end{center}
+your scanner would return the token \C{STR$\_$CONST} whose semantic value
+is these 5 characters:
+\begin{center}
+{\tt
+  \Char{a}\Char{b}\Char{$\backslash$n}\Char{c}\Char{d}
+}
+\end{center}
+where \Char{$\backslash$n} represents the literal ASCII character for
+newline.
+
+Following specification on page 15 of the Cool manual, you must return
+an error for a string containing the literal null character. However,
+the sequence of two characters
+\begin{center}
+{\tt\Char{$\backslash$}\Char{0}}
+\end{center}
+is allowed but should be converted to the one character
+\begin{center}
+{\tt\Char{0}}.
+\end{center}
+
+%In both Flex and JLex, you can produce this code by typing
+%$\backslash$n.  
+
+\subsection{Other Notes}
+
+Your scanner should maintain the variable \C{curr\_lineno} that
+indicates which line in the source text is currently being scanned.
+This feature will aid the parser in printing useful error messages.
+
+You should ignore the token \C{LET\_STMT}.  It is used only by the
+parser (PA3).  Finally, note that if the lexical specification is
+incomplete (some input has no regular expression that matches), then
+the scanners generated by both \U{flex} and \U{jlex} do undesirable
+things.  {\em Make sure your specification is complete}.
+
+%Finally, if the lexical specification is incomplete (some input has no
+%regular expression that matches) then the generated scanner will invoke
+%a default action on unmatched strings.  The default action simply copies
+%the string to the console.  Your final scanner should have no default
+%actions.  Note that default actions are very bad for \U{mycoolc}, which
+%works by piping output from one compiler phase to the next; any extra
+%output will cause errors in downstream phases.
+
+\section{Notes for the C++ Version of the Assignment}
+
+If you are working on the Java version, skip to the following section.
+
+\begin{itemize}
+
+\item Each call on the scanner returns the next token and lexeme from the
+input.  The value returned by the function \C{cool\_yylex} is an integer
+code representing the syntactic category (e.g., integer
+literal, semicolon, \S{if} keyword, etc.).  The codes for all tokens
+are defined in the file \U{cool-parse.h}.  The second component, the
+semantic value or lexeme, is placed in the global union \C{cool\_yylval},
+which is of type YYSTYPE.  The type YYSTYPE is also defined in
+\U{cool-parse.h}.  The tokens for single character symbols
+(e.g., ``;'' and ``,'') are represented just by the
+integer (ASCII) value of the character itself.  All of the single character
+tokens are listed in the grammar for Cool in the Cool manual.
+
+\item
+For class identifiers, object identifiers, integers, and strings, the
+semantic value should be a \C{Symbol} stored in the field
+\C{cool\_yylval.symbol}.  For boolean constants, the semantic value is
+stored in the field \C{cool\_yylval.boolean}. 
+Except for errors (see
+below), the lexemes for the other tokens do not carry any interesting
+information.
+
+\item
+We provide you with a string table implementation, which is discussed in
+detail in {\em A Tour of the Cool Support Code} and in documentation in the
+code.  For the moment, you only need to know that the type of string
+table entries is \C{Symbol}.
+
+\item
+When a lexical error is encountered, the routine \C{cool\_yylex} should
+return the token \C{ERROR}.  The semantic value is the string
+representing the error message, which is stored in the field
+\C{cool\_yylval.error\_msg} (note that this field is an ordinary string,
+not a symbol). See the previous section for information on what to put in
+error messages.
+
+\end{itemize}
+
+\section{Notes for the Java Version of the Assignment}
+
+If you are working on the C++ version, skip this section.
+
+\begin{itemize}
+
+\item
+Each call on the scanner returns the next token and lexeme from the
+input.  The value returned by the method \C{CoolLexer.next\_token} is an
+object of class \C{java\_cup.runtime.Symbol}.  This object has a field
+representing the syntactic category of a token (e.g.,
+integer literal, semicolon, the \S{if} keyword, etc.). The syntactic codes
+for all tokens are defined in the file \U{TokenConstants.java}. The
+component, the semantic value or lexeme (if any), is also placed in a
+\C{java\_cup.runtime.Symbol} object.  The documentation for the class
+\C{java\_cup.runtime.Symbol} as well as other supporting code is
+available on the course web page.  Examples of its use are also given
+in the skeleton.
+
+\item
+For class identifiers, object identifiers, integers, and strings, the
+semantic value should be of type \C{AbstractSymbol}.  For boolean constants,
+the semantic value is of type \C{java.lang.Boolean}. 
+Except for errors
+(see below), the lexemes for the other tokens do not carry any
+interesting information.  Since the \C{value} field of class
+\C{java\_cup.runtime.Symbol} has generic type \C{java.lang.Object},
+you will need to cast it to a proper type before calling any methods
+on it.
+
+\item
+We provide you with a string table implementation, which is defined in
+\U{AbstractTable.java}. 
+For the moment, you only need to know
+that the type of string table entries is \C{AbstractSymbol}.
+
+\item
+When a lexical error is encountered, the routine
+\C{CoolLexer.next\_token} should return a \C{java\_cup.runtime.Symbol} object
+whose syntactic category is \C{TokenConstants.ERROR} and whose semantic
+value is the error message string.  See Section~\ref{sec:results} for
+information on how to construct error messages.
+
+\end{itemize}
+
+\section{Testing the Scanner}
+
+There are at least two ways that you can test your scanner.  The first
+way is to generate sample inputs and run them using \U{lexer}, which
+prints out the line number and the lexeme of every token recognized by
+your scanner.  The other way, when you think your scanner is working,
+is to try running \U{mycoolc} to invoke your lexer together with all
+other compiler phases (which we provide).  This will be a complete
+Cool compiler that you can try on any test programs.
+
+\section{What to Turn In}
+
+When you are ready to turn in the assignment, type \U{gmake
+submit-clean} in the directory where you have prepared your assignment.
+This action will remove all the unnecessary files, such as object files,
+class files, core dumps, Emacs autosave files, etc.  Following \U{gmake
+submit-clean}, type \U{/usr/class/cs143/bin/submit} and follow the
+directions. Make sure you have properly edited the README file before
+submitting your work.
+
+%Doctoring the output that is sent is considered cheating (and not
+%effective, since we test your program ourselves).  If you want to
+%explain something, do it in the \U{README} file.
+
+The last submission you do will be the one graded.  Each submission overwrites
+the previous one.  Remember that there is a 0.5\% penalty per hour for
+late assignments.  The burden of convincing us that you understand the
+material is on you.  Obtuse code, output, and write-ups will have a
+negative effect on your grade. Take the extra time to clearly (and
+concisely!) explain your results.
+
+\end{document}
+
+

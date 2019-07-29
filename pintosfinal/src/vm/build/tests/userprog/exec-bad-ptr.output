@@ -1,0 +1,29 @@
+Copying tests/userprog/exec-bad-ptr into /tmp/YoCSzkrOfV.dsk...
+Writing command line to /tmp/rAl9xGRL2i.dsk...
+qemu -hda /tmp/rAl9xGRL2i.dsk -hdb /tmp/KaWtzvIcKR.dsk -hdc /tmp/YoCSzkrOfV.dsk -hdd /tmp/PVSreH2UmN.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put exec-bad-ptr run exec-bad-ptr
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 95 sector (47 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'exec-bad-ptr' into the file system...
+Executing 'exec-bad-ptr':
+(exec-bad-ptr) begin
+(exec-bad-ptr) end
+exec-bad-ptr: exit(0)
+Execution of 'exec-bad-ptr' complete.
+Timer: 59 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 62 reads, 198 writes
+hd1:0: 95 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 929 characters output
+Keyboard: 0 keys pressed
+Powering off...

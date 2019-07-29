@@ -1,0 +1,25 @@
+Recognized token: CLASS(259)	line 1.	
+Recognized token: TYPEID(281)	line 1.	Main
+Recognized token: INHERITS(265)	line 1.	
+Recognized token: TYPEID(281)	line 1.	IO
+Recognized token: IS(266)	line 1.	
+Recognized token: OBJECTID(282)	line 3.	a
+Recognized token: ':'(58)	line 3.	
+Recognized token: TYPEID(281)	line 3.	String
+Recognized token: ASSIGN(283)	line 3.	
+Recognized token: STR_CONST(278)	line 3.	'Here's a tricky string.0 And here's some more.\n'
+Recognized token: ';'(59)	line 3.	
+Recognized token: OBJECTID(282)	line 5.	main
+Recognized token: '('(40)	line 5.	
+Recognized token: ')'(41)	line 5.	
+Recognized token: ':'(58)	line 5.	
+Recognized token: TYPEID(281)	line 5.	Object
+Recognized token: IS(266)	line 5.	
+Recognized token: OBJECTID(282)	line 5.	out_string
+Recognized token: '('(40)	line 5.	
+Recognized token: OBJECTID(282)	line 5.	a
+Recognized token: ')'(41)	line 5.	
+Recognized token: END(261)	line 5.	
+Recognized token: ';'(59)	line 5.	
+Recognized token: END(261)	line 7.	
+Recognized token: ';'(59)	line 7.	

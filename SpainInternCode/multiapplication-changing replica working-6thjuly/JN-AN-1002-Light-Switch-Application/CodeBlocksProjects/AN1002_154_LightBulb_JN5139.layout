@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="..\AN1002_154_LightBulb\Source\AN1002_154_LightBulb.c" open="0" top="0" tabpos="1">
+		<Cursor position="293" topLine="0" />
+	</File>
+	<File name="..\..\md5-c\global.h" open="0" top="0" tabpos="3">
+		<Cursor position="528" topLine="0" />
+	</File>
+	<File name="..\..\md5-c\md5.h" open="0" top="0" tabpos="2">
+		<Cursor position="1399" topLine="0" />
+	</File>
+	<File name="..\..\md5-c\mddriver.c" open="0" top="0" tabpos="4">
+		<Cursor position="2485" topLine="99" />
+	</File>
+	<File name="..\..\..\Chip\Common\Include\Printf.h" open="0" top="0" tabpos="0">
+		<Cursor position="407" topLine="0" />
+	</File>
+	<File name="..\..\..\Chip\Common\Source\Printf.c" open="0" top="0" tabpos="5">
+		<Cursor position="4915" topLine="246" />
+	</File>
+	<File name="..\..\..\..\SDK\Common\Source\AppQueueApi.c" open="0" top="0" tabpos="0">
+		<Cursor position="5920" topLine="132" />
+	</File>
+	<File name="..\..\..\Jenie\Include\JPI.h" open="0" top="0" tabpos="3">
+		<Cursor position="23129" topLine="488" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,17 @@
+#4
+_program
+ #3
+ _class
+   Main
+   Object
+   "./BASE_semanttest/simple_type_correct2.cl"
+   (
+   #2
+   _method
+     main
+     Object
+     #2
+     _int
+       1
+     : Int
+   )

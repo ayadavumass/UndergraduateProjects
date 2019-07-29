@@ -1,0 +1,29 @@
+Copying tests/userprog/write-stdin into /tmp/ysW3VP401a.dsk...
+Writing command line to /tmp/Y1J3xnCGPh.dsk...
+qemu -hda /tmp/Y1J3xnCGPh.dsk -hdb /tmp/Ly6FZjfdhA.dsk -hdc /tmp/ysW3VP401a.dsk -hdd /tmp/MKj9HWqmHi.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put write-stdin run write-stdin
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 153 sector (76 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 95 sector (47 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+filesys init done
+Boot complete.
+Putting 'write-stdin' into the file system...
+Executing 'write-stdin':
+(write-stdin) begin
+write-stdin: exit(-1)
+Execution of 'write-stdin' complete.
+Timer: 67 ticks
+Thread: 0 idle ticks, 66 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 125 reads, 160 writes
+hd1:0: 95 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 920 characters output
+Keyboard: 0 keys pressed
+Powering off...

@@ -1,0 +1,8 @@
+class A is
+  -- method features without formals
+  foo () : Int is 1 end;
+
+  -- method features with formals
+  -- identifier expression
+  bar (x : Int, y : Int) : Int is x end;
+end;

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AN1002_154_LightBulb_JN5121" />
+		<Option pch_mode="2" />
+		<Option compiler="jn51xx_compiler" />
+		<Build>
+			<Target title="Release">
+				<Option output="..\JN5121_Build\Release\AN1002_154_LightBulb_JN5121.exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\JN5121_Build\Release" />
+				<Option object_output="..\JN5121_Build\Release\.objs" />
+				<Option type="1" />
+				<Option compiler="jn51xx_compiler" />
+				<Compiler>
+					<Add option="-Os" />
+				</Compiler>
+				<Linker>
+					<Add library="..\..\..\Common\Library\libgcc.a" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="mv ..\JN5121_Build\Release\AN1002_154_LightBulb_JN5121.exe ..\JN5121_Build\Release\AN1002_154_LightBulb_JN5121.elf" />
+					<Add after="ba-elf-objcopy -S -O binary ..\JN5121_Build\Release\AN1002_154_LightBulb_JN5121.elf ..\JN5121_Build\Release\AN1002_154_LightBulb_JN5121.bin" />
+					<Add after="ba-elf-size ..\JN5121_Build\Release\AN1002_154_LightBulb_JN5121.elf" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-I." />
+			<Add option="-DOR1K" />
+			<Add option="-Wall" />
+			<Add option="-fomit-frame-pointer" />
+			<Add option="-msibcall" />
+			<Add option="-mno-entri" />
+			<Add option="-mno-multi" />
+			<Add option="-mno-setcc" />
+			<Add option="-mno-cmov" />
+			<Add option="-mno-carry" />
+			<Add option="-mno-subb" />
+			<Add option="-mno-sext" />
+			<Add option="-mno-ror" />
+			<Add option="-mno-ff1" />
+			<Add option="-mno-hard-div" />
+			<Add option="-mhard-mul" />
+			<Add option="-mbranch-cost=3" />
+			<Add option="-msimple-mul" />
+			<Add option="-mabi=1" />
+			<Add option="-march=ba1" />
+			<Add option="-mredzone-size=4" />
+			<Add option="-DPCB_DEVKIT1" />
+			<Add option="-DEMBEDDED" />
+			<Add option="-DLEAN_N_MEAN" />
+			<Add option="-DSINGLE_CONTEXT" />
+			<Add option="-DCHIP_RELEASE_3" />
+			<Add option="-DJN5121" />
+			<Add option="-DJN5121_BUILD" />
+			<Add directory="..\Common\Source" />
+			<Add directory="..\..\..\..\SDK\Chip\Common\Include" />
+			<Add directory="..\..\..\..\SDK\Common\Include" />
+			<Add directory="..\..\..\..\SDK\Platform\DK1\Include" />
+			<Add directory="..\..\..\..\SDK\Platform\Common\Include" />
+			<Add directory="..\..\..\..\SDK\Chip\JN5121\Include" />
+			<Add directory="..\..\..\..\SDK\Common\Source" />
+			<Add directory="..\..\..\..\SDK\Chip\Common\Source" />
+			<Add directory="..\..\..\..\SDK\Platform\Common\Source" />
+			<Add directory="..\..\..\..\SDK\Platform\DK1\Source" />
+		</Compiler>
+		<Linker>
+			<Add option="-TAppBuild_JN5121.ld" />
+			<Add option="--gc-sections" />
+			<Add option="-u_AppColdStart" />
+			<Add option="-u_AppWarmStart" />
+			<Add library="..\..\..\..\SDK\Chip\JN5121\Library\ChipLib.a" />
+			<Add library="..\..\..\Platform\DK1\Library\BoardLib_JN5121.a" />
+			<Add directory="..\..\..\..\SDK\Chip\JN5121\Build" />
+		</Linker>
+		<Unit filename="..\AN1002_154_LightBulb\Source\AN1002_154_LightBulb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\md5-c\string.h" />
+		<Unit filename="..\..\..\..\SDK\Common\Source\AppQueueApi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\..\md5-c\global.h" />
+		<Unit filename="..\..\..\md5-c\md5.h" />
+		<Unit filename="..\..\..\md5-c\md5c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\..\md5-c\mddriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

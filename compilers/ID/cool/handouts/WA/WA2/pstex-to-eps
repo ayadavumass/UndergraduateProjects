@@ -1,0 +1,67 @@
+#!/bin/sh
+# convert a .pstex and .pstex_t file pair into .eps
+
+if [ "$1" = "" ]; then
+  echo "usage: $0 filename.pstex_t"
+  echo "  reads filename.pstex_t and creates filename.eps"
+  exit 0
+fi
+
+# bail on error
+set -e
+
+base=`echo $1 | sed 's/\.pstex_t//'`
+
+if [ ! -f "$1" ]; then
+  echo "$0: $1 doesn't exist."
+  exit 2
+fi
+
+# create the .tex document
+cat >"$base.tmp.tex" <<EOF
+\documentclass{article}  % include bezier curves
+\renewcommand\baselinestretch{1.0}           % single space
+\pagestyle{empty}                            % no headers and page numbers
+\oddsidemargin -10 true pt      % Left margin on odd-numbered pages.
+\evensidemargin 10 true pt      % Left margin on even-numbered pages.
+\marginparwidth 0.75 true in    % Width of marginal notes.
+\oddsidemargin  0 true in       % Note that \oddsidemargin=\evensidemargin
+\evensidemargin 0 true in
+\topmargin -0.75 true in        % Nominal distance from top of page to top of
+\textheight 9.5 true in         % Height of text (including footnotes and figures)
+\textwidth 6.375 true in        % Width of text line.
+\parindent=0pt                  % Do not indent paragraphs
+\parskip=0.15 true in
+
+\usepackage{graphicx}       % for includegraphics
+
+\begin{document}
+
+
+\begin{figure}[htbp]
+\begin{center}
+
+% deal with undefined \color in .pstex_t file
+\def\color[#1]#2{}
+
+% the following filename is replaced with the real .pstex_t file name
+\input{$1}
+
+\end{center}
+\end{figure}
+
+
+\end{document}
+
+EOF
+
+# run latex
+echo latex "$base.tmp.tex"
+latex "$base.tmp.tex" </dev/null
+
+# make the eps
+echo dvips -E "$base.tmp.dvi" -o "$base.eps"
+dvips -E "$base.tmp.dvi" -o "$base.eps"
+
+# clean up the mess
+rm "$base.tmp".*

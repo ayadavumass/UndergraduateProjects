@@ -1,0 +1,24 @@
+#4
+_program
+ #3
+ _class
+   Main
+   Object
+   "./BASE_semanttest/plus_correct.cl"
+   (
+   #2
+   _method
+     main
+     Int
+     #2
+     _plus
+       #2
+       _int
+         1
+       : Int
+       #2
+       _int
+         2
+       : Int
+     : Int
+   )

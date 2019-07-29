@@ -1,0 +1,10 @@
+#ifndef USERPROG_SYSCALL_H
+#define USERPROG_SYSCALL_H
+
+void syscall_init (void);
+#include "vm/memoryMap.h"
+#include "vm/swap.h"
+#include "vm/page.h"
+//#include <stdbool.h>
+void writePageToSwapDisk(struct SuppPageTable *HashStruct, struct file *filePointer, int Offset);
+#endif /* userprog/syscall.h */

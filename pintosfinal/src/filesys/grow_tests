@@ -1,0 +1,15 @@
+pass tests/filesys/extended/grow-create			done
+FAIL tests/filesys/extended/grow-dir-lg
+pass tests/filesys/extended/grow-file-size
+FAIL tests/filesys/extended/grow-root-lg
+pass tests/filesys/extended/grow-root-sm
+FAIL tests/filesys/extended/grow-seq-lg			done
+
+rm -f tmp.dsk
+pintos-mkdisk tmp.dsk 2
+pintos -v -k -T 60 --qemu  --fs-disk=tmp.dsk -p tests/filesys/extended/grow-seq-lg -a grow-seq-lg -p tests/filesys/extended/tar -a tar --swap-disk=4 -- -q   -f run grow-seq-lg 
+
+pass tests/filesys/extended/grow-seq-sm
+FAIL tests/filesys/extended/grow-sparse
+FAIL tests/filesys/extended/grow-tell
+pass tests/filesys/extended/grow-two-files

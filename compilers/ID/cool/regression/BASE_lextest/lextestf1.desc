@@ -1,0 +1,2 @@
+test.cl file
+EOF in comment error has 2 valid lineno's (97 or 98)

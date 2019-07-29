@@ -1,0 +1,39 @@
+Copying tests/userprog/multi-child-fd into /tmp/V0mBZVqki5.dsk...
+Copying ../../tests/userprog/sample.txt into /tmp/V0mBZVqki5.dsk...
+Copying tests/userprog/child-close into /tmp/V0mBZVqki5.dsk...
+Writing command line to /tmp/oAqxtvKMw5.dsk...
+qemu -hda /tmp/oAqxtvKMw5.dsk -hdb /tmp/MfO6V3GvA0.dsk -hdc /tmp/V0mBZVqki5.dsk -hdd /tmp/hdqhePQvnt.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put multi-child-fd put sample.txt put child-close run multi-child-fd
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  106,291,200 loops/s.
+hd0:0: detected 153 sector (76 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 203 sector (101 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+filesys init done
+Boot complete.
+Putting 'multi-child-fd' into the file system...
+Putting 'sample.txt' into the file system...
+Putting 'child-close' into the file system...
+Executing 'multi-child-fd':
+(multi-child-fd) begin
+(multi-child-fd) open "sample.txt"
+(child-close) begin
+child-close: exit(-1)
+(multi-child-fd) wait(exec()) = -1
+(multi-child-fd) verified contents of "sample.txt"
+(multi-child-fd) end
+multi-child-fd: exit(0)
+Execution of 'multi-child-fd' complete.
+Timer: 77 ticks
+Thread: 0 idle ticks, 74 kernel ticks, 3 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 266 reads, 409 writes
+hd1:0: 203 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1249 characters output
+Keyboard: 0 keys pressed
+Powering off...

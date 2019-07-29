@@ -1,0 +1,3 @@
+./BASE_semanttest/objref_undefined_class.cl:7: No 'main' method in class Main.
+./BASE_semanttest/objref_undefined_class.cl:4: Class A of attribute b is undefined.
+Compilation halted due to static semantic errors.

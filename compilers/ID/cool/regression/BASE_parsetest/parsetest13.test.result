@@ -1,0 +1,769 @@
+#181
+_program
+ #54
+ _class
+   Stack
+   IO
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #22
+   _attr
+     rest
+     Stack
+     #22
+     _no_expr
+     : _no_type
+   #29
+   _method
+     push
+     #24
+     _formal
+       r
+       Stack
+     Stack
+     #28
+     _block
+       #26
+       _assign
+         rest
+         #26
+         _object
+           r
+         : _no_type
+       : _no_type
+       #27
+       _object
+         self
+       : _no_type
+     : _no_type
+   #31
+   _method
+     pop
+     Stack
+     #31
+     _object
+       rest
+     : _no_type
+   #32
+   _method
+     pop2
+     Stack
+     #32
+     _dispatch
+       #32
+       _dispatch
+         #32
+         _object
+           self
+         : _no_type
+         pop
+         (
+         )
+       : _no_type
+       pop
+       (
+       )
+     : _no_type
+   #33
+   _method
+     pop3
+     Stack
+     #33
+     _dispatch
+       #33
+       _dispatch
+         #33
+         _dispatch
+           #33
+           _object
+             self
+           : _no_type
+           pop
+           (
+           )
+         : _no_type
+         pop
+         (
+         )
+       : _no_type
+       pop
+       (
+       )
+     : _no_type
+   #35
+   _method
+     show
+     Stack
+     #35
+     _object
+       self
+     : _no_type
+   #36
+   _method
+     eval
+     Stack
+     #36
+     _object
+       self
+     : _no_type
+   #37
+   _method
+     doit
+     Stack
+     #37
+     _object
+       self
+     : _no_type
+   #45
+   _method
+     setval
+     #39
+     _formal
+       i
+       Int
+     Stack
+     #44
+     _block
+       #41
+       _dispatch
+         #41
+         _object
+           self
+         : _no_type
+         out_string
+         (
+         #41
+         _string
+           "No setval method for object on stack.\n"
+         : _no_type
+         )
+       : _no_type
+       #42
+       _dispatch
+         #42
+         _object
+           self
+         : _no_type
+         abort
+         (
+         )
+       : _no_type
+       #43
+       _object
+         self
+       : _no_type
+     : _no_type
+   #53
+   _method
+     getval
+     Int
+     #52
+     _block
+       #49
+       _dispatch
+         #49
+         _object
+           self
+         : _no_type
+         out_string
+         (
+         #49
+         _string
+           "No getval method for object on stack.\n"
+         : _no_type
+         )
+       : _no_type
+       #50
+       _dispatch
+         #50
+         _object
+           self
+         : _no_type
+         abort
+         (
+         )
+       : _no_type
+       #51
+       _int
+         0
+       : _no_type
+     : _no_type
+   )
+ #82
+ _class
+   I
+   Stack
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #68
+   _attr
+     val
+     Int
+     #68
+     _no_expr
+     : _no_type
+   #70
+   _method
+     setval
+     #70
+     _formal
+       i
+       Int
+     Stack
+     #70
+     _block
+       #70
+       _assign
+         val
+         #70
+         _object
+           i
+         : _no_type
+       : _no_type
+       #70
+       _object
+         self
+       : _no_type
+     : _no_type
+   #72
+   _method
+     getval
+     Int
+     #72
+     _object
+       val
+     : _no_type
+   #81
+   _method
+     show
+     Stack
+     #80
+     _block
+       #76
+       _dispatch
+         #76
+         _object
+           self
+         : _no_type
+         out_int
+         (
+         #76
+         _object
+           val
+         : _no_type
+         )
+       : _no_type
+       #77
+       _dispatch
+         #77
+         _object
+           self
+         : _no_type
+         out_string
+         (
+         #77
+         _string
+           "\n"
+         : _no_type
+         )
+       : _no_type
+       #78
+       _dispatch
+         #78
+         _object
+           rest
+         : _no_type
+         show
+         (
+         )
+       : _no_type
+       #79
+       _object
+         self
+       : _no_type
+     : _no_type
+   )
+ #102
+ _class
+   A
+   Stack
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #93
+   _method
+     eval
+     Stack
+     #92
+     _dispatch
+       #92
+       _dispatch
+         #92
+         _new
+           I
+         : _no_type
+         setval
+         (
+         #92
+         _plus
+           #92
+           _dispatch
+             #92
+             _dispatch
+               #92
+               _object
+                 self
+               : _no_type
+               pop
+               (
+               )
+             : _no_type
+             getval
+             (
+             )
+           : _no_type
+           #92
+           _dispatch
+             #92
+             _dispatch
+               #92
+               _object
+                 self
+               : _no_type
+               pop2
+               (
+               )
+             : _no_type
+             getval
+             (
+             )
+           : _no_type
+         : _no_type
+         )
+       : _no_type
+       push
+       (
+       #92
+       _dispatch
+         #92
+         _object
+           self
+         : _no_type
+         pop3
+         (
+         )
+       : _no_type
+       )
+     : _no_type
+   #101
+   _method
+     show
+     Stack
+     #100
+     _block
+       #97
+       _dispatch
+         #97
+         _object
+           self
+         : _no_type
+         out_string
+         (
+         #97
+         _string
+           "+\n"
+         : _no_type
+         )
+       : _no_type
+       #98
+       _dispatch
+         #98
+         _object
+           rest
+         : _no_type
+         show
+         (
+         )
+       : _no_type
+       #99
+       _object
+         self
+       : _no_type
+     : _no_type
+   )
+ #128
+ _class
+   S
+   Stack
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #119
+   _method
+     eval
+     Stack
+     #118
+     _let
+       first
+       Stack
+       #112
+       _dispatch
+         #112
+         _object
+           self
+         : _no_type
+         pop
+         (
+         )
+       : _no_type
+       #117
+       _let
+         second
+         Stack
+         #113
+         _dispatch
+           #113
+           _object
+             self
+           : _no_type
+           pop2
+           (
+           )
+         : _no_type
+         #116
+         _let
+           rest
+           Stack
+           #114
+           _dispatch
+             #114
+             _object
+               self
+             : _no_type
+             pop3
+             (
+             )
+           : _no_type
+           #115
+           _dispatch
+             #115
+             _object
+               second
+             : _no_type
+             push
+             (
+             #115
+             _dispatch
+               #115
+               _object
+                 first
+               : _no_type
+               push
+               (
+               #115
+               _object
+                 rest
+               : _no_type
+               )
+             : _no_type
+             )
+           : _no_type
+         : _no_type
+       : _no_type
+     : _no_type
+   #127
+   _method
+     show
+     Stack
+     #126
+     _block
+       #123
+       _dispatch
+         #123
+         _object
+           self
+         : _no_type
+         out_string
+         (
+         #123
+         _string
+           "s\n"
+         : _no_type
+         )
+       : _no_type
+       #124
+       _dispatch
+         #124
+         _object
+           rest
+         : _no_type
+         show
+         (
+         )
+       : _no_type
+       #125
+       _object
+         self
+       : _no_type
+     : _no_type
+   )
+ #136
+ _class
+   E
+   Stack
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #135
+   _method
+     doit
+     Stack
+     #135
+     _dispatch
+       #135
+       _dispatch
+         #135
+         _object
+           self
+         : _no_type
+         pop
+         (
+         )
+       : _no_type
+       eval
+       (
+       )
+     : _no_type
+   )
+ #144
+ _class
+   D
+   Stack
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #143
+   _method
+     doit
+     Stack
+     #143
+     _dispatch
+       #143
+       _dispatch
+         #143
+         _object
+           self
+         : _no_type
+         pop
+         (
+         )
+       : _no_type
+       show
+       (
+       )
+     : _no_type
+   )
+ #180
+ _class
+   Main
+   IO
+   "./BASE_parsetest/parsetest13.test"
+   (
+   #149
+   _attr
+     stack
+     Stack
+     #149
+     _new
+       Stack
+     : _no_type
+   #152
+   _attr
+     dummy
+     A2I
+     #152
+     _new
+       A2I
+     : _no_type
+   #154
+   _attr
+     s
+     String
+     #154
+     _no_expr
+     : _no_type
+   #161
+   _method
+     prompt
+     String
+     #160
+     _block
+       #158
+       _dispatch
+         #158
+         _object
+           self
+         : _no_type
+         out_string
+         (
+         #158
+         _string
+           ">"
+         : _no_type
+         )
+       : _no_type
+       #159
+       _dispatch
+         #159
+         _object
+           self
+         : _no_type
+         in_string
+         (
+         )
+       : _no_type
+     : _no_type
+   #179
+   _method
+     main
+     Object
+     #178
+     _loop
+       #170
+       _comp
+         #169
+         _eq
+           #169
+           _assign
+             s
+             #169
+             _dispatch
+               #169
+               _object
+                 self
+               : _no_type
+               prompt
+               (
+               )
+             : _no_type
+           : _no_type
+           #169
+           _string
+             "x"
+           : _no_type
+         : _no_type
+       : _no_type
+       #178
+       _assign
+         stack
+         #177
+         _dispatch
+           #177
+           _dispatch
+             #176
+             _cond
+               #171
+               _eq
+                 #171
+                 _object
+                   s
+                 : _no_type
+                 #171
+                 _string
+                   "+"
+                 : _no_type
+               : _no_type
+               #171
+               _new
+                 A
+               : _no_type
+               #176
+               _cond
+                 #172
+                 _eq
+                   #172
+                   _object
+                     s
+                   : _no_type
+                   #172
+                   _string
+                     "s"
+                   : _no_type
+                 : _no_type
+                 #172
+                 _new
+                   S
+                 : _no_type
+                 #176
+                 _cond
+                   #173
+                   _eq
+                     #173
+                     _object
+                       s
+                     : _no_type
+                     #173
+                     _string
+                       "d"
+                     : _no_type
+                   : _no_type
+                   #173
+                   _new
+                     D
+                   : _no_type
+                   #176
+                   _cond
+                     #174
+                     _eq
+                       #174
+                       _object
+                         s
+                       : _no_type
+                       #174
+                       _string
+                         "e"
+                       : _no_type
+                     : _no_type
+                     #174
+                     _new
+                       E
+                     : _no_type
+                     #175
+                     _dispatch
+                       #175
+                       _new
+                         I
+                       : _no_type
+                       setval
+                       (
+                       #175
+                       _dispatch
+                         #175
+                         _object
+                           dummy
+                         : _no_type
+                         a2i
+                         (
+                         #175
+                         _object
+                           s
+                         : _no_type
+                         )
+                       : _no_type
+                       )
+                     : _no_type
+                   : _no_type
+                 : _no_type
+               : _no_type
+             : _no_type
+             push
+             (
+             #177
+             _object
+               stack
+             : _no_type
+             )
+           : _no_type
+           doit
+           (
+           )
+         : _no_type
+       : _no_type
+     : _no_type
+   )

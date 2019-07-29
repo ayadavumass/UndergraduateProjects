@@ -1,0 +1,5 @@
+./BASE_semanttest/const.cl:4: Redefinition of basic class Object.
+./BASE_semanttest/const.cl:8: Redefinition of basic class Int.
+./BASE_semanttest/const.cl:12: Redefinition of basic class Bool.
+./BASE_semanttest/const.cl:16: Redefinition of basic class String.
+Compilation halted due to static semantic errors.

@@ -1,0 +1,528 @@
+\documentclass[11pt]{article}
+\usepackage{handout}
+%
+% Copyright (c) 1995-1996 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+\input{macros}
+\input{handout-number}
+
+\usepackage{latexsym}
+
+\begin{document}
+
+\handout{6}{6}{Programming Assignment III \\
+Due Thursday, November 6, 2008 at 11:59 PM }
+
+% Three macros for defining:
+%       Unix elements: filenames and program (sans serif)
+%       Sather164 elements: literal tokens (typewriter)
+%       C elements: function and variable names (boldface)
+%
+\def\U#1{{\sf{}#1}}
+\def\S#1{{\tt{}#1}} % NB: we often use \verb+...+ for this also
+\def\C#1{{\bf{}#1}}
+
+\bigskip
+\section{Introduction} 
+
+In this assignment, you will implement the static semantics of Cool.  You
+will use the abstract syntax trees (AST) built by the parser to check
+that a program conforms to the Cool specification. Your
+static semantic component should reject erroneous programs; for correct
+programs, it must gather certain information for use by the code
+generator.  The output of the semantic analyzer will be an annotated
+AST for use by the code generator.
+
+This assignment has much more room for design decisions than previous
+assignments. Your program is correct if it checks programs against the
+specification. There is no one ``right'' way to do the assignment, but there
+are wrong ways. There are a number of standard practices that we think
+make life easier, and we will try to convey them to you. However, what
+you do is largely up to you.  Whatever you decide to do, be prepared to
+justify and explain your solution.
+
+You will need to refer to the typing rules, identifier scoping rules,
+and other restrictions of Cool as defined in the Cool Reference
+Manual.  You will also need to add methods and data members to the AST
+class definitions for this phase.  The functions the tree package
+provides are documented in the {\em Tour of Cool Support Code}.
+
+There is a lot of information in this handout, and you need to know most
+of it to write a working semantic analyzer.  {\em Please read the
+handout thoroughly.}
+At a high level, your semantic
+checker will have to perform the following major tasks:
+\begin{enumerate}
+\item Look at all classes and build an inheritance graph.
+\item Check that the graph is well-formed.
+\item For each class
+\begin{enumerate}
+\item Traverse the AST, gathering all visible declarations in a symbol table.
+\item Check each expression for type correctness.
+\item Annotate the AST with types.
+\end{enumerate}
+\end{enumerate}
+This list of tasks is not exhaustive; it is up to you to faithfully
+implement the specification in the manual.
+
+
+You may work in a group of one or two people.
+
+%You must work in a group for this assignment (where a group consists of
+%one or two people).  The \U{submit} program will ask you to specify
+%group members when you turn in your assignment.
+
+\section{Files and Directories}
+
+%We strongly suggest you use CVS for this assignment.  This assignment
+%is larger than the previous ones, so version control may be especially
+%helpful.
+%
+%To use CVS on the instructional machines, you need to have a cvs group
+%id (see the web page).  You will need to run ``{\tt cvsgroup cs164-gNN}'',
+%where NN is your group number, each time you login -- so putting this
+%command in your .cshrc file is a good idea.
+%
+%To create a CVS repository for the C++ version of the project, run:
+%
+%\begin{verbatim}
+%~cs164/etc/make-cvs PA4 PA4
+%\end{verbatim}
+%
+%\noindent For Java, type:
+%
+%\begin{verbatim}
+%~cs164/etc/make-cvs PA4J PA4
+%\end{verbatim}
+%
+%\noindent
+%(notice the extra ``J'').  The first argument to make-cvs is the
+%subdirectory of {\tt \~{}cs164/assignments} that you want to use, while the
+%second is the name of the CVS repository you want to create. Now you
+%(and your partner, if you have one) can run ``{\tt cvs checkout PA4}'',
+%which will create a subdirectory PA4 in the current working
+%directory.  Now cd to the PA4 directory.  If you are using C++, run this
+%command: 
+
+To get started, create a directory where you want to do the assignment
+and execute one of the following commands {\em in that directory}.  For
+the C++ version of the assignment, you should type
+
+\begin{verbatim}
+gmake -f /usr/class/cs143/assignments/PA4/Makefile
+\end{verbatim}
+
+\noindent For Java, type:
+
+\begin{verbatim}
+gmake -f /usr/class/cs143/assignments/PA4J/Makefile
+\end{verbatim}
+
+\noindent
+(notice the ``J'' in the path name).
+
+%This will create several
+%symbolic links in the currect directory.  You should not edit the
+%files pointed to by these links.  In fact, if you make and modify
+%private copies of these files, you may find it impossible to complete
+%the assignment.
+%See the instructions in the \U{README} file.  
+
+As usual, there are several files used in the assignment that are
+symbolically linked to your directory or are included from \U{\
+/usr/class/cs143/include/PA4}.  Do {\bf not} modify these files.  Almost all of
+these files have have been described in previous assignments. See the
+instructions in the \U{README} file.
+
+%{\bf Important:} All software supplied with this assignment is
+%supported on Solaris SPARC, Solaris x86, and Linux x86.  Remember to
+%run \U{gmake clean} if you switch architectures.
+
+We now describe the most important files for each
+version of the project.
+
+\subsection{C++ Version}
+
+This is a list of the files that you may want to modify.
+
+\begin{itemize}
+
+\item \U{cool-tree.h} \\
+This file is where user-defined extensions to the abstract syntax
+tree nodes are placed.
+%You can modify either file, but you will
+%probably find it easiest to modify \U{cool-tree.h}.
+You will likely
+need to add additional declarations, but do {\bf not} modify the
+existing declarations.
+
+
+\item \U{semant.cc} \\
+This is the main file for your implementation of the semantic analysis
+phase.  It contains some symbols predefined for your convenience and a
+start to a \C{ClassTable} implementation for representing the
+inheritance graph.  You may choose to use or ignore these.
+
+The semantic analyzer is invoked by calling method \C{semant()} of
+class \C{program\_class}.  The class declaration for
+\C{program\_class} is in \U{cool-tree.h}.  Any method declarations you
+add to \U{cool-tree.h} should be
+implemented in this file.
+
+
+\item \U{semant.h} \\
+This file is the header file for \U{semant.cc}.  You add any
+additional declarations you need (not in \U{cool-tree.h})
+here.
+
+\item \U{good.cl} and \U{bad.cl} \\
+These files test a few semantic features.  You should add tests to
+ensure that \U{good.cl} exercises as many legal semantic combinations as
+possible and that \U{bad.cl} exercises as many kinds of semantic errors
+as possible.  It is not possible to exercise all possible combinations
+in one file; you are only responsible for achieving reasonable coverage.
+Explain your tests in these files and put any overall comments in the
+\U{README} file.
+
+\item \U{README} \\
+This file will contain the write-up for your assignment.  For this
+assignment, it is critical that you explain design decisions, how your
+code is structured, and why you believe that the design is a good one
+(i.e., why it leads to a correct and robust program).  It is part of the
+assignment to explain things in text, as well as to comment your code.
+Inadequate \U{README} files will be penalized more heavily in this
+assignment, as the \U{README} is the major guideline we have to
+understanding your code.
+
+\end{itemize}
+
+
+\subsection{Java Version}
+
+This is a list of the files that you may want to modify.
+
+\begin{itemize}
+\item \U{cool-tree.java} \\
+This file contains the definitions for the AST nodes and is the
+main file for your implementation of the semantic analysis phase.
+You will need to
+add the code for your semantic analysis phase in this file.  The
+semantic analyzer is invoked by calling method \C{semant()} of class
+\C{program}. Do {\bf not} modify the existing declarations.
+
+\item \U{ClassTable.java} \\
+This class is a placeholder for some useful methods (including
+error reporting and initialization of basic classes).  You may wish to
+enhance it for use in your analyzer.
+
+\item \U{TreeConstants.java} \\
+This file defines some useful symbol constants.
+
+\item \U{good.cl} and \U{bad.cl} \\
+These files test a few semantic features.  You should add tests to
+ensure that \U{good.cl} exercises as many legal semantic combinations as
+possible and that \U{bad.cl} exercises as many kinds of semantic errors
+as possible.  It is not possible to exercise all possible combinations
+in one file; you are only responsible for achieving reasonable coverage.
+Explain your tests in these files and put any overall comments in the
+\U{README} file.
+
+\item \U{README} \\
+This file will contain the write-up for your assignment.  For this
+assignment it is critical that you explain design decisions, how your
+code is structured, and why you believe that the design is a good one
+(i.e., why it leads to a correct and robust program).  It is part of the
+assignment to explain things in text as well as to comment your code.
+Inadequate \U{README} files will be penalized more heavily in this
+assignment, as the \U{README} is the major guideline we have to
+understanding your code.
+
+
+\end{itemize}
+
+\section{Tree Traversal}
+
+As a result of assignment 3, your parser builds abstract syntax trees.
+The method \C{dump\_with\_types}, defined on most AST nodes, illustrates
+how to traverse the AST and gather information from it. This algorithmic
+style---a recursive traversal of a complex tree structure---is very
+important, because it is a very natural way to structure many
+computations on ASTs.
+
+Your programming task for this assignment is to (1) traverse the tree, (2)
+manage various pieces of information that you glean from the tree, and
+(3) use that information to enforce the semantics of Cool.  One traversal
+of the AST is called a ``pass''.  You will probably need to make at
+least two passes over the AST to check everything.
+
+You will most likely need to attach customized information to the AST
+nodes.  To do so, you may edit \U{cool-tree.h} (C++) or
+\U{cool-tree.java} (Java) directly.  In the C++ version, the method
+implementations you wish to add should go into \U{semant.cc}.
+
+\section{Inheritance}
+
+Inheritance relationships specify a directed graph of class
+dependencies.  A typical requirement of most languages with inheritance
+is that the inheritance graph be acyclic.  It is up to your semantic
+checker to enforce this requirement. One fairly easy way to do this is
+to construct a representation of the type graph and then check for
+cycles.
+
+In addition, Cool has restrictions on inheriting from the basic classes
+(see the manual).  It is also an error if class \U{A} inherits from
+class \U{B} but class \U{B} is not defined.
+
+The project skeleton includes appropriate definitions of all the basic
+classes. You will need to incorporate these classes into the inheritance
+hierarchy.
+
+We suggest that you divide your semantic analysis phase into two smaller
+components.  First, check that the inheritance graph is well-defined,
+meaning that all the restrictions on inheritance are satisfied.  If the
+inheritance graph is not well-defined, it is acceptable to abort
+compilation (after printing appropriate error messages, of course!).
+Second, check all the other semantic conditions.  It is much easier to
+implement this second component if one knows the inheritance graph and
+that it is legal.
+
+\section{Naming and Scoping}
+
+A major portion of any semantic checker is the management of names.  The
+specific problem is determining which declaration is in effect for each
+use of an identifier, especially when names can be reused. For example,
+if \C{i} is declared in two \U{let} expressions, one nested within the
+other, then wherever \C{i} is referenced the semantics of the language
+specify which declaration is in effect.  It is the job of the semantic
+checker to keep track of which declaration a name refers to.
+
+As discussed in class, a {\em symbol table} is a convenient data
+structure for managing names and scoping.  You may use our
+implementation of symbol tables for your project.  Our implementation
+provides methods for entering, exiting, and augmenting scopes as needed.
+You are also free to implement your own symbol table, of course.
+
+Besides the identifier \C{self}, which is implicitly bound in every
+class, there are four ways that an object name can be introduced in
+Cool:
+\begin{itemize}
+\item attribute definitions;
+\item formal parameters of methods;
+\item let expressions;
+\item branches of case statements.
+\end{itemize}
+
+In addition to object names, there are also method names and class
+names.  It is an error to use any name that has no matching
+declaration.  In this case, however, the semantic analyzer should
+{\em not} abort compilation after discovering such an error.
+Remember that neither classes, methods, nor attributes need be declared
+before use.  Think about how this affects your analysis.
+
+\section{Type Checking}
+
+Type checking is another major function of the semantic analyzer.  The
+semantic analyzer must check that valid types are declared where
+required.  For example, the return types of methods must be declared.
+Using this information, the semantic analyzer must also verify that
+every expression has a valid type according to the type rules.  The
+type rules are discussed in detail in the Cool Reference Manual and
+the course lecture notes.
+
+One difficult issue is what to do if an expression doesn't have a valid
+type according to the rules.  First, an error message should be printed
+with the line number and a description of what went wrong.  It is
+relatively easy to give informative error messages in the semantic
+analysis phase, because it is generally obvious what the error is.  We
+expect you to give informative error messages.  Second, the semantic
+analyzer should attempt to recover and continue.
+%A good semantic
+%analyzer will avoid cascading errors using any of several standard
+%techniques.
+We do expect your semantic analyzer to recover, but we do
+not expect it to avoid cascading errors.  A simple recovery mechanism is
+to assign the type \U{Object} to any expression that cannot otherwise be
+given a type (we used this method in \U{coolc}). 
+
+\section{Code Generator Interface}
+
+For the semantic analyzer to work correctly with the rest of the
+\U{coolc} compiler, some care must be taken to adhere to the interface
+with the code generator.  We have deliberately adopted a very simple,
+na\"\i{}ve interface to avoid cramping your creative impulses in semantic
+analysis.  However, there is one thing you must do.  For every
+expression node, its \U{type} field must be set to the \U{Symbol} naming
+the type inferred by your type checker. This \U{Symbol} must be the
+result of the \U{add\_string} (C++) or \U{addString} (Java) method of
+the \U{idtable}.  The special expression \U{no\_expr} must be assigned
+the type \U{No\_type} which is a predefined symbol in the project
+skeleton.
+
+\section{Expected Output}
+
+For incorrect programs, the output of semantic analysis is error
+messages.  You are expected to recover from all errors except for
+ill-formed class hierarchies.  You are also expected to produce complete
+and informative errors.  Assuming the inheritance hierarchy is
+well-formed, the semantic checker should catch and report all semantic
+errors in the program.
+%When in doubt, use \C{coolc} as a guide in
+%determining what informative error messages should say.
+Your error
+messages need not be identical to those of \C{coolc}.
+
+We have supplied you with simple error reporting methods
+\C{ostream\& ClassTable::semant\_error(Class\_)} (C++)
+and
+\C{PrintStream ClassTable.semantError(class\_)} (Java).
+%There is one routine that takes a filename and the AST node
+%where the error occurred, and it returns the error stream after it has
+%printed an error header.  The filename should be the file in which the
+%error occurs.
+This routine takes a \U{Class\_} (C++) or \U{class\_} (Java) node
+and returns an output stream that you can use to write error
+messages.  Since the parser ensures that \U{Class\_}/\U{class\_} nodes
+store the file in which the class was defined (recall that class
+definitions cannot be split across files), the line number of the
+error message can be obtained from the AST node where the error is
+detected and the filename from the enclosing class.
+
+For correct programs, the output is a type-annotated abstract syntax
+tree.  You will be graded on whether your semantic phase correctly
+annotates ASTs with types and on whether your semantic phase works
+correctly with the \C{coolc} code generator.
+
+%You are also expected to program in good, structured style.  You should
+%spend some time thinking about the class definitions you will use.
+
+%Grading will be out of 50 points, with 4 points for the README, 4 for
+%the test cases in good.cl and bad.cl, 2 for comments, and 40 points
+%for correctly typechecking our tests.
+
+
+\section{Testing the Semantic Analyzer}
+
+You will need a working scanner and parser to test your semantic
+analyzer. You may use either your own scanner/parser or the \U{coolc}
+scanner/parser.  By default, the \U{coolc} phases are used; to change
+that, replace the \U{lexer} and/or \U{parser} executable (which are
+symbolic links in your project directory) with your own scanner/parser.
+Even if you use your own scanner and/or parser, it is wise to test your
+semantic analyzer with the \U{coolc} scanner and parser at least once,
+because we will grade your semantic analyzer using \U{coolc}'s scanner
+and parser.
+
+You will run your semantic analyzer using \U{mysemant}, a shell script
+that ``glues'' together the analyzer with the parser and the scanner.
+Note that \U{mysemant} takes a \U{-s} flag for debugging the analyzer;
+using this flag merely causes {\tt semant\_debug} (a global variable in
+the C++ version and a static field of class {\tt Flags} in the Java
+version) to be set.  Adding the actual code to produce useful debugging
+information is up to you.  See the project \U{README} for details.
+
+Once you are confident that your semantic analyzer is working, try running
+\U{mycoolc} to invoke your analyzer together with other compiler
+phases. You should test this compiler on both good and bad inputs to see
+if everything is working. Remember, bugs in the semantic analyzer may
+manifest themselves in the code generated or only when the compiled
+program is executed under \U{spim}.
+
+
+
+\section{Remarks}
+\label{check}
+
+The semantic analysis phase is by far the largest component of the
+compiler so far.  Our solution is approximately 1300 lines of
+well-documented C++.  You will find the assignment easier if you take
+some time to design the semantic checker prior to coding.  Ask yourself:
+
+\begin{itemize}
+\item What requirements do I need to check?
+\item When do I need to check a requirement?
+\item When is the information needed to check a requirement generated?
+\item Where is the information I need to check a requirement?
+\end{itemize}
+
+If you can answer these questions for each aspect of Cool, implementing
+a solution should be straight-forward.  
+
+\section{Final Submission}	
+
+Make sure to complete the following items before submitting to avoid
+any penalties.
+
+\begin{minipage}{0.8\linewidth}
+\bigskip
+\begin{itemize}
+  \item[$\Box$]
+    Include your write-up in \U{README}.
+
+  \item[$\Box$]
+    Include your test cases that should pass the semantic analyzer in
+    \U{good.cl} and your test cases that should cause the semantic
+    analyzer to issue an error in \U{bad.cl}.
+
+  \item[$\Box$]
+    Make sure all your code for the semantic analyzer is in
+    \begin{itemize}
+    \item \U{cool-tree.h}, \U{semant.h}, and
+          \U{semant.cc} for the C++ version; or
+    \item \U{cool-tree.java}, \U{ClassTable.java}, and
+          \U{TreeConstants.java}. % , and additional \U{.java} files you
+          % may have added for the Java version.
+    \end{itemize}
+
+\end{itemize}
+\end{minipage}
+
+
+%\section{An optional tool that may be of use to you}
+%Harmonia-mode is back, and this time it supports both Cool {\it and} 
+%Java. To remind you, Harmonia-mode is produced by the researchers in 
+%Prof. Susan L. Graham's Harmonia project. It is an extension to XEmacs 
+%that will analyze your Cool and Java programs as you're editing them, 
+%and give you syntax highlighting, proper indentation, and most 
+%importantly, will highlight syntax and semantics errors as you type.
+%
+%Harmonia-mode for Java is new as of this week, and you may try it out 
+%on the instructional machines. While we must reiterate that 
+%Harmonia-mode is research technology, and therefore may crash on you 
+%(though, it has been engineered to recover from any type of crash and 
+%preserve your work), we have fixed every bug reported to us during your 
+%explorations with Harmonia-mode for Cool. Hopefully, you will all find 
+%it much harder to crash this time.
+%
+%As far as performance, no improvements were made since you last used 
+%Harmonia-mode for Cool. Harmonia-mode does prefer to use as much CPU 
+%power as it can get, so running it on heavily-loaded instructional 
+%servers will probably lead to poor performance. If you can, try to find 
+%an unloaded machine to run it.
+%
+%We encourage those souls who like to live on the bleeding-edge to try 
+%it out at http://www.cs.berkeley.edu/\~{}harmonia/harmonia/cs164.  {\em Use of
+%this tool is optional,} and will not affect your grade.  If you like 
+%it (or don't) tell us in your README.  Feel free to email the Harmonia 
+%group directly as well, at harmonia-feedback@sequoia.cs.berkeley.edu.
+%
+%If you used Harmonia-mode to edit Java for all or part of your project, 
+%please take a minute to answer the questions given in the README.
+
+%\begin{enumerate}
+%\item Rate Harmonia-mode's usefulness on a scale of 0 to 6, where 0 
+%means that it kept you from doing any work, 3 means that it neither 
+%helped nor hindered you, and 6 means that you'll never again dare to 
+%edit a Java program without it.
+%\item What aspects of Harmonia-mode particularly helped you?
+%\item What aspects were particularly detrimental?
+%\end{enumerate}
+
+
+
+
+\end{document}
+

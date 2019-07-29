@@ -1,0 +1,37 @@
+Matt Harren
+===========
+
+These changes were made to the default distribution of spim 6.5:
+
+[4/13/2003]
+
+-- Imakefile renamed to Imakefile.original.  ../Makefile will run
+   sed on Imakefile.original to produce an Imakefile with the right
+   directories.
+
+-- Removed Makefile, configuration, and y.tab.[ch], since they're
+   generated fresh on each machine and they would only confuse CVS.
+
+-- In spim-utils.c:132, removed the commands that require the file to
+   declare a label "main" that the trap.handler can jump to.  Cool's
+   trap.handler uses "Main.main" instead.
+
+-- In sym-tbl.c:595, fixed an off-by-one bug.  Patch sent to Jim Larus.
+
+
+[4/27/2003]
+
+-- Added Douglas Hauge's performance counters back in (the -keepstats option).
+   - Added statistics.[ch]
+   - Modified run.c, spim.c, and spim-utils.c
+   - Modified Imakefile.original to compile statistics.o
+
+-- All of the Cool changes to .c and .h files can be found by grepping
+   for "COOL".
+
+
+[5/2/03]
+
+-- In spim.c, fixed bugs in the parsing of command-line options.
+   Patch sent to Jim Larus.
+

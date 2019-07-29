@@ -1,0 +1,4 @@
+-- The following form of dispatch is not allowed by the grammar.
+class Main is
+	a : Int <- @Main.f();
+end;

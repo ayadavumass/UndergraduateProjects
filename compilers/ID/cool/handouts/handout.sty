@@ -1,0 +1,64 @@
+\headheight 8pt \headsep 20pt \footskip 30pt
+\textheight 9in \textwidth 6.5in
+\oddsidemargin 0in \evensidemargin 0in
+\topmargin -.35in
+\def\@oddfoot{Fall 2008/2009\\page \thepage~~of \totalpages}
+\def\@evenfoot{\@oddfoot}
+\def\@oddhead{CS 143~~Compilers \\Handout \handoutnumber}
+\def\@evenhead{\@oddhead}
+\newcommand{\handout}[3]{
+    \begin{center}
+    \LARGE #3
+    \end{center}
+    \vskip 1em
+    \newcommand{\handoutnumber}[0]{#1}
+    \newcommand{\totalpages}[0]{#2}
+    \newcommand{\handoutname}[0]{#3}
+}
+\sloppy
+\parindent 2em
+\leftmargini 4em
+\leftmargin\leftmargini
+\leftmarginv 1em
+\leftmarginvi 1em
+%\renewcommand{\baselinestretch}{0.9}
+
+\newenvironment{indentpar}[1]{
+    \begin{list}{}{\leftmargin#1\topsep0in\partopsep0in\parskip0in}
+    \item
+}{
+    \end{list}
+}
+
+\settowidth{\leftmargini}{1.  }
+\newcommand{\firstslide}{}
+\newcommand{\nextslide}{\vspace{1em}}
+\newcommand{\lastslide}{}
+\newenvironment{points}{
+    \begin{list}{}{
+	\leftmargin 0.5in\topsep 0in\partopsep 0em\parskip 0in\parsep 0em
+    }
+    \item
+}{
+    \end{list}
+}
+\newenvironment{subpoints}{
+    \begin{list}{}{
+	\leftmargin 0.5in\topsep 0in\partopsep 0.5em\parskip 0in\parsep 0.5em
+    }
+    \item
+}{
+    \end{list}
+}
+\newenvironment{comments}{
+    \tiny
+    \begin{list}{}{
+	\leftmargin 0.25in\topsep0in\partopsep0.25em\parskip0in\parsep0.35em
+    }
+    \item
+}{
+    \end{list}
+}
+
+%matth:
+\renewcommand\t[1]{{\tt #1}}

@@ -1,0 +1,6 @@
+./BASE_semanttest/typebug1-oct.cl:11: Class A was previously defined.
+./BASE_semanttest/typebug1-oct.cl:13: Redefinition of basic class SELF_TYPE.
+./BASE_semanttest/typebug1-oct.cl:15: Redefinition of basic class SELF_TYPE.
+./BASE_semanttest/typebug1-oct.cl:5: Class E inherits from an undefined class F.
+./BASE_semanttest/typebug1-oct.cl:3: Class D cannot inherit class Int.
+Compilation halted due to static semantic errors.

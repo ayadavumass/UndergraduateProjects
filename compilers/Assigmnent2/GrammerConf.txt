@@ -1,0 +1,5 @@
+U	E
+E	E+E
+E	E*E
+E	(E)
+E	~i

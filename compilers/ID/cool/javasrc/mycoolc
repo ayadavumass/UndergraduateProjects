@@ -1,0 +1,45 @@
+#!/bin/sh
+# this script strings together the 4 java stages into a compiler
+
+# Scott McPeak 1/11/01
+#   - hacked around the problem with java processes in pipes
+#     (observed on Linux)
+
+# sm: for reasons I can't figure out, making a pipeline
+# out of java commands doesn't work ...
+
+# old code:
+#./lexer $* | ./parser $* | ./semant $* | ./cgen $*
+
+
+# /bin/sh (Bourne Shell) syntax used here:
+#   "$$" expands to the shell's process id
+#   "$@" expands to the shell's command-line arguments
+#        with original word separation preserved (allows
+#        args to have embedded spaces)
+#   "$?" is the exit code of the last process run
+#   "cmd1 || cmd2" runs cmd1, and if it returns an error,
+#                  runs cmd2
+
+
+# two temp files to simulate pipes
+tmp1=/tmp/tmp1.$$
+tmp2=/tmp/tmp2.$$
+
+
+# always executed when script exits (unless SIGKILL)
+onExit()
+{
+  # here, the -f silences any complaint about nonexistent files
+  rm -f $tmp1
+  rm -f $tmp2
+}
+trap onExit EXIT
+
+
+./lexer "$@" > $tmp1 || exit $?
+./parser "$@" < $tmp1 > $tmp2 || exit $?
+./semant "$@" < $tmp2 > $tmp1 || exit $?
+./cgen "$@" < $tmp1 > $tmp2 || exit $?
+
+

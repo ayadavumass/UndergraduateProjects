@@ -1,0 +1,27 @@
+module TEST[] begin
+  type String;
+  type Boolean = String;
+
+  var x : Integer;
+
+  phylum Program = LIST[Expression];
+  phylum Program2 = FOO[String];
+  phylum Program3 = LIST[FOO];
+  phylum Program4 = LIST[FOO1, FOO2];
+  phylum Program5 = LIST[];
+  phylum Program6 = Program;
+  phylum Expression;
+  phylum Program;
+
+  type String;
+
+  constructor add(x,y : Expression) : Expression;
+  constructor iconst(i : Integer) : Expression;
+  constructor add(z : Expression) : Expression;
+  constructor test1(x : FOO) : FOO2;
+  constructor test2(y : String) : Program;
+  constructor test3(y : String) : String;
+  constructor test4() : LIST[FOO];
+  constructor test5(x : LIST[String]) : Expression;
+
+end;

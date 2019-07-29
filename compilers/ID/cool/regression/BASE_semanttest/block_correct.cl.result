@@ -1,0 +1,28 @@
+#4
+_program
+ #3
+ _class
+   Main
+   Object
+   "./BASE_semanttest/block_correct.cl"
+   (
+   #2
+   _method
+     main
+     Int
+     #2
+     _block
+       #2
+       _string
+         "123"
+       : String
+       #2
+       _bool
+         1
+       : Bool
+       #2
+       _int
+         3
+       : Int
+     : Int
+   )

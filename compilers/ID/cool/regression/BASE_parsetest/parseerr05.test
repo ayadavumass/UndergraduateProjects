@@ -1,0 +1,4 @@
+-- extra punctuation
+class A is
+  foo(z : Int,) : Int is 1 end;
+end;

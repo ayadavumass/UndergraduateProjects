@@ -1,0 +1,184 @@
+#19
+_program
+ #18
+ _class
+   Main
+   IO
+   "./BASE_semanttest/Fib.cl"
+   (
+   #2
+   _attr
+     a
+     Int
+     #2
+     _int
+       5
+     : Int
+   #10
+   _method
+     main
+     SELF_TYPE
+     #9
+     _let
+       r
+       Int
+       #4
+       _dispatch
+         #4
+         _object
+           self
+         : SELF_TYPE
+         fib
+         (
+         #4
+         _object
+           a
+         : Int
+         )
+       : Int
+       #8
+       _block
+         #6
+         _dispatch
+           #6
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #6
+           _string
+             "Fib of "
+           : String
+           )
+         : SELF_TYPE
+         #6
+         _dispatch
+           #6
+           _object
+             self
+           : SELF_TYPE
+           out_int
+           (
+           #6
+           _object
+             a
+           : Int
+           )
+         : SELF_TYPE
+         #6
+         _dispatch
+           #6
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #6
+           _string
+             " is: "
+           : String
+           )
+         : SELF_TYPE
+         #7
+         _dispatch
+           #7
+           _object
+             self
+           : SELF_TYPE
+           out_int
+           (
+           #7
+           _object
+             r
+           : Int
+           )
+         : SELF_TYPE
+         #7
+         _dispatch
+           #7
+           _object
+             self
+           : SELF_TYPE
+           out_string
+           (
+           #7
+           _string
+             "\n"
+           : String
+           )
+         : SELF_TYPE
+       : SELF_TYPE
+     : SELF_TYPE
+   #17
+   _method
+     fib
+     #12
+     _formal
+       x
+       Int
+     Int
+     #16
+     _cond
+       #13
+       _lt
+         #13
+         _object
+           x
+         : Int
+         #13
+         _int
+           2
+         : Int
+       : Bool
+       #13
+       _int
+         1
+       : Int
+       #16
+       _plus
+         #15
+         _dispatch
+           #15
+           _object
+             self
+           : SELF_TYPE
+           fib
+           (
+           #15
+           _sub
+             #15
+             _object
+               x
+             : Int
+             #15
+             _int
+               1
+             : Int
+           : Int
+           )
+         : Int
+         #15
+         _dispatch
+           #15
+           _object
+             self
+           : SELF_TYPE
+           fib
+           (
+           #15
+           _sub
+             #15
+             _object
+               x
+             : Int
+             #15
+             _int
+               2
+             : Int
+           : Int
+           )
+         : Int
+       : Int
+     : Int
+   )

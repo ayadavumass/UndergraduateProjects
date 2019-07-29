@@ -1,0 +1,33 @@
+Copying tests/userprog/halt into /tmp/t7la6x2sqL.dsk...
+Writing command line to /tmp/OaEbUZNsPn.dsk...
+qemu -hda /tmp/OaEbUZNsPn.dsk -hdb /tmp/nD1eon8IfP.dsk -hdc /tmp/t7la6x2sqL.dsk -hdd /tmp/ZMFaFKCGOp.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put halt run halt
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 95 sector (47 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'halt' into the file system...
+Executing 'halt':
+(halt) begin
+User process ABORT at ../../lib/user/syscall.c:68 in halt(): executed an unreachable statement
+Call stack:.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+halt: exit(1)
+Execution of 'halt' complete.
+Timer: 59 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 62 reads, 198 writes
+hd1:0: 95 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1116 characters output
+Keyboard: 0 keys pressed
+Powering off...

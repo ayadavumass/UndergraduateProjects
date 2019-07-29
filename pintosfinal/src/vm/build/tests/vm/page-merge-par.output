@@ -1,0 +1,59 @@
+Copying tests/vm/page-merge-par into /tmp/9WOK7HdcWt.dsk...
+Copying tests/vm/child-sort into /tmp/9WOK7HdcWt.dsk...
+Writing command line to /tmp/HewaKVPa9I.dsk...
+qemu -hda /tmp/HewaKVPa9I.dsk -hdb /tmp/BabNAVXFcp.dsk -hdc /tmp/9WOK7HdcWt.dsk -hdd /tmp/eXXxFt5c5a.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put page-merge-par put child-sort run page-merge-par
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 202 sector (101 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'page-merge-par' into the file system...
+Putting 'child-sort' into the file system...
+Executing 'page-merge-par':
+(page-merge-par) begin
+(page-merge-par) init
+(page-merge-par) sort chunk 0
+(page-merge-par) sort chunk 1
+(page-merge-par) sort chunk 2
+(page-merge-par) sort chunk 3
+(page-merge-par) sort chunk 4
+(page-merge-par) sort chunk 5
+(page-merge-par) sort chunk 6
+(page-merge-par) sort chunk 7
+(page-merge-par) wait for child 0
+child-sort: exit(123)
+(page-merge-par) wait for child 1
+child-sort: exit(123)
+(page-merge-par) wait for child 2
+child-sort: exit(123)
+(page-merge-par) wait for child 3
+child-sort: exit(123)
+(page-merge-par) wait for child 4
+child-sort: exit(123)
+(page-merge-par) wait for child 5
+child-sort: exit(123)
+(page-merge-par) wait for child 6
+child-sort: exit(123)
+(page-merge-par) wait for child 7
+child-sort: exit(123)
+(page-merge-par) merge
+(page-merge-par) verify
+(page-merge-par) success, buf_idx=1,048,576
+(page-merge-par) end
+page-merge-par: exit(0)
+Execution of 'page-merge-par' complete.
+Timer: 161 ticks
+Thread: 0 idle ticks, 65 kernel ticks, 96 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 4859 reads, 6590 writes
+hd1:0: 202 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1814 characters output
+Keyboard: 0 keys pressed
+Powering off...

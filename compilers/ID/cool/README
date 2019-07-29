@@ -1,0 +1,39 @@
+This directory contains all Cool directories.
+See INSTALL.txt for instructions for building the system
+
+The directories are:
+
+aps	The aps package.  Produces classes and methods for managing
+	the Cool abstract syntax tree from a .aps description file.
+
+assignments
+	Skeletons of the programming assignments.
+
+bin	coolc and spim. 
+
+dist    copies of generated distributions are placed here 
+	(see the top-level Makefile)
+
+doc       documentation for flex, bison, make, and spim
+
+etc     skeleton student Makefil, and copy and link scripts for installing
+	assignments.
+
+examples  sample Cool programs
+
+handouts  instructor's guide, manual, code overview, and assignments
+
+install   Makefile for installing student files
+
+lib	only the trap handler at the moment
+
+regression  	The regression test suite.  Run these tests whenever you
+		change the compiler.
+
+solutions  solutions to assignments
+
+spim	the spim source tree
+
+src	The source code directory.
+
+

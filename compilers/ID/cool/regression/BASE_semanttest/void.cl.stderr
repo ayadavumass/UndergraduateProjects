@@ -1,0 +1,4 @@
+Class Main is not defined.
+./BASE_semanttest/void.cl:11: Undeclared identifier prim.
+./BASE_semanttest/void.cl:11: Inferred return type Object of method copy does not conform to declared return type SELF_TYPE.
+Compilation halted due to static semantic errors.

@@ -1,0 +1,9 @@
+*.log
+*.aux
+*.dvi
+*.pdf
+*.ps
+*.toc
+cool-manual
+cool-tour
+auto

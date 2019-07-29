@@ -1,0 +1,20 @@
+SPIM Version 5.6 of January 18, 1995
+Copyright 1990-1994 by James R. Larus (larus@cs.wisc.edu).
+All Rights Reserved.
+See the file README a full copyright notice.
+Bool1 Eq: Correct
+Bool2 Eq: Correct
+Bool3 Eq: Correct
+Bool4 Eq: Correct
+Bool Neg: Correct
+Int1 Eq: Correct
+Int2 Eq: Correct
+Neg Int1: Correct
+Neg Int2: Correct
+Pos Int1: Correct
+Pos Int2: Correct
+String1 Eq: Correct
+String2 Eq: Correct
+String3 Eq: Correct
+String4 Eq: Correct
+COOL program successfully executed

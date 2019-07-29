@@ -1,0 +1,35 @@
+Copying tests/userprog/wait-twice into /tmp/HlNgKzcx0S.dsk...
+Copying tests/userprog/child-simple into /tmp/HlNgKzcx0S.dsk...
+Writing command line to /tmp/70FdDfRXBh.dsk...
+qemu -hda /tmp/70FdDfRXBh.dsk -hdb /tmp/FU92FJPRy9.dsk -hdc /tmp/HlNgKzcx0S.dsk -hdd /tmp/QHvPL5Y0HC.dsk -m 64 -net none -nographic -monitor null
+Kernel command line: -q -f put wait-twice put child-simple run wait-twice
+Pintos booting with 65,536 kB RAM...
+8054 pages available in kernel pool.
+8053 pages available in user pool.
+Calibrating timer...  107,929,600 loops/s.
+hd0:0: detected 145 sector (72 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 189 sector (94 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Formatting file system...done.
+Boot complete.
+Putting 'wait-twice' into the file system...
+Putting 'child-simple' into the file system...
+Executing 'wait-twice':
+(wait-twice) begin
+(child-simple) run
+child-simple: exit(81)
+(wait-twice) wait(exec()) = 81
+(wait-twice) wait(exec()) = -1
+(wait-twice) end
+wait-twice: exit(0)
+Execution of 'wait-twice' complete.
+Timer: 60 ticks
+Thread: 0 idle ticks, 59 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 129 reads, 388 writes
+hd1:0: 189 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1084 characters output
+Keyboard: 0 keys pressed
+Powering off...

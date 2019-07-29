@@ -1,0 +1,12 @@
+
+An important note to keep in mind if you modify the set of files in the
+assignments.
+
+The install procedure installs the files assignments/PA*/*.* in the
+student hierarchy.  Thus, any file you want to have installed must
+have a "." somewhere in the filename (e.g., any filename with an
+extension).  This convention avoids having the install procedure
+attempt to install the CVS subdirectory.
+
+This is admittedly ugly, but at least it is simple.
+

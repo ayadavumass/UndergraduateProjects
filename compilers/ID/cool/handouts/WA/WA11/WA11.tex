@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+
+\newcommand{\tcrule}[3]{\frac{#1}{#2}\eqno\mbox{#3}}
+
+\input{../handout-number}
+
+\begin{document}
+\handout{\WAElevenNum}{2}{Written Assignment 11 \\ Due May 6, 2004}
+
+This assignment asks you to prepare written answers to questions on
+exceptions, higher-order functions, polymorphism, and garbage collection.
+Each of the questions has a short
+answer.  You may discuss this assignment with other students and work
+on the problems together.  However, your write-up should be your own
+individual work.  {\em Please write the name of the account you are
+using for CS164 {\bf and your section time} on your homework.}
+Remember that written assignments are to be turned in either in class
+or in the CS164 homework box in 283 Soda by 12:30 PM on the due date.
+
+\bigskip
+
+\begin{enumerate}
+
+\item
+
+Suppose that we have already updated Cool to support
+\texttt{try}/\texttt{catch}, \texttt{try}/\texttt{finally}, and
+\texttt{throw} as in PA6. Now we wish to add a new construct,
+\texttt{protect} $e$, to the language.  At run time, \texttt{protect} $e$
+simply returns the value of $e$; however, at compile time, the type
+checker must verify that no exceptions can be thrown out of $e$.
+(Exceptions may be thrown in the process of
+evaluating $e$, but they must be caught before $e$ finishes evaluating.)
+
+In order to check \texttt{protect} expressions at compile time, we need to
+extend our typing judgment to track not only the type $T$ of an
+expression, but also a boolean $E$ indicating whether an exception
+can be thrown out of the expression.
+
+$$
+O,M,C \vdash e : T, E
+$$
+
+For example, the extended rule for $+$ would be:
+
+$$
+\tcrule{
+\begin{array}{l}
+O,M,C \vdash e_1 : Int, E_1 \\
+O,M,C \vdash e_2 : Int, E_2
+\end{array}}
+{O,M,C \vdash e_1 + e_2 : Int , E_1 \vee E_2 }
+{[Plus]}
+$$
+
+Give the extended type rules for \texttt{protect},
+\texttt{try}/\texttt{catch}, \texttt{try}/\texttt{finally}, and
+\texttt{throw}.
+
+\medskip
+
+\item
+
+Consider the following Cool code for a linked list of integers:
+
+\begin{verbatim}
+    class List {
+        value : Int;
+        next : List;
+        getValue() : Int { value };
+        isSorted() : Bool {
+            (isVoid next) ||
+            (value <= next.getValue() && next.isSorted())
+        };
+    };
+\end{verbatim}
+
+Note that the short-circuit logical operators {\tt ||} and {\tt \&\&} are
+not part of the original Cool language, but we have used them here for the
+sake of clarity.
+
+\begin{enumerate}
+
+\item The {\tt isSorted} method only checks that the integers are in
+ascending order, but the user may want to check that the integers are in
+descending order instead.  Use {\em higher-order functions} (as described
+in lecture) to write a new {\tt isSorted} method that allows the caller of
+your method to specify how to compare two integers.
+
+\item Imagine that the user really wanted to store a list of strings
+instead of a list of integers.  Use {\em polymorphism} (as described in
+lecture) to update your solution from part (a) so that the user of your
+class can store {\em any} type in the list.  The user should still be able
+to specify how to compare these values as in part (a).
+
+\end{enumerate}
+
+\pagebreak
+
+\item
+
+% Note, this problem comes directly from the Fall '96 final, which has
+% publicly available solutions (though the solutions provided here are
+% probably more helpful). If you care about stopping cheating on the
+% homework, you might want to change a constant or something.
+
+% Also, a couple of fixes:
+
+% - n is heap size _in words_
+
+Consider the following simple model for estimating the cost of garbage
+collection (GC). We divide running time into time spent actually running
+the user's program (which is useful work), and time spent in GC (which is
+overhead).
+
+\begin{itemize}
+
+\item The number of cycles required for a single GC is equal to the number
+of different memory words that GC references. That is, even if a GC
+touches a particular word of memory more than once, we only charge 1
+cycle.
+
+\item The \emph{survival rate} is the amount of the live data after a GC,
+expressed as a fraction of the total heap size. For example, if garbage
+collecting a 10MB heap leaves 1MB of live data, then the survival rate is
+0.1.
+
+\item A user program allocates 1 word of heap for every 10 cycles of time
+the user program is running (i.e., not doing GC).
+
+\end{itemize}
+
+Given a survival rate $s$ and a total heap size $n$ (measured in words),
+give formulas for the fraction of total execution time spent in garbage
+collection for Stop-and-Copy and for Mark-and-Sweep. Assume the program
+runs for a long time---that is, we are interested in steady-state
+performance.
+
+\end{enumerate}
+
+\end{document}

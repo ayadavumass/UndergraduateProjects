@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+\usepackage{handout,latexsym}
+%
+% Copyright (c) 1995-1996 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+
+\newcommand{\attr}[3]{#1:#2\leftarrow#3}
+\newcommand{\classmap}[2]{class(#1) = (#2)}
+\newcommand{\ossimple}[6]{#1,#2,#3\vdash #4 : #5,#6}
+\newcommand{\osrule}[8]{\frac{#7}{\ossimple{#1}{#2}{#3}{#4}{#5}{#6}}\eqno
+\mbox{#8}}
+\def\U#1{{\sf{}#1}}
+\def\S#1{{\tt{}#1}} % NB: we often use \verb+...+ for this also
+\def\C#1{{\bf{}#1}}
+\newcommand{\dq}{\mbox{\tt "}}
+
+\input{handout-number}
+
+\begin{document}
+
+\handout{8}{2}{Extra Credit Programming Assignment \\
+Due Thursday, March 15, 2007 at 11:59pm}
+
+\section{Introduction} 
+
+This extra credit programming assignment is intended to be a fun
+project with which to end the quarter.  There are two choices for this
+extra credit assignment:
+\begin{quote}
+\begin{enumerate}
+  \item implement some optimizations in your compiler; or
+  \item write a Cool program.
+\end{enumerate}
+\end{quote}
+You may submit either an optimizer or a test program, but not both.
+
+You may work in a group of one or two people.
+
+\section{Optimizer Project}
+
+Extra credit will be awarded for projects that, in addition to code
+generation, perform some significant optimization of the code.  The
+amount of extra credit depends on how well the optimization is
+written, documented, and demonstrated.  Two critical factors are
+\begin{quote}
+\begin{enumerate}
+\item correctness (the optimizations don't result in incorrect programs);
+      and
+\item the percentage speed-up your optimized code achieves over
+      \U{coolc}, as measured by a weighted sum of the instructions
+      executed on \U{spim} over a suite of benchmarks of our choosing.
+\end{enumerate}
+\end{quote}
+To find out how many instructions a Cool program executes, run
+\U{spim} with the {\tt -keepstats} option.
+
+There are many possible optimizations to implement; see the ASU
+chapters 9 and 10 for ideas.  Assuming your initial code generator is
+straightforward (like \U{coolc}'s), then two directions that may yield
+significant improvement are (1) improving register usage and (2)
+specializing the implementation of the basic classes \C{Int} and
+\C{String}.
+
+We have not implemented an optimization phase in \U{coolc}, so we have
+no skeleton code to give you---you are on your own.  If you want to do
+an optimization phase, you are encouraged to talk it over with one of
+the course staff first. {\em Under absolutely no circumstances should
+you try optimization before your code generator is finished!!}
+
+There is a {\tt -O} flag that controls the global variable
+\C{cgen\_optimize} (C++) and \C{Flags.cgen\_optimize} (Java).  You may
+use this flag to switch between generating normal code and optimized
+code.  For this project, we will always run your compiler with the
+{\tt -O} flag on.
+%If you do an optimization phase, it should have no effect unless
+%\C{cgen\_optimize} is on.
+%We will grade your code generator first with
+%optimization off; this will prevent you from losing points due to bugs
+%in your optimizer.
+
+The total extra credit for doing optimization will not exceed 6\% of
+the total grade for the course.  Roughly speaking, the extra credit is
+worth up to about half of one of the two large programming
+assignments.
+
+\section{Test Program Project}
+
+Extra credit will be awarded for submitted Cool programs that reveal
+bugs or strange behavior in optimizing Cool compilers.  The more
+projects your program breaks, the more it is worth!  Test cases cannot
+be based, even loosely, on pre-existing Cool programs, such as those
+in the {\tt examples} directory.
+%Submissions may
+%be sent by email to {\tt cs164@cory.eecs.berkeley.edu}.
+
+Test programs will be worth up to 3\% of the total grade, but should
+also be much easier to write than optimizers.
+
+\section{Grading}
+
+The final curve for the course will be determined {\em before}
+including the extra credit.  In other words, if you elect not to do
+extra credit work, you will not be at a disadvantage in the final
+grading with respect to those who do.
+
+This extra-credit option is open-ended; you can do as much as you
+like.  We will award credit for results. For example, a project that
+merely attempts, but does not complete, an optimization phase may
+receive as little as no extra credit.
+
+\section{Submission}
+
+\subsection{Optimizer Project}
+
+Submit your optimizer by running ``{\tt /usr/class/cs143/bin/submit}'' 
+and selecting assignment ``{\tt PAX1}'', which will collect
+the same files as for the code generator assignment (PA5).
+
+\begin{minipage}{0.8\linewidth}
+\bigskip
+\begin{itemize}
+  \item[$\Box$]
+    Include a write-up of the optimizations you performed in the \U{README}.
+
+  \item[$\Box$]
+    Make sure all your code for the optimizer and code generator is in
+    \begin{itemize}
+    \item \U{cool-tree.h}, \U{cgen.h},
+          \U{cgen.cc}, \U{cgen\_supp.cc}, and \U{emit.h} for the
+          C++ version; or
+    \item \U{cool-tree.java}, \U{CgenClassTable.java},
+          \U{CgenNode.java}, \U{CgenSupport.java}, \U{BoolConst.java},
+          \U{IntSymbol.java}, \U{StringSymbol.java},
+          \U{TreeConstants.java}, and additional \U{.java} files you
+          may have added for the Java version.
+    \end{itemize}
+
+  \item[$\Box$]
+    Be sure to answer `yes' to the submission prompt for files that contain
+    your code.
+\end{itemize}
+\end{minipage}
+
+
+\subsection{Test Program Project}
+
+Submit your test program by running ``{\tt /usr/class/cs143/bin/submit}'' 
+and selecting assignment ``{\tt PAX2}'', which will collect
+all \U{.cl} files.  Your submission will be treated as one test
+program; in other words, all \U{.cl} files will be compiled together
+into one program.  Please include comments in your source file that
+describe your test program.
+
+\end{document}

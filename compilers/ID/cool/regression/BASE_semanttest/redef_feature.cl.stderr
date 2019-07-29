@@ -1,0 +1,6 @@
+./BASE_semanttest/redef_feature.cl:19: In redefined method isNil, return type Bool is different from original return type Object.
+./BASE_semanttest/redef_feature.cl:35: In redefined method isNil, return type Bool is different from original return type Object.
+Class Main is not defined.
+./BASE_semanttest/redef_feature.cl:10: Inferred return type Object of method car does not conform to declared return type Int.
+./BASE_semanttest/redef_feature.cl:12: Inferred return type Object of method cdr does not conform to declared return type List.
+Compilation halted due to static semantic errors.

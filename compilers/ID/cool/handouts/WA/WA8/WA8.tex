@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\input{../handout-number}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\thmLabel}[1]{{\rm (}{\em #1\/}{\rm )}}
+
+\newcommand{\ntsym}[1]{\hbox{\em #1}}
+\newcommand{\tsym}[1]{\hbox{\rm #1}}
+
+\def\ra{\rightarrow}     % grammar "rewrites-as" symbol
+\def\ep{\varepsilon}     % epsilon for empty-string
+
+
+\begin{document}
+\handout{\WAEightNum}{1}{Written Assignment 8 \\ Due April 8, 2004}
+
+This assignment asks you to prepare written answers to questions on
+local and global optmiizations.  Each of the questions has a short
+answer.  You may discuss this assignment with other students and work
+on the problems together.  However, your write-up should be your own
+individual work.  {\em Please write the name of the account you are
+using for CS164 {\bf and your section time} on your homework.}
+Remember that written assignments are to be turned in either in class
+or in the CS164 homework box in 283 Soda by 11 AM on the due date.
+
+\begin{enumerate}
+\item Consider the following code:
+\begin{verbatim}
+  a := b + c
+  z := a ** 2
+  x := 0 * b
+  y := b + c
+  w := y * y
+  u := x + 3
+  v := u + w
+\end{verbatim}
+Assume that only \texttt{v} and \texttt{z} are live at the exit of
+this block.  In order, apply the following optimizations to this basic
+block.  Show the result of each transformation.
+\begin{enumerate}
+\item algebraic simplification
+\item common sub-expression elimination
+\item copy propagation
+\item constant folding/propagation
+\item dead code elimination
+\end{enumerate}
+
+When you've completed part (e), the resulting program will still not
+be optimal.  What optimizations, in what order, can you apply to
+optimize the result of (e) further?
+
+\item Consider the following fragment of intermediate code (here
+\verb'a % b' is \verb'a mod b', i.e., the remainder of dividing
+\texttt{a} by \texttt{b}), and the \texttt{/} operator is integer
+division:
+\begin{verbatim}
+    if a = 2 goto L3
+L0: b := 2
+L1: d := a / 2
+    c := a % b
+    if c = 0 goto L2
+    if b >= d goto L3
+    b := b + 1
+    goto L1
+L2: a := a + 1
+    goto L0
+L3:
+\end{verbatim}
+\begin{enumerate}
+\item Draw a control-flow graph for this program.  Place each basic
+block in a single node.  Include the conditionals in the basic blocks.
+\item Annotate your control-flow graph with the set of variables live
+before and after each statement, assuming that only \texttt{a} is live
+at the entry to \texttt{L3}.
+\item Describe concisely the function that this program computes?
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

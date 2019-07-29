@@ -1,0 +1,2 @@
+./BASE_semanttest/plus_incorrect.cl:2: non-Int arguments: Int + Bool
+Compilation halted due to static semantic errors.

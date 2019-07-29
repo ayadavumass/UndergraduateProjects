@@ -1,0 +1,95 @@
+#19
+_program
+ #9
+ _class
+   A
+   Object
+   "./BASE_parsetest/parsetest05.test"
+   (
+   #3
+   _method
+     foo
+     Int
+     #3
+     _dispatch
+       #3
+       _object
+         self
+       : _no_type
+       bar
+       (
+       )
+     : _no_type
+   #6
+   _method
+     f
+     Int
+     #6
+     _dispatch
+       #6
+       _object
+         self
+       : _no_type
+       b
+       (
+       #6
+       _int
+         1
+       : _no_type
+       #6
+       _int
+         2
+       : _no_type
+       )
+     : _no_type
+   #8
+   _method
+     bar
+     A
+     #8
+     _object
+       self
+     : _no_type
+   )
+ #18
+ _class
+   B
+   A
+   "./BASE_parsetest/parsetest05.test"
+   (
+   #14
+   _method
+     foo
+     Int
+     #14
+     _dispatch
+       #14
+       _dispatch
+         #14
+         _new
+           B
+         : _no_type
+         bar
+         (
+         )
+       : _no_type
+       foo
+       (
+       )
+     : _no_type
+   #17
+   _method
+     bar
+     A
+     #17
+     _static_dispatch
+       #17
+       _object
+         self
+       : _no_type
+       A
+       bar
+       (
+       )
+     : _no_type
+   )

@@ -1,0 +1,2 @@
+#!/bin/bash
+CG_OPTIONS="-gTt" ./test_cg $*

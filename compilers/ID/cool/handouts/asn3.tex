@@ -1,0 +1,302 @@
+\documentclass[11pt]{article}
+\usepackage{handout}
+%
+% Copyright (c) 1995-2000 by Alex Aiken.  All rights reserved.
+% Permission is granted to modify and distribute this document for
+% for non-commercial purposes, so long as this copyright notice is retained
+% in all copies.
+%
+\input{mymargins}
+\input{macros}
+\input{handout-number}
+\begin{document}
+\handout{3}{4}{Programming Assignment II \\ 
+Due Tuesday, October 21, 2008 at 11:59 PM}
+
+% Three macros for defining:
+%       Unix elements: filenames and program (sans serif)
+%       Cool elements: literal tokens (typewriter)
+%       C elements: function and variable names (boldface)
+%
+\def\U#1{{\sf{}#1}}
+\def\S#1{{\tt{}#1}} % NB: we often use \verb+...+ for this also
+\def\C#1{{\bf{}#1}}
+
+\section{Introduction}
+
+In this assignment you will write a parser for Cool. The assignment
+makes use of two tools: the parser generator (the C++ tool is called
+\U{bison}; the Java tool is called \U{CUP}) and a package for
+manipulating trees. The output of your parser will be an abstract syntax
+tree (AST). You will construct this AST using semantic actions of the
+parser generator.
+
+You certainly will need to refer to the syntactic structure of Cool,
+found in Figure 1 of The Cool Reference Manual (as well as other parts).  
+The documentation for \U{bison} and \U{CUP} is available
+online.  The C++ version of the
+tree package is described in the {\em Tour of Cool Support Code}
+handout.  The documentation for the Java version is available online.
+You will need the tree
+package information for this and future assignments.
+
+There is a lot of information in this handout, and you need to know
+most of it to write a working parser.  {\em Please read the handout
+thoroughly.}
+
+You must work in a group for this assignment (where a group consists of
+one or two people).
+
+\section {Files and Directories}
+
+To get started, create a directory where you want to do the assignment
+and execute one of the following commands {\em in that directory}.  For
+the C++ version of the assignment, you should type
+
+\begin{verbatim}
+gmake -f /usr/class/cs143/assignments/PA3/Makefile
+\end{verbatim}
+
+\noindent For Java, type:
+
+\begin{verbatim}
+gmake -f /usr/class/cs143/assignments/PA3J/Makefile
+\end{verbatim}
+
+\noindent
+(notice the ``J'' in the path name).  This command will copy a number of
+files to your directory.  Some of the files will be copied read-only
+(using symbolic links).  You should not edit these files.  In fact, if
+you make and modify private copies of these files, you may find it
+impossible to complete the assignment.  See the instructions in the
+\U{README} file.  The files that you will need to modify are:
+
+\begin{itemize}
+
+\item \U{cool.y} (in the C++ version) / \U{cool.cup} (in the Java version) \\
+
+This file contains a start towards a parser description for Cool.  The
+declaration section is mostly complete, but you will need to add
+additional type declarations for new nonterminals you introduce.  We
+have given you names and type declarations for the terminals.  You
+might also need to add precedence declarations.  The rule section,
+however, is rather incomplete.  We have provided some parts of some
+rules.  You should not need to modify this code to get a working
+solution, but you are welcome to if you like.  However, do not assume
+that any particular rule is complete.
+
+\item \U{good.cl} and \U{bad.cl} \\
+These files test a few features of the grammar.  You should add tests
+to ensure that \U{good.cl} exercises every legal construction of the
+grammar and that \U{bad.cl} exercises as many types of parsing errors
+as possible in a single file.  Explain your tests in these files and
+put any overall comments in the \U{README} file.
+
+\item \U{README} \\
+As usual, this file will contain the write-up for your assignment.
+Explain your design decisions, your test cases, and why you believe
+your program is correct and robust.  It is part of the assignment to
+explain things in text, as well as to comment your code. 
+
+\end{itemize}
+
+To submit your assignment, run ``{\tt /usr/class/cs143/bin/submit}'' from your PA3
+directory and follow the instructions.
+
+
+\section{Testing the Parser}
+
+You will need a working scanner to test the parser.  You may use either
+your own scanner or the \U{coolc} scanner.  By default, the \U{coolc}
+scanner is used; to change this behavior, replace the \U{lexer}
+executable (which
+is a symbolic link in your project directory) with your own scanner.
+Don't automatically assume that the scanner (whichever one you use!)  is
+bug free---latent bugs in the scanner may cause mysterious problems in
+the parser.
+
+You will run your parser using \U{myparser}, a shell script that
+``glues'' together the parser with the scanner.  Note that \U{myparser}
+takes a \U{-p} flag for debugging the parser; using this flag causes
+lots of information about what the parser is doing to be printed on
+\S{stdout}.  Both \U{bison} and \U{CUP} produce a human-readable dump of
+the LALR(1) parsing tables in the \U{cool.output} file.  Examining this
+dump is frequently useful for debugging the parser definition.
+
+%matth: we're not providing coolc and mycoolc now.
+%% Once you are confident that your parser is working, try running
+%% \U{mycoolc} to invoke your parser together with other compiler
+%% phases.  
+You should test this compiler on both good and bad inputs to
+see if everything is working.  Remember, bugs in your parser may
+manifest themselves anywhere.
+
+Your parser will be graded using our lexical analyzer.  Thus, even if
+you do most of the work using your own scanner you should test your
+parser with the \U{coolc} scanner before turning in the assignment.
+
+\section{Parser Output}
+
+Your semantic actions should build an AST.  The root (and only the root)
+of the AST should be of type \S{program}.  For programs that parse
+successfully, the output of \S{parser} is a listing of the AST.
+
+For programs that have errors, the output is the error messages of the
+parser. We have supplied you with an error reporting routine that prints
+error messages in a standard format; please do not modify it. You should
+not invoke this routine directly in the semantic actions;
+\U{bison}/\U{CUP} automatically invokes it when a problem is detected.
+
+Your parser need only work for programs contained in a single
+file---don't worry about compiling multiple files.
+
+\section{Error Handling}
+
+You should use the \S{error} pseudo-nonterminal to add error handling
+capabilities in the parser.  The purpose of \S{error} is to permit the
+parser to continue after some anticipated error.  It is not a panacea
+and the parser may become completely confused.  See the
+\U{bison}/\U{CUP} documentation for how best to use \S{error}.  In
+your \U{README}, describe which errors you attempt to catch.  Your
+test file \U{bad.cl} should have some instances that illustrate the
+errors from which your parser can recover.  To receive full credit,
+your parser should recover in at least the following situations:
+
+\begin{itemize}
+
+\item If there is an error in a class definition but the class is
+terminated properly and the next class is syntactically correct, the
+parser should be able to restart at the next class definition.
+
+\item Similarly, the parser should recover from errors in features
+(going on to the next feature), a {\tt let} binding (going on to the
+next variable), and an expression inside a {\tt \{\ldots\} } block.
+
+\end{itemize}
+
+Do not be overly concerned about the the line numbers that appear in
+the error messages your parser generates.  If your parser is working
+correctly, the line number will generally be the line where the error
+occurred.  For erroneous constructs broken across multiple lines, the
+line number will probably be the last line of the construct.
+
+
+\section{The Tree Package}
+\label{sec-tree}
+
+There is an extensive discussion of the C++ version of the tree
+package for Cool abstract syntax trees in the {\em Tour} section of the
+Cool documentation.  The documentation for the Java version is available on the
+course web page. You will need most of that information to write a
+working parser.
+
+\section {Remarks}
+
+You may use precedence declarations, but only for expressions.  Do not
+use precedence declarations blindly (i.e., do not respond to a
+shift-reduce conflict in your grammar by adding precedence rules until
+it goes away).
+%If you find yourself making up rules for many things
+%other than operators in expressions and for {\tt let}, you are probably
+%doing something wrong.
+
+The Cool {\tt let} construct introduces an ambiguity into the language
+(try to construct an example if you are not convinced).  The manual
+resolves the ambiguity by saying that a {\tt let} expression extends
+as far to the right as possible.  The ambiguity will show up in your
+parser as a shift-reduce conflict involving the productions for {\tt
+let}.
+
+This problem has a simple, but slightly obscure, solution.  We will not
+tell you exactly how to solve it, but we will give you a strong hint.
+In \S{coolc}, we implemented the resolution of the {\tt let}
+shift-reduce conflict by using a \U{bison}/\U{CUP} feature that allows
+precedence to be associated with productions (not just operators).  See
+the \U{bison}/\U{CUP} documentation for information on how to use this
+feature.
+
+Since the \U{mycoolc} compiler uses pipes to communicate from one
+stage to the next, any extraneous characters produced by the parser
+can cause errors; in particular, the semantic analyzer may not be able
+to parse the AST your parser produces.
+
+\section{Notes for the C++ version of the assignment}
+
+If you are working on the Java version, skip to the following section.
+
+\begin{itemize}
+
+\item Running \U{bison} on the initial skeleton file will produce some
+      warnings about ``useless noterminals'' and ``useless rules''.
+      This is because some of the nonterminals and rules will
+      never be used, but these \emph{should} go away when your parser
+      is complete.
+
+\item You must declare \U{bison} ``types'' for your non-terminals and
+terminals that have attributes.  For example, in the skeleton
+\U{cool.y} is the declaration:
+\begin{verbatim}
+%type <program> program
+\end{verbatim}
+This declaration says that the non-terminal \S{program} has type \S{<program>}.
+The use of the word ``type'' is misleading here; what it really means is that
+the attribute for the non-terminal \S{program} is stored in the \S{program}
+member of the \S{union} declaration in \U{cool.y}, which has type
+\S{Program}.   By specifying the type  
+\begin{verbatim}
+%type <member_name> X Y Z ...
+\end{verbatim}
+you instruct \C{bison} that the attributes of non-terminals (or terminals)
+{\tt X}, {\tt Y}, and {\tt Z} have a type appropriate for the member
+{\tt member\_name} of the union.
+
+All the union members and their types have similar names by design.
+It is a coincidence in the example above that the non-terminal
+\S{program} has the same name as a union member.
+
+It is critical that you declare the correct types for the attributes
+of grammar symbols; failure to do so virtually guarantees that your
+parser won't work.  You do not need to declare types for symbols of
+your grammar that do not have attributes.
+
+The \U{g++} type checker complains if you use the tree constructors
+with the wrong type parameters.  If you ignore the warnings, your
+program may crash when the constructor notices that it is being used
+incorrectly.  Moreover, \U{bison} may complain if you make type
+errors.  Heed any warnings.  Don't be surprised if your program
+crashes when \U{bison} or \U{g++} give warning messages.
+
+\end{itemize}
+
+\section{Notes for the Java version of the assignment}
+
+If you are working on the C++ version, skip this section.
+
+\begin{itemize}
+
+\item You must declare \S{CUP} ``types'' for your non-terminals and
+terminals that have attributes.  For example, in the skeleton
+\U{cool.cup} is the declaration:
+\begin{verbatim}
+nonterminal program program;
+\end{verbatim}
+This declaration says that the non-terminal \S{program} has type
+\S{program}.
+
+It is critical that you declare the correct types for the attributes of
+grammar symbols; failure to do so virtually guarantees that your parser
+won't work.  You do not need to declare types for symbols of your
+grammar that do not have attributes.
+
+The \U{javac} type checker complains if you use the tree constructors
+with the wrong type parameters.  If you fix the errors with frivolous
+casts, your program may throw an exception when the constructor notices
+that it is being used incorrectly.  Moreover, \U{CUP} may complain if
+you make type errors. 
+
+\end{itemize}
+
+
+
+\end{document}
+

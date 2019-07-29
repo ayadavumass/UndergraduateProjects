@@ -1,0 +1,12 @@
+Recognized token: '+'(43)	line 1.	
+Recognized token: INT_CONST(279)	line 1.	1
+Recognized token: '-'(45)	line 2.	
+Recognized token: INT_CONST(279)	line 2.	2
+Recognized token: '~'(126)	line 3.	
+Recognized token: INT_CONST(279)	line 3.	3
+Recognized token: INT_CONST(279)	line 4.	4
+Recognized token: '.'(46)	line 4.	
+Recognized token: INT_CONST(279)	line 4.	5
+Recognized token: OBJECTID(282)	line 4.	e6
+Recognized token: '.'(46)	line 4.	
+Recognized token: INT_CONST(279)	line 4.	7

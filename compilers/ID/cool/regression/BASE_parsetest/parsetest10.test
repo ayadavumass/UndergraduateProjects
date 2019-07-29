@@ -1,0 +1,11 @@
+class A is
+  -- begin expression
+  foo() : Int is
+     begin 2; 3; end
+  end;
+
+  -- while expression
+  bar() : Int is
+    while false loop foo() pool
+  end;
+end;

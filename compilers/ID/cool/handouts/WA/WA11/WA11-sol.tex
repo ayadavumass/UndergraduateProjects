@@ -1,0 +1,215 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+\usepackage{amssymb}
+
+\newcommand{\tcrule}[3]{\frac{#1}{#2}\eqno\mbox{#3}}
+
+\input{../handout-number}
+
+\begin{document}
+\handout{\WAElevenSolNum}{3}{Written Assignment 11 \\ Solutions}
+
+\begin{enumerate}
+
+\item
+
+The simplest rule is the one for \texttt{protect}:
+
+$$
+\tcrule{
+\begin{array}{l}
+O,M,C \vdash e : T_1, false
+\end{array}}
+{O,M,C \vdash \mbox{\texttt{protect} } e : T_1, false }
+{[Safe]}
+$$
+
+That is, $\mbox{\texttt{protect} } e$ has the same type as $e$, but only
+type checks if $e$ is known not to throw any exceptions.
+
+Next, the rule for \texttt{throw}:
+
+$$
+\tcrule{
+\begin{array}{l}
+O,M,C \vdash e : T_1, E_1
+\end{array}}
+{O,M,C \vdash \mbox{\texttt{throw} } e : T_2, true }
+{[Throw]}
+$$
+
+We know this construct will throw an exception regardless of what $e$
+does, so we ignore $E_1$ and return $true$.
+
+Next, the rule for \texttt{try}/\texttt{catch}:
+
+$$
+\tcrule{
+\begin{array}{l}
+O,M,C \vdash e_1 : T_1, E_1 \\
+O[T/x],M,C \vdash e_2 : T_2, E_2 \\
+\end{array}}
+{O,M,C \vdash \mbox{\texttt{try} } e_1 \mbox{ \texttt{catch} } x:T \Rightarrow e_2 : T_1 \sqcup T_2, E_2}
+{[Try/Catch]}
+$$
+
+Since any exception thrown by $e_1$ will be caught, this construct only
+throws an exception if $e_2$ throws an exception.
+
+Finally, the rule for \texttt{try}/\texttt{finally}:
+
+$$
+\tcrule{
+\begin{array}{l}
+O,M,C \vdash e_1 : T_1, E_1 \\
+O,M,C \vdash e_2 : T_2, E_2 \\
+\end{array}}
+{O,M,C \vdash \mbox{\texttt{try} } e_1 \mbox{ \texttt{finally} } e_2 : T_2 \sqcup T_2, E_1 \vee E_2}
+{[Try/Finally]}
+$$
+
+That is, if either $e_1$ or $e_2$ can throw an exception, then the whole
+thing can throw an exception.
+
+\medskip
+
+\item
+
+\begin{enumerate}
+
+\item
+
+We add a \texttt{compare} argument to the \texttt{isSorted} function.  To
+simulate a two-argument function, we create a function with type
+\texttt{Int -> (Int -> Bool)}.
+
+How do we use this function?  First, note that \texttt{compare(value)} has
+type \texttt{Int -> Bool}, and it is a function that compares
+\texttt{value} to its argument.  Thus,
+\texttt{(compare(value))(next.getValue())} applies this function to the
+next value, returning a \texttt{Bool} that indicates the result of the
+comparison.
+
+\begin{verbatim}
+    class List {
+        value : Int;
+        next : List;
+        getValue() : Int { value };
+        isSorted(compare : Int -> (Int -> Bool)) : Bool {
+            (isVoid next) ||
+            ((compare(value))(next.getValue()) && next.isSorted())
+        };
+    };
+\end{verbatim}
+
+To implement the original comparison operator, we could create the
+following function:
+
+\begin{verbatim}
+    let lessThan : Int -> (Int -> Bool) <-
+        fun (arg1 : Int) : Int -> Bool {
+            fun (arg2 : Int) : Bool {
+                arg1 <= arg2
+            }
+        }
+\end{verbatim}
+
+By the way, this technique for implementing a two-argument function using
+one-argument functions is called {\em currying}.
+
+\item
+
+To make this class polymorphic, we just need to add a type parameter
+\texttt{t} and then change \texttt{Int} to \texttt{t} wherever necessary.
+
+\begin{verbatim}
+    class List<t> {
+        value : t;
+        next : List<t>;
+        getValue() : t { value };
+        isSorted(compare : t -> (t -> Bool)) : Bool {
+            (isVoid next) ||
+            ((compare(value))(next.getValue()) && next.isSorted())
+        };
+    };
+\end{verbatim}
+
+The \texttt{lessThan} function above can be passed to the
+\texttt{isSorted} method of any object of type \texttt{List<Int>}.
+
+\end{enumerate}
+
+\medskip
+
+\item
+
+One good way to solve a problem like this is to break it into sub-problems:
+
+\begin{itemize}
+\item When do we need to do GC?
+\item How long will GC take?
+\item How long will the the program run between GC's?
+\end{itemize}
+
+Let's start with Stop-and-Copy:
+
+\begin{itemize}
+
+\item We need to do GC when From space fills up (remember, we divide the
+heap in half, into From and To space).
+
+\item Stop-and-Copy only bothers with the words in objects that are still
+live (that is, $s \cdot \frac{n}{2}$ words), but we have to copy them
+(effectively referencing the copied word as well), so it takes $s \cdot
+\frac{n}{2} \cdot 2 = sn$ cycles to do GC.
+
+\item The program will now continue running until it fills up the new From
+space. From space can hold $\frac{n}{2}$ words, but $s \cdot \frac{n}{2}$
+of those words are filled with objects that were live from the last GC. So
+the program can run until it creates $\frac{n}{2} - s \cdot \frac{n}{2}$
+words, which takes $10 \cdot (\frac{n}{2} - s \cdot \frac{n}{2}) = 5n -
+5sn$ cycles.
+
+\end{itemize}
+
+After this, the machine will do the exact same thing over and over again,
+spending $sn$ cycles on GC and $5n - 5sn$ cycles running the program, so
+we can use one iteration (GC + running the program) as a model for the
+steady state of the program.
+
+One iteration takes $sn + 5n - 5sn$ = $5n - 4sn$ cycles, so the fraction
+of total time spent in GC is
+
+$$
+\frac{sn}{5n - 4sn} = \frac{s}{5 - 4s}
+$$
+
+Solving the problem for Mark-and-Sweep works the same way:
+
+\begin{itemize}
+
+\item Mark-and-Sweep needs to do GC only when the entire heap fills up.
+
+\item Mark-and-Sweep touches all the words in the heap during the sweep
+phase, so this takes $n$ cycles.
+
+\item The program will continue running until the heap fills up again.
+$sn$ of those words are filled with objects that survived the last GC, so
+the program only gets to create $n - sn$ words, which takes $10 \cdot (n -
+sn) = 10n - 10sn$ cycles.
+
+\end{itemize}
+
+Thus, the fraction of time spent in GC, using Mark-and-Sweep, is 
+
+$$
+\frac{n}{n + 10n - 10sn} = \frac{n}{11n - 10sn} = \frac{1}{11 - 10s}
+$$
+
+Note that neither result depends on $n$, the size of the heap.
+
+\end{enumerate}
+
+\end{document}

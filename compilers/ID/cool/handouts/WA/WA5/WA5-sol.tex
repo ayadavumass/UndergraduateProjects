@@ -1,0 +1,227 @@
+\documentclass{article}
+
+\usepackage{../handout,proof}
+\input{../handout-number}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\thmLabel}[1]{{\rm (}{\em #1\/}{\rm )}}
+
+\newcommand{\ntsym}[1]{\hbox{\em #1}}
+\newcommand{\tsym}[1]{\hbox{\rm #1}}
+\newcommand{\infertext}[2]{\infer{{\textrm{#1}}}{#2}}
+
+\def\ra{\rightarrow}     % grammar "rewrites-as" symbol
+\def\ep{\varepsilon}     % epsilon for empty-string
+
+
+\begin{document}
+\handout{\WAFiveSolNum}{2}{Solutions to Written Assignment 5}
+
+\begin{enumerate}
+
+% #1
+\item Show the full type derivation (as done in slide 49 in the lecture notes) for the following judgement:
+
+\begin{center}
+ $O$[Bool/x] $\vdash$ x $<$- (let x:Object $<$- x in x = x)
+\end{center}
+
+
+
+\noindent {\em Solution:}
+Let \tt{Bo} stand for the type \tt{Bool} and \tt{Ob} stand for the type
+\tt{Object}. 
+
+\[ \small
+\infertext
+  {$O$[Bo/x] $\vdash$ x $<$- (let x:Ob $<$- x in x = x): Bo}
+  {\infertext
+    {$O$[Bo/x] $\vdash$ x: Bo}
+    {\textrm{$O$[Bo/x](x) = Bo}}
+  & 
+   \textrm{Bo $\leq$ Bo}
+  & 
+   \infertext
+     {$O$[Bo/x] $\vdash$ let x:Ob $<$- x in x = x: Bo}
+     {\infertext
+        {$O$[Bo/x] $\vdash$ x: Ob}
+        {\textrm{$O$[Bo/x] $\vdash$ x: Bo $\;\;\;$Bo $\leq$ Ob}} 
+%& {\textrm{Bo $\leq$ Ob}} 
+     &
+      \textrm{Ob $\leq$ Ob}
+     & 
+      \infertext
+       {$O$[Bo/x][Ob/x] $\vdash$ x = x: Bo}
+       {\infertext
+          {$O$[Bo/x][Ob/x] $\vdash$ x: Ob}
+          {\textrm{$O$[Bo/x][Ob/x](x) = Ob}}
+       & 
+	\infertext
+          {$O$[Bo/x][Ob/x] $\vdash$ x: Ob}
+          {\textrm{$O$[Bo/x][Ob/x](x) = Ob}}
+       }
+     }
+  }
+\]
+\bigskip
+
+% 2
+\item Suppose we extend the grammar for cool with a ``{\bf void}'' keyword
+\begin{eqnarray*}
+  expr & ::= & {\bf void} \\
+       & |   & ...
+\end{eqnarray*}
+
+  that is analogous to {\tt null} in Java. (Currently objects are
+  initialized to void if they have no other initializer specified, but
+  there is no general-purpose {\bf void} keyword.)  We want to be able
+  to use {\bf void} whereever an object can be used, as in
+\begin{verbatim}
+  let foo:Int <- if some_test 
+                 then 5 
+                 else void 
+                 fi 
+  in ...
+\end{verbatim}
+
+  Give a sound typing rule that we can add to the Cool specification
+  to accomodate this new keyword.
+
+\medskip
+\noindent {\em Solution:}
+\[
+\infertext
+  {$O \vdash$ \texttt{void}: T}
+  {}
+\]
+
+\noindent You could also do this by defining a new type ``Void'':
+\[
+\infertext
+  {$O \vdash$ \texttt{void}: Void}
+  {}
+\]
+\noindent and declaring that Void $\leq$ T for all T.  Note that your subtype
+graph is now a DAG, not a tree.
+
+
+\item Suppose we extend Cool with exceptions by adding two new constructs 
+to the cool language.  
+\begin{eqnarray*}
+  expr & ::= & \textit{\bf try } expr \;\textit{\bf catch } ID => expr \\
+       & |   & \textit{\bf throw } expr \\
+       & | & ...
+\end{eqnarray*}
+Here {\bf try}, {\bf catch} and {\bf throw} are three new terminals. 
+  ``${\bf throw } expr$'' returns $expr$ to the
+  closest dynamically enclosing catch block. 
+Note that since {\bf throw} expression returns control to a different location, we do not really
+  care about the context in which throw is used. For example, 
+({\bf throw} $false) + 2$ is a valid Cool expression (However, note that
+  ({\bf throw} $false) + (2+true)$ is not a valid Cool expression).  Following is an
+  example that uses the try-catch and throw constructs. It executes
+  ``do\_something1'' (with $x$ bound to the value 34) if ``some\_test1''
+  evaluates to $true$.
+
+\begin{verbatim}
+try 
+ if some_test1 then throw 34
+ else if some_test2 then throw ``undefined error''
+ else do_something fi fi
+catch x =>
+  case x of 
+      x:Int => do_something1
+      x:String => do_something2
+  esac
+\end{verbatim}
+It executes ``do\_something2'' (with $x$ bound to the
+  value ``undefined error'') if ``some\_test1'' evaluates to $false$ but
+  ``some\_test2'' evaluates to $true$. It executes ``do\_something'' if both
+  ``some\_test1'' and ``some\_test2'' evaluate to $false$. 
+
+Give a set of new sound typing rules that we can add to the Cool specification
+to accomodate these two new constructs. 
+
+\medskip
+\noindent {\bf Solution:
+\[
+\infertext
+  {$O \vdash$ \texttt{throw e: $T_2$}}
+  {O \vdash \texttt{e: $T_1$}}
+\]
+
+\[
+\infertext
+    {$O \vdash$ try $e_1$ catch $x => e_2$: $\;\;T_1 \sqcup T_2$}
+    {\textrm{$O \vdash e_1:\;\;T_1 \;\;\;\;\; O[Object/x] \vdash e_2:\;\;T_2$}}
+\]
+
+
+ % {$O \vdash$ \texttt{try e_1 catch x => e_2: $T_1 \sqcup T_2$}}
+ % {O \vdash}
+
+
+}
+
+
+\item The Java programming language includes arrays.  The Java
+language specification states that if $s$ is an array of elements of
+class $S$, and $t$ is an array of elements of class $T$, then the
+assignment $s = t$ is allowed as long as $T$ is a subclass of $S$.
+This typing rule for array assignments turns out to be unsound. (Java
+works around the fact that this rule is not statically sound by inserting
+runtime checks to generate an exception if arrays are used
+unsafely. For this question, assume there are no special runtime checks.)
+
+Consider the following Java program, which type checks according
+to the preceeding rule:
+\begin{verbatim}
+class Mammal { String name; }
+
+class Dog extends Mammal { void beginBarking() { ... } }
+
+class Main {
+    static public void main(String argv[]) {
+        Dog x[] = new Dog[5];
+        Mammal y[] = x;
+
+        /* Insert code here */
+    }
+}
+\end{verbatim}
+Add code to the \texttt{main} method so that the resulting program is
+a valid Java program (i.e., it type checks statically and so it will
+compile), but the program could result in an operation being applied
+to an inappropriate type when executed.  Include a brief explanation
+of how your program exhibits the problem.
+
+\noindent {\em Solution:}
+\begin{verbatim}
+        Dog x[] = new Dog[5];
+        Mammal y[] = x;
+
+        Mammal a_cat = new Mammal();
+        y[0] = a_cat;                 // ###
+        x[0].beginBarking();
+\end{verbatim}
+
+The problem here is that arrays are not just lists of values -- they
+represent memory locations into which we can store new data. 
+
+Normally we say that A $\leq$ B if objects of type A can safely be
+used anywhere that objects of type B can be used.  That's not quite
+true with {\tt Dog\lbrack\rbrack} $\leq$ {\tt Mammal\lbrack\rbrack}, since a
+{\tt Mammal\lbrack\rbrack} object can be safely used on the left-hand side
+of the assignment marked by \#\#\#, while a {\tt Dog\lbrack\rbrack} object
+cannot.  Java handles this by adding a runtime check to every array
+assignment that determines whether the right-hand side of the
+assignment matches the dynamic type of the array.
+
+\end{enumerate}
+
+
+\end{document}

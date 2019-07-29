@@ -1,0 +1,341 @@
+Recognized token: CLASS(259)	line 5.	
+Recognized token: TYPEID(281)	line 5.	CellularAutomaton
+Recognized token: INHERITS(265)	line 5.	
+Recognized token: TYPEID(281)	line 5.	IO
+Recognized token: IS(266)	line 5.	
+Recognized token: OBJECTID(282)	line 6.	population_map
+Recognized token: ':'(58)	line 6.	
+Recognized token: TYPEID(281)	line 6.	String
+Recognized token: ';'(59)	line 6.	
+Recognized token: OBJECTID(282)	line 8.	init
+Recognized token: '('(40)	line 8.	
+Recognized token: OBJECTID(282)	line 8.	map
+Recognized token: ':'(58)	line 8.	
+Recognized token: TYPEID(281)	line 8.	String
+Recognized token: ')'(41)	line 8.	
+Recognized token: ':'(58)	line 8.	
+Recognized token: TYPEID(281)	line 8.	SELF_TYPE
+Recognized token: IS(266)	line 8.	
+Recognized token: BEGIN(258)	line 9.	
+Recognized token: OBJECTID(282)	line 10.	population_map
+Recognized token: ASSIGN(283)	line 10.	
+Recognized token: OBJECTID(282)	line 10.	map
+Recognized token: ';'(59)	line 10.	
+Recognized token: OBJECTID(282)	line 11.	self
+Recognized token: ';'(59)	line 11.	
+Recognized token: END(261)	line 12.	
+Recognized token: END(261)	line 13.	
+Recognized token: ';'(59)	line 13.	
+Recognized token: OBJECTID(282)	line 15.	print
+Recognized token: '('(40)	line 15.	
+Recognized token: ')'(41)	line 15.	
+Recognized token: ':'(58)	line 15.	
+Recognized token: TYPEID(281)	line 15.	SELF_TYPE
+Recognized token: IS(266)	line 15.	
+Recognized token: BEGIN(258)	line 16.	
+Recognized token: OBJECTID(282)	line 17.	out_string
+Recognized token: '('(40)	line 17.	
+Recognized token: OBJECTID(282)	line 17.	population_map
+Recognized token: '.'(46)	line 17.	
+Recognized token: OBJECTID(282)	line 17.	concat
+Recognized token: '('(40)	line 17.	
+Recognized token: STR_CONST(278)	line 17.	'\n'
+Recognized token: ')'(41)	line 17.	
+Recognized token: ')'(41)	line 17.	
+Recognized token: ';'(59)	line 17.	
+Recognized token: OBJECTID(282)	line 18.	self
+Recognized token: ';'(59)	line 18.	
+Recognized token: END(261)	line 19.	
+Recognized token: END(261)	line 20.	
+Recognized token: ';'(59)	line 20.	
+Recognized token: OBJECTID(282)	line 22.	num_cells
+Recognized token: '('(40)	line 22.	
+Recognized token: ')'(41)	line 22.	
+Recognized token: ':'(58)	line 22.	
+Recognized token: TYPEID(281)	line 22.	Int
+Recognized token: IS(266)	line 22.	
+Recognized token: OBJECTID(282)	line 23.	population_map
+Recognized token: '.'(46)	line 23.	
+Recognized token: OBJECTID(282)	line 23.	length
+Recognized token: '('(40)	line 23.	
+Recognized token: ')'(41)	line 23.	
+Recognized token: END(261)	line 24.	
+Recognized token: ';'(59)	line 24.	
+Recognized token: OBJECTID(282)	line 26.	cell
+Recognized token: '('(40)	line 26.	
+Recognized token: OBJECTID(282)	line 26.	position
+Recognized token: ':'(58)	line 26.	
+Recognized token: TYPEID(281)	line 26.	Int
+Recognized token: ')'(41)	line 26.	
+Recognized token: ':'(58)	line 26.	
+Recognized token: TYPEID(281)	line 26.	String
+Recognized token: IS(266)	line 26.	
+Recognized token: OBJECTID(282)	line 27.	population_map
+Recognized token: '.'(46)	line 27.	
+Recognized token: OBJECTID(282)	line 27.	substr
+Recognized token: '('(40)	line 27.	
+Recognized token: OBJECTID(282)	line 27.	position
+Recognized token: ','(44)	line 27.	
+Recognized token: INT_CONST(279)	line 27.	1
+Recognized token: ')'(41)	line 27.	
+Recognized token: END(261)	line 28.	
+Recognized token: ';'(59)	line 28.	
+Recognized token: OBJECTID(282)	line 30.	cell_left_neighbor
+Recognized token: '('(40)	line 30.	
+Recognized token: OBJECTID(282)	line 30.	position
+Recognized token: ':'(58)	line 30.	
+Recognized token: TYPEID(281)	line 30.	Int
+Recognized token: ')'(41)	line 30.	
+Recognized token: ':'(58)	line 30.	
+Recognized token: TYPEID(281)	line 30.	String
+Recognized token: IS(266)	line 30.	
+Recognized token: IF(263)	line 31.	
+Recognized token: OBJECTID(282)	line 31.	position
+Recognized token: '='(61)	line 31.	
+Recognized token: INT_CONST(279)	line 31.	0
+Recognized token: THEN(270)	line 31.	
+Recognized token: OBJECTID(282)	line 32.	cell
+Recognized token: '('(40)	line 32.	
+Recognized token: OBJECTID(282)	line 32.	num_cells
+Recognized token: '('(40)	line 32.	
+Recognized token: ')'(41)	line 32.	
+Recognized token: '-'(45)	line 32.	
+Recognized token: INT_CONST(279)	line 32.	1
+Recognized token: ')'(41)	line 32.	
+Recognized token: ELSE(260)	line 33.	
+Recognized token: OBJECTID(282)	line 34.	cell
+Recognized token: '('(40)	line 34.	
+Recognized token: OBJECTID(282)	line 34.	position
+Recognized token: '-'(45)	line 34.	
+Recognized token: INT_CONST(279)	line 34.	1
+Recognized token: ')'(41)	line 34.	
+Recognized token: FI(262)	line 35.	
+Recognized token: END(261)	line 36.	
+Recognized token: ';'(59)	line 36.	
+Recognized token: OBJECTID(282)	line 38.	cell_right_neighbor
+Recognized token: '('(40)	line 38.	
+Recognized token: OBJECTID(282)	line 38.	position
+Recognized token: ':'(58)	line 38.	
+Recognized token: TYPEID(281)	line 38.	Int
+Recognized token: ')'(41)	line 38.	
+Recognized token: ':'(58)	line 38.	
+Recognized token: TYPEID(281)	line 38.	String
+Recognized token: IS(266)	line 38.	
+Recognized token: IF(263)	line 39.	
+Recognized token: OBJECTID(282)	line 39.	position
+Recognized token: '='(61)	line 39.	
+Recognized token: OBJECTID(282)	line 39.	num_cells
+Recognized token: '('(40)	line 39.	
+Recognized token: ')'(41)	line 39.	
+Recognized token: '-'(45)	line 39.	
+Recognized token: INT_CONST(279)	line 39.	1
+Recognized token: THEN(270)	line 39.	
+Recognized token: OBJECTID(282)	line 40.	cell
+Recognized token: '('(40)	line 40.	
+Recognized token: INT_CONST(279)	line 40.	0
+Recognized token: ')'(41)	line 40.	
+Recognized token: ELSE(260)	line 41.	
+Recognized token: OBJECTID(282)	line 42.	cell
+Recognized token: '('(40)	line 42.	
+Recognized token: OBJECTID(282)	line 42.	position
+Recognized token: '+'(43)	line 42.	
+Recognized token: INT_CONST(279)	line 42.	1
+Recognized token: ')'(41)	line 42.	
+Recognized token: FI(262)	line 43.	
+Recognized token: END(261)	line 44.	
+Recognized token: ';'(59)	line 44.	
+Recognized token: OBJECTID(282)	line 48.	cell_at_next_evolution
+Recognized token: '('(40)	line 48.	
+Recognized token: OBJECTID(282)	line 48.	position
+Recognized token: ':'(58)	line 48.	
+Recognized token: TYPEID(281)	line 48.	Int
+Recognized token: ')'(41)	line 48.	
+Recognized token: ':'(58)	line 48.	
+Recognized token: TYPEID(281)	line 48.	String
+Recognized token: IS(266)	line 48.	
+Recognized token: IF(263)	line 49.	
+Recognized token: '('(40)	line 49.	
+Recognized token: IF(263)	line 49.	
+Recognized token: OBJECTID(282)	line 49.	cell
+Recognized token: '('(40)	line 49.	
+Recognized token: OBJECTID(282)	line 49.	position
+Recognized token: ')'(41)	line 49.	
+Recognized token: '='(61)	line 49.	
+Recognized token: STR_CONST(278)	line 49.	'X'
+Recognized token: THEN(270)	line 49.	
+Recognized token: INT_CONST(279)	line 49.	1
+Recognized token: ELSE(260)	line 49.	
+Recognized token: INT_CONST(279)	line 49.	0
+Recognized token: FI(262)	line 49.	
+Recognized token: '+'(43)	line 50.	
+Recognized token: IF(263)	line 50.	
+Recognized token: OBJECTID(282)	line 50.	cell_left_neighbor
+Recognized token: '('(40)	line 50.	
+Recognized token: OBJECTID(282)	line 50.	position
+Recognized token: ')'(41)	line 50.	
+Recognized token: '='(61)	line 50.	
+Recognized token: STR_CONST(278)	line 50.	'X'
+Recognized token: THEN(270)	line 50.	
+Recognized token: INT_CONST(279)	line 50.	1
+Recognized token: ELSE(260)	line 50.	
+Recognized token: INT_CONST(279)	line 50.	0
+Recognized token: FI(262)	line 50.	
+Recognized token: '+'(43)	line 51.	
+Recognized token: IF(263)	line 51.	
+Recognized token: OBJECTID(282)	line 51.	cell_right_neighbor
+Recognized token: '('(40)	line 51.	
+Recognized token: OBJECTID(282)	line 51.	position
+Recognized token: ')'(41)	line 51.	
+Recognized token: '='(61)	line 51.	
+Recognized token: STR_CONST(278)	line 51.	'X'
+Recognized token: THEN(270)	line 51.	
+Recognized token: INT_CONST(279)	line 51.	1
+Recognized token: ELSE(260)	line 51.	
+Recognized token: INT_CONST(279)	line 51.	0
+Recognized token: FI(262)	line 51.	
+Recognized token: '='(61)	line 52.	
+Recognized token: INT_CONST(279)	line 52.	1
+Recognized token: ')'(41)	line 52.	
+Recognized token: THEN(270)	line 53.	
+Recognized token: STR_CONST(278)	line 54.	'X'
+Recognized token: ELSE(260)	line 55.	
+Recognized token: ERROR(286)	line 56.	'''
+Recognized token: '.'(46)	line 56.	
+Recognized token: ERROR(286)	line 56.	'''
+Recognized token: FI(262)	line 57.	
+Recognized token: END(261)	line 58.	
+Recognized token: ';'(59)	line 58.	
+Recognized token: OBJECTID(282)	line 60.	evolve
+Recognized token: '('(40)	line 60.	
+Recognized token: ')'(41)	line 60.	
+Recognized token: ':'(58)	line 60.	
+Recognized token: TYPEID(281)	line 60.	SELF_TYPE
+Recognized token: IS(266)	line 60.	
+Recognized token: LET(267)	line 61.	
+Recognized token: OBJECTID(282)	line 61.	position
+Recognized token: ':'(58)	line 61.	
+Recognized token: TYPEID(281)	line 61.	Int
+Recognized token: IN(264)	line 61.	
+Recognized token: LET(267)	line 62.	
+Recognized token: OBJECTID(282)	line 62.	num
+Recognized token: ':'(58)	line 62.	
+Recognized token: TYPEID(281)	line 62.	Int
+Recognized token: ASSIGN(283)	line 62.	
+Recognized token: OBJECTID(282)	line 62.	num_cells
+Recognized token: ERROR(286)	line 62.	'[]'
+Recognized token: IN(264)	line 62.	
+Recognized token: LET(267)	line 63.	
+Recognized token: OBJECTID(282)	line 63.	temp
+Recognized token: ':'(58)	line 63.	
+Recognized token: TYPEID(281)	line 63.	String
+Recognized token: IN(264)	line 63.	
+Recognized token: BEGIN(258)	line 64.	
+Recognized token: WHILE(271)	line 65.	
+Recognized token: OBJECTID(282)	line 65.	position
+Recognized token: '<'(60)	line 65.	
+Recognized token: OBJECTID(282)	line 65.	num
+Recognized token: LOOP(268)	line 65.	
+Recognized token: BEGIN(258)	line 66.	
+Recognized token: OBJECTID(282)	line 67.	temp
+Recognized token: ASSIGN(283)	line 67.	
+Recognized token: OBJECTID(282)	line 67.	temp
+Recognized token: '.'(46)	line 67.	
+Recognized token: OBJECTID(282)	line 67.	concat
+Recognized token: '('(40)	line 67.	
+Recognized token: OBJECTID(282)	line 67.	cell_at_next_evolution
+Recognized token: '('(40)	line 67.	
+Recognized token: OBJECTID(282)	line 67.	position
+Recognized token: ')'(41)	line 67.	
+Recognized token: ')'(41)	line 67.	
+Recognized token: ';'(59)	line 67.	
+Recognized token: OBJECTID(282)	line 68.	position
+Recognized token: ASSIGN(283)	line 68.	
+Recognized token: OBJECTID(282)	line 68.	position
+Recognized token: '+'(43)	line 68.	
+Recognized token: INT_CONST(279)	line 68.	1
+Recognized token: ';'(59)	line 68.	
+Recognized token: END(261)	line 69.	
+Recognized token: POOL(269)	line 70.	
+Recognized token: ';'(59)	line 70.	
+Recognized token: OBJECTID(282)	line 71.	population_map
+Recognized token: ASSIGN(283)	line 71.	
+Recognized token: OBJECTID(282)	line 71.	temp
+Recognized token: ';'(59)	line 71.	
+Recognized token: OBJECTID(282)	line 72.	self
+Recognized token: ';'(59)	line 72.	
+Recognized token: END(261)	line 73.	
+Recognized token: END(261)	line 74.	
+Recognized token: END(261)	line 74.	
+Recognized token: END(261)	line 74.	
+Recognized token: END(261)	line 75.	
+Recognized token: ';'(59)	line 75.	
+Recognized token: END(261)	line 76.	
+Recognized token: ';'(59)	line 76.	
+Recognized token: CLASS(259)	line 78.	
+Recognized token: TYPEID(281)	line 78.	Main
+Recognized token: IS(266)	line 78.	
+Recognized token: OBJECTID(282)	line 79.	cells
+Recognized token: ':'(58)	line 79.	
+Recognized token: TYPEID(281)	line 79.	CellularAutomaton
+Recognized token: ';'(59)	line 79.	
+Recognized token: OBJECTID(282)	line 81.	main
+Recognized token: '('(40)	line 81.	
+Recognized token: ')'(41)	line 81.	
+Recognized token: ':'(58)	line 81.	
+Recognized token: TYPEID(281)	line 81.	SELF_TYPE
+Recognized token: IS(266)	line 81.	
+Recognized token: BEGIN(258)	line 82.	
+Recognized token: OBJECTID(282)	line 83.	cells
+Recognized token: ASSIGN(283)	line 83.	
+Recognized token: '('(40)	line 83.	
+Recognized token: NEW(276)	line 83.	
+Recognized token: TYPEID(281)	line 83.	CellularAutomaton
+Recognized token: ')'(41)	line 83.	
+Recognized token: '.'(46)	line 83.	
+Recognized token: OBJECTID(282)	line 83.	init
+Recognized token: '('(40)	line 83.	
+Recognized token: STR_CONST(278)	line 83.	'         X         '
+Recognized token: ')'(41)	line 83.	
+Recognized token: ';'(59)	line 83.	
+Recognized token: OBJECTID(282)	line 84.	cells
+Recognized token: '.'(46)	line 84.	
+Recognized token: OBJECTID(282)	line 84.	print
+Recognized token: '('(40)	line 84.	
+Recognized token: ')'(41)	line 84.	
+Recognized token: ';'(59)	line 84.	
+Recognized token: LET(267)	line 85.	
+Recognized token: OBJECTID(282)	line 85.	countdown
+Recognized token: ':'(58)	line 85.	
+Recognized token: TYPEID(281)	line 85.	Int
+Recognized token: ASSIGN(283)	line 85.	
+Recognized token: INT_CONST(279)	line 85.	20
+Recognized token: IN(264)	line 85.	
+Recognized token: WHILE(271)	line 86.	
+Recognized token: OBJECTID(282)	line 86.	countdown
+Recognized token: ERROR(286)	line 86.	'>'
+Recognized token: INT_CONST(279)	line 86.	0
+Recognized token: LOOP(268)	line 86.	
+Recognized token: BEGIN(258)	line 87.	
+Recognized token: OBJECTID(282)	line 88.	cells
+Recognized token: '.'(46)	line 88.	
+Recognized token: OBJECTID(282)	line 88.	evolve
+Recognized token: '('(40)	line 88.	
+Recognized token: ')'(41)	line 88.	
+Recognized token: ';'(59)	line 88.	
+Recognized token: OBJECTID(282)	line 89.	cells
+Recognized token: '.'(46)	line 89.	
+Recognized token: OBJECTID(282)	line 89.	print
+Recognized token: '('(40)	line 89.	
+Recognized token: ')'(41)	line 89.	
+Recognized token: ';'(59)	line 89.	
+Recognized token: OBJECTID(282)	line 90.	countdown
+Recognized token: ASSIGN(283)	line 90.	
+Recognized token: OBJECTID(282)	line 90.	countdown
+Recognized token: '-'(45)	line 90.	
+Recognized token: INT_CONST(279)	line 90.	1
+Recognized token: ';'(59)	line 90.	
+Recognized token: END(261)	line 91.	
+Recognized token: POOL(269)	line 92.	
+Recognized token: END(261)	line 93.	
+Recognized token: ';'(59)	line 93.	
+Recognized token: ERROR(286)	line 98.	'EOF in comment'

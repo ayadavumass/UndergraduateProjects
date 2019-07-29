@@ -1,0 +1,2 @@
+./BASE_cgtest/let_incorrect.cl:8: Inferred type String of initialization of x does not conform to identifier's declared type Bool.
+Compilation halted due to static semantic errors.

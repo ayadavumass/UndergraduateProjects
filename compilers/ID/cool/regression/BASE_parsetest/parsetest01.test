@@ -1,0 +1,5 @@
+-- implicit (Object) inherited class
+class A is end;
+
+-- explicit inherited class
+class B inherits A is end;

@@ -1,0 +1,40 @@
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: TYPEID(281)	line 1.	A
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: OBJECTID(282)	line 1.	a
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: INT_CONST(279)	line 1.	0
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '+'(43)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '*'(42)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '-'(45)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '/'(47)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '='(61)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '<'(60)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '('(40)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: ')'(41)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '@'(64)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: ','(44)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: ';'(59)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: ':'(58)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '.'(46)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: '~'(126)	line 1.	
+Recognized token: ERROR(286)	line 1.	'#_#'
+Recognized token: STR_CONST(278)	line 1.	'A legal string'
+Recognized token: ERROR(286)	line 1.	'#'
+Recognized token: ERROR(286)	line 2.	'#'
+Recognized token: ERROR(286)	line 2.	'#'
+Recognized token: ERROR(286)	line 2.	'#'

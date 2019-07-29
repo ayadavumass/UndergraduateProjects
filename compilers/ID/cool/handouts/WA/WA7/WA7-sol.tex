@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+\usepackage{epsfig}
+\usepackage{graphicx}
+
+\input{../handout-number}
+
+\newcommand{\ttmath}[1]{$\mathtt{#1}$}
+\newcommand{\ossimple}[6]{#1,#2,#3\vdash #4 : #5,#6}
+\newcommand{\osrule}[8]{\frac{#7}{\ossimple{#1}{#2}{#3}{#4}{#5}{#6}}\eqno
+  \mbox{#8}}
+
+\begin{document}
+
+\handout{\WASevenSolNum}{2}{Solutions to Written Assignment 7}
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+\item The following diagram illustrates objects of type {\tt A} and {\tt
+B} along with their dispatch tables.
+
+\begin{center}
+\includegraphics{objects}
+\end{center}
+
+\item Note that we assume the existence of a label called {\tt
+dispatch\_error} that handles the case where {\tt \$a0} is null.
+
+\begin{verbatim}
+    beq    $a0 $zero dispatch_error      # check for null obj
+    lw     $t0 8($a0)                    # load dispatch pointer
+    lw     $t0 16($t0)                   # load method2 ptr from table
+    jalr   $t0                           # jump to method
+\end{verbatim}
+
+\item
+
+If {\tt obj} has dynamic type {\tt B}, then we correctly invoke {\tt
+method2} on the object.  All objects have a dispatch pointer at offset 8,
+so we correctly fetch the dispatch pointer.  Furthermore, all classes that
+inherit from class {\tt A} will have a pointer to the appropriate version
+of {\tt method2} at offset 16 of their dispatch table.  In this case, we
+will call the version of {\tt method2} supplied by class {\tt A}, since
+class {\tt B} did not override it.
+
+Note that it is legal to pass an object of type {\tt B} as the {\tt self}
+object, since the layout of {\tt A} is a prefix of the layout of {\tt B}.
+
+\end{enumerate}
+
+\item 
+
+These rules treat arrays as objects with n attributes, all of type $T$.
+For convenience, arrays are indexed from $1$ to $n$, rather than $0$ to
+$n-1$. 
+
+$$
+\osrule{so}{S_1}{E_1}{\mbox{let } a:T_0[e_1] \mbox{ in } e_2}{v_2}{S_{4}}
+	{\begin{array}{l}
+	T = \left\{ {\begin{array}{ll}
+	           X & \mbox{if } T_0 = \mbox{ SELF\_TYPE and } so = X(\dots)\\
+		   T_0 & \mbox{otherwise}
+                   \end{array}}\right.\\
+	\ossimple{so}{S_1}{E_1}{e_1}{\mbox{Int}(n)}{S_2}\\
+	l_i = \mbox{newloc}(S_2) \mbox{ for } i = 0 \dots n \mbox{ and each } l_i \mbox{ is distinct }\\
+	v_a = \mbox{array}(a_1:l_1, \dots, a_n:l_n)\\
+	S_3 = S_2[v_a/l_0, D_T/l_1, \dots, D_T/l_n]\\
+	E_2 = E_1[l_0/a]\\
+	\ossimple{so}{S_3}{E_2}{e_2}{v_2}{S_4}
+	 \end{array}}{[Array-Let]}
+$$
+
+$D_T$ is just the default value for objects of type $T$ (e.g., 0 for
+\texttt{Int}s and \texttt{void} for most objects).
+
+$$
+\osrule{so}{S_1}{E}{a[e_1] \mbox{\texttt{ <- }} e_2}{v_2}{S_{4}}
+	{\begin{array}{l}
+	\ossimple{so}{S_1}{E}{e_1}{\mbox{Int}(m)}{S_2}\\
+	\ossimple{so}{S_2}{E}{e_2}{v_2}{S_3}\\
+	E(a) = l_a\\
+	S_2(l_a) = v_a\\
+	v_a = \mbox{array}(a_1:l_1, \dots, a_n:l_n)\\
+	1 \le m \le n\\
+	S4 = S3[v_2/l_m]
+	 \end{array}}{[Array-Assign]}
+$$
+
+$$
+\osrule{so}{S_1}{E}{a[e]}{v}{S_2}
+	{\begin{array}{l}
+	\ossimple{so}{S_1}{E}{e_1}{\mbox{Int}(m)}{S_2}\\
+	E(a) = l_a\\
+	S_2(l_a) = v_a\\
+	v_a = \mbox{array}(a_1:l_1, \dots, a_n:l_n)\\
+	1 \le m \le n\\
+	v = S_2(l_m)
+	 \end{array}}{[Array-Lookup]}
+$$
+
+\item \label{while}
+
+Here's one way to do it. This approach literally checks if this is the
+last time around the loop or not, and behaves accordingly. We also use the
+old false rule to handle loops where $e_1$ is never true.
+
+$$
+\osrule{so}{S_1} E {\mbox{while }e_1\mbox{ loop } e_2\mbox{ pool}}{void}{S_{2}}
+	{\begin{array}{l}
+	\ossimple{so}{S_1}{E}{e_1}{Bool(false)}{S_2}\\
+	 \end{array}}{[Loop-False]}
+$$
+
+$$
+\osrule{so}{S_1} E {\mbox{while }e_1\mbox{ loop } e_2\mbox{ pool}}{v_2}{S_{4}}
+	{\begin{array}{l}
+	\ossimple{so}{S_1}{E}{e_1}{Bool(true)}{S_2}\\
+	\ossimple{so}{S_2}{E}{e_2}{v_2}{S_3}\\
+	\ossimple{so}{S_3}{E}{e_1}{Bool(false)}{S_4}\\
+	 \end{array}}{[Loop-True-Last]}
+$$
+
+$$
+\osrule{so}{S_1} E {\mbox{while }e_1\mbox{ loop } e_2\mbox{ pool}}{v_3}{S_{4}}
+	{\begin{array}{l}
+	\ossimple{so}{S_1}{E}{e_1}{Bool(true)}{S_2}\\
+	\ossimple{so}{S_2}{E}{e_2}{v_2}{S_3}\\
+	\ossimple{so}{S_3}{E}{e_1}{Bool(true)}{S_{peek}}\\
+	\ossimple{so}{S_3}{E}{\mbox{while }e_1\mbox{ loop } e_2\mbox{ pool}}{v_3}{S_4}\\
+	 \end{array}}{[Loop-True-Not-Last]}
+$$
+
+Note that $S_{peek}$ is just thrown away; we're just using it to make sure
+that this isn't the last time around the loop.
+
+On a real machine, we can't usually throw away a store like this; this
+solution is a good example of operationaly semantics being more powerful
+than we can easily implement. An alternate approach is to allocate a chunk
+of memory for the value of the loop expression, and write into it each
+time we traverse the loop.
+
+\end{enumerate}
+
+\end{document}

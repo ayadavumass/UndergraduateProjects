@@ -1,0 +1,5 @@
+./BASE_cgtest/list2.cl:5: Redefinition of basic class Object.
+./BASE_cgtest/list2.cl:9: Redefinition of basic class Int.
+./BASE_cgtest/list2.cl:13: Redefinition of basic class Bool.
+./BASE_cgtest/list2.cl:17: Redefinition of basic class String.
+Compilation halted due to static semantic errors.

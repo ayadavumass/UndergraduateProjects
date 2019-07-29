@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\input{../handout-number}
+
+\begin{document}
+
+\newcommand{\ttmath}[1]{$\mathtt{#1}$}
+
+\handout{\WASevenNum}{2}{Written Assignment 7 \\ Due Thursday April 1, 2004}
+
+This assignment asks you to prepare written answers to questions on
+object layout and operational semantics.
+Each of the questions has a short answer. You
+may discuss this assignment with other students and work on the
+problems together.  However, your write-up should be your own
+individual work.  Remember that written assignments are to be turned
+in either at the start of lecture or in the CS164 homework box in 283
+Soda by 12:30 PM on the due date.
+
+\medskip
+
+{\bf\em Please write your name, your account name, your TA's name, and
+your section time on your homework!}  We need this information so that we
+can give you credit for the assignment and so that we can return it to
+you.
+
+\bigskip
+
+\begin{enumerate}
+
+\item
+
+Consider the following Cool classes:
+
+\begin{center}
+\begin{minipage}{6cm}
+\begin{verbatim}
+class A {
+    attr1 : Int;
+    attr2 : Int;
+    method1() : Object { ... };
+    method2() : Object { ... };
+};
+
+class B inherits A {
+    attr3 : Int;
+    method1() : Object { ... };
+    method3() : Object { ... };
+};
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+\begin{enumerate}
+
+\item Draw a diagram that illustrates the layout of objects of type {\tt
+A} and {\tt B}, including their dispatch tables.
+
+\item Let {\tt obj} be a variable whose static type is {\tt A}.  Assume
+that {\tt obj} is stored in register {\tt \$a0}.  Write MIPS code for the
+function invocation {\tt obj.method2()}.  You may use temporary registers
+such as {\tt \$t0} if you wish.
+
+\item Explain what happens in part (b) if {\tt obj} has dynamic type {\tt
+B}.
+
+\end{enumerate}
+
+\medskip
+
+\item 
+
+Suppose you wish to add arrays to Cool using the following syntax:
+
+\begin{center}
+\begin{tabular}{ll}
+\texttt{let a:T[\ttmath{e_1}] in \ttmath{e_2}} &
+  Create an array $a$ with size $e_1$ of $T$'s, usable in $e_2$ \\
+\texttt{a[\ttmath{e_1}] <- \ttmath{e_2}} &
+  Assign $e_2$ to element $e_1$ in $a$ \\
+\texttt{a[e]} &
+  Get element $e$ of $a$ 
+\end{tabular}
+\end{center}
+
+Write the operational semantics for these three syntactic constructs. You
+may find it helpful to think of an array of type $T[n]$ as an object with
+$n$ attributes of type $T$.
+
+\pagebreak
+
+\item
+
+The operational semantics for Cool's {\tt while} expression show that
+result of evaluating such an expression is always {\tt void}.  (See page
+28 of the Cool manual.)
+
+However, we could have used the following alternative semantics:
+
+\begin{itemize}
+
+\item If the loop body executes at least once, the result of the {\tt
+while} expression is the result from the last iteration of the loop body.
+
+\item If the loop body never executes (i.e., the condition is false the
+first time it is evaluated), then the result of the {\tt while} expression
+is {\tt void}.
+
+\end{itemize}
+
+For example, consider the following expression:
+
+\begin{center}
+{\tt while (x < 10) loop x <- x+1 pool}
+\end{center}
+
+The result of this expression would be 10 if {\tt x} $<$ 10 or {\tt void}
+if {\tt x} $\geq$ 10.
+
+Write new operational rules for the {\tt while} construct that formalize
+these alternative semantics.
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,24 @@
+#4
+_program
+ #3
+ _class
+   Main
+   Object
+   "./BASE_semanttest/loop_correct.cl"
+   (
+   #2
+   _method
+     main
+     Object
+     #2
+     _loop
+       #2
+       _bool
+         0
+       : Bool
+       #2
+       _int
+         1
+       : Int
+     : Object
+   )

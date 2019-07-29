@@ -1,0 +1,219 @@
+#38
+_program
+ #8
+ _class
+   A
+   Object
+   "./BASE_semanttest/init.cl"
+   (
+   #3
+   _attr
+     a
+     Int
+     #3
+     _int
+       5
+     : Int
+   #7
+   _method
+     foo
+     Int
+     #7
+     _mul
+       #6
+       _object
+         a
+       : Int
+       #6
+       _int
+         3
+       : Int
+     : Int
+   )
+ #14
+ _class
+   B
+   A
+   "./BASE_semanttest/init.cl"
+   (
+   #12
+   _attr
+     b
+     Int
+     #12
+     _static_dispatch
+       #12
+       _object
+         self
+       : SELF_TYPE
+       A
+       foo
+       (
+       )
+     : Int
+   )
+ #28
+ _class
+   C
+   B
+   "./BASE_semanttest/init.cl"
+   (
+   #18
+   _attr
+     c
+     String
+     #18
+     _string
+       "Init string"
+     : String
+   #27
+   _method
+     bar
+     #20
+     _formal
+       io
+       IO
+     IO
+     #26
+     _block
+       #22
+       _dispatch
+         #22
+         _dispatch
+           #22
+           _dispatch
+             #22
+             _object
+               io
+             : IO
+             out_string
+             (
+             #22
+             _string
+               "a : "
+             : String
+             )
+           : IO
+           out_int
+           (
+           #22
+           _object
+             a
+           : Int
+           )
+         : IO
+         out_string
+         (
+         #22
+         _string
+           "\n"
+         : String
+         )
+       : IO
+       #23
+       _dispatch
+         #23
+         _dispatch
+           #23
+           _dispatch
+             #23
+             _object
+               io
+             : IO
+             out_string
+             (
+             #23
+             _string
+               "b : "
+             : String
+             )
+           : IO
+           out_int
+           (
+           #23
+           _object
+             b
+           : Int
+           )
+         : IO
+         out_string
+         (
+         #23
+         _string
+           "\n"
+         : String
+         )
+       : IO
+       #24
+       _dispatch
+         #24
+         _dispatch
+           #24
+           _dispatch
+             #24
+             _object
+               io
+             : IO
+             out_string
+             (
+             #24
+             _string
+               "c : "
+             : String
+             )
+           : IO
+           out_string
+           (
+           #24
+           _object
+             c
+           : String
+           )
+         : IO
+         out_string
+         (
+         #24
+         _string
+           "\n"
+         : String
+         )
+       : IO
+       #25
+       _object
+         io
+       : IO
+     : IO
+   )
+ #35
+ _class
+   Main
+   IO
+   "./BASE_semanttest/init.cl"
+   (
+   #32
+   _attr
+     cObj
+     C
+     #32
+     _new
+       C
+     : C
+   #34
+   _method
+     main
+     Object
+     #34
+     _dispatch
+       #34
+       _object
+         cObj
+       : C
+       bar
+       (
+       #34
+       _object
+         self
+       : SELF_TYPE
+       )
+     : IO
+   )

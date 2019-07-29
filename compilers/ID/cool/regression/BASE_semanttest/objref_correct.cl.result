@@ -1,0 +1,35 @@
+#9
+_program
+ #8
+ _class
+   Main
+   Object
+   "./BASE_semanttest/objref_correct.cl"
+   (
+   #2
+   _attr
+     a
+     Int
+     #2
+     _no_expr
+     : _no_type
+   #4
+   _attr
+     b
+     Int
+     #4
+     _no_expr
+     : _no_type
+   #6
+   _method
+     main
+     Int
+     #6
+     _assign
+       a
+       #6
+       _object
+         b
+       : Int
+     : Int
+   )

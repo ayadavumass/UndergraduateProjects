@@ -1,0 +1,164 @@
+\documentclass{article}
+
+\usepackage{../handout}
+\usepackage{proof}
+\input{../handout-number}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\thmLabel}[1]{{\rm (}{\em #1\/}{\rm )}}
+
+\newcommand{\ntsym}[1]{\hbox{\em #1}}
+\newcommand{\tsym}[1]{\hbox{\rm #1}}
+\newcommand{\infertext}[2]{\infer{{\textrm{#1}}}{#2}}
+
+\def\ra{\rightarrow}     % grammar "rewrites-as" symbol
+\def\ep{\varepsilon}     % epsilon for empty-string
+
+
+\begin{document}
+\handout{\WASixSolNum}{2}{Solutions to Written Assignment 6}
+
+\begin{enumerate}
+
+\item 
+\begin{enumerate}
+\item Here is a tail-recursive function that computes factorial:
+\begin{verbatim}
+fact2(n:Int, acc:Int) : Int { if n > 0 then fact2(n-1, n*acc) else acc fi };
+\end{verbatim}
+Here \verb'fact2(n, 1)' = $n!$.  Alternately, if you wanted
+\verb'fact2' to have only one parameter, you could have named the
+above function \verb'fact3' and defined
+\verb'fact2(n:Int) : Int { fact3(n,1) };'
+
+\item If we trace out the execution of \verb'fact' and \verb'fact2'
+computing $4!$, we see that they both require at most five activation
+records on the stack.  Below we show the stack during the evaluation
+of the last recursive call:
+
+\begin{center}
+\begin{tabular}{|c|c|c|} 
+\cline{1-1} \cline{3-3}
+AR for \verb'fact(4)' & \hspace*{1in} & AR for \verb'fact2(4, 1)' \\
+\cline{1-1} \cline{3-3}
+AR for \verb'fact(3)' && AR for \verb'fact2(3, 4)' \\
+\cline{1-1} \cline{3-3}
+AR for \verb'fact(2)' && AR for \verb'fact2(2, 12)' \\
+\cline{1-1} \cline{3-3}
+AR for \verb'fact(1)' && AR for \verb'fact2(1, 24)' \\
+\cline{1-1} \cline{3-3}
+AR for \verb'fact(0)' && AR for \verb'fact2(0, 24)' \\
+\cline{1-1} \cline{3-3}
+\end{tabular}
+\end{center}
+
+For \verb'fact', before a new activation record is pushed onto the
+stack we do one subtraction (decrease \texttt{n} by one).  Just before
+we remove an activation record from the stack (i.e., just before we
+return) we do one multiplication (multiply \texttt{n*fact(n-1)}).  For
+\verb'fact2', we do the subtraction and multiplication before each new
+record is pushed onto the stack.  When we remove an activation record
+from the stack all we do is take the result of the recursive call to
+\verb'fact2' and return it.  Thus the only part of the stack frame for
+\verb'fact2' we are using after a recursive call is the return
+address.
+
+We can implement \verb'fact2' more efficiently by reusing the same
+activation record for a recursive call, rather than pushing a new
+record on the stack.  To recursively call \verb'fact2', we compute new
+values for \texttt{n} and \texttt{a} in temporary space, then to do
+the function call we replace \texttt{n} and \texttt{a} on the stack
+with their new values and restart \verb'fact2'.
+
+On the MIPS architecture, there are at least two ways to re-enter
+\verb'fact2'.  One choice is to retrieve the return address from the
+stack, store it in \texttt{\$ra}, pop everything except the parameters
+off the stack, and then unconditionally jump to \verb'fact2''s entry
+point (we don't want to clobber \texttt{\$ra}).
+
+Another choice is to notice that the correct frame pointer and return
+address are already on the stack, and so we pop everything up to the
+return address off the stack, and then unconditionally jump just past
+\verb'fact2''s entry point to skip the initial set-up code.
+
+In either case, no new space is required.  With our new
+implementation, \verb'fact2(n)' runs in constant space for any
+\texttt{n}, whereas \verb'fact(n)' requires $O(\texttt{n})$ space.
+
+% typo fixed
+%\item There was a minor typo on this problem.  Both \texttt{f} and
+%\texttt{g} should return \texttt{acc}, not \texttt{y}, in the base
+%case.
+
+For mutually tail-recursive \texttt{f} and \texttt{g} we need to be a
+little more careful than in part (b).  In this case, \texttt{f} and
+\texttt{g} have the same number of arguments, so we could compile
+\texttt{f} and \texttt{g} into a single block of code with two entry
+points $f$ and $g$.  Then a function \texttt{h} that calls either
+\texttt{f} or \texttt{g} pushes two arguments onto the stack, stores
+the return address in \texttt{\$ra} (on MIPS) and then jumps to either
+$f$ or $g$.  \texttt{f} or \texttt{g} modifies the arguments
+appropriately and then jumps to the other function (using one of the
+two strategies described above), or returns \texttt{acc} in the base
+case.
+
+In general, however, \texttt{f} and \texttt{g} might have different
+signatures (e.g., take different numbers of parameters) but still be
+mutually tail-recursive, so we need a more general strategy.
+
+To implement a general tail call to some function \texttt{h} we need
+to replace the current activation record with a new activation record
+that is correctly layed out for \texttt{h}.  As before we compute the
+arguments to \texttt{h} in temporary space.  Then we retreive the
+return address from the stack (on the MIPS we store it in
+\texttt{\$ra}).  Finally we overwrite the current activation record
+with the new parameters, shifting the stack pointer just past the last
+new parameter, and jump unconditionally to \texttt{h}.
+\end{enumerate}
+
+\item The program that generates this code is
+\[
+\verb'def f(n) = if n=0 then 0 else n+f(n-1)'
+\]
+
+
+\item 
+
+\begin{verbatim}
+cgen(for i = e1 to e2 by e3 do e4, nt) = 
+           cgen(e1, nt) 
+           sw $a0 -nt*4($fp)  
+           cgen(e2, nt+1) 
+           sw $a0 -(nt+1)*4($fp) 
+           cgen(e3, nt+2) 
+           sw $a0 -(nt+2)*4($fp) 
+           li $a0 0 
+           sw $a0 -(nt+3)*4($fp)
+	           ld $a0 -nt*4($fp)
+     loop: ld $t1 -(nt+1)*4($fp) 
+           bg $a0 $t1 finish
+           cgen(e4, nt+4)
+           sw $a0 -(nt+3)*4($fp)
+	           ld $a0 -nt($fp) 
+           ld $t1 -(nt+2)*4($fp)
+           add $a0 $a0 $t1 
+           sw $a0 -nt*4($fp)
+           j loop 
+   finish: ld $a0 -(nt+3)*4($fp)  
+\end{verbatim} 
+
+\medskip
+
+Note that we assume that {\tt nt} starts at 1 (at the beginning of a
+method) and increases by 1 for each temporary allocated (at the recursive
+{\tt cgen} calls).  In lecture, we started at 4 and incremented by 4 for
+each temporary allocated, but we do not multiply by 4 when computing the
+address of each temporary.
+
+\end{enumerate}
+
+\end{document}

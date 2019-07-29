@@ -1,0 +1,8 @@
+E	TV
+V	+TV
+V	~
+T	FW
+W	*FW
+W	~
+F	(E)
+F	~id

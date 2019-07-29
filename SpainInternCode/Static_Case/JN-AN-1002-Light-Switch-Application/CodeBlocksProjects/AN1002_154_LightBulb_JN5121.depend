@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1170676284 source:c:\jennic\cygwin\jennic\sdk\common\source\appqueueapi.c
+	"jendefs.h"
+	"mac_sap.h"
+	"AppHardwareApi.h"
+	"AppQueueApi.h"
+	"AppApi.h"
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\jendefs.h
+	<stdarg.h>
+	<stdio.h>
+	<cyg/infra/cyg_type.h>
+
+1199878986 c:\jennic\cygwin\jennic\sdk\common\include\mac_sap.h
+	"jendefs.h"
+
+1192198000 c:\jennic\cygwin\jennic\sdk\chip\jn5121\include\apphardwareapi.h
+	<jendefs.h>
+
+1204311584 c:\jennic\cygwin\jennic\sdk\common\include\appqueueapi.h
+	<jendefs.h>
+	<mac_sap.h>
+	<AppApi.h>
+
+1173458044 c:\jennic\cygwin\jennic\sdk\chip\jn5121\include\appapi.h
+	<jendefs.h>
+	<mac_sap.h>
+
+807931502 source:c:\jennic\cygwin\jennic\sdk\md5-c\md5c.c
+	"global.h"
+	"md5.h"
+
+807931526 c:\jennic\cygwin\jennic\sdk\md5-c\global.h
+
+1273682939 c:\jennic\cygwin\jennic\sdk\md5-c\md5.h
+
+1274715613 source:c:\jennic\cygwin\jennic\sdk\md5-c\mddriver.c
+	<stdio.h>
+	<time.h>
+	<..\..\md5-c\string.h>
+	"global.h"
+	<jendefs.h>
+	<AppHardwareApi.h>
+	<AppQueueApi.h>
+	<mac_sap.h>
+	<mac_pib.h>
+	<Utilities.h>
+	"md2.h"
+	"md4.h"
+	"md5.h"
+
+1191601534 c:\jennic\cygwin\jennic\sdk\chip\jn5121\include\mac_pib.h
+	"jendefs.h"
+	"mac_sap.h"
+
+1204314010 c:\jennic\cygwin\jennic\sdk\chip\common\include\utilities.h
+	"jendefs.h"
+

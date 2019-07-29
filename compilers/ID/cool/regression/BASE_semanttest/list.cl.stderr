@@ -1,0 +1,14 @@
+Class Main is not defined.
+./BASE_semanttest/list.cl:7: Class Integer of attribute car is undefined.
+./BASE_semanttest/list.cl:12: Class Integer of formal parameter hd is undefined.
+./BASE_semanttest/list.cl:12: Formal parameter tl cannot have type SELF_TYPE.
+./BASE_semanttest/list.cl:20: Class Integer of formal parameter new_elem is undefined.
+./BASE_semanttest/list.cl:26: Undefined return type Integer in method hd.
+./BASE_semanttest/list.cl:35: Undefined return type Integer in method length.
+./BASE_semanttest/list.cl:32: Undeclared identifier void.
+./BASE_semanttest/list.cl:34: non-Int arguments: Int + Integer
+./BASE_semanttest/list.cl:53: Undefined return type Integer in method iter_length.
+./BASE_semanttest/list.cl:42: Undeclared identifier void.
+./BASE_semanttest/list.cl:46: Dispatch to undefined method cdr.
+./BASE_semanttest/list.cl:46: Type Object of assigned expression does not conform to declared type Int_List1 of identifier list.
+Compilation halted due to static semantic errors.

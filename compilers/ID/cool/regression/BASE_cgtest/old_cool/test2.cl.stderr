@@ -1,0 +1,6 @@
+Class Main is not defined.
+./BASE_cgtest/test2.cl:2: Class Integer of attribute a is undefined.
+./BASE_cgtest/test2.cl:9: Undefined return type Void in method f.
+./BASE_cgtest/test2.cl:10: Undefined return type Void in method g.
+./BASE_cgtest/test2.cl:10: Undeclared identifier b.
+Compilation halted due to static semantic errors.

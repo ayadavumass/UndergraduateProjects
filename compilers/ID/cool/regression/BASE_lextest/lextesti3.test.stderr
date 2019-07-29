@@ -1,0 +1,15 @@
+Recognized token: OBJECTID(282)	line 1.	object
+Recognized token: ':'(58)	line 1.	
+Recognized token: TYPEID(281)	line 1.	Type
+Recognized token: TYPEID(281)	line 2.	Type
+Recognized token: ':'(58)	line 2.	
+Recognized token: OBJECTID(282)	line 2.	object
+Recognized token: OBJECTID(282)	line 3.	object
+Recognized token: '-'(45)	line 3.	
+Recognized token: TYPEID(281)	line 3.	Type
+Recognized token: TYPEID(281)	line 4.	Type
+Recognized token: '.'(46)	line 4.	
+Recognized token: OBJECTID(282)	line 4.	object
+Recognized token: OBJECTID(282)	line 5.	object
+Recognized token: ','(44)	line 5.	
+Recognized token: OBJECTID(282)	line 5.	object

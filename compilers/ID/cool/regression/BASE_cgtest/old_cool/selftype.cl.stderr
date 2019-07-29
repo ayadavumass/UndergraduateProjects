@@ -1,0 +1,2 @@
+./BASE_cgtest/selftype.cl:6: In redefined method foo, return type B is different from original return type SELF_TYPE.
+Compilation halted due to static semantic errors.

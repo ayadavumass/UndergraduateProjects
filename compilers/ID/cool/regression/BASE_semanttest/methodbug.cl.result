@@ -1,0 +1,39 @@
+#7
+_program
+ #6
+ _class
+   Main
+   Object
+   "./BASE_semanttest/methodbug.cl"
+   (
+   #2
+   _method
+     f
+     Object
+     #2
+     _int
+       1
+     : Int
+   #5
+   _method
+     main
+     Object
+     #4
+     _let
+       f
+       Int
+       #4
+       _no_expr
+       : _no_type
+       #4
+       _dispatch
+         #4
+         _object
+           self
+         : SELF_TYPE
+         f
+         (
+         )
+       : Object
+     : Object
+   )

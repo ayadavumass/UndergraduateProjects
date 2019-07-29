@@ -1,0 +1,5 @@
+"./BASE_parsetest/parsetestmlet.incorrect.test", line 3: parse error at or near OBJECTID = z
+"./BASE_parsetest/parsetestmlet.incorrect.test", line 9: parse error at or near OBJECTID = z
+"./BASE_parsetest/parsetestmlet.incorrect.test", line 9: parse error at or near INT_CONST = 0
+"./BASE_parsetest/parsetestmlet.incorrect.test", line 13: parse error at or near IN
+Compilation halted due to lex and parse errors

@@ -1,0 +1,15 @@
+Buffer Cache Implementation:
+
+1) Reader-Writer Solution Applied Here ..
+2) Eviction Done By Clock-Algorithm Done ..
+3) Write Behind Policy .. --> Writing Dirty Blocks Only When Evicted ..
+
+Indexed Files
+
+1) Removing inode_disk from the Inode Structure         --> Done 
+2) Implementing Combined Scheme For Indexed Allocation  --> Not Tested
+3) Implementing File Growth 
+
+Hierarchical Directory Structure Implementation
+
+1)

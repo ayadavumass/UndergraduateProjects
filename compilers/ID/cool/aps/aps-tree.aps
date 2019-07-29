@@ -1,0 +1,284 @@
+
+module ABSTRACT_APS[] begin
+  
+  -- the four basic structures
+  phylum Signature;
+  phylum Type;
+  phylum Expression;
+  phylum Pattern;
+  
+  -- the four basic kinds of declarations
+  phylum SignatureDecl;
+  phylum TypeDecl;
+  phylum ValueDecl;
+  phylum PatternDecl;
+
+  -- structural phyla
+  phylum Program;
+  phylum Unit;
+  phylum Declaration;
+  phylum Renaming;
+  phylum Statement = Declaration;
+  phylum Match;
+  phylum Direction;
+  phylum Default;
+
+  -- sequences
+  phylum Units=LIST[Unit];
+  phylum Declarations=LIST[Declaration];
+  phylum Statements=Declarations;
+  phylum Matches=LIST[Match];
+  phylum Renamings=LIST[Renaming];
+
+  phylum Signatures=LIST[Signature];
+  phylum Types=LIST[Type];
+  phylum Expressions=LIST[Expression];
+  phylum Patterns=LIST[Pattern];
+
+  phylum Formals=LIST[ValueDecl];
+  phylum TypeFormals=LIST[TypeDecl];
+
+  phylum Actuals=LIST[Expression];
+  phylum TypeActuals=LIST[Type];
+  phylum PatternActuals=LIST[Pattern];
+
+
+
+  constructor program(units : Units) : Program;
+
+  constructor no_unit() : Unit;
+  constructor with_unit(name : String) : Unit;
+  constructor decl_unit(decl : Declaration) : Unit;
+  
+  constructor no_decl() : Declaration;
+
+  constructor module_decl(as_sig : SignatureDecl;
+			  as_tfunc : TypeDecl;
+  			  contents : Declarations) : Declaration;
+  constructor signature_decl(as_sig : SignatureDecl;
+			     creating : Declaration;
+			     contents : Declarations) : Declaration;
+
+  constructor phylum_decl(as_type : TypeDecl;
+			  (type) : Type) : Declaration;
+  constructor constructor_decl(as_value : ValueDecl;
+			       as_pattern : PatternDecl;
+			       body : Statement) : Declaration;
+
+  constructor attribute_decl(as_value : ValueDecl;
+			     direction : Direction;
+			     default : Default) : Declaration;
+
+  constructor type_decl(as_type : TypeDecl;
+			(type) : Type) : Declaration;
+  constructor function_decl(as_value : ValueDecl;
+			    body : Statement) : Declaration;
+  constructor procedure_decl(as_value : ValueDecl;
+			     body : Statement) : Declaration;
+  constructor top_level_match(m : Match) : Declaration;
+  -- a value decl can be no_direction, collect, or circular
+  constructor value_decl(as_value : ValueDecl;
+			 direction : Direction;
+			 default : Default) : Declaration;
+  constructor pattern_decl(as_pattern : PatternDecl;
+			   choices : Pattern) : Declaration;
+  constructor inheritance(used : Type;
+			  renamings : Renamings) : Declaration;
+  constructor pragma_decl(name : Symbol; parameters : Expressions)
+      : Declaration;
+
+  constructor no_renaming() : Renaming;
+  constructor signature_replacement(old,ew : Signature) : Renaming;
+  constructor type_replacement(old,new : Type) : Renaming;
+  constructor value_replacement(old,new : Expression) : Renaming;
+  constructor pattern_replacement(old,new : Pattern) : Renaming;
+  constructor signature_renaming(decl : SignatureDecl; old : Signature;
+			         elements : Renamings) : Renaming;
+  constructor type_renaming(decl : TypeDecl; old : Type) : Renaming;
+  constructor value_renaming(decl : ValueDecl; old : Expression) : Renaming;
+  constructor pattern_renaming(decl : PatternDecl; old : Pattern) : Renaming;
+
+  -- directions for attributes
+  constructor no_direction(is_input : Boolean) : Direction;
+  constructor (collection)(is_input : Boolean) : Direction;
+  constructor (circular)(is_input : Boolean) : Direction;
+  pattern direction(is_input : Boolean) =
+      no_direction(?is_input),(collection)(?is_input),(circular)(?is_input);
+
+  -- different kinds of Default: a single value or a lattice or nothing
+  constructor simple(value : Expression) : Default;
+  constructor composite(initial : Expression;
+			combiner : Expression) : Default;
+  constructor lattice(bottom : Expression;
+		      join : Expression;
+		      equal : Expression) : Default;
+  constructor no_default() : Default;
+
+  -- the various atomic declarations:
+  constructor a_signature(name : Symbol;
+			  type_formals : TypeFormals;
+			  (constant) : Boolean;
+			  exported : Boolean) : SignatureDecl;
+  constructor a_type(name : Symbol; 
+		     type_formals : TypeFormals;
+		     signatures : Signatures;
+		     (constant) : Boolean;
+		     exported : Boolean) : TypeDecl;
+  constructor a_value(name : Symbol; 
+		      type_formals : TypeFormals;
+		      (type) : Type;
+		      (constant) : Boolean;
+		      exported : Boolean) : ValueDecl;
+  constructor a_pattern(name : Symbol;
+			type_formals : TypeFormals;
+			(type) : Type;
+			(constant) : Boolean;
+			exported : Boolean) : PatternDecl;
+  
+  -- now various uses (only the simplest ones for now)
+
+  constructor type_name(name : Symbol) : Type;
+  constructor no_type() : Type;
+  constructor type_inst(base : Type; 
+			type_actuals : TypeActuals;
+			actuals : Actuals) : Type;
+  constructor qual_type(inst : Type; (type) : Type) : Type;
+
+  constructor value_name(name : Symbol) : Expression;
+  constructor no_value() : Expression := no_expr();
+  constructor value_inst(base : Expression; actuals : TypeActuals) 
+      : Expression;
+  constructor qual_value(inst : Type; value : Expression) : Expression;
+
+  constructor sig_name(name : Symbol) : Signature;
+  constructor no_sig () : Signature;
+  constructor sig_inst(sig : Signature; actuals : TypeActuals) : Signature;
+  constructor qual_sig(inst : Type; sig : Signature) : Signature;
+
+  constructor pattern_name(name : Symbol) : Pattern;
+  constructor no_pattern() : Pattern;
+  constructor pattern_inst(base : Pattern; actuals : TypeActuals) : Pattern;
+  constructor qual_pattern(inst : Type; pat : Pattern) : Pattern;
+			   
+  -- special kinds of functions  (no longer used)
+  -- (these are syntactic sugar and are replaced with value_ref
+  --  when scoping is done)
+  -- the selector: (the slot is always a var_name)
+  --constructor selector((constructor) : Expression;
+  -- 		       slot : Expression) : Expression;
+  -- the key function (returns a key naming the constructor)
+  -- constructor key((phylum) : Type) : Expression;
+  -- the three special constructors for a sequence phylum
+  -- constructor append_constructor((phylum) : Type) : Expression;
+  -- constructor nil_constructor((phylum) : Type) : Expression;
+  -- constructor single_constructor((phylum) : Type) : Expression;
+  
+  -- a new signature operator, says "var" things ready for use
+  -- but constructors and procedures may not be called:
+  constructor var_sig(sig : Signature) : Signature;
+  -- only const things may be used but constructors/procedures can be called:
+  constructor constant_sig(sig : Signature) : Signature;
+  -- a special signature for modules/constructs
+  constructor module_sig(type_formals : TypeFormals;
+			 formals : Formals;
+			 return_type : Declaration) : Signature;
+  -- a list of types: only these type satisfy
+  constructor fixed_sig(types : Types) : Signature;
+
+  -- types have a number of different forms:
+  -- (see type_name, no_type too)
+  constructor remote_type(nodetype : Type) : Type;
+  -- constructor void() : Type;
+  -- various lists and related types
+  constructor ordered_set_type(u : Type; equal,order : Expression) : Type;
+  constructor set_type(u : Type; equal : Expression) : Type;
+  constructor list_type(u : Type) : Type;
+  constructor function_type(formals : Formals; 
+			    return_value : Statement) : Type;
+  -- wrapped around type parameters (for easier checking)
+  -- constructor type_actual((type) : Type) : Type;
+
+  -- patterns
+  -- constructor typed_pattern(pat : Pattern; (type) : Type) : Pattern;
+  constructor simple_pattern(con : Pattern;
+			     actuals : PatternActuals) : Pattern;
+  -- these nodes are stuck in around actuals
+  -- to make it easier to keep track of the formal actual relationship.
+  constructor pattern_actual(arg : Pattern;
+  			     formal : Expression) : Pattern;
+
+  -- the sugar pattern, e.g.: {?x,...,?y}
+  -- to remove and replaced with calls to special patterns
+  constructor sequence_pattern(actuals : Patterns; (type) : Type) : Pattern;
+  constructor rest_pattern(constraint : Pattern) : Pattern;
+  -- constructor append_pattern(s1,s2 : Pattern) : Pattern;
+  -- constructor single_pattern(elem : Pattern) : Pattern;
+  -- constructor nil_pattern() : Pattern;
+  constructor choice_pattern(choices : Patterns) : Pattern;
+  constructor and_pattern(p1,p2 : Pattern) : Pattern;
+  constructor pattern_var(as_value : ValueDecl) : Pattern;
+  constructor condition(e : Expression) : Pattern;
+
+  -- statements
+  constructor no_stmt() : Statement := no_decl();
+  --constructor void() : Statement;
+  constructor stmts(body : Statements) : Statement;
+  constructor effect(e : Expression) : Statement;
+  constructor assign(lhs : Expression; rhs : Expression) : Statement;
+  -- replaced with value_decl
+  -- constructor local_decl(as_value : ValueDecl;
+  --			 direction : Direction;
+  --			 default : Default) : Statement;
+  constructor if_stmt(cond : Expression; 
+		      if_true : Statement; 
+		      if_false : Statement) : Statement;
+  constructor for_in_stmt(formal : ValueDecl; 
+			  seq : Expression; 
+			  body : Statement) : Statement;
+  constructor for_on_stmt(formal : ValueDecl; 
+			  seq : Expression;
+			  body : Statement) : Statement;
+  constructor for_stmt(expr : Expression;
+		       matchers : Matches) : Statement;
+  constructor case_stmt(expr : Expression;
+			matchers : Matches;
+			default : Statement) : Statement;
+  constructor matcher(polymorphism : TypeFormals;
+		      pat : Pattern; 
+		      stmt : Statement) : Match;
+			
+  -- expressions
+  -- (see var_name, too)
+  constructor integer_const(token : String) : Expression;
+  constructor string_const(token : String) : Expression;
+  constructor char_const(token : String) : Expression;
+  constructor undefined() : Expression;
+  constructor no_expr() : Expression;
+  constructor funcall(f : Expression; actuals : Actuals) : Expression;
+  -- these are stuck in in the place of actuals.
+  -- constructor actual(e : Expression;
+  --		     formal : Expression) : Expression;
+  constructor reduce(f : Expression; 
+		     elems : Expressions) : Expression;
+  constructor sequence(elems : Expressions; (type) : Type) : Expression;
+  -- constructor append(s1,s2 : Expression) : Expression;
+  -- sugar
+  --constructor block(body : Statement;
+  --		    direction : Direction;
+  --		    def : Default) : Expression;
+  -- sugar: the key returned for this constructor
+  constructor constructor_key(name : Expression) : Expression;
+  -- the following are only legal in pragma's
+  constructor signature_value(s : Signature) : Expression;
+  constructor type_value(t : Type) : Expression;
+  constructor pattern_value(p : Pattern) : Expression;
+  
+  -- used in set comprehensions
+  constructor repeat(expr : Expression) : Expression;
+  constructor guarded(expr : Expression; cond : Expression) : Expression;
+  constructor controlled(expr : Expression; 
+			 decl : ValueDecl; 
+			 set : Expression) : Expression;
+end;
+
+

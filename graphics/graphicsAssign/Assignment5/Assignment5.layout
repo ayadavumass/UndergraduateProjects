@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Assign5Scene_New.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="1621" topLine="69" />
+	</File>
+	<File name="CommonFunc.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="LightingModel.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="837" topLine="0" />
+	</File>
+	<File name="ScanLine.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="0" topLine="57" />
+	</File>
+	<File name="Transformation.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="2243" topLine="88" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,6 @@
+Class Main is not defined.
+./BASE_semanttest/case1.cl:7: Undefined return type Void in method do.
+./BASE_semanttest/case1.cl:4: Class Object1 of case branch is undefined.
+./BASE_semanttest/case1.cl:5: Class Object2 of case branch is undefined.
+./BASE_semanttest/case1.cl:5: Dispatch on undefined class Object2.
+Compilation halted due to static semantic errors.

@@ -1,0 +1,916 @@
+perl -I../.. ../../tests/userprog/args-none.ck tests/userprog/args-none tests/userprog/args-none.result
+FAIL tests/userprog/args-none
+Run didn't start up properly: no "Boot complete" message
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/args-single -a args-single --swap-disk=4 -- -q   -f run 'args-single onearg' < /dev/null 2> tests/userprog/args-single.errors > tests/userprog/args-single.output
+perl -I../.. ../../tests/userprog/args-single.ck tests/userprog/args-single tests/userprog/args-single.result
+FAIL tests/userprog/args-single
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (args) begin
+  (args) argc = 2
+  (args) argv[0] = 'args-single'
+  (args) argv[1] = 'onearg'
+  (args) argv[2] = null
+  (args) end
+  args-single: exit(0)
+Differences in `diff -u' format:
+  (args) begin
+  (args) argc = 2
+  (args) argv[0] = 'args-single'
+  (args) argv[1] = 'onearg'
+  (args) argv[2] = null
+  (args) end
++ Frame Table Freed MY TID 3
+  args-single: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/args-multiple -a args-multiple --swap-disk=4 -- -q   -f run 'args-multiple some arguments for you!' < /dev/null 2> tests/userprog/args-multiple.errors > tests/userprog/args-multiple.output
+perl -I../.. ../../tests/userprog/args-multiple.ck tests/userprog/args-multiple tests/userprog/args-multiple.result
+FAIL tests/userprog/args-multiple
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (args) begin
+  (args) argc = 5
+  (args) argv[0] = 'args-multiple'
+  (args) argv[1] = 'some'
+  (args) argv[2] = 'arguments'
+  (args) argv[3] = 'for'
+  (args) argv[4] = 'you!'
+  (args) argv[5] = null
+  (args) end
+  args-multiple: exit(0)
+Differences in `diff -u' format:
+  (args) begin
+  (args) argc = 5
+  (args) argv[0] = 'args-multiple'
+  (args) argv[1] = 'some'
+  (args) argv[2] = 'arguments'
+  (args) argv[3] = 'for'
+  (args) argv[4] = 'you!'
+  (args) argv[5] = null
+  (args) end
++ Frame Table Freed MY TID 3
+  args-multiple: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/args-many -a args-many --swap-disk=4 -- -q   -f run 'args-many a b c d e f g h i j k l m n o p q r s t u v' < /dev/null 2> tests/userprog/args-many.errors > tests/userprog/args-many.output
+perl -I../.. ../../tests/userprog/args-many.ck tests/userprog/args-many tests/userprog/args-many.result
+FAIL tests/userprog/args-many
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (args) begin
+  (args) argc = 23
+  (args) argv[0] = 'args-many'
+  (args) argv[1] = 'a'
+  (args) argv[2] = 'b'
+  (args) argv[3] = 'c'
+  (args) argv[4] = 'd'
+  (args) argv[5] = 'e'
+  (args) argv[6] = 'f'
+  (args) argv[7] = 'g'
+  (args) argv[8] = 'h'
+  (args) argv[9] = 'i'
+  (args) argv[10] = 'j'
+  (args) argv[11] = 'k'
+  (args) argv[12] = 'l'
+  (args) argv[13] = 'm'
+  (args) argv[14] = 'n'
+  (args) argv[15] = 'o'
+  (args) argv[16] = 'p'
+  (args) argv[17] = 'q'
+  (args) argv[18] = 'r'
+  (args) argv[19] = 's'
+  (args) argv[20] = 't'
+  (args) argv[21] = 'u'
+  (args) argv[22] = 'v'
+  (args) argv[23] = null
+  (args) end
+  args-many: exit(0)
+Differences in `diff -u' format:
+  (args) begin
+  (args) argc = 23
+  (args) argv[0] = 'args-many'
+  (args) argv[1] = 'a'
+  (args) argv[2] = 'b'
+  (args) argv[3] = 'c'
+  (args) argv[4] = 'd'
+  (args) argv[5] = 'e'
+  (args) argv[6] = 'f'
+  (args) argv[7] = 'g'
+  (args) argv[8] = 'h'
+  (args) argv[9] = 'i'
+  (args) argv[10] = 'j'
+  (args) argv[11] = 'k'
+  (args) argv[12] = 'l'
+  (args) argv[13] = 'm'
+  (args) argv[14] = 'n'
+  (args) argv[15] = 'o'
+  (args) argv[16] = 'p'
+  (args) argv[17] = 'q'
+  (args) argv[18] = 'r'
+  (args) argv[19] = 's'
+  (args) argv[20] = 't'
+  (args) argv[21] = 'u'
+  (args) argv[22] = 'v'
+  (args) argv[23] = null
+  (args) end
++ Frame Table Freed MY TID 3
+  args-many: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/args-dbl-space -a args-dbl-space --swap-disk=4 -- -q   -f run 'args-dbl-space two  spaces!' < /dev/null 2> tests/userprog/args-dbl-space.errors > tests/userprog/args-dbl-space.output
+perl -I../.. ../../tests/userprog/args-dbl-space.ck tests/userprog/args-dbl-space tests/userprog/args-dbl-space.result
+FAIL tests/userprog/args-dbl-space
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (args) begin
+  (args) argc = 3
+  (args) argv[0] = 'args-dbl-space'
+  (args) argv[1] = 'two'
+  (args) argv[2] = 'spaces!'
+  (args) argv[3] = null
+  (args) end
+  args-dbl-space: exit(0)
+Differences in `diff -u' format:
+  (args) begin
+  (args) argc = 3
+  (args) argv[0] = 'args-dbl-space'
+  (args) argv[1] = 'two'
+  (args) argv[2] = 'spaces!'
+  (args) argv[3] = null
+  (args) end
++ Frame Table Freed MY TID 3
+  args-dbl-space: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/sc-bad-sp -a sc-bad-sp --swap-disk=4 -- -q   -f run sc-bad-sp < /dev/null 2> tests/userprog/sc-bad-sp.errors > tests/userprog/sc-bad-sp.output
+perl -I../.. ../../tests/userprog/sc-bad-sp.ck tests/userprog/sc-bad-sp tests/userprog/sc-bad-sp.result
+FAIL tests/userprog/sc-bad-sp
+run: should have called exit(-1): FAILED
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/sc-bad-arg -a sc-bad-arg --swap-disk=4 -- -q   -f run sc-bad-arg < /dev/null 2> tests/userprog/sc-bad-arg.errors > tests/userprog/sc-bad-arg.output
+perl -I../.. ../../tests/userprog/sc-bad-arg.ck tests/userprog/sc-bad-arg tests/userprog/sc-bad-arg.result
+FAIL tests/userprog/sc-bad-arg
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (sc-bad-arg) begin
+  sc-bad-arg: exit(-1)
+Differences in `diff -u' format:
+  (sc-bad-arg) begin
++ Frame Table Freed MY TID 3
+  sc-bad-arg: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/sc-boundary -a sc-boundary --swap-disk=4 -- -q   -f run sc-boundary < /dev/null 2> tests/userprog/sc-boundary.errors > tests/userprog/sc-boundary.output
+perl -I../.. ../../tests/userprog/sc-boundary.ck tests/userprog/sc-boundary tests/userprog/sc-boundary.result
+FAIL tests/userprog/sc-boundary
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (sc-boundary) begin
+  sc-boundary: exit(42)
+Differences in `diff -u' format:
+  (sc-boundary) begin
++ Frame Table Freed MY TID 3
+  sc-boundary: exit(42)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/sc-boundary-2 -a sc-boundary-2 --swap-disk=4 -- -q   -f run sc-boundary-2 < /dev/null 2> tests/userprog/sc-boundary-2.errors > tests/userprog/sc-boundary-2.output
+perl -I../.. ../../tests/userprog/sc-boundary-2.ck tests/userprog/sc-boundary-2 tests/userprog/sc-boundary-2.result
+FAIL tests/userprog/sc-boundary-2
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (sc-boundary-2) begin
+  sc-boundary-2: exit(67)
+Differences in `diff -u' format:
+  (sc-boundary-2) begin
++ Frame Table Freed MY TID 3
+  sc-boundary-2: exit(67)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/halt -a halt --swap-disk=4 -- -q   -f run halt < /dev/null 2> tests/userprog/halt.errors > tests/userprog/halt.output
+perl -I../.. ../../tests/userprog/halt.ck tests/userprog/halt tests/userprog/halt.result
+pass tests/userprog/halt
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/exit -a exit --swap-disk=4 -- -q   -f run exit < /dev/null 2> tests/userprog/exit.errors > tests/userprog/exit.output
+perl -I../.. ../../tests/userprog/exit.ck tests/userprog/exit tests/userprog/exit.result
+FAIL tests/userprog/exit
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exit) begin
+  exit: exit(57)
+Differences in `diff -u' format:
+  (exit) begin
++ Frame Table Freed MY TID 3
+  exit: exit(57)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-normal -a create-normal --swap-disk=4 -- -q   -f run create-normal < /dev/null 2> tests/userprog/create-normal.errors > tests/userprog/create-normal.output
+perl -I../.. ../../tests/userprog/create-normal.ck tests/userprog/create-normal tests/userprog/create-normal.result
+FAIL tests/userprog/create-normal
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-normal) begin
+  (create-normal) create quux.dat
+  (create-normal) end
+  create-normal: exit(0)
+Differences in `diff -u' format:
+  (create-normal) begin
+  (create-normal) create quux.dat
+  (create-normal) end
++ Frame Table Freed MY TID 3
+  create-normal: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-empty -a create-empty --swap-disk=4 -- -q   -f run create-empty < /dev/null 2> tests/userprog/create-empty.errors > tests/userprog/create-empty.output
+perl -I../.. ../../tests/userprog/create-empty.ck tests/userprog/create-empty tests/userprog/create-empty.result
+FAIL tests/userprog/create-empty
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-empty) begin
+  (create-empty) create(""): 0
+  (create-empty) end
+  create-empty: exit(0)
+Differences in `diff -u' format:
+  (create-empty) begin
+  (create-empty) create(""): 0
+  (create-empty) end
++ Frame Table Freed MY TID 3
+  create-empty: exit(0)
+Acceptable output:
+  (create-empty) begin
+  create-empty: exit(-1)
+Differences in `diff -u' format:
+  (create-empty) begin
+- create-empty: exit(-1)
++ (create-empty) create(""): 0
++ (create-empty) end
++ Frame Table Freed MY TID 3
++ create-empty: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-null -a create-null --swap-disk=4 -- -q   -f run create-null < /dev/null 2> tests/userprog/create-null.errors > tests/userprog/create-null.output
+perl -I../.. ../../tests/userprog/create-null.ck tests/userprog/create-null tests/userprog/create-null.result
+FAIL tests/userprog/create-null
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-null) begin
+  create-null: exit(-1)
+Differences in `diff -u' format:
+  (create-null) begin
++ Frame Table Freed MY TID 3
+  create-null: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-bad-ptr -a create-bad-ptr --swap-disk=4 -- -q   -f run create-bad-ptr < /dev/null 2> tests/userprog/create-bad-ptr.errors > tests/userprog/create-bad-ptr.output
+perl -I../.. ../../tests/userprog/create-bad-ptr.ck tests/userprog/create-bad-ptr tests/userprog/create-bad-ptr.result
+FAIL tests/userprog/create-bad-ptr
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-bad-ptr) begin
+  create-bad-ptr: exit(-1)
+Differences in `diff -u' format:
+  (create-bad-ptr) begin
+- create-bad-ptr: exit(-1)
++ (create-bad-ptr) create(0x20101234): 0
++ (create-bad-ptr) end
++ Frame Table Freed MY TID 3
++ create-bad-ptr: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-long -a create-long --swap-disk=4 -- -q   -f run create-long < /dev/null 2> tests/userprog/create-long.errors > tests/userprog/create-long.output
+perl -I../.. ../../tests/userprog/create-long.ck tests/userprog/create-long tests/userprog/create-long.result
+FAIL tests/userprog/create-long
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-long) begin
+  (create-long) create("x..."): 0
+  (create-long) end
+  create-long: exit(0)
+Differences in `diff -u' format:
+  (create-long) begin
+  (create-long) create("x..."): 0
+  (create-long) end
++ Frame Table Freed MY TID 3
+  create-long: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-exists -a create-exists --swap-disk=4 -- -q   -f run create-exists < /dev/null 2> tests/userprog/create-exists.errors > tests/userprog/create-exists.output
+perl -I../.. ../../tests/userprog/create-exists.ck tests/userprog/create-exists tests/userprog/create-exists.result
+FAIL tests/userprog/create-exists
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-exists) begin
+  (create-exists) create quux.dat
+  (create-exists) create warble.dat
+  (create-exists) try to re-create quux.dat
+  (create-exists) create baffle.dat
+  (create-exists) try to re-create quux.dat
+  (create-exists) end
+  create-exists: exit(0)
+Differences in `diff -u' format:
+  (create-exists) begin
+  (create-exists) create quux.dat
+  (create-exists) create warble.dat
+  (create-exists) try to re-create quux.dat
+  (create-exists) create baffle.dat
+  (create-exists) try to re-create quux.dat
+  (create-exists) end
++ Frame Table Freed MY TID 3
+  create-exists: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/create-bound -a create-bound --swap-disk=4 -- -q   -f run create-bound < /dev/null 2> tests/userprog/create-bound.errors > tests/userprog/create-bound.output
+perl -I../.. ../../tests/userprog/create-bound.ck tests/userprog/create-bound tests/userprog/create-bound.result
+FAIL tests/userprog/create-bound
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-bound) begin
+  (create-bound) create("quux.dat"): 1
+  (create-bound) end
+  create-bound: exit(0)
+Differences in `diff -u' format:
+  (create-bound) begin
+  (create-bound) create("quux.dat"): 1
+  (create-bound) end
++ Frame Table Freed MY TID 3
+  create-bound: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-normal -a open-normal -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run open-normal < /dev/null 2> tests/userprog/open-normal.errors > tests/userprog/open-normal.output
+perl -I../.. ../../tests/userprog/open-normal.ck tests/userprog/open-normal tests/userprog/open-normal.result
+FAIL tests/userprog/open-normal
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (open-normal) begin
+  (open-normal) end
+  open-normal: exit(0)
+Differences in `diff -u' format:
+  (open-normal) begin
+  (open-normal) end
++ Frame Table Freed MY TID 3
+  open-normal: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-missing -a open-missing --swap-disk=4 -- -q   -f run open-missing < /dev/null 2> tests/userprog/open-missing.errors > tests/userprog/open-missing.output
+perl -I../.. ../../tests/userprog/open-missing.ck tests/userprog/open-missing tests/userprog/open-missing.result
+FAIL tests/userprog/open-missing
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (open-missing) begin
+  (open-missing) end
+  open-missing: exit(0)
+Differences in `diff -u' format:
+  (open-missing) begin
+  (open-missing) end
++ Frame Table Freed MY TID 3
+  open-missing: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-boundary -a open-boundary -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run open-boundary < /dev/null 2> tests/userprog/open-boundary.errors > tests/userprog/open-boundary.output
+perl -I../.. ../../tests/userprog/open-boundary.ck tests/userprog/open-boundary tests/userprog/open-boundary.result
+FAIL tests/userprog/open-boundary
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (open-boundary) begin
+  (open-boundary) open "sample.txt"
+  (open-boundary) end
+  open-boundary: exit(0)
+Differences in `diff -u' format:
+  (open-boundary) begin
+  (open-boundary) open "sample.txt"
+  (open-boundary) end
++ Frame Table Freed MY TID 3
+  open-boundary: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-empty -a open-empty --swap-disk=4 -- -q   -f run open-empty < /dev/null 2> tests/userprog/open-empty.errors > tests/userprog/open-empty.output
+perl -I../.. ../../tests/userprog/open-empty.ck tests/userprog/open-empty tests/userprog/open-empty.result
+FAIL tests/userprog/open-empty
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (open-empty) begin
+  (open-empty) end
+  open-empty: exit(0)
+Differences in `diff -u' format:
+  (open-empty) begin
+  (open-empty) end
++ Frame Table Freed MY TID 3
+  open-empty: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-null -a open-null --swap-disk=4 -- -q   -f run open-null < /dev/null 2> tests/userprog/open-null.errors > tests/userprog/open-null.output
+perl -I../.. ../../tests/userprog/open-null.ck tests/userprog/open-null tests/userprog/open-null.result
+FAIL tests/userprog/open-null
+Kernel panic in run: PANIC at ../../filesys/directory.c:125 in dir_lookup(): assertion `name != NULL' failed.
+Call stack: 0xc011deb4
+Translation of call stack:
+0xc011deb4: (unknown)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-bad-ptr -a open-bad-ptr --swap-disk=4 -- -q   -f run open-bad-ptr < /dev/null 2> tests/userprog/open-bad-ptr.errors > tests/userprog/open-bad-ptr.output
+perl -I../.. ../../tests/userprog/open-bad-ptr.ck tests/userprog/open-bad-ptr tests/userprog/open-bad-ptr.result
+FAIL tests/userprog/open-bad-ptr
+run: should have called exit(-1): FAILED
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/open-twice -a open-twice -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run open-twice < /dev/null 2> tests/userprog/open-twice.errors > tests/userprog/open-twice.output
+perl -I../.. ../../tests/userprog/open-twice.ck tests/userprog/open-twice tests/userprog/open-twice.result
+FAIL tests/userprog/open-twice
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (open-twice) begin
+  (open-twice) open "sample.txt" once
+  (open-twice) open "sample.txt" again
+  (open-twice) end
+  open-twice: exit(0)
+Differences in `diff -u' format:
+  (open-twice) begin
+  (open-twice) open "sample.txt" once
+  (open-twice) open "sample.txt" again
+  (open-twice) end
++ Frame Table Freed MY TID 3
+  open-twice: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/close-normal -a close-normal -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run close-normal < /dev/null 2> tests/userprog/close-normal.errors > tests/userprog/close-normal.output
+perl -I../.. ../../tests/userprog/close-normal.ck tests/userprog/close-normal tests/userprog/close-normal.result
+FAIL tests/userprog/close-normal
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (close-normal) begin
+  (close-normal) open "sample.txt"
+  (close-normal) close "sample.txt"
+  (close-normal) end
+  close-normal: exit(0)
+Differences in `diff -u' format:
+  (close-normal) begin
+  (close-normal) open "sample.txt"
+  (close-normal) close "sample.txt"
+  (close-normal) end
++ Frame Table Freed MY TID 3
+  close-normal: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/close-twice -a close-twice -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run close-twice < /dev/null 2> tests/userprog/close-twice.errors > tests/userprog/close-twice.output
+perl -I../.. ../../tests/userprog/close-twice.ck tests/userprog/close-twice tests/userprog/close-twice.result
+FAIL tests/userprog/close-twice
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+  (close-twice) close "sample.txt"
+  (close-twice) close "sample.txt" again
+  (close-twice) end
+  close-twice: exit(0)
+Differences in `diff -u' format:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+  (close-twice) close "sample.txt"
+  (close-twice) close "sample.txt" again
+- (close-twice) end
+- close-twice: exit(0)
++ Frame Table Freed MY TID 3
++ close-twice: exit(-1)
+Acceptable output:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+  (close-twice) close "sample.txt"
+  (close-twice) close "sample.txt" again
+  close-twice: exit(-1)
+Differences in `diff -u' format:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+  (close-twice) close "sample.txt"
+  (close-twice) close "sample.txt" again
++ Frame Table Freed MY TID 3
+  close-twice: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/close-stdin -a close-stdin --swap-disk=4 -- -q   -f run close-stdin < /dev/null 2> tests/userprog/close-stdin.errors > tests/userprog/close-stdin.output
+perl -I../.. ../../tests/userprog/close-stdin.ck tests/userprog/close-stdin tests/userprog/close-stdin.result
+FAIL tests/userprog/close-stdin
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (close-stdin) begin
+  (close-stdin) end
+  close-stdin: exit(0)
+Differences in `diff -u' format:
+  (close-stdin) begin
+- (close-stdin) end
+- close-stdin: exit(0)
++ Frame Table Freed MY TID 3
++ close-stdin: exit(-1)
+Acceptable output:
+  (close-stdin) begin
+  close-stdin: exit(-1)
+Differences in `diff -u' format:
+  (close-stdin) begin
++ Frame Table Freed MY TID 3
+  close-stdin: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/close-stdout -a close-stdout --swap-disk=4 -- -q   -f run close-stdout < /dev/null 2> tests/userprog/close-stdout.errors > tests/userprog/close-stdout.output
+perl -I../.. ../../tests/userprog/close-stdout.ck tests/userprog/close-stdout tests/userprog/close-stdout.result
+FAIL tests/userprog/close-stdout
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (close-stdout) begin
+  (close-stdout) end
+  close-stdout: exit(0)
+Differences in `diff -u' format:
+  (close-stdout) begin
+- (close-stdout) end
+- close-stdout: exit(0)
++ Frame Table Freed MY TID 3
++ close-stdout: exit(-1)
+Acceptable output:
+  (close-stdout) begin
+  close-stdout: exit(-1)
+Differences in `diff -u' format:
+  (close-stdout) begin
++ Frame Table Freed MY TID 3
+  close-stdout: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/close-bad-fd -a close-bad-fd --swap-disk=4 -- -q   -f run close-bad-fd < /dev/null 2> tests/userprog/close-bad-fd.errors > tests/userprog/close-bad-fd.output
+perl -I../.. ../../tests/userprog/close-bad-fd.ck tests/userprog/close-bad-fd tests/userprog/close-bad-fd.result
+FAIL tests/userprog/close-bad-fd
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (close-bad-fd) begin
+  (close-bad-fd) end
+  close-bad-fd: exit(0)
+Differences in `diff -u' format:
+  (close-bad-fd) begin
+- (close-bad-fd) end
+- close-bad-fd: exit(0)
++ Frame Table Freed MY TID 3
++ close-bad-fd: exit(-1)
+Acceptable output:
+  (close-bad-fd) begin
+  close-bad-fd: exit(-1)
+Differences in `diff -u' format:
+  (close-bad-fd) begin
++ Frame Table Freed MY TID 3
+  close-bad-fd: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/read-normal -a read-normal -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run read-normal < /dev/null 2> tests/userprog/read-normal.errors > tests/userprog/read-normal.output
+perl -I../.. ../../tests/userprog/read-normal.ck tests/userprog/read-normal tests/userprog/read-normal.result
+FAIL tests/userprog/read-normal
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-normal) begin
+  (read-normal) open "sample.txt" for verification
+  (read-normal) verified contents of "sample.txt"
+  (read-normal) close "sample.txt"
+  (read-normal) end
+  read-normal: exit(0)
+Differences in `diff -u' format:
+  (read-normal) begin
+  (read-normal) open "sample.txt" for verification
+  (read-normal) verified contents of "sample.txt"
+  (read-normal) close "sample.txt"
+  (read-normal) end
++ Frame Table Freed MY TID 3
+  read-normal: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/read-bad-ptr -a read-bad-ptr -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run read-bad-ptr < /dev/null 2> tests/userprog/read-bad-ptr.errors > tests/userprog/read-bad-ptr.output
+perl -I../.. ../../tests/userprog/read-bad-ptr.ck tests/userprog/read-bad-ptr tests/userprog/read-bad-ptr.result
+FAIL tests/userprog/read-bad-ptr
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-bad-ptr) begin
+  (read-bad-ptr) open "sample.txt"
+  (read-bad-ptr) end
+  read-bad-ptr: exit(0)
+Differences in `diff -u' format:
+  (read-bad-ptr) begin
+  (read-bad-ptr) open "sample.txt"
+- (read-bad-ptr) end
+- read-bad-ptr: exit(0)
++ Frame Table Freed MY TID 3
++ read-bad-ptr: exit(-1)
+Acceptable output:
+  (read-bad-ptr) begin
+  (read-bad-ptr) open "sample.txt"
+  read-bad-ptr: exit(-1)
+Differences in `diff -u' format:
+  (read-bad-ptr) begin
+  (read-bad-ptr) open "sample.txt"
++ Frame Table Freed MY TID 3
+  read-bad-ptr: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/read-boundary -a read-boundary -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run read-boundary < /dev/null 2> tests/userprog/read-boundary.errors > tests/userprog/read-boundary.output
+perl -I../.. ../../tests/userprog/read-boundary.ck tests/userprog/read-boundary tests/userprog/read-boundary.result
+FAIL tests/userprog/read-boundary
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-boundary) begin
+  (read-boundary) open "sample.txt"
+  (read-boundary) end
+  read-boundary: exit(0)
+Differences in `diff -u' format:
+  (read-boundary) begin
+  (read-boundary) open "sample.txt"
+  (read-boundary) end
++ Frame Table Freed MY TID 3
+  read-boundary: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/read-zero -a read-zero -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run read-zero < /dev/null 2> tests/userprog/read-zero.errors > tests/userprog/read-zero.output
+perl -I../.. ../../tests/userprog/read-zero.ck tests/userprog/read-zero tests/userprog/read-zero.result
+FAIL tests/userprog/read-zero
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-zero) begin
+  (read-zero) open "sample.txt"
+  (read-zero) end
+  read-zero: exit(0)
+Differences in `diff -u' format:
+  (read-zero) begin
+  (read-zero) open "sample.txt"
+  (read-zero) end
++ Frame Table Freed MY TID 3
+  read-zero: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/read-stdout -a read-stdout --swap-disk=4 -- -q   -f run read-stdout < /dev/null 2> tests/userprog/read-stdout.errors > tests/userprog/read-stdout.output
+perl -I../.. ../../tests/userprog/read-stdout.ck tests/userprog/read-stdout tests/userprog/read-stdout.result
+FAIL tests/userprog/read-stdout
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-stdout) begin
+  (read-stdout) end
+  read-stdout: exit(0)
+Differences in `diff -u' format:
+  (read-stdout) begin
+- (read-stdout) end
+- read-stdout: exit(0)
++ Frame Table Freed MY TID 3
++ read-stdout: exit(-1)
+Acceptable output:
+  (read-stdout) begin
+  read-stdout: exit(-1)
+Differences in `diff -u' format:
+  (read-stdout) begin
++ Frame Table Freed MY TID 3
+  read-stdout: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/read-bad-fd -a read-bad-fd --swap-disk=4 -- -q   -f run read-bad-fd < /dev/null 2> tests/userprog/read-bad-fd.errors > tests/userprog/read-bad-fd.output
+perl -I../.. ../../tests/userprog/read-bad-fd.ck tests/userprog/read-bad-fd tests/userprog/read-bad-fd.result
+FAIL tests/userprog/read-bad-fd
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-bad-fd) begin
+  (read-bad-fd) end
+  read-bad-fd: exit(0)
+Differences in `diff -u' format:
+  (read-bad-fd) begin
+- (read-bad-fd) end
+- read-bad-fd: exit(0)
++ Frame Table Freed MY TID 3
++ read-bad-fd: exit(-1)
+Acceptable output:
+  (read-bad-fd) begin
+  read-bad-fd: exit(-1)
+Differences in `diff -u' format:
+  (read-bad-fd) begin
++ Frame Table Freed MY TID 3
+  read-bad-fd: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/write-normal -a write-normal -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run write-normal < /dev/null 2> tests/userprog/write-normal.errors > tests/userprog/write-normal.output
+perl -I../.. ../../tests/userprog/write-normal.ck tests/userprog/write-normal tests/userprog/write-normal.result
+FAIL tests/userprog/write-normal
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (write-normal) begin
+  (write-normal) create "test.txt"
+  (write-normal) open "test.txt"
+  (write-normal) end
+  write-normal: exit(0)
+Differences in `diff -u' format:
+  (write-normal) begin
+  (write-normal) create "test.txt"
+  (write-normal) open "test.txt"
+  (write-normal) end
++ Frame Table Freed MY TID 3
+  write-normal: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/write-bad-ptr -a write-bad-ptr -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run write-bad-ptr < /dev/null 2> tests/userprog/write-bad-ptr.errors > tests/userprog/write-bad-ptr.output
+perl -I../.. ../../tests/userprog/write-bad-ptr.ck tests/userprog/write-bad-ptr tests/userprog/write-bad-ptr.result
+FAIL tests/userprog/write-bad-ptr
+run: should have exited with -1: FAILED
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/write-boundary -a write-boundary -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run write-boundary < /dev/null 2> tests/userprog/write-boundary.errors > tests/userprog/write-boundary.output
+perl -I../.. ../../tests/userprog/write-boundary.ck tests/userprog/write-boundary tests/userprog/write-boundary.result
+FAIL tests/userprog/write-boundary
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (write-boundary) begin
+  (write-boundary) open "sample.txt"
+  (write-boundary) end
+  write-boundary: exit(0)
+Differences in `diff -u' format:
+  (write-boundary) begin
+  (write-boundary) open "sample.txt"
+  (write-boundary) end
++ Frame Table Freed MY TID 3
+  write-boundary: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/write-zero -a write-zero -p ../../tests/userprog/sample.txt -a sample.txt --swap-disk=4 -- -q   -f run write-zero < /dev/null 2> tests/userprog/write-zero.errors > tests/userprog/write-zero.output
+perl -I../.. ../../tests/userprog/write-zero.ck tests/userprog/write-zero tests/userprog/write-zero.result
+FAIL tests/userprog/write-zero
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (write-zero) begin
+  (write-zero) open "sample.txt"
+  (write-zero) end
+  write-zero: exit(0)
+Differences in `diff -u' format:
+  (write-zero) begin
+  (write-zero) open "sample.txt"
+  (write-zero) end
++ Frame Table Freed MY TID 3
+  write-zero: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/write-stdin -a write-stdin --swap-disk=4 -- -q   -f run write-stdin < /dev/null 2> tests/userprog/write-stdin.errors > tests/userprog/write-stdin.output
+perl -I../.. ../../tests/userprog/write-stdin.ck tests/userprog/write-stdin tests/userprog/write-stdin.result
+FAIL tests/userprog/write-stdin
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (write-stdin) begin
+  (write-stdin) end
+  write-stdin: exit(0)
+Differences in `diff -u' format:
+  (write-stdin) begin
+- (write-stdin) end
+- write-stdin: exit(0)
++ Frame Table Freed MY TID 3
++ write-stdin: exit(-1)
+Acceptable output:
+  (write-stdin) begin
+  write-stdin: exit(-1)
+Differences in `diff -u' format:
+  (write-stdin) begin
++ Frame Table Freed MY TID 3
+  write-stdin: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/write-bad-fd -a write-bad-fd --swap-disk=4 -- -q   -f run write-bad-fd < /dev/null 2> tests/userprog/write-bad-fd.errors > tests/userprog/write-bad-fd.output
+perl -I../.. ../../tests/userprog/write-bad-fd.ck tests/userprog/write-bad-fd tests/userprog/write-bad-fd.result
+FAIL tests/userprog/write-bad-fd
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (write-bad-fd) begin
+  (write-bad-fd) end
+  write-bad-fd: exit(0)
+Differences in `diff -u' format:
+  (write-bad-fd) begin
+- (write-bad-fd) end
+- write-bad-fd: exit(0)
++ Frame Table Freed MY TID 3
++ write-bad-fd: exit(-1)
+Acceptable output:
+  (write-bad-fd) begin
+  write-bad-fd: exit(-1)
+Differences in `diff -u' format:
+  (write-bad-fd) begin
++ Frame Table Freed MY TID 3
+  write-bad-fd: exit(-1)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/exec-once -a exec-once -p tests/userprog/child-simple -a child-simple --swap-disk=4 -- -q   -f run exec-once < /dev/null 2> tests/userprog/exec-once.errors > tests/userprog/exec-once.output
+perl -I../.. ../../tests/userprog/exec-once.ck tests/userprog/exec-once tests/userprog/exec-once.result
+FAIL tests/userprog/exec-once
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-once) begin
+  (child-simple) run
+  child-simple: exit(81)
+  (exec-once) end
+  exec-once: exit(0)
+Differences in `diff -u' format:
+  (exec-once) begin
+  (child-simple) run
++ Frame Table Freed MY TID 4
+  child-simple: exit(81)
+  (exec-once) end
++ Frame Table Freed MY TID 3
+  exec-once: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/exec-arg -a exec-arg -p tests/userprog/child-args -a child-args --swap-disk=4 -- -q   -f run exec-arg < /dev/null 2> tests/userprog/exec-arg.errors > tests/userprog/exec-arg.output
+perl -I../.. ../../tests/userprog/exec-arg.ck tests/userprog/exec-arg tests/userprog/exec-arg.result
+FAIL tests/userprog/exec-arg
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-arg) begin
+  (args) begin
+  (args) argc = 2
+  (args) argv[0] = 'child-args'
+  (args) argv[1] = 'childarg'
+  (args) argv[2] = null
+  (args) end
+  child-args: exit(0)
+  (exec-arg) end
+  exec-arg: exit(0)
+Differences in `diff -u' format:
+  (exec-arg) begin
+  (args) begin
+  (args) argc = 2
+  (args) argv[0] = 'child-args'
+  (args) argv[1] = 'childarg'
+  (args) argv[2] = null
+  (args) end
++ Frame Table Freed MY TID 4
+  child-args: exit(0)
+  (exec-arg) end
++ Frame Table Freed MY TID 3
+  exec-arg: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/exec-multiple -a exec-multiple -p tests/userprog/child-simple -a child-simple --swap-disk=4 -- -q   -f run exec-multiple < /dev/null 2> tests/userprog/exec-multiple.errors > tests/userprog/exec-multiple.output
+perl -I../.. ../../tests/userprog/exec-multiple.ck tests/userprog/exec-multiple tests/userprog/exec-multiple.result
+FAIL tests/userprog/exec-multiple
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-multiple) begin
+  (child-simple) run
+  child-simple: exit(81)
+  (child-simple) run
+  child-simple: exit(81)
+  (child-simple) run
+  child-simple: exit(81)
+  (child-simple) run
+  child-simple: exit(81)
+  (exec-multiple) end
+  exec-multiple: exit(0)
+Differences in `diff -u' format:
+  (exec-multiple) begin
+  (child-simple) run
++ Frame Table Freed MY TID 4
+  child-simple: exit(81)
+  (child-simple) run
++ Frame Table Freed MY TID 5
+  child-simple: exit(81)
+  (child-simple) run
++ Frame Table Freed MY TID 6
+  child-simple: exit(81)
+  (child-simple) run
++ Frame Table Freed MY TID 7
+  child-simple: exit(81)
+  (exec-multiple) end
++ Frame Table Freed MY TID 3
+  exec-multiple: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/exec-missing -a exec-missing --swap-disk=4 -- -q   -f run exec-missing < /dev/null 2> tests/userprog/exec-missing.errors > tests/userprog/exec-missing.output
+perl -I../.. ../../tests/userprog/exec-missing.ck tests/userprog/exec-missing tests/userprog/exec-missing.result
+FAIL tests/userprog/exec-missing
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-missing) begin
+  load: no-such-file: open failed
+  (exec-missing) exec("no-such-file"): -1
+  no-such-file: exit(-1)
+  (exec-missing) end
+  exec-missing: exit(0)
+Differences in `diff -u' format:
+  (exec-missing) begin
+- load: no-such-file: open failed
+  (exec-missing) exec("no-such-file"): -1
+- no-such-file: exit(-1)
+  (exec-missing) end
++ Frame Table Freed MY TID 3
+  exec-missing: exit(0)
+Acceptable output:
+  (exec-missing) begin
+  load: no-such-file: open failed
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
+  exec-missing: exit(0)
+Differences in `diff -u' format:
+  (exec-missing) begin
+- load: no-such-file: open failed
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
++ Frame Table Freed MY TID 3
+  exec-missing: exit(0)
+Acceptable output:
+  (exec-missing) begin
+  load: no-such-file: open failed
+  no-such-file: exit(-1)
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
+  exec-missing: exit(0)
+Differences in `diff -u' format:
+  (exec-missing) begin
+- load: no-such-file: open failed
+- no-such-file: exit(-1)
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
++ Frame Table Freed MY TID 3
+  exec-missing: exit(0)
+Acceptable output:
+  (exec-missing) begin
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
+  exec-missing: exit(0)
+Differences in `diff -u' format:
+  (exec-missing) begin
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
++ Frame Table Freed MY TID 3
+  exec-missing: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/exec-bad-ptr -a exec-bad-ptr --swap-disk=4 -- -q   -f run exec-bad-ptr < /dev/null 2> tests/userprog/exec-bad-ptr.errors > tests/userprog/exec-bad-ptr.output
+perl -I../.. ../../tests/userprog/exec-bad-ptr.ck tests/userprog/exec-bad-ptr tests/userprog/exec-bad-ptr.result
+FAIL tests/userprog/exec-bad-ptr
+Kernel panic in run: PANIC at ../../filesys/directory.c:125 in dir_lookup(): assertion `name != NULL' failed.
+Call stack: 0xc011de74
+Translation of call stack:
+0xc011de74: (unknown)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/wait-simple -a wait-simple -p tests/userprog/child-simple -a child-simple --swap-disk=4 -- -q   -f run wait-simple < /dev/null 2> tests/userprog/wait-simple.errors > tests/userprog/wait-simple.output
+perl -I../.. ../../tests/userprog/wait-simple.ck tests/userprog/wait-simple tests/userprog/wait-simple.result
+FAIL tests/userprog/wait-simple
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (wait-simple) begin
+  (child-simple) run
+  child-simple: exit(81)
+  (wait-simple) wait(exec()) = 81
+  (wait-simple) end
+  wait-simple: exit(0)
+Differences in `diff -u' format:
+  (wait-simple) begin
+  (child-simple) run
++ Frame Table Freed MY TID 4
+  child-simple: exit(81)
+  (wait-simple) wait(exec()) = 81
+  (wait-simple) end
++ Frame Table Freed MY TID 3
+  wait-simple: exit(0)
+pintos -v -k -T 60 --qemu  --fs-disk=2 -p tests/userprog/wait-twice -a wait-twice -p tests/userprog/child-simple -a child-simple --swap-disk=4 -- -q   -f run wait-twice < /dev/null 2> tests/userprog/wait-twice.errors > tests/userprog/wait-twice.output

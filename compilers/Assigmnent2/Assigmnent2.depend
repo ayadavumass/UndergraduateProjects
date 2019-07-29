@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1302639557 source:/home/aditya/Desktop/6thsem/compilers/Assigmnent2/LL1.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<sstream>
+	<map>
+	<stack>
+	"LexComment.h"
+
+1302637319 source:/home/aditya/Desktop/6thsem/compilers/Assigmnent2/SLR.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<sstream>
+	<map>
+	<stack>
+	<stdlib.h>
+	"LexComment.h"
+
+1302450373 source:/home/aditya/Desktop/6thsem/compilers/Assigmnent2/LexComment.cpp
+	<iostream>
+	<list>
+	<fstream>
+	<stdlib.h>
+	<string>
+	<vector>
+	<sstream>
+	"LexComment.h"
+
+1300359753 /home/aditya/Desktop/6thsem/compilers/Assigmnent2/LexComment.h
+	<string>
+	<vector>
+

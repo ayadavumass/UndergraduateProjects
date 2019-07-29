@@ -1,0 +1,5 @@
+packet OverSimMessage
+{
+    @customize(true);
+}
+

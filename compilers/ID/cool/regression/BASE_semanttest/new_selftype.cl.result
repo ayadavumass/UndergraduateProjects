@@ -1,0 +1,17 @@
+#6
+_program
+ #5
+ _class
+   Main
+   IO
+   "./BASE_semanttest/new_selftype.cl"
+   (
+   #4
+   _method
+     main
+     SELF_TYPE
+     #3
+     _new
+       SELF_TYPE
+     : SELF_TYPE
+   )

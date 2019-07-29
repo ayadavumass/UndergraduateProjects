@@ -1,0 +1,92 @@
+#!/usr/local/bin/perl
+#
+#
+#Copyright (c) 1995,1996 The Regents of the University of California.
+#All rights reserved.
+#
+#Permission to use, copy, modify, and distribute this software
+#for any purpose, without fee, and without written agreement is
+#hereby granted, provided that the above copyright notice and the following
+#two paragraphs appear in all copies of this software.
+#
+#IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR
+#DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+#OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF
+#CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+#INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+#AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS
+#ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
+#PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+#
+
+$test_success = 1;
+
+$base_dir = "./BASE_parsetest";
+stat($base_dir);
+die("Did the base dir move?\n") unless -d _;
+
+$result_dir = "./RESULTS_parsetest";
+stat($result_dir);
+die("Did the results dir move?\n") unless -d _;
+
+$parsetest = "../src/parser-test";
+stat($parsetest);
+die("parsetest isn't available here\n") unless -x _;
+
+&test();
+&compare();
+
+if ($test_success)
+{ system "echo 'Parse test succeeded.'";}
+else
+{ system "echo 'Parse test failed.'"; }
+
+exit(0);
+
+sub test {
+
+    system "rm -f $result_dir/*.*";
+
+    opendir(DIR,$base_dir) || die "Can't open $base_dir";
+    local(@test_files) = grep(/\.test$/, readdir(DIR));
+    closedir(DIR);
+
+    # create new test results
+    for (@test_files) {
+#    	system "echo 'performing test $_'";
+	system "$parsetest $base_dir/$_ > $result_dir/$_.result 2> $result_dir/$_.stderr";
+    }
+
+}
+
+sub compare {
+
+    opendir(DIR,$base_dir) || die "Can't open $base_dir";
+    local(@result_files) = grep(/\.result$/, readdir(DIR));
+    closedir(DIR);
+
+    # compare results
+    for (sort(@result_files)) {
+	if (system "diff -b -w $result_dir/$_ $base_dir/$_ > /dev/null") {
+	    $test_success = 0;
+	    system "echo '############### diff -b -w for '$_'  ###############'";
+	    system "diff -b -w $result_dir/$_ $base_dir/$_";
+	}
+    }
+
+    opendir(DIR,$base_dir) || die "Can't open $base_dir";
+    local(@stderr_files) = grep(/\.stderr$/, readdir(DIR));
+    closedir(DIR);
+
+    # compare results
+    for (sort(@stderr_files)) {
+	if (system "diff -b -w $result_dir/$_ $base_dir/$_ > /dev/null") {
+	    $test_success = 0;
+	    system "echo '############### diff -b -w for '$_'  ###############'";
+    	    system "diff -b -w $result_dir/$_ $base_dir/$_";
+        }
+    }
+
+}

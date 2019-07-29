@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Assignment5" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Assignment5" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="/usr/bin" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Assignment5" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="/usr/bin" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="/usr/include" />
+		</Compiler>
+		<Linker>
+			<Add library="glut" />
+			<Add library="GL" />
+			<Add library="GLU" />
+			<Add library="Xxf86vm" />
+			<Add directory="/usr/lib" />
+		</Linker>
+		<Unit filename="Assign5Scene_New.cpp" />
+		<Unit filename="Clipping.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Clipping.h">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="CommonFunc.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="CommonFunc.h">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="LightingModel.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="LightingModel.h">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Perspective.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Perspective.h">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="ScanLine.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="ScanLine.h">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Transformation.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Transformation.h">
+			<Option target="Release" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

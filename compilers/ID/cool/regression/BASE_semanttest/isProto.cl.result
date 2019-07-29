@@ -1,0 +1,132 @@
+#26
+_program
+ #1
+ _class
+   B_Wrong
+   Main
+   "./BASE_semanttest/isProto.cl"
+   (
+   )
+ #2
+ _class
+   AB_Wrong
+   Main
+   "./BASE_semanttest/isProto.cl"
+   (
+   )
+ #3
+ _class
+   A_Wrong
+   Main
+   "./BASE_semanttest/isProto.cl"
+   (
+   )
+ #4
+ _class
+   Correct
+   Main
+   "./BASE_semanttest/isProto.cl"
+   (
+   )
+ #25
+ _class
+   Main
+   Object
+   "./BASE_semanttest/isProto.cl"
+   (
+   #7
+   _attr
+     a
+     IO
+     #7
+     _no_expr
+     : _no_type
+   #8
+   _attr
+     b
+     Int
+     #8
+     _int
+       1
+     : Int
+   #24
+   _method
+     main
+     Object
+     #23
+     _cond
+       #11
+       _isvoid
+         #11
+         _object
+           b
+         : Int
+       : Bool
+       #16
+       _block
+         #15
+         _cond
+           #13
+           _isvoid
+             #13
+             _object
+               a
+             : IO
+           : Bool
+           #13
+           _dispatch
+             #13
+             _new
+               B_Wrong
+             : B_Wrong
+             abort
+             (
+             )
+           : Object
+           #14
+           _dispatch
+             #14
+             _new
+               AB_Wrong
+             : AB_Wrong
+             abort
+             (
+             )
+           : Object
+         : Object
+       : Object
+       #22
+       _block
+         #21
+         _cond
+           #19
+           _isvoid
+             #19
+             _object
+               a
+             : IO
+           : Bool
+           #19
+           _dispatch
+             #19
+             _new
+               Correct
+             : Correct
+             abort
+             (
+             )
+           : Object
+           #20
+           _dispatch
+             #20
+             _new
+               A_Wrong
+             : A_Wrong
+             abort
+             (
+             )
+           : Object
+         : Object
+       : Object
+     : Object
+   )

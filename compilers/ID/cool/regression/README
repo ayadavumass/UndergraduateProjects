@@ -1,0 +1,44 @@
+Originally written by Megan Jacoby
+Modified by Alex Aiken  5/20/95
+Modified by David Gay   12/13/95 (GC)
+=====================================
+
+This directory provides a simple regression testing facility for the
+Cool compiler.  There are tests for each phase of the compiler:
+lexer, parser, semantic analysis, code generation, and code
+generation with garbage collection.  Testing consists of running
+test cases and comparing the result (via "diff") with the "BASE"
+results.  The code generator is tested by comparing the .s files and
+by comparing the results of executing the code on spim.
+
+There is a script "install_results" to update the test results if the
+functionality of the compiler changes.  In general, you should NOT install
+new results that differ from the old results unless you are SURE the new
+results are indeed correct.  The ideal is that the new results are identical
+to the old results.
+
+Of course, if you add a new test you must install the new results.
+To add new tests:
+
+        1.  Add the file to the BASE... dir.
+            The file must have a .test or .cl suffix
+
+        2.  run the appropriate test
+
+        3.  Verify that the new result files in the
+	    RESULT... directory are correct.
+	    For the code generator, the test files have the extensions:
+
+		cl.result   - compilation stdout
+		cl.stderr   - compilation stderr
+		cl.s        - compilation produced assembly
+		cl.s.result - stdout of run through spim
+		cl.s.stderr - stderr of run through spim
+
+        4.  Run install_results.  You will be prompted for which results
+	    to install (e.g., for lexer, parser, etc.).  There is no need
+	    to install results for a phase if the results didn't change.
+
+        5.  Rerun the test to make sure everything works as expected.
+
+

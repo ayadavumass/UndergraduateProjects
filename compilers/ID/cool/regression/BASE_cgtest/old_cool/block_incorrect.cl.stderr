@@ -1,0 +1,2 @@
+./BASE_cgtest/block_incorrect.cl:2: Inferred return type Bool of method main does not conform to declared return type Int.
+Compilation halted due to static semantic errors.
